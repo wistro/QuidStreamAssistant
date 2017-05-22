@@ -1,7 +1,9 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+    MainComponent.cpp
+    Created: 22 May 2017 11:30:54pm
+    Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -12,7 +14,8 @@
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
-    setSize (600, 400);
+    addAndMakeVisible (layout);
+    setSize (1000, 300);
 }
 
 MainContentComponent::~MainContentComponent()
@@ -24,9 +27,6 @@ void MainContentComponent::paint (Graphics& g)
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
-    g.setFont (Font (16.0f));
-    g.setColour (Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
 }
 
 void MainContentComponent::resized()
@@ -34,4 +34,6 @@ void MainContentComponent::resized()
     // This is called when the MainContentComponent is resized.
     // If you add any child components, this is where you should
     // update their positions.
+    
+    layout.setBounds (0, 0, getWidth(), getHeight());
 }

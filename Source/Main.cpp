@@ -1,7 +1,9 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+    Main.cpp
+    Created: 22 May 2017 11:30:54pm
+    Author:  Willow Rosenberg
 
     It contains the basic startup code for a Juce application.
 
