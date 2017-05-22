@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#includ "LayoutComponent.h"
+#include "LayoutComponent.h"
 
 
 //==============================================================================
@@ -31,7 +31,7 @@ public:
 
 private:
 
-    LayoutCompo
+    LayoutComponent layout;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)

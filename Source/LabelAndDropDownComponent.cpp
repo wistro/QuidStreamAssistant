@@ -1,29 +1,29 @@
 /*
   ==============================================================================
 
-    layoutComponent.cpp
-    Created: 22 May 2017 11:30:54pm
+    LabelAndDropDownComponent.cpp
+    Created: 22 May 2017 11:46:33pm
     Author:  Willow Rosenberg
 
   ==============================================================================
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LayoutComponent.h"
+#include "LabelAndDropDownComponent.h"
 
 //==============================================================================
-LayoutComponent::LayoutComponent()
+LabelAndDropDownComponent::LabelAndDropDownComponent()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
 
 }
 
-LayoutComponent::~LayoutComponent()
+LabelAndDropDownComponent::~LabelAndDropDownComponent()
 {
 }
 
-void LayoutComponent::paint (Graphics& g)
+void LabelAndDropDownComponent::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and
        draws some placeholder text to get you started.
@@ -39,11 +39,11 @@ void LayoutComponent::paint (Graphics& g)
 
     g.setColour (Colours::white);
     g.setFont (14.0f);
-    g.drawText ("LayoutComponent", getLocalBounds(),
+    g.drawText ("LabelAndDropDownComponent", getLocalBounds(),
                 Justification::centred, true);   // draw some placeholder text
 }
 
-void LayoutComponent::resized()
+void LabelAndDropDownComponent::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
