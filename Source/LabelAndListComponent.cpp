@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    LabelAndDropDownComponent.cpp
+    LabelAndListComponent.cpp
     Created: 22 May 2017 11:46:33pm
     Author:  Willow Rosenberg
 
@@ -9,21 +9,23 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LabelAndDropDownComponent.h"
+#include "LabelAndListComponent.h"
 
 //==============================================================================
-LabelAndDropDownComponent::LabelAndDropDownComponent()
+LabelAndListComponent::LabelAndListComponent()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    addAndMakeVisible(label);
+    addAndMakeVisible(dropDown);
 
 }
 
-LabelAndDropDownComponent::~LabelAndDropDownComponent()
+LabelAndListComponent::~LabelAndListComponent()
 {
 }
 
-void LabelAndDropDownComponent::paint (Graphics& g)
+void LabelAndListComponent::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and
        draws some placeholder text to get you started.
@@ -39,11 +41,11 @@ void LabelAndDropDownComponent::paint (Graphics& g)
 
     g.setColour (Colours::white);
     g.setFont (14.0f);
-    g.drawText ("LabelAndDropDownComponent", getLocalBounds(),
+    g.drawText ("LabelAndListComponent", getLocalBounds(),
                 Justification::centred, true);   // draw some placeholder text
 }
 
-void LabelAndDropDownComponent::resized()
+void LabelAndListComponent::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..

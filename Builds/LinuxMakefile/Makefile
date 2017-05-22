@@ -66,7 +66,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
-  $(JUCE_OBJDIR)/LabelAndDropDownComponent_c5e65caa.o \
+  $(JUCE_OBJDIR)/LabelAndListComponent_2fbcb9dd.o \
   $(JUCE_OBJDIR)/LayoutComponent_af6963d4.o \
   $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
@@ -93,9 +93,9 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
 
-$(JUCE_OBJDIR)/LabelAndDropDownComponent_c5e65caa.o: ../../Source/LabelAndDropDownComponent.cpp
+$(JUCE_OBJDIR)/LabelAndListComponent_2fbcb9dd.o: ../../Source/LabelAndListComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling LabelAndDropDownComponent.cpp"
+	@echo "Compiling LabelAndListComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/LayoutComponent_af6963d4.o: ../../Source/LayoutComponent.cpp

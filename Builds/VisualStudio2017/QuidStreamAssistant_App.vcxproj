@@ -138,7 +138,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\LabelAndDropDownComponent.cpp"/>
+    <ClCompile Include="..\..\Source\LabelAndListComponent.cpp"/>
     <ClCompile Include="..\..\Source\LayoutComponent.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>

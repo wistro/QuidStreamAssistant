@@ -7,8 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuidStreamAssistant", "Quid
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC7653-F3A6-CD45-4589-AF222076CAE2}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\LabelAndDropDownComponent.cpp = ..\..\Source\LabelAndDropDownComponent.cpp
-		..\..\Source\LabelAndDropDownComponent.h = ..\..\Source\LabelAndDropDownComponent.h
+		..\..\Source\LabelAndListComponent.cpp = ..\..\Source\LabelAndListComponent.cpp
+		..\..\Source\LabelAndListComponent.h = ..\..\Source\LabelAndListComponent.h
 		..\..\Source\LayoutComponent.cpp = ..\..\Source\LayoutComponent.cpp
 		..\..\Source\LayoutComponent.h = ..\..\Source\LayoutComponent.h
 		..\..\Source\MainComponent.cpp = ..\..\Source\MainComponent.cpp

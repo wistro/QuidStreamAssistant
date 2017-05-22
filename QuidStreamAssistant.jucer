@@ -6,10 +6,10 @@
               includeBinaryInAppConfig="1" jucerVersion="5.0.1" companyEmail="willow@willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
-      <FILE id="ekTy4d" name="LabelAndDropDownComponent.cpp" compile="1"
-            resource="0" file="Source/LabelAndDropDownComponent.cpp"/>
-      <FILE id="mU9eih" name="LabelAndDropDownComponent.h" compile="0" resource="0"
-            file="Source/LabelAndDropDownComponent.h"/>
+      <FILE id="ekTy4d" name="LabelAndListComponent.cpp" compile="1" resource="0"
+            file="Source/LabelAndListComponent.cpp"/>
+      <FILE id="mU9eih" name="LabelAndListComponent.h" compile="0" resource="0"
+            file="Source/LabelAndListComponent.h"/>
       <FILE id="az2rUN" name="LayoutComponent.cpp" compile="1" resource="0"
             file="Source/LayoutComponent.cpp"/>
       <FILE id="odWFwl" name="LayoutComponent.h" compile="0" resource="0"

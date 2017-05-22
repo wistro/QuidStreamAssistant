@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    LabelAndDropDownComponent.h
+    LabelAndListComponent.h
     Created: 22 May 2017 11:46:33pm
     Author:  Willow Rosenberg
     
@@ -17,19 +17,19 @@
 //==============================================================================
 /*
 */
-class LabelAndDropDownComponent    : public Component
+class LabelAndListComponent    : public Component
 {
 public:
-    LabelAndDropDownComponent();
-    ~LabelAndDropDownComponent();
+    LabelAndListComponent();
+    ~LabelAndListComponent();
 
     void paint (Graphics&) override;
     void resized() override;
 
 private:
 
-    Label listDescriptor;
+    Label label;
     ComboBox dropDown;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LabelAndDropDownComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LabelAndListComponent)
 };
