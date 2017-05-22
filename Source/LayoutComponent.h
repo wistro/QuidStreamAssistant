@@ -11,6 +11,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "LabelAndListComponent.h"
+#include "SnitchSliders.h"
 
 //==============================================================================
 /*
@@ -25,5 +27,15 @@ public:
     void resized() override;
 
 private:
+    
+    //team, tournament and round dropdown lists with labels
+    LabelAndListComponent teamOne;
+    LabelAndListComponent teamTwo;
+    LabelAndListComponent tournament;
+    LabelAndListComponent round;
+    
+    //snitch catch sliders are all in one pretty box here
+    SnitchSliders snitchesGetStitches;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutComponent)
 };

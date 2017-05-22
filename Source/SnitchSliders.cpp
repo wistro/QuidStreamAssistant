@@ -1,34 +1,35 @@
 /*
   ==============================================================================
 
-    layoutComponent.cpp
-    Created: 22 May 2017 11:30:54pm
-    Author:  Willow Rosenberg
+    SnitchSliders.cpp
+    Created: 23 May 2017 12:39:24am
+    Author:  Jason Rosenberg
 
   ==============================================================================
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LayoutComponent.h"
+#include "SnitchSliders.h"
 
 //==============================================================================
-LayoutComponent::LayoutComponent()
+SnitchSliders::SnitchSliders()
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
-    addAndMakeVisible(teamOne);
-    addAndMakeVisible(teamTwo);
-    addAndMakeVisible(tournament);
-    addAndMakeVisible(round);
-    addAndMakeVisible(snitchesGetStitches);
+    // make the snitchReg slider linear with values from 0 to 1
+    // set initially at 0.5 with no textbox
+    // then initalise the Slider and make it visible.
+    snitchReg.setSliderStyle(Slider::LinearBar);
+    snitchReg.setRange(0, 1);
+    snitchReg.setValue(0.5f);
+    snitchReg.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(snitchReg);
 
 }
 
-LayoutComponent::~LayoutComponent()
+SnitchSliders::~SnitchSliders()
 {
 }
 
-void LayoutComponent::paint (Graphics& g)
+void SnitchSliders::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and
        draws some placeholder text to get you started.
@@ -44,11 +45,11 @@ void LayoutComponent::paint (Graphics& g)
 
     g.setColour (Colours::white);
     g.setFont (14.0f);
-    g.drawText ("LayoutComponent", getLocalBounds(),
+    g.drawText ("SnitchSliders", getLocalBounds(),
                 Justification::centred, true);   // draw some placeholder text
 }
 
-void LayoutComponent::resized()
+void SnitchSliders::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
