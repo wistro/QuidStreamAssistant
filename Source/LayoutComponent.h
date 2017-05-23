@@ -18,7 +18,10 @@
 //==============================================================================
 /*
 */
-class LayoutComponent    : public Component
+class LayoutComponent    : public Component,
+                            public Slider::Listener,
+                            public Button::Listener,
+                            public Label::Listener
 {
 public:
     LayoutComponent();
@@ -26,8 +29,17 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    void sliderValueChanged (Slider* slider) override;
+    void buttonClicked (Button* button) override;
+    void labelTextChanged (Label* label) override;
+    
+    void checkSnitchMistakes(char period);
 
 private:
+    
+    static const char reg = 'r';
+    static const char ot = 'o';
+    static const char dot = 'd';
     
     //team, tournament and round dropdown lists with labels
     LabelAndListComponent team1;

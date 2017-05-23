@@ -22,6 +22,9 @@ ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
 {
     score = 0;
     snitchMarkers = "";
+    caughtR = false;
+    caughtO = false;
+    caught2O = false;
     
     leftButtons = areButtonsOnLeft;
     
@@ -102,6 +105,30 @@ String ScoreComponent::getScoreWithSnitchMarks()
     return showScore.getText();
 }
 
+//returns true if the corresponding snitch catch flag is true
+//otherwise returns false
+//if sent an invalid period marker (not 'r', 'o' or 'd') returns false
+bool ScoreComponent::getSnitchCatchState(char period)
+{
+    bool caught = false;
+    period = tolower(period); //make sure it's lowercase
+    
+    if ( period == reg ) //regulation time
+    {
+        caught = caughtR;
+    }
+    else if ( period == ot ) //overtime
+    {
+        caught = caughtO;
+    }
+    else if ( period == dot )
+    {
+        caught = caught2O;
+    }
+
+    return caught;
+}
+
 int ScoreComponent::getScore()
 {
     return score;
@@ -111,22 +138,94 @@ void ScoreComponent::addSnitchCatch(char period)
 {
     period = tolower(period); //make sure it's lowercase
     
-    if ( period == 'r' ) //regulation time
+    if ( period == reg ) //regulation time
     {
         score += 30;
         snitchMarkers.append(regMarker, 1);
+        caughtR = true;
         showScore.setText(String(score) + snitchMarkers, sendNotification);
     }
-    else if ( period == 'o' ) //overtime
+    else if ( period == ot ) //overtime
     {
         score += 30;
         snitchMarkers.append(otMarker, 1);
+        caughtO = true;
         showScore.setText(String(score) + snitchMarkers, sendNotification);
     }
-    else if ( period == 'd' )
+    else if ( period == dot )
     {
         score += 30;
         snitchMarkers.append(dotMarker, 1);
+        caught2O = true;
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
+}
+
+void ScoreComponent::removeSnitchCatch(char period)
+{
+    period = tolower(period); //make sure it's lowercase
+    
+    if ( period == reg ) //regulation time
+    {
+        score -= 30;
+        caughtR = false;
+        
+        if ( caughtO )
+            if ( caught2O )
+            {
+                snitchMarkers = otMarker + dotMarker;
+            }
+            else
+            {
+                snitchMarkers = otMarker;
+            }
+        else if ( caught2O )
+        {
+            snitchMarkers = dotMarker;
+        }
+        
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
+    else if ( period == ot ) //overtime
+    {
+        score -= 30;
+        caughtO = false;
+        
+        if ( caughtR )
+            if ( caught2O )
+            {
+                snitchMarkers = regMarker + dotMarker;
+            }
+            else
+            {
+                snitchMarkers = regMarker;
+            }
+        else if ( caught2O )
+        {
+            snitchMarkers = dotMarker;
+        }
+
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
+    else if ( period == dot )
+    {
+        score -= 30;
+        caught2O = false;
+        
+        if ( caughtR )
+            if ( caughtO )
+            {
+                snitchMarkers = regMarker + otMarker;
+            }
+            else
+            {
+                snitchMarkers = regMarker;
+            }
+        else if ( caughtO )
+        {
+            snitchMarkers = otMarker;
+        }
+        
         showScore.setText(String(score) + snitchMarkers, sendNotification);
     }
 }

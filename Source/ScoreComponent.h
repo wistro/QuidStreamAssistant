@@ -37,7 +37,10 @@ public:
     
     String getScoreWithSnitchMarks();
     int getScore();
+    bool getSnitchCatchState(char period = 'r');
+    
     void addSnitchCatch(char period = 'r');
+    void removeSnitchCatch(char period = 'r');
 
 private:
     
@@ -47,7 +50,16 @@ private:
     static const String otMarker;
     static const String dotMarker;
     
+    static const char reg = 'r';
+    static const char ot = 'o';
+    static const char dot = 'd';
+    
     bool leftButtons;
+    
+    //flags for snitch catches instead of messing with character comparisons
+    bool caughtR;
+    bool caughtO;
+    bool caught2O;
     
     ArrowButton increase;
     ArrowButton decrease;

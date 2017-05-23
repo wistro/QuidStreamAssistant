@@ -24,11 +24,18 @@ LayoutComponent::LayoutComponent()
     addAndMakeVisible(snitchesGetStitches);
     addAndMakeVisible(score1);
     addAndMakeVisible(score2);
+    
+    snitchesGetStitches.snitchReg.addListener(this);
+    snitchesGetStitches.snitchOT.addListener(this);
+    snitchesGetStitches.snitch2OT.addListener(this);
 
 }
 
 LayoutComponent::~LayoutComponent()
 {
+    snitchesGetStitches.snitchReg.removeListener(this);
+    snitchesGetStitches.snitchOT.removeListener(this);
+    snitchesGetStitches.snitch2OT.removeListener(this);
 }
 
 void LayoutComponent::paint (Graphics& g)
@@ -54,4 +61,110 @@ void LayoutComponent::resized()
     score1.setBounds(110, 160, 60, 50);
     score2.setBounds(170, 210, 60, 50);
 
+}
+
+void LayoutComponent::sliderValueChanged (Slider* slider)
+{
+    //unless everything is awful, this will be a 0, 1 or 2
+    const int sliderValue = slider->getValue();
+
+    
+    if (slider == &snitchesGetStitches.snitchReg)
+    {
+        if (sliderValue == 0)
+        {
+            score1.addSnitchCatch(reg);
+        }
+        else if (sliderValue == 2)
+        {
+            score2.addSnitchCatch(reg);
+        }
+        else if (sliderValue == 1)
+        {
+            checkSnitchMistakes(reg);
+        }
+    }
+    else if (slider == &snitchesGetStitches.snitchOT)
+    {
+        if (sliderValue == 0)
+        {
+            score1.addSnitchCatch(ot);
+        }
+        else if (sliderValue == 2)
+        {
+            score2.addSnitchCatch(ot);
+        }
+        else if (sliderValue == 1)
+        {
+            checkSnitchMistakes(ot);
+        }
+    }
+    else if (slider == &snitchesGetStitches.snitch2OT)
+    {
+        if (sliderValue == 0)
+        {
+            score1.addSnitchCatch(dot);
+        }
+        else if (sliderValue == 2)
+        {
+            score2.addSnitchCatch(dot);
+        }
+        else if (sliderValue == 1)
+        {
+            checkSnitchMistakes(dot);
+        }
+    }
+    
+}
+
+void LayoutComponent::buttonClicked (Button* button)
+{
+    
+}
+
+void LayoutComponent::labelTextChanged (Label* label)
+{
+    
+}
+
+//called only when a snitch slider is moved to the 1 position
+//this function will check both scores for snitch catches
+//corresponding to the correct slider and will then
+//remove the snitch marker character and 30 points from that team's total
+void LayoutComponent::checkSnitchMistakes(char period)
+{
+    if ( period == reg)
+    {
+        if ( score1.getSnitchCatchState(reg) )
+        {
+            score1.removeSnitchCatch(reg);
+        }
+        else if ( score2.getSnitchCatchState(reg) )
+        {
+            score2.removeSnitchCatch(reg);
+        }
+    }
+    else if ( period == ot)
+    {
+        if ( score1.getSnitchCatchState(ot) )
+        {
+            score1.removeSnitchCatch(ot);
+        }
+        else if ( score2.getSnitchCatchState(ot) )
+        {
+            score2.removeSnitchCatch(ot);
+        }
+    }
+    if ( period == dot)
+    {
+        if ( score1.getSnitchCatchState(dot) )
+        {
+            score1.removeSnitchCatch(dot);
+        }
+        else if ( score2.getSnitchCatchState(dot) )
+        {
+            score2.removeSnitchCatch(dot);
+        }
+    }
+    
 }
