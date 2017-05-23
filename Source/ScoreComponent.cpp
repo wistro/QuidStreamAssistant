@@ -11,9 +11,9 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ScoreComponent.h"
 
-const String regMarker = "*";
-const String otMarker = "^";
-const String dotMarker = "$";
+const String ScoreComponent::regMarker = "*";
+const String ScoreComponent::otMarker = "^";
+const String ScoreComponent::dotMarker = "$";
 
 //==============================================================================
 ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
@@ -84,7 +84,7 @@ void ScoreComponent::buttonClicked (Button* button)
     if (button == &increase)
     {
         score += 10;
-        showScore.setText(String(score), sendNotification);
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
     }
     else if (button == &decrease)
     {
@@ -94,7 +94,7 @@ void ScoreComponent::buttonClicked (Button* button)
         if ( score > 0 )
         {
             score -= 10;
-            showScore.setText(String(score), sendNotification);
+            showScore.setText(String(score) + snitchMarkers, sendNotification);
         }
     }
 
@@ -169,6 +169,7 @@ void ScoreComponent::removeSnitchCatch(char period)
     {
         score -= 30;
         caughtR = false;
+        snitchMarkers = "";
         
         if ( caughtO )
             if ( caught2O )
@@ -190,6 +191,7 @@ void ScoreComponent::removeSnitchCatch(char period)
     {
         score -= 30;
         caughtO = false;
+        snitchMarkers = "";
         
         if ( caughtR )
             if ( caught2O )
@@ -211,6 +213,7 @@ void ScoreComponent::removeSnitchCatch(char period)
     {
         score -= 30;
         caught2O = false;
+        snitchMarkers = "";
         
         if ( caughtR )
             if ( caughtO )

@@ -58,8 +58,8 @@ void LayoutComponent::resized()
     // components that your component contains..
     
     snitchesGetStitches.setBounds(0, 0, 100, 155);
-    score1.setBounds(110, 160, 60, 50);
-    score2.setBounds(170, 210, 60, 50);
+    score1.setBounds(110, 160, 70, 50);
+    score2.setBounds(200, 160, 70, 50);
 
 }
 
