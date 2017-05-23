@@ -18,6 +18,8 @@ LabelAndListComponent::LabelAndListComponent()
     // initialise any special settings that your component needs.
     addAndMakeVisible(label);
     addAndMakeVisible(dropDown);
+    
+    label.attachToComponent(&dropDown, true);
 
 }
 

@@ -31,5 +31,10 @@ private:
     Slider snitchOT;
     Slider snitch2OT;
     
+    //labels for sliders
+    Label regulation;
+    Label overTime;
+    Label doubleOverTime;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SnitchSliders)
 };
