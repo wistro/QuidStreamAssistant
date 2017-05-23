@@ -15,13 +15,16 @@
 //==============================================================================
 /*
 */
-class StopWatch    : public Timer
+class StopWatch    : public Timer,
+                        public Component
 {
 public:
     StopWatch();
     ~StopWatch();
 
     void timerCallback() override;
+    void paint (Graphics&) override;
+    void resized() override;
     
     double currentTimeSec();
 

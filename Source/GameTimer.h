@@ -16,7 +16,8 @@
 //==============================================================================
 /*
 */
-class GameTimer    : public Component
+class GameTimer    : public Component,
+                        public Button::Listener
 {
 public:
     GameTimer();
@@ -24,6 +25,7 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    void buttonClicked (Button* button) override;
 
 private:
     
@@ -32,6 +34,8 @@ private:
     DrawableImage pause;
     DrawableImage mouseOverPlay;
     DrawableImage mouseOverPause;
+    
+    StopWatch gameTime;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameTimer)
 };
