@@ -11,6 +11,10 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ScoreComponent.h"
 
+const String regMarker = "*";
+const String otMarker = "^";
+const String dotMarker = "$";
+
 //==============================================================================
 ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
     : increase("increase", 0.75f, Colours::black),
@@ -105,5 +109,24 @@ int ScoreComponent::getScore()
 
 void ScoreComponent::addSnitchCatch(char period)
 {
+    period = tolower(period); //make sure it's lowercase
     
+    if ( period == 'r' ) //regulation time
+    {
+        score += 30;
+        snitchMarkers.append(regMarker, 1);
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
+    else if ( period == 'o' ) //overtime
+    {
+        score += 30;
+        snitchMarkers.append(otMarker, 1);
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
+    else if ( period == 'd' )
+    {
+        score += 30;
+        snitchMarkers.append(dotMarker, 1);
+        showScore.setText(String(score) + snitchMarkers, sendNotification);
+    }
 }

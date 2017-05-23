@@ -43,6 +43,9 @@ private:
     
     int score;
     String snitchMarkers;
+    static const String regMarker;
+    static const String otMarker;
+    static const String dotMarker;
     
     bool leftButtons;
     
