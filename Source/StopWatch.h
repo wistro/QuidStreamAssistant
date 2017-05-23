@@ -4,6 +4,10 @@
     StopWatch.h
     Created: 23 May 2017 6:37:57pm
     Author:  Willow Rosenberg
+ 
+    it's a stopwatch. it counts in seconds. 
+    calling startTimer() with a value other than 1000 (== #milliseconds in a second)
+    is ill advised (as in it won't work and you'll be sad)
 
   ==============================================================================
 */
@@ -27,6 +31,7 @@ public:
     void resized() override;
     
     double currentTimeSec();
+    void resetTimer();
 
 private:
     

@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuidStreamAssistant", "Quid
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC7653-F3A6-CD45-4589-AF222076CAE2}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\ConfirmClick.cpp = ..\..\Source\ConfirmClick.cpp
+		..\..\Source\ConfirmClick.h = ..\..\Source\ConfirmClick.h
 		..\..\Source\GameTimer.cpp = ..\..\Source\GameTimer.cpp
 		..\..\Source\GameTimer.h = ..\..\Source\GameTimer.h
 		..\..\Source\StopWatch.cpp = ..\..\Source\StopWatch.cpp
@@ -26,10 +28,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F6FED77A-DE92-3414-73F1-43C36AF11CAE}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\images\downStop.png = ..\..\Source\images\downStop.png
 		..\..\Source\images\mouseOverPause.png = ..\..\Source\images\mouseOverPause.png
 		..\..\Source\images\mouseOverPlay.png = ..\..\Source\images\mouseOverPlay.png
+		..\..\Source\images\mouseOverStop.png = ..\..\Source\images\mouseOverStop.png
 		..\..\Source\images\pause.png = ..\..\Source\images\pause.png
 		..\..\Source\images\play.png = ..\..\Source\images\play.png
+		..\..\Source\images\stop.png = ..\..\Source\images\stop.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Juce Modules", "Juce Modules", "{AD2C04D4-7DBA-314E-4D66-F2B021015F59}"

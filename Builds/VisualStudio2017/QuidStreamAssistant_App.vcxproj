@@ -138,6 +138,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ConfirmClick.cpp"/>
     <ClCompile Include="..\..\Source\GameTimer.cpp"/>
     <ClCompile Include="..\..\Source\StopWatch.cpp"/>
     <ClCompile Include="..\..\Source\ScoreComponent.cpp"/>

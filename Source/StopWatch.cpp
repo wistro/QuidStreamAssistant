@@ -21,15 +21,24 @@ StopWatch::~StopWatch()
 {
 }
 
+//increment timer by 1 second and display new value
 void StopWatch::timerCallback()
 {
     timer.operator+=(1);
     repaint();
 }
 
+//read out current value of timer in seconds
 double StopWatch::currentTimeSec()
 {
     return timer.inSeconds();
+}
+
+//reset the timer to 0
+void StopWatch::resetTimer()
+{
+    RelativeTime reset;
+    timer.operator=(reset);
 }
 
 void StopWatch::paint (Graphics& g)

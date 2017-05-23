@@ -13,7 +13,8 @@
 
 //==============================================================================
 GameTimer::GameTimer()
-            : playPause("playPause", DrawableButton::ImageFitted)
+            : playPause("playPause", DrawableButton::ImageFitted),
+              stop("stop", DrawableButton::ImageFitted)
 {
     //make button a toggle button because that's what we need
     playPause.setClickingTogglesState(true);
@@ -35,16 +36,31 @@ GameTimer::GameTimer()
     //get rid of weird colour masking that happens when the button is toggled
     playPause.setColour(DrawableButton::backgroundOnColourId, Colours::transparentWhite);
     
+    //read in stop button images
+    stopNormal.setImage( ImageCache::getFromMemory( BinaryData::stop_png, BinaryData::stop_pngSize ));
+    
+    stopMouse.setImage( ImageCache::getFromMemory( BinaryData::mouseOverStop_png, BinaryData::mouseOverStop_pngSize ));
+    
+    stopDown.setImage( ImageCache::getFromMemory( BinaryData::downStop_png, BinaryData::downStop_pngSize ));
+    
+    //pass images to the stop button
+    stop.setImages( &stopNormal, &stopMouse, &stopDown );
+    
+    
     //show the pretty
     addAndMakeVisible(playPause);
+    addAndMakeVisible(stop);
     addAndMakeVisible(gameTime);
+    addAndMakeVisible(nameTheThing);
     
     playPause.addListener(this);
+    stop.addListener(this);
 }
 
 GameTimer::~GameTimer()
 {
     playPause.removeListener(this);
+    stop.removeListener(this);
 }
 
 void GameTimer::paint (Graphics& g)
@@ -57,9 +73,14 @@ void GameTimer::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
     Rectangle<int> area(getLocalBounds());
-    const int buttonWidth = 50;
+    const int margin = 4;
+    const int buttonDim = (area.getHeight() / 2) - (margin / 2);
+
     
-    playPause.setBounds(area.removeFromRight(buttonWidth));
+    Rectangle<int> buttonArea(area.removeFromRight(buttonDim));
+    playPause.setBounds(buttonArea.removeFromTop(buttonDim));
+    stop.setBounds(buttonArea.removeFromBottom(buttonDim));
+    
     gameTime.setBounds(area);
 
 }
@@ -79,4 +100,32 @@ void GameTimer::buttonClicked (Button* button)
             gameTime.stopTimer();
         }
     }
+    else if ( button == &stop )
+    {
+        gameTime.stopTimer();
+        playPause.setToggleState(false, dontSendNotification);
+        DialogWindow::LaunchOptions checkIn;
+        ConfirmClick stopDialog("too long?");
+        OptionalScopedPointer<ConfirmClick> newContent(&stopDialog, false);
+        addAndMakeVisible(stopDialog);
+        
+        stopDialog.setBounds(0, 0, 1000, 200);
+        
+        checkIn.dialogTitle = "Are you sure?";
+        checkIn.dialogBackgroundColour = Colours::lightgrey;
+        checkIn.content.operator=(newContent);
+        checkIn.componentToCentreAround = &stop ;
+        checkIn.escapeKeyTriggersCloseButton = true;
+        checkIn.useNativeTitleBar = true;
+        checkIn.resizable = false;
+        
+        checkIn.launchAsync();
+        
+        if ( stopDialog.getState() )
+        {
+            gameTime.resetTimer();
+        }
+        
+    }
 }
+

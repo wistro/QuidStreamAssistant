@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "StopWatch.h"
+#include "ConfirmClick.h"
 
 //==============================================================================
 /*
@@ -30,12 +31,20 @@ public:
 private:
     
     DrawableButton playPause;
+    DrawableButton stop;
+    
     DrawableImage play;
     DrawableImage pause;
     DrawableImage mouseOverPlay;
     DrawableImage mouseOverPause;
     
+    DrawableImage stopNormal;
+    DrawableImage stopMouse;
+    DrawableImage stopDown;
+    
     StopWatch gameTime;
+    
+    Label nameTheThing;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameTimer)
 };
