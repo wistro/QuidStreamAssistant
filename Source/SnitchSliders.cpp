@@ -72,7 +72,7 @@ void SnitchSliders::resized()
     const int sliderHeight = 30;
     const int textHeight = 18;
     
-    Rectangle<int> area = getLocalBounds();
+    Rectangle<int> area (getLocalBounds());
     
     regulation.setBounds(area.removeFromTop(textHeight));
     snitchReg.setBounds(area.removeFromTop(sliderHeight).reduced(border));

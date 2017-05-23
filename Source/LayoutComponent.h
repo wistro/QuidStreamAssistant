@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "LabelAndListComponent.h"
 #include "SnitchSliders.h"
+#include "ScoreComponent.h"
 
 //==============================================================================
 /*
@@ -29,13 +30,16 @@ public:
 private:
     
     //team, tournament and round dropdown lists with labels
-    LabelAndListComponent teamOne;
-    LabelAndListComponent teamTwo;
+    LabelAndListComponent team1;
+    LabelAndListComponent team2;
     LabelAndListComponent tournament;
     LabelAndListComponent round;
     
     //snitch catch sliders are all in one pretty box here
     SnitchSliders snitchesGetStitches;
+    
+    ScoreComponent score1;
+    ScoreComponent score2;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutComponent)
 };

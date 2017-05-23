@@ -13,14 +13,17 @@
 
 //==============================================================================
 LayoutComponent::LayoutComponent()
+    : score2(false)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    addAndMakeVisible(teamOne);
-    addAndMakeVisible(teamTwo);
+    addAndMakeVisible(team1);
+    addAndMakeVisible(team2);
     addAndMakeVisible(tournament);
     addAndMakeVisible(round);
     addAndMakeVisible(snitchesGetStitches);
+    addAndMakeVisible(score1);
+    addAndMakeVisible(score2);
 
 }
 
@@ -49,5 +52,7 @@ void LayoutComponent::resized()
     // components that your component contains..
     
     snitchesGetStitches.setBounds(0, 0, 100, 155);
+    score1.setBounds(110, 160, 60, 50);
+    score2.setBounds(170, 210, 60, 50);
 
 }

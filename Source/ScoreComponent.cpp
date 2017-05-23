@@ -3,7 +3,7 @@
 
     ScoreComponent.cpp
     Created: 23 May 2017 10:41:28am
-    Author:  Jason Rosenberg
+    Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -12,40 +12,98 @@
 #include "ScoreComponent.h"
 
 //==============================================================================
-ScoreComponent::ScoreComponent()
+ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
+    : increase("increase", 0.75f, Colours::black),
+      decrease("decrease", 0.25f, Colours::black)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
+    score = 0;
+    snitchMarkers = "";
+    
+    leftButtons = areButtonsOnLeft;
+    
+    addAndMakeVisible(increase);
+    increase.addListener(this);
+    
+    addAndMakeVisible(decrease);
+    decrease.addListener(this);
+    
+    showScore.setText(String(score), dontSendNotification);
+    showScore.setColour(Label::backgroundColourId, Colours::white);
+    showScore.setColour(Label::textColourId, Colours::black);
+    showScore.setJustificationType(Justification::centred);
+    showScore.setFont(20.0f);
+    addAndMakeVisible(showScore);
+    
+    
 
 }
 
 ScoreComponent::~ScoreComponent()
 {
+    increase.removeListener(this);
+    decrease.removeListener(this);
 }
 
 void ScoreComponent::paint (Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
-
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
-
-    g.setColour (Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (Colours::white);
-    g.setFont (14.0f);
-    g.drawText ("ScoreComponent", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
+   
 }
 
 void ScoreComponent::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
+    Rectangle<int> area (getLocalBounds());
+    const int buttonWidth = 15;
+    const int margin = 2;
+    
+    if (leftButtons)
+    {
+        Rectangle<int> buttons (area.removeFromLeft(buttonWidth).reduced(margin));
+        increase.setBounds( buttons.removeFromTop( buttons.getHeight() / 2 ));
+        decrease.setBounds( buttons.removeFromTop( buttons.getHeight() ));
+        showScore.setBounds( area );
+    }
+    else
+    {
+        Rectangle<int> buttons (area.removeFromRight(buttonWidth).reduced(margin));
+        increase.setBounds( buttons.removeFromTop( buttons.getHeight() / 2 ));
+        decrease.setBounds( buttons.removeFromTop( buttons.getHeight() ));
+        showScore.setBounds( area );
+    }
 
+}
+
+void ScoreComponent::buttonClicked (Button* button)
+{
+    if (button == &increase)
+    {
+        score += 10;
+        showScore.setText(String(score), sendNotification);
+    }
+    else if (button == &decrease)
+    {
+        //negative scores are not allowed,
+        //if score <= 0, nothing happens
+        //when decrease button pressed
+        if ( score > 0 )
+        {
+            score -= 10;
+            showScore.setText(String(score), sendNotification);
+        }
+    }
+
+}
+
+String ScoreComponent::getScoreWithSnitchMarks()
+{
+    return showScore.getText();
+}
+
+int ScoreComponent::getScore()
+{
+    return score;
+}
+
+void ScoreComponent::addSnitchCatch(char period)
+{
+    
 }
