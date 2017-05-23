@@ -66,6 +66,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/GameTimer_abf39654.o \
+  $(JUCE_OBJDIR)/StopWatch_15154ce.o \
   $(JUCE_OBJDIR)/ScoreComponent_c5191094.o \
   $(JUCE_OBJDIR)/SnitchSliders_731a3568.o \
   $(JUCE_OBJDIR)/LabelAndListComponent_2fbcb9dd.o \
@@ -94,6 +96,16 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/GameTimer_abf39654.o: ../../Source/GameTimer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling GameTimer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/StopWatch_15154ce.o: ../../Source/StopWatch.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling StopWatch.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ScoreComponent_c5191094.o: ../../Source/ScoreComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

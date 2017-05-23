@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuidStreamAssistant", "Quid
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC7653-F3A6-CD45-4589-AF222076CAE2}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\GameTimer.cpp = ..\..\Source\GameTimer.cpp
+		..\..\Source\GameTimer.h = ..\..\Source\GameTimer.h
+		..\..\Source\StopWatch.cpp = ..\..\Source\StopWatch.cpp
+		..\..\Source\StopWatch.h = ..\..\Source\StopWatch.h
 		..\..\Source\ScoreComponent.cpp = ..\..\Source\ScoreComponent.cpp
 		..\..\Source\ScoreComponent.h = ..\..\Source\ScoreComponent.h
 		..\..\Source\SnitchSliders.cpp = ..\..\Source\SnitchSliders.cpp

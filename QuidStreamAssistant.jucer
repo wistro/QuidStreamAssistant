@@ -6,6 +6,10 @@
               includeBinaryInAppConfig="1" jucerVersion="5.0.1" companyEmail="willow@willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
+      <FILE id="YxtxV0" name="GameTimer.cpp" compile="1" resource="0" file="Source/GameTimer.cpp"/>
+      <FILE id="hkwzgS" name="GameTimer.h" compile="0" resource="0" file="Source/GameTimer.h"/>
+      <FILE id="Td0dwP" name="StopWatch.cpp" compile="1" resource="0" file="Source/StopWatch.cpp"/>
+      <FILE id="QewHSb" name="StopWatch.h" compile="0" resource="0" file="Source/StopWatch.h"/>
       <FILE id="Y97dKH" name="ScoreComponent.cpp" compile="1" resource="0"
             file="Source/ScoreComponent.cpp"/>
       <FILE id="VN4IqD" name="ScoreComponent.h" compile="0" resource="0"
