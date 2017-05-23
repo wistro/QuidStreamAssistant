@@ -1,34 +1,29 @@
 /*
   ==============================================================================
 
-    layoutComponent.cpp
-    Created: 22 May 2017 11:30:54pm
-    Author:  Willow Rosenberg
+    ScoreComponent.cpp
+    Created: 23 May 2017 10:41:28am
+    Author:  Jason Rosenberg
 
   ==============================================================================
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LayoutComponent.h"
+#include "ScoreComponent.h"
 
 //==============================================================================
-LayoutComponent::LayoutComponent()
+ScoreComponent::ScoreComponent()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    addAndMakeVisible(teamOne);
-    addAndMakeVisible(teamTwo);
-    addAndMakeVisible(tournament);
-    addAndMakeVisible(round);
-    addAndMakeVisible(snitchesGetStitches);
 
 }
 
-LayoutComponent::~LayoutComponent()
+ScoreComponent::~ScoreComponent()
 {
 }
 
-void LayoutComponent::paint (Graphics& g)
+void ScoreComponent::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and
        draws some placeholder text to get you started.
@@ -40,14 +35,17 @@ void LayoutComponent::paint (Graphics& g)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
 
     g.setColour (Colours::grey);
+    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
+    g.setColour (Colours::white);
+    g.setFont (14.0f);
+    g.drawText ("ScoreComponent", getLocalBounds(),
+                Justification::centred, true);   // draw some placeholder text
 }
 
-void LayoutComponent::resized()
+void ScoreComponent::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
-    
-    snitchesGetStitches.setBounds(0, 0, 100, 155);
 
 }

@@ -18,6 +18,12 @@
 class SnitchSliders    : public Component
 {
 public:
+    
+    //snitch catch sliders
+    Slider snitchReg;
+    Slider snitchOT;
+    Slider snitch2OT;
+    
     SnitchSliders();
     ~SnitchSliders();
 
@@ -25,11 +31,6 @@ public:
     void resized() override;
 
 private:
-    
-    //snitch catch sliders
-    Slider snitchReg;
-    Slider snitchOT;
-    Slider snitch2OT;
     
     //labels for sliders
     Label regulation;

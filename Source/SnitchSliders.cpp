@@ -17,6 +17,9 @@ SnitchSliders::SnitchSliders()
     // make the snitchReg, snitchOT and snitch2OT sliders linear with values
     // from 0 to 2 set initially at 1 with no textbox
     // then initalise the Sliders and make them visible.
+    
+    const float textSize = 16.0;
+    
     snitchReg.setSliderStyle(Slider::LinearHorizontal);
     snitchReg.setRange(0, 2, 1); //value can only be 0, 1, or 2
     snitchReg.setValue(1, dontSendNotification);
@@ -35,13 +38,19 @@ SnitchSliders::SnitchSliders()
     snitch2OT.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(snitch2OT);
     
-    regulation.setText("Regulation Time Snitch Catch", dontSendNotification);
+    regulation.setFont(textSize);
+    regulation.setJustificationType(Justification::centredBottom);
+    regulation.setText("Snitch Catch", dontSendNotification);
     addAndMakeVisible(regulation);
     
-    overTime.setText("Overtime Snitch Catch", dontSendNotification);
+    overTime.setFont(textSize);
+    overTime.setJustificationType(Justification::centredBottom);
+    overTime.setText("OT Snitch", dontSendNotification);
     addAndMakeVisible(overTime);
     
-    doubleOverTime.setText("Double Overtime Snitch Catch", dontSendNotification);
+    doubleOverTime.setFont(textSize);
+    doubleOverTime.setJustificationType(Justification::centredBottom);
+    doubleOverTime.setText("2OT Snitch", dontSendNotification);
     addAndMakeVisible(doubleOverTime);
 
 }
@@ -61,16 +70,15 @@ void SnitchSliders::resized()
     
     const int border = 2;
     const int sliderHeight = 30;
-    const int textHeight = 30;
+    const int textHeight = 18;
     
     Rectangle<int> area = getLocalBounds();
     
+    regulation.setBounds(area.removeFromTop(textHeight));
     snitchReg.setBounds(area.removeFromTop(sliderHeight).reduced(border));
-    regulation.setBounds(area.removeFromTop(textHeight).reduced(border));
-    snitchReg.setBounds(area.removeFromTop(sliderHeight).reduced(border));
-    regulation.setBounds(area.removeFromTop(textHeight).reduced(border));snitchReg.setBounds(area.removeFromTop(sliderHeight).reduced(border));
-    regulation.setBounds(area.removeFromTop(textHeight).reduced(border));
+    overTime.setBounds(area.removeFromTop(textHeight));
+    snitchOT.setBounds(area.removeFromTop(sliderHeight).reduced(border));
+    doubleOverTime.setBounds(area.removeFromTop(textHeight));
+    snitch2OT.setBounds(area.removeFromTop(sliderHeight));
     
-    
-
 }

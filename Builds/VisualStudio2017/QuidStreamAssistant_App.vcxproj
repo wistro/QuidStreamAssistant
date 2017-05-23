@@ -138,6 +138,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\LabelAndListComponent.cpp"/>
     <ClCompile Include="..\..\Source\LayoutComponent.cpp"/>
