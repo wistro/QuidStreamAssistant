@@ -3,7 +3,7 @@
 
     SnitchSliders.h
     Created: 23 May 2017 12:39:24am
-    Author:  Jason Rosenberg
+    Author:  Willow Rosenberg
 
   ==============================================================================
 */
