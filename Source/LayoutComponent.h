@@ -14,6 +14,7 @@
 #include "LabelAndListComponent.h"
 #include "SnitchSliders.h"
 #include "ScoreComponent.h"
+#include "GameTimer.h"
 
 //==============================================================================
 /*
@@ -52,6 +53,8 @@ private:
     
     ScoreComponent score1;
     ScoreComponent score2;
+    
+    GameTimer gameTime;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutComponent)
 };

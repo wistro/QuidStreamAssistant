@@ -24,6 +24,7 @@ LayoutComponent::LayoutComponent()
     addAndMakeVisible(snitchesGetStitches);
     addAndMakeVisible(score1);
     addAndMakeVisible(score2);
+    addAndMakeVisible(gameTime);
     
     snitchesGetStitches.snitchReg.addListener(this);
     snitchesGetStitches.snitchOT.addListener(this);
@@ -60,6 +61,7 @@ void LayoutComponent::resized()
     snitchesGetStitches.setBounds(0, 0, 100, 155);
     score1.setBounds(110, 160, 70, 50);
     score2.setBounds(200, 160, 70, 50);
+    gameTime.setBounds(150, 0, 200, 50);
 
 }
 
