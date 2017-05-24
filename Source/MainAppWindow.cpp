@@ -67,35 +67,39 @@ MainAppWindow::MainAppWindow()
     setResizable (true, false);
     setResizeLimits (400, 400, 10000, 10000);
     
-    #if JUCE_IOS || JUCE_ANDROID
-    setFullScreen (true);
-    #else
     setBounds ((int) (0.1f * getParentWidth()),
                (int) (0.1f * getParentHeight()),
                jmax (850, (int) (0.5f * getParentWidth())),
                jmax (600, (int) (0.7f * getParentHeight())));
-    #endif
     
+//    juce::Component::addAndMakeVisible(content);
+    
+    content = new MainContentComponent;
+    setContentNonOwned(content, false);
+    setVisible(true);
+    
+    // this lets the command manager use keypresses that arrive in our window to send out commands
+    addKeyListener (getApplicationCommandManager().getKeyMappings());
     
     #if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC
     taskbarIcon = new TaskbarComponent();
     #endif
     
-#if JUCE_ANDROID
-    setOpenGLRenderingEngine();
-#endif
-    
-    triggerAsyncUpdate();
+
+
 }
 
 MainAppWindow::~MainAppWindow()
 {
+    content = nullptr;
+    applicationCommandManager = nullptr;
 }
 
 void MainAppWindow::closeButtonPressed()
 {
     JUCEApplication::getInstance()->systemRequestedQuit();
 }
+
 MainAppWindow* MainAppWindow::getMainAppWindow()
 {
     for (int i = TopLevelWindow::getNumTopLevelWindows(); --i >= 0;)
@@ -125,8 +129,15 @@ void MainAppWindow::showMessageBubble (const String& text)
 // The following methods implement the ApplicationCommandTarget interface, allowing
 // this window to publish a set of actions it can perform, and which can be mapped
 // onto menus, keypresses, etc.
+ApplicationCommandManager& MainAppWindow::getApplicationCommandManager()
+{
+    if (applicationCommandManager == nullptr)
+        applicationCommandManager = new ApplicationCommandManager();
+    
+    return *applicationCommandManager;
+}
 
-ApplicationCommandTarget* getNextCommandTarget()
+ApplicationCommandTarget* MainAppWindow::getNextCommandTarget()
 {
     // this will return the next parent component that is an ApplicationCommandTarget (in this
     // case, there probably isn't one, but it's best to use this method in your own apps).
@@ -136,7 +147,9 @@ ApplicationCommandTarget* getNextCommandTarget()
 void MainAppWindow::getAllCommands (Array<CommandID>& commands)
 {
     // this returns the set of all commands that this target can perform..
-    const CommandID ids[] = { MainAppWindow::showPreviousDemo,
+    const CommandID ids[] =
+    {
+        MainAppWindow::showPreviousDemo,
         MainAppWindow::showNextDemo,
         MainAppWindow::welcome,
         MainAppWindow::componentsAnimation,
@@ -162,13 +175,7 @@ void MainAppWindow::getAllCommands (Array<CommandID>& commands)
     };
     
     commands.addArray (ids, numElementsInArray (ids));
-    
-    const CommandID engineIDs[] = { MainAppWindow::renderingEngineOne,
-        MainAppWindow::renderingEngineTwo,
-        MainAppWindow::renderingEngineThree };
-    
-    auto renderingEngines = MainAppWindow::getMainAppWindow()->getRenderingEngines();
-    commands.addArray (engineIDs, renderingEngines.size());
+        
 }
 
 void MainAppWindow::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
@@ -232,40 +239,7 @@ void MainAppWindow::getCommandInfo (CommandID commandID, ApplicationCommandInfo&
             result.setInfo ("Widgets Demo", "Shows the 'Widgets' demo", demosCategory, 0);
             result.addDefaultKeypress ('9', ModifierKeys::commandModifier);
             break;
-            
-        case MainAppWindow::renderingEngineOne:
-        case MainAppWindow::renderingEngineTwo:
-        case MainAppWindow::renderingEngineThree:
-        {
-            auto& mainWindow = *MainAppWindow::getMainAppWindow();
-            auto engines = mainWindow.getRenderingEngines();
-            const int index = commandID - MainAppWindow::renderingEngineOne;
-            
-            result.setInfo ("Use " + engines[index], "Uses the " + engines[index] + " engine to render the UI", generalCategory, 0);
-            result.setTicked (mainWindow.getActiveRenderingEngine() == index);
-            
-            result.addDefaultKeypress ('1' + index, ModifierKeys::noModifiers);
-            break;
-        }
-            
-        case MainAppWindow::useLookAndFeelV1:
-            result.setInfo ("Use LookAndFeel_V1", String(), generalCategory, 0);
-            result.addDefaultKeypress ('i', ModifierKeys::commandModifier);
-            result.setTicked (isLookAndFeelSelected<LookAndFeel_V1>());
-            break;
-            
-        case MainAppWindow::useLookAndFeelV2:
-            result.setInfo ("Use LookAndFeel_V2", String(), generalCategory, 0);
-            result.addDefaultKeypress ('o', ModifierKeys::commandModifier);
-            result.setTicked (isLookAndFeelSelected<LookAndFeel_V2>());
-            break;
-            
-        case MainAppWindow::useLookAndFeelV3:
-            result.setInfo ("Use LookAndFeel_V3", String(), generalCategory, 0);
-            result.addDefaultKeypress ('p', ModifierKeys::commandModifier);
-            result.setTicked (isLookAndFeelSelected<LookAndFeel_V3>());
-            break;
-            
+                        
         case MainAppWindow::useLookAndFeelV4Dark:
             result.setInfo ("Use LookAndFeel_V4 Dark", String(), generalCategory, 0);
             result.addDefaultKeypress ('k', ModifierKeys::commandModifier);
@@ -285,12 +259,6 @@ void MainAppWindow::getCommandInfo (CommandID commandID, ApplicationCommandInfo&
         case MainAppWindow::useLookAndFeelV4Light:
             result.setInfo ("Use LookAndFeel_V4 Light", String(), generalCategory, 0);
             result.setTicked (isColourSchemeActive (LookAndFeel_V4::getLightColourScheme()));
-            break;
-            
-        case MainAppWindow::toggleRepaintDebugging:
-            result.setInfo ("Toggle repaint display", String(), generalCategory, 0);
-            result.addDefaultKeypress ('r', ModifierKeys());
-            result.setTicked (juceDemoRepaintDebuggingActive);
             break;
             
         case MainAppWindow::useNativeTitleBar:
@@ -324,10 +292,7 @@ bool MainAppWindow::perform (const InvocationInfo& info)
     if (auto* mainWindow = MainAppWindow::getMainAppWindow())
     {
         switch (info.commandID)
-        {
-            case MainAppWindow::showPreviousDemo:   moveDemoPages (-1); break;
-            case MainAppWindow::showNextDemo:       moveDemoPages ( 1); break;
-                
+        {                
             case MainAppWindow::welcome:
             case MainAppWindow::componentsAnimation:
             case MainAppWindow::componentsDialogBoxes:
@@ -336,54 +301,27 @@ bool MainAppWindow::perform (const InvocationInfo& info)
             case MainAppWindow::componentsPropertyEditors:
             case MainAppWindow::componentsTransforms:
             case MainAppWindow::componentsWebBrowsers:
-            case MainAppWindow::componentsWidgets:
-                demoList.selectRow (info.commandID - MainAppWindow::welcome);
-                break;
-                
-            case MainAppWindow::renderingEngineOne:
-            case MainAppWindow::renderingEngineTwo:
-            case MainAppWindow::renderingEngineThree:
-                mainWindow->setRenderingEngine (info.commandID - MainAppWindow::renderingEngineOne);
-                break;
-                
-            case MainAppWindow::useLookAndFeelV1:
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV1);
-                updateDemoListColours();
-                break;
-            case MainAppWindow::useLookAndFeelV2:
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV2);
-                updateDemoListColours();
-                break;
-            case MainAppWindow::useLookAndFeelV3:
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV3);
-                updateDemoListColours();
-                break;
             case MainAppWindow::useLookAndFeelV4Dark:
                 lookAndFeelV4.setColourScheme (LookAndFeel_V4::getDarkColourScheme());
                 LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
-                updateDemoListColours();
+// these should probably be something?                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Midnight:
                 lookAndFeelV4.setColourScheme (LookAndFeel_V4::getMidnightColourScheme());
                 LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
-                updateDemoListColours();
+//                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Grey:
                 lookAndFeelV4.setColourScheme (LookAndFeel_V4::getGreyColourScheme());
                 LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
-                updateDemoListColours();
+//                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Light:
                 lookAndFeelV4.setColourScheme (LookAndFeel_V4::getLightColourScheme());
                 LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
-                updateDemoListColours();
+//                updateDemoListColours();
                 break;
-                
-            case MainAppWindow::toggleRepaintDebugging:
-                juceDemoRepaintDebuggingActive = ! juceDemoRepaintDebuggingActive;
-                mainWindow->repaint();
-                break;
-                
+                                
             case MainAppWindow::useNativeTitleBar:
                 mainWindow->setUsingNativeTitleBar (! mainWindow->isUsingNativeTitleBar());
                 break;
@@ -410,4 +348,12 @@ bool MainAppWindow::perform (const InvocationInfo& info)
     return true;
 }
 
+bool MainAppWindow::isColourSchemeActive (LookAndFeel_V4::ColourScheme scheme)
+{
+    if (auto* v4 = dynamic_cast<LookAndFeel_V4*> (&LookAndFeel::getDefaultLookAndFeel()))
+        if (v4->getCurrentColourScheme() == scheme)
+            return true;
+    
+    return false;
+}
 

@@ -49,7 +49,7 @@ void LayoutComponent::paint (Graphics& g)
        drawing code..
     */
 
-    g.setColour ( getLookAndFeel().findColour( LookAndFeel_V4::ColourScheme::UIColour::windowBackground ));
+    g.setColour ( getLookAndFeel().findColour(  ResizableWindow::backgroundColourId ));
     g.fillAll();
 
 }

@@ -18,7 +18,7 @@ const String ScoreComponent::dotMarker = "$";
 //==============================================================================
 ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
     : increase("increase", 0.75f, Colours::black),
-      decrease("decrease", 0.25f, Colours::black)
+        decrease("decrease", 0.25f, Colours::black)
 {
     score = 0;
     snitchMarkers = "";

@@ -11,8 +11,6 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "MainComponent.h"
-#include "MenuBar.h"
 #include "MainAppWindow.h"
 
 
@@ -30,9 +28,12 @@ public:
     //==============================================================================
     void initialise (const String& commandLine) override
     {
+        
+        Desktop::getInstance().setOrientationsEnabled (Desktop::allOrientations);
+        
         // This method is where you should put your application's initialisation code..
 
-        mainWindow = new MainWindow (getApplicationName());
+        mainWindow = new MainAppWindow ();
     }
 
     void shutdown() override
@@ -60,7 +61,7 @@ public:
     
 
 private:
-    ScopedPointer<MainWindow> mainWindow;
+    ScopedPointer<MainAppWindow> mainWindow;
 };
 
 //==============================================================================

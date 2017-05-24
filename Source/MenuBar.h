@@ -18,7 +18,7 @@
 
 class MenuBar : public Component,
                     public MenuBarModel,
-                    public ChangeBroadcaster,
+                    public ChangeBroadcaster
 {
 public:
     

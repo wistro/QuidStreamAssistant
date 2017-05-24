@@ -10,6 +10,8 @@ Author:  Willow Rosenberg
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "MainComponent.h"
+
 //==============================================================================
 /*
 This class implements the desktop window that contains an instance of
@@ -17,7 +19,6 @@ our MainContentComponent class.
 */
 
 class MainAppWindow   : public DocumentWindow,
-                            private AsyncUpdater,
                             public ApplicationCommandTarget
 {
 public:
@@ -74,16 +75,16 @@ public:
         goToKioskMode               = 0x200f
     };
     
-private:
-    static void runtimePermissionsCallback (bool wasGranted);
-    
-    ScopedPointer<ContentComponent> contentComponent;
+private:    
     ScopedPointer<Component> taskbarIcon;
     ScopedPointer<BubbleMessageComponent> currentBubbleMessage;
+    
+    ScopedPointer<MainContentComponent> content;
     
     TooltipWindow tooltipWindow; // to add tooltips to an application, you
                                  // just need to create one of these and leave it
                                  // there to do its work..
+    LookAndFeel_V4 lookAndFeelV4;
         
     void showMessageBubble (const String&);
     
@@ -91,6 +92,7 @@ private:
     void getAllCommands (Array<CommandID>& commands) override;
     void getCommandInfo (CommandID commandID, ApplicationCommandInfo& result) override;
     bool perform (const InvocationInfo& info) override;
+    bool isColourSchemeActive (LookAndFeel_V4::ColourScheme scheme);
     
 
     

@@ -20,6 +20,19 @@ MenuBar::MenuBar()
     addAndMakeVisible (menuBar = new MenuBarComponent (this));
     
     setApplicationCommandManagerToWatch (&MainAppWindow::getApplicationCommandManager());
+    
+    #if JUCE_MAC
+    if (MenuBarModel::getMacMainMenu() != nullptr)
+    {
+        MenuBarModel::setMacMainMenu (nullptr);
+        menuBar->setModel (this);
+    }
+    else
+    {
+        menuBar->setModel (nullptr);
+        MenuBarModel::setMacMainMenu (this);
+    }
+    #endif
 }
 
 MenuBar::~MenuBar()
@@ -36,9 +49,9 @@ void MenuBar::resized()
 {
     Rectangle<int> area (getLocalBounds());
     menuBar->setBounds (area.removeFromTop (LookAndFeel::getDefaultLookAndFeel().getDefaultMenuBarHeight()));
-    
-    area.removeFromTop (20);
-    area = area.removeFromTop (33);
+//    
+//    area.removeFromTop (20);
+//    area = area.removeFromTop (33);
 }
 
 //==============================================================================
@@ -79,10 +92,6 @@ PopupMenu MenuBar::getMenuForIndex (int menuIndex, const String& /*menuName*/)
         menu.addSeparator();
         menu.addCommandItem (commandManager, MainAppWindow::useNativeTitleBar);
         
-        #if JUCE_MAC
-        menu.addItem (6000, "Use Native Menu Bar");
-        #endif
-        
         #if ! JUCE_LINUX
         menu.addCommandItem (commandManager, MainAppWindow::goToKioskMode);
         #endif
@@ -107,22 +116,8 @@ void MenuBar::menuItemSelected (int menuItemID, int /*topLevelMenuIndex*/)
     // most of our menu items are invoked automatically as commands, but we can handle the
     // other special cases here..
     
-    if (menuItemID == 6000)
-    {
-        #if JUCE_MAC
-        if (MenuBarModel::getMacMainMenu() != nullptr)
-        {
-            MenuBarModel::setMacMainMenu (nullptr);
-            menuBar->setModel (this);
-        }
-        else
-        {
-            menuBar->setModel (nullptr);
-            MenuBarModel::setMacMainMenu (this);
-        }
-        #endif
-    }
-    else if (menuItemID >= 3000 && menuItemID <= 3003)
+
+    if (menuItemID >= 3000 && menuItemID <= 3003)
     {
         if (TabbedComponent* tabs = findParentComponentOfClass<TabbedComponent>())
         {

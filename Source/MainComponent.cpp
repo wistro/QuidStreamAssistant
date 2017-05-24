@@ -15,7 +15,6 @@
 MainContentComponent::MainContentComponent()
 {
     addAndMakeVisible (layout);
-    setSize (1000, 300);
 }
 
 MainContentComponent::~MainContentComponent()
@@ -32,5 +31,7 @@ void MainContentComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
     
-    layout.setBounds (0, 0, getWidth(), getHeight());
+    auto r = getLocalBounds();
+    
+    layout.setBounds(r);
 }
