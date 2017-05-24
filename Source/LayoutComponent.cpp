@@ -15,8 +15,9 @@
 LayoutComponent::LayoutComponent()
     : score2(false)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
+    defaultLook.setColourScheme(LookAndFeel_V4::getLightColourScheme());
+    LookAndFeel_V4::setDefaultLookAndFeel(&defaultLook);
+    
     addAndMakeVisible(team1);
     addAndMakeVisible(team2);
     addAndMakeVisible(tournament);
@@ -48,7 +49,7 @@ void LayoutComponent::paint (Graphics& g)
        drawing code..
     */
 
-    g.setColour (Colours::lightblue);
+    g.setColour ( getLookAndFeel().findColour( LookAndFeel_V4::ColourScheme::UIColour::windowBackground ));
     g.fillAll();
 
 }

@@ -138,6 +138,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MainAppWindow.cpp"/>
+    <ClCompile Include="..\..\Source\MenuBar.cpp"/>
     <ClCompile Include="..\..\Source\GameTimer.cpp"/>
     <ClCompile Include="..\..\Source\StopWatch.cpp"/>
     <ClCompile Include="..\..\Source\ScoreComponent.cpp"/>

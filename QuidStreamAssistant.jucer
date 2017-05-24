@@ -6,18 +6,11 @@
               includeBinaryInAppConfig="1" jucerVersion="5.0.1" companyEmail="willow@willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
-      <GROUP id="{53307342-1F62-5F7F-EE8C-398371F6EE1C}" name="images">
-        <FILE id="DeqT6O" name="downStop.png" compile="0" resource="1" file="Source/images/downStop.png"/>
-        <FILE id="chFSYR" name="mouseOverPause.png" compile="0" resource="1"
-              file="Source/images/mouseOverPause.png"/>
-        <FILE id="jRtRU4" name="mouseOverPlay.png" compile="0" resource="1"
-              file="Source/images/mouseOverPlay.png"/>
-        <FILE id="friSvT" name="mouseOverStop.png" compile="0" resource="1"
-              file="Source/images/mouseOverStop.png"/>
-        <FILE id="hGVA3P" name="pause.png" compile="0" resource="1" file="Source/images/pause.png"/>
-        <FILE id="piXx77" name="play.png" compile="0" resource="1" file="Source/images/play.png"/>
-        <FILE id="nseKJh" name="stop.png" compile="0" resource="1" file="Source/images/stop.png"/>
-      </GROUP>
+      <FILE id="kcNnYl" name="MainAppWindow.cpp" compile="1" resource="0"
+            file="Source/MainAppWindow.cpp"/>
+      <FILE id="bwNAW3" name="MainAppWindow.h" compile="0" resource="0" file="Source/MainAppWindow.h"/>
+      <FILE id="jfAIUz" name="MenuBar.cpp" compile="1" resource="0" file="Source/MenuBar.cpp"/>
+      <FILE id="RjHKkK" name="MenuBar.h" compile="0" resource="0" file="Source/MenuBar.h"/>
       <FILE id="YxtxV0" name="GameTimer.cpp" compile="1" resource="0" file="Source/GameTimer.cpp"/>
       <FILE id="hkwzgS" name="GameTimer.h" compile="0" resource="0" file="Source/GameTimer.h"/>
       <FILE id="Td0dwP" name="StopWatch.cpp" compile="1" resource="0" file="Source/StopWatch.cpp"/>
@@ -41,6 +34,18 @@
             file="Source/MainComponent.cpp"/>
       <FILE id="jvYFZ4" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="Eu0ao5" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+    <GROUP id="{53307342-1F62-5F7F-EE8C-398371F6EE1C}" name="images">
+      <FILE id="DeqT6O" name="downStop.png" compile="0" resource="1" file="Source/images/downStop.png"/>
+      <FILE id="chFSYR" name="mouseOverPause.png" compile="0" resource="1"
+            file="Source/images/mouseOverPause.png"/>
+      <FILE id="jRtRU4" name="mouseOverPlay.png" compile="0" resource="1"
+            file="Source/images/mouseOverPlay.png"/>
+      <FILE id="friSvT" name="mouseOverStop.png" compile="0" resource="1"
+            file="Source/images/mouseOverStop.png"/>
+      <FILE id="hGVA3P" name="pause.png" compile="0" resource="1" file="Source/images/pause.png"/>
+      <FILE id="piXx77" name="play.png" compile="0" resource="1" file="Source/images/play.png"/>
+      <FILE id="nseKJh" name="stop.png" compile="0" resource="1" file="Source/images/stop.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
