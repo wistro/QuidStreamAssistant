@@ -12,7 +12,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "StopWatch.h"
-#include "ConfirmClick.h"
 
 //==============================================================================
 /*

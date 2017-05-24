@@ -39,6 +39,7 @@ void StopWatch::resetTimer()
 {
     RelativeTime reset;
     timer.operator=(reset);
+    repaint();
 }
 
 void StopWatch::paint (Graphics& g)

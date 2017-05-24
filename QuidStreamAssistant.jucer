@@ -18,9 +18,6 @@
         <FILE id="piXx77" name="play.png" compile="0" resource="1" file="Source/images/play.png"/>
         <FILE id="nseKJh" name="stop.png" compile="0" resource="1" file="Source/images/stop.png"/>
       </GROUP>
-      <FILE id="MRdyv1" name="ConfirmClick.cpp" compile="1" resource="0"
-            file="Source/ConfirmClick.cpp"/>
-      <FILE id="OhFJHs" name="ConfirmClick.h" compile="0" resource="0" file="Source/ConfirmClick.h"/>
       <FILE id="YxtxV0" name="GameTimer.cpp" compile="1" resource="0" file="Source/GameTimer.cpp"/>
       <FILE id="hkwzgS" name="GameTimer.h" compile="0" resource="0" file="Source/GameTimer.h"/>
       <FILE id="Td0dwP" name="StopWatch.cpp" compile="1" resource="0" file="Source/StopWatch.cpp"/>

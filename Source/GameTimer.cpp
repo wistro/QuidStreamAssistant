@@ -102,30 +102,22 @@ void GameTimer::buttonClicked (Button* button)
     }
     else if ( button == &stop )
     {
-        gameTime.stopTimer();
-        playPause.setToggleState(false, dontSendNotification);
-        DialogWindow::LaunchOptions checkIn;
-        ConfirmClick stopDialog("too long?");
-        OptionalScopedPointer<ConfirmClick> newContent(&stopDialog, false);
-        addAndMakeVisible(stopDialog);
-        
-        stopDialog.setBounds(0, 0, 1000, 200);
-        
-        checkIn.dialogTitle = "Are you sure?";
-        checkIn.dialogBackgroundColour = Colours::lightgrey;
-        checkIn.content.operator=(newContent);
-        checkIn.componentToCentreAround = &stop ;
-        checkIn.escapeKeyTriggersCloseButton = true;
-        checkIn.useNativeTitleBar = true;
-        checkIn.resizable = false;
-        
-        checkIn.launchAsync();
-        
-        if ( stopDialog.getState() )
+        if ( gameTime.currentTimeSec() != 0)
         {
-            gameTime.resetTimer();
+            gameTime.stopTimer();
+            playPause.setToggleState(false, dontSendNotification);
+            getLookAndFeel().setUsingNativeAlertWindows(true);
+            
+            if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
+                                               "Are You Sure?",
+                                               "At some point in the future this might let you save the current game time to a file. For now, this is your last chance to write it down before it's gone forever. (Cancel to abort)",
+                                               String(),
+                                               String(),
+                                               &stop, nullptr) )
+            {
+                gameTime.resetTimer();
+            }
         }
-        
     }
 }
 
