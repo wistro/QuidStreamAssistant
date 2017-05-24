@@ -98,6 +98,7 @@
 		9E2270794482F7643E257B4A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_processors.mm"; path = "../../JuceLibraryCode/include_juce_audio_processors.mm"; sourceTree = "SOURCE_ROOT"; };
 		A2A8B790F2320D2207CB424F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MenuBar.h; path = ../../Source/MenuBar.h; sourceTree = "SOURCE_ROOT"; };
 		A5BD0245F0E886DB4B6B1968 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LabelAndListComponent.cpp; path = ../../Source/LabelAndListComponent.cpp; sourceTree = "SOURCE_ROOT"; };
+		A9CFF2D92E9B677AD47252F7 = {isa = PBXFileReference; lastKnownFileType = image.png; name = willogo.png; path = ../../Source/images/willogo.png; sourceTree = "SOURCE_ROOT"; };
 		B0BC9A51D039188C911B7F2A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LabelAndListComponent.h; path = ../../Source/LabelAndListComponent.h; sourceTree = "SOURCE_ROOT"; };
 		BB181FF8A0E9FEB0A2D591D6 = {isa = PBXFileReference; lastKnownFileType = image.png; name = mouseOverStop.png; path = ../../Source/images/mouseOverStop.png; sourceTree = "SOURCE_ROOT"; };
 		C2F9FEFFC4B1115FE8B3E708 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -115,6 +116,15 @@
 		FA2B0B138AE546520291CA46 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FC2142B2F2025FDFB67509C7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScoreComponent.h; path = ../../Source/ScoreComponent.h; sourceTree = "SOURCE_ROOT"; };
 		FD600BCD47299DB78002A1EE = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LayoutComponent.h; path = ../../Source/LayoutComponent.h; sourceTree = "SOURCE_ROOT"; };
+		BB10A7DD822EB417C5EC52D5 = {isa = PBXGroup; children = (
+					A9CFF2D92E9B677AD47252F7,
+					73EB5D00F2AE8F16FB56E1F9,
+					8DD3B9A4C490338D76DFC9DA,
+					660A018C09CE57C53CB6DE69,
+					BB181FF8A0E9FEB0A2D591D6,
+					8751EEACECE8581A456A9300,
+					721E6AFA6A6EA203BCCF2B5A,
+					7C0734CAF09F06BD62489B2E, ); name = images; sourceTree = "<group>"; };
 		1394323065E5608127C4C97B = {isa = PBXGroup; children = (
 					E9DB72BF2DAF165D78046FDE,
 					74536C2AF9E55BFC2729238C,
@@ -134,18 +144,10 @@
 					FD600BCD47299DB78002A1EE,
 					540B4485F1CF299573C4A219,
 					900BBCA3D4109018C2F6BB30,
-					DE49FE957F248C5E441F7599, ); name = Source; sourceTree = "<group>"; };
-		BB10A7DD822EB417C5EC52D5 = {isa = PBXGroup; children = (
-					73EB5D00F2AE8F16FB56E1F9,
-					8DD3B9A4C490338D76DFC9DA,
-					660A018C09CE57C53CB6DE69,
-					BB181FF8A0E9FEB0A2D591D6,
-					8751EEACECE8581A456A9300,
-					721E6AFA6A6EA203BCCF2B5A,
-					7C0734CAF09F06BD62489B2E, ); name = images; sourceTree = "<group>"; };
+					DE49FE957F248C5E441F7599,
+					BB10A7DD822EB417C5EC52D5, ); name = Source; sourceTree = "<group>"; };
 		83834D3C0CDC9D054548A9C3 = {isa = PBXGroup; children = (
-					1394323065E5608127C4C97B,
-					BB10A7DD822EB417C5EC52D5, ); name = QuidStreamAssistant; sourceTree = "<group>"; };
+					1394323065E5608127C4C97B, ); name = QuidStreamAssistant; sourceTree = "<group>"; };
 		6861ECEC51DA4C07399B86E7 = {isa = PBXGroup; children = (
 					77FC0806B95457345C2E5EE6,
 					3C80435026DD56FE1F8F7CB5,

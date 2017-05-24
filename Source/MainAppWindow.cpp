@@ -19,7 +19,7 @@ struct TaskbarComponent  : public SystemTrayIconComponent,
 {
     TaskbarComponent()
     {
-        setIconImage (ImageCache::getFromMemory (BinaryData::juce_icon_png, BinaryData::juce_icon_pngSize));
+        setIconImage (ImageCache::getFromMemory (BinaryData::willogo_png, BinaryData::willogo_pngSize));
         setIconTooltip ("Juce Demo App!");
     }
     

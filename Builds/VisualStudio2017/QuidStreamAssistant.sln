@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F6FED77A-DE92-3414-73F1-43C36AF11CAE}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\images\willogo.png = ..\..\Source\images\willogo.png
 		..\..\Source\images\downStop.png = ..\..\Source\images\downStop.png
 		..\..\Source\images\mouseOverPause.png = ..\..\Source\images\mouseOverPause.png
 		..\..\Source\images\mouseOverPlay.png = ..\..\Source\images\mouseOverPlay.png
@@ -1681,8 +1682,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F6FED77A-DE92-3414-73F1-43C36AF11CAE} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{38CC7653-F3A6-CD45-4589-AF222076CAE2} = {7483D87D-48E9-D6F3-F053-3756FD6EA822}
-		{F6FED77A-DE92-3414-73F1-43C36AF11CAE} = {7483D87D-48E9-D6F3-F053-3756FD6EA822}
 		{EBF046F5-7CA3-37D3-9D14-C9A7C0217454} = {7D98269F-FE96-6BA2-6982-95A094257474}
 		{7CD42E50-9A58-3EBA-EE01-8BB53EE23455} = {7D98269F-FE96-6BA2-6982-95A094257474}
 		{F9D856A3-0393-6323-2067-7800D15AE886} = {7D98269F-FE96-6BA2-6982-95A094257474}
