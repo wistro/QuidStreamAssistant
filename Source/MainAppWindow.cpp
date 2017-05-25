@@ -20,7 +20,7 @@ struct TaskbarComponent  : public SystemTrayIconComponent,
     TaskbarComponent()
     {
         setIconImage (ImageCache::getFromMemory (BinaryData::willogo_png, BinaryData::willogo_pngSize));
-        setIconTooltip ("Juce Demo App!");
+        setIconTooltip ("QuiddStream Assistant");
     }
     
     void mouseDown (const MouseEvent&) override
@@ -46,7 +46,7 @@ struct TaskbarComponent  : public SystemTrayIconComponent,
         stopTimer();
         
         PopupMenu m;
-        m.addItem (1, "Quit the Juce demo");
+        m.addItem (1, "Quit");
         
         // It's always better to open menus asynchronously when possible.
         m.showMenuAsync (PopupMenu::Options(),

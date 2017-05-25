@@ -95,7 +95,7 @@ OBJECTS_APP := \
 .PHONY: clean all
 
 $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
-	@echo Linking "QuidStreamAssistant - App"
+	@echo Linking "QuidStream Assistant - App"
 	-$(V_AT)mkdir -p $(JUCE_BINDIR)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
@@ -231,11 +231,11 @@ check-pkg-config:
 	@pkg-config --print-errors alsa freetype2 gtk+-x11-3.0 libcurl webkit2gtk-4.0 x11 xext xinerama
 
 clean:
-	@echo Cleaning QuidStreamAssistant
+	@echo Cleaning QuidStream Assistant
 	$(V_AT)$(CLEANCMD)
 
 strip:
-	@echo Stripping QuidStreamAssistant
+	@echo Stripping QuidStream Assistant
 	-$(V_AT)$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
 
 -include $(OBJECTS:%.o=%.d)
