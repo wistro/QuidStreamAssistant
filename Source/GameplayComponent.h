@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    layoutComponent.h
+    GameplayComponent.h
     Created: 22 May 2017 11:30:54pm
     Author:  Willow Rosenberg
 
@@ -19,14 +19,14 @@
 //==============================================================================
 /*
 */
-class LayoutComponent    : public Component,
+class GameplayComponent    : public Component,
                             public Slider::Listener,
                             public Button::Listener,
                             public Label::Listener
 {
 public:
-    LayoutComponent();
-    ~LayoutComponent();
+    GameplayComponent();
+    ~GameplayComponent();
 
     void paint (Graphics&) override;
     void resized() override;
@@ -58,5 +58,5 @@ private:
     
     LookAndFeel_V4 defaultLook;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LayoutComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameplayComponent)
 };

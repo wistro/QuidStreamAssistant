@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    layoutComponent.cpp
+    GameplayComponent.cpp
     Created: 22 May 2017 11:30:54pm
     Author:  Willow Rosenberg
 
@@ -9,10 +9,10 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LayoutComponent.h"
+#include "GameplayComponent.h"
 
 //==============================================================================
-LayoutComponent::LayoutComponent()
+GameplayComponent::GameplayComponent()
     : score2(false)
 {
     defaultLook.setColourScheme(LookAndFeel_V4::getLightColourScheme());
@@ -33,14 +33,14 @@ LayoutComponent::LayoutComponent()
 
 }
 
-LayoutComponent::~LayoutComponent()
+GameplayComponent::~GameplayComponent()
 {
     snitchesGetStitches.snitchReg.removeListener(this);
     snitchesGetStitches.snitchOT.removeListener(this);
     snitchesGetStitches.snitch2OT.removeListener(this);
 }
 
-void LayoutComponent::paint (Graphics& g)
+void GameplayComponent::paint (Graphics& g)
 {
     /* This demo code just fills the component's background and
        draws some placeholder text to get you started.
@@ -54,7 +54,7 @@ void LayoutComponent::paint (Graphics& g)
 
 }
 
-void LayoutComponent::resized()
+void GameplayComponent::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
@@ -66,7 +66,7 @@ void LayoutComponent::resized()
 
 }
 
-void LayoutComponent::sliderValueChanged (Slider* slider)
+void GameplayComponent::sliderValueChanged (Slider* slider)
 {
     //unless everything is awful, this will be a 0, 1 or 2
     const int sliderValue = slider->getValue();
@@ -120,12 +120,12 @@ void LayoutComponent::sliderValueChanged (Slider* slider)
     
 }
 
-void LayoutComponent::buttonClicked (Button* button)
+void GameplayComponent::buttonClicked (Button* button)
 {
     
 }
 
-void LayoutComponent::labelTextChanged (Label* label)
+void GameplayComponent::labelTextChanged (Label* label)
 {
     
 }
@@ -134,7 +134,7 @@ void LayoutComponent::labelTextChanged (Label* label)
 //this function will check both scores for snitch catches
 //corresponding to the correct slider and will then
 //remove the snitch marker character and 30 points from that team's total
-void LayoutComponent::checkSnitchMistakes(char period)
+void GameplayComponent::checkSnitchMistakes(char period)
 {
     if ( period == reg)
     {

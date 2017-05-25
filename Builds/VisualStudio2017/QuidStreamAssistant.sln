@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuidStreamAssistant", "Quid
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC7653-F3A6-CD45-4589-AF222076CAE2}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\MainAppWindow.cpp = ..\..\Source\MainAppWindow.cpp
-		..\..\Source\MainAppWindow.h = ..\..\Source\MainAppWindow.h
-		..\..\Source\MenuBar.cpp = ..\..\Source\MenuBar.cpp
-		..\..\Source\MenuBar.h = ..\..\Source\MenuBar.h
 		..\..\Source\GameTimer.cpp = ..\..\Source\GameTimer.cpp
 		..\..\Source\GameTimer.h = ..\..\Source\GameTimer.h
 		..\..\Source\StopWatch.cpp = ..\..\Source\StopWatch.cpp
@@ -21,10 +17,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 		..\..\Source\SnitchSliders.h = ..\..\Source\SnitchSliders.h
 		..\..\Source\LabelAndListComponent.cpp = ..\..\Source\LabelAndListComponent.cpp
 		..\..\Source\LabelAndListComponent.h = ..\..\Source\LabelAndListComponent.h
-		..\..\Source\LayoutComponent.cpp = ..\..\Source\LayoutComponent.cpp
-		..\..\Source\LayoutComponent.h = ..\..\Source\LayoutComponent.h
+		..\..\Source\GameplayComponent.cpp = ..\..\Source\GameplayComponent.cpp
+		..\..\Source\GameplayComponent.h = ..\..\Source\GameplayComponent.h
+		..\..\Source\MenuBar.cpp = ..\..\Source\MenuBar.cpp
+		..\..\Source\MenuBar.h = ..\..\Source\MenuBar.h
 		..\..\Source\MainComponent.cpp = ..\..\Source\MainComponent.cpp
 		..\..\Source\MainComponent.h = ..\..\Source\MainComponent.h
+		..\..\Source\MainAppWindow.cpp = ..\..\Source\MainAppWindow.cpp
+		..\..\Source\MainAppWindow.h = ..\..\Source\MainAppWindow.h
 		..\..\Source\Main.cpp = ..\..\Source\Main.cpp
 	EndProjectSection
 EndProject

@@ -66,15 +66,15 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
-  $(JUCE_OBJDIR)/MainAppWindow_88ba319.o \
-  $(JUCE_OBJDIR)/MenuBar_49511495.o \
   $(JUCE_OBJDIR)/GameTimer_abf39654.o \
   $(JUCE_OBJDIR)/StopWatch_15154ce.o \
   $(JUCE_OBJDIR)/ScoreComponent_c5191094.o \
   $(JUCE_OBJDIR)/SnitchSliders_731a3568.o \
   $(JUCE_OBJDIR)/LabelAndListComponent_2fbcb9dd.o \
-  $(JUCE_OBJDIR)/LayoutComponent_af6963d4.o \
+  $(JUCE_OBJDIR)/GameplayComponent_5942cf58.o \
+  $(JUCE_OBJDIR)/MenuBar_49511495.o \
   $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
+  $(JUCE_OBJDIR)/MainAppWindow_88ba319.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
@@ -99,16 +99,6 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
-
-$(JUCE_OBJDIR)/MainAppWindow_88ba319.o: ../../Source/MainAppWindow.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MainAppWindow.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MenuBar_49511495.o: ../../Source/MenuBar.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MenuBar.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/GameTimer_abf39654.o: ../../Source/GameTimer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -135,14 +125,24 @@ $(JUCE_OBJDIR)/LabelAndListComponent_2fbcb9dd.o: ../../Source/LabelAndListCompon
 	@echo "Compiling LabelAndListComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/LayoutComponent_af6963d4.o: ../../Source/LayoutComponent.cpp
+$(JUCE_OBJDIR)/GameplayComponent_5942cf58.o: ../../Source/GameplayComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling LayoutComponent.cpp"
+	@echo "Compiling GameplayComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MenuBar_49511495.o: ../../Source/MenuBar.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MenuBar.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MainAppWindow_88ba319.o: ../../Source/MainAppWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MainAppWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
