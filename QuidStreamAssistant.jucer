@@ -40,7 +40,7 @@
       <FILE id="bwNAW3" name="MainAppWindow.h" compile="0" resource="0" file="Source/MainAppWindow.h"/>
       <FILE id="Eu0ao5" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{53307342-1F62-5F7F-EE8C-398371F6EE1C}" name="images">
-        <FILE id="aMKeZD" name="willogo.png" compile="0" resource="1" file="Source/images/willogo.png"/>
+        <FILE id="DpnL71" name="willogo.png" compile="0" resource="1" file="Source/images/willogo.png"/>
         <FILE id="DeqT6O" name="downStop.png" compile="0" resource="1" file="Source/images/downStop.png"/>
         <FILE id="chFSYR" name="mouseOverPause.png" compile="0" resource="1"
               file="Source/images/mouseOverPause.png"/>
@@ -55,7 +55,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="aMKeZD">
+    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="DpnL71">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="QuidStreamAssistant"/>
@@ -76,7 +76,7 @@
         <MODULEPATH id="juce_audio_processors" path="../../../bin/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2017 targetFolder="Builds/VisualStudio2017" bigIcon="aMKeZD">
+    <VS2017 targetFolder="Builds/VisualStudio2017" bigIcon="DpnL71">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
@@ -99,7 +99,7 @@
         <MODULEPATH id="juce_audio_processors" path="../../../bin/JUCE/modules"/>
       </MODULEPATHS>
     </VS2017>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" bigIcon="aMKeZD">
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" bigIcon="DpnL71">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="QuidStreamAssistant"/>

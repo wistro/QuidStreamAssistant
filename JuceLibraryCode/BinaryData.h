@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   willogo_png;
-    const int            willogo_pngSize = 63700;
+    const int            willogo_pngSize = 58822;
 
     extern const char*   downStop_png;
     const int            downStop_pngSize = 2120;
