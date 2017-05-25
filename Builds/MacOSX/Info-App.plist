@@ -10,9 +10,9 @@
     <key>CFBundleIdentifier</key>
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleName</key>
-    <string>QuidStream Assistant</string>
+    <string>QuidStreamAssistant</string>
     <key>CFBundleDisplayName</key>
-    <string>QuidStream Assistant</string>
+    <string>QuidStreamAssistant</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>

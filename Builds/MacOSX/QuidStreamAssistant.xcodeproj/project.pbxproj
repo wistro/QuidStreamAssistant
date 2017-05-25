@@ -20,6 +20,7 @@
 		67FD05DAEEA9C78B66AEE19E = {isa = PBXBuildFile; fileRef = FA2B0B138AE546520291CA46; };
 		41245503CFD9D49CAE3E54A6 = {isa = PBXBuildFile; fileRef = 6EC56AC2B2995FB183FE7567; };
 		FDEF73104920D291A5095072 = {isa = PBXBuildFile; fileRef = DA72F69631361BFFCC0C28CE; };
+		F71CDD6D8F9E1CBC5B773F36 = {isa = PBXBuildFile; fileRef = C3D2F3A422ECC70BA32F9FA9; };
 		4E79EC2EE3967C89B8F9834F = {isa = PBXBuildFile; fileRef = 1B614CAA974E54ECF07D330C; };
 		1AEECE9A5CB6DFB36EC6CF97 = {isa = PBXBuildFile; fileRef = 684CBE8617D0D2EB563BABED; };
 		E9421D1C618D590B476F180E = {isa = PBXBuildFile; fileRef = 25E3E04EFE3EB21C25C2A754; };
@@ -105,6 +106,7 @@
 		B9E4D92E9A688ACB81213C6A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameplayComponent.cpp; path = ../../Source/GameplayComponent.cpp; sourceTree = "SOURCE_ROOT"; };
 		BB181FF8A0E9FEB0A2D591D6 = {isa = PBXFileReference; lastKnownFileType = image.png; name = mouseOverStop.png; path = ../../Source/images/mouseOverStop.png; sourceTree = "SOURCE_ROOT"; };
 		C2F9FEFFC4B1115FE8B3E708 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		C3D2F3A422ECC70BA32F9FA9 = {isa = PBXFileReference; lastKnownFileType = file.icns; name = Icon.icns; path = Icon.icns; sourceTree = "SOURCE_ROOT"; };
 		C6B22FD4EC0C907481927F9F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StopWatch.h; path = ../../Source/StopWatch.h; sourceTree = "SOURCE_ROOT"; };
 		C6CC31D45B9297DF2188E933 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_gui_extra"; path = "../../../../../bin/JUCE/modules/juce_gui_extra"; sourceTree = "SOURCE_ROOT"; };
 		D7D1D9745C2B58F7AF81586C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_video.mm"; path = "../../JuceLibraryCode/include_juce_video.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -187,7 +189,8 @@
 					697F1F23F54491111E327539, ); name = "Juce Library Code"; sourceTree = "<group>"; };
 		5EC4D3367FDC2F994CC354E5 = {isa = PBXGroup; children = (
 					0779AEBAB8717D67FF679619,
-					DA72F69631361BFFCC0C28CE, ); name = Resources; sourceTree = "<group>"; };
+					DA72F69631361BFFCC0C28CE,
+					C3D2F3A422ECC70BA32F9FA9, ); name = Resources; sourceTree = "<group>"; };
 		6109BB2A01F40DC1DCA2698E = {isa = PBXGroup; children = (
 					28B0DA70F4F117942FA0F9BA,
 					3E2C5DF246A13068012E1393,
@@ -309,7 +312,8 @@
 					BF17CFE3B8656CABF45C4D71,
 					188E4866CE1609C793A0C03B, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 		65308CB484640D0F9DB4977A = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
-					FDEF73104920D291A5095072, ); runOnlyForDeploymentPostprocessing = 0; };
+					FDEF73104920D291A5095072,
+					F71CDD6D8F9E1CBC5B773F36, ); runOnlyForDeploymentPostprocessing = 0; };
 		E27EED951A9C61E4F55F85E4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 					4E79EC2EE3967C89B8F9834F,
 					1AEECE9A5CB6DFB36EC6CF97,
