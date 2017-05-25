@@ -20,6 +20,7 @@
 		67FD05DAEEA9C78B66AEE19E = {isa = PBXBuildFile; fileRef = FA2B0B138AE546520291CA46; };
 		41245503CFD9D49CAE3E54A6 = {isa = PBXBuildFile; fileRef = 6EC56AC2B2995FB183FE7567; };
 		FDEF73104920D291A5095072 = {isa = PBXBuildFile; fileRef = DA72F69631361BFFCC0C28CE; };
+		4E79EC2EE3967C89B8F9834F = {isa = PBXBuildFile; fileRef = 1B614CAA974E54ECF07D330C; };
 		1AEECE9A5CB6DFB36EC6CF97 = {isa = PBXBuildFile; fileRef = 684CBE8617D0D2EB563BABED; };
 		E9421D1C618D590B476F180E = {isa = PBXBuildFile; fileRef = 25E3E04EFE3EB21C25C2A754; };
 		C84BA4E1A3BE5C209CE60BB5 = {isa = PBXBuildFile; fileRef = 4B50945A95E2AC8680C3660E; };
@@ -50,6 +51,7 @@
 		0B53FCB3AD1FB94899653CD0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_devices.mm"; path = "../../JuceLibraryCode/include_juce_audio_devices.mm"; sourceTree = "SOURCE_ROOT"; };
 		12487D8276A96DF5BCC86346 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_core"; path = "../../../../../bin/JUCE/modules/juce_core"; sourceTree = "SOURCE_ROOT"; };
 		13E27A14DE88A26B7AA3588A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_opengl"; path = "../../../../../bin/JUCE/modules/juce_opengl"; sourceTree = "SOURCE_ROOT"; };
+		1B614CAA974E54ECF07D330C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CustomLookAndFeel.cpp; path = ../../Source/CustomLookAndFeel.cpp; sourceTree = "SOURCE_ROOT"; };
 		25E3E04EFE3EB21C25C2A754 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StopWatch.cpp; path = ../../Source/StopWatch.cpp; sourceTree = "SOURCE_ROOT"; };
 		28B0DA70F4F117942FA0F9BA = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2A707D316AC83BE04318D849 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_graphics.mm"; path = "../../JuceLibraryCode/include_juce_graphics.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -74,6 +76,7 @@
 		57DDFEC4C7B74ABD0C2C6A91 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = "SOURCE_ROOT"; };
 		58259F82E1560ABE0A3AD8B0 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_graphics"; path = "../../../../../bin/JUCE/modules/juce_graphics"; sourceTree = "SOURCE_ROOT"; };
 		660A018C09CE57C53CB6DE69 = {isa = PBXFileReference; lastKnownFileType = image.png; name = mouseOverPlay.png; path = ../../Source/images/mouseOverPlay.png; sourceTree = "SOURCE_ROOT"; };
+		680EFE55262333418B327780 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomLookAndFeel.h; path = ../../Source/CustomLookAndFeel.h; sourceTree = "SOURCE_ROOT"; };
 		684CBE8617D0D2EB563BABED = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameTimer.cpp; path = ../../Source/GameTimer.cpp; sourceTree = "SOURCE_ROOT"; };
 		697F1F23F54491111E327539 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = "SOURCE_ROOT"; };
 		6B18EBA4F28CB0B7C8E62DEA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_data_structures.mm"; path = "../../JuceLibraryCode/include_juce_data_structures.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -126,6 +129,8 @@
 					721E6AFA6A6EA203BCCF2B5A,
 					7C0734CAF09F06BD62489B2E, ); name = images; sourceTree = "<group>"; };
 		1394323065E5608127C4C97B = {isa = PBXGroup; children = (
+					1B614CAA974E54ECF07D330C,
+					680EFE55262333418B327780,
 					684CBE8617D0D2EB563BABED,
 					979C52AEA627222B748808F8,
 					25E3E04EFE3EB21C25C2A754,
@@ -306,6 +311,7 @@
 		65308CB484640D0F9DB4977A = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
 					FDEF73104920D291A5095072, ); runOnlyForDeploymentPostprocessing = 0; };
 		E27EED951A9C61E4F55F85E4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+					4E79EC2EE3967C89B8F9834F,
 					1AEECE9A5CB6DFB36EC6CF97,
 					E9421D1C618D590B476F180E,
 					C84BA4E1A3BE5C209CE60BB5,

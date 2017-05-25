@@ -12,9 +12,12 @@
 
 
 //==============================================================================
-MainContentComponent::MainContentComponent()
+MainContentComponent::MainContentComponent() : defaultLook(CustomLookAndFeel::getLightColourScheme())
 {
-    addAndMakeVisible (layout);
+    setLookAndFeel(&defaultLook);
+    
+    addAndMakeVisible (gameplay);
+    
 }
 
 MainContentComponent::~MainContentComponent()
@@ -33,5 +36,5 @@ void MainContentComponent::resized()
     
     auto r = getLocalBounds();
     
-    layout.setBounds(r);
+    gameplay.setBounds(r);
 }

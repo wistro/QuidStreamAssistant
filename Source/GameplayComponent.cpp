@@ -15,8 +15,6 @@
 GameplayComponent::GameplayComponent()
     : score2(false)
 {
-    defaultLook.setColourScheme(LookAndFeel_V4::getLightColourScheme());
-    LookAndFeel_V4::setDefaultLookAndFeel(&defaultLook);
     
     addAndMakeVisible(team1);
     addAndMakeVisible(team2);

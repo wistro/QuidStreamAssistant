@@ -11,7 +11,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LayoutComponent.h"
+#include "GameplayComponent.h"
+#include "CustomLookAndFeel.h"
 
 
 //==============================================================================
@@ -31,7 +32,9 @@ public:
 
 private:
 
-    LayoutComponent layout;
+    GameplayComponent gameplay;
+    
+    CustomLookAndFeel defaultLook;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)

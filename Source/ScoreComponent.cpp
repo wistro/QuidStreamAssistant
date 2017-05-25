@@ -35,7 +35,7 @@ ScoreComponent::ScoreComponent(bool areButtonsOnLeft)
     decrease.addListener(this);
     
     showScore.setText(String(score), dontSendNotification);
-    showScore.setColour(Label::backgroundColourId, Colours::white);
+    showScore.setColour(Label::outlineColourId, getLookAndFeel().findColour(Slider::textBoxOutlineColourId));
     showScore.setColour(Label::textColourId, Colours::black);
     showScore.setJustificationType(Justification::centred);
     showScore.setFont(20.0f);
