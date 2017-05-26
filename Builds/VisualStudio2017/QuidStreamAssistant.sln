@@ -6,28 +6,39 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuidStreamAssistant", "QuidStreamAssistant", "{7483D87D-48E9-D6F3-F053-3756FD6EA822}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC7653-F3A6-CD45-4589-AF222076CAE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\CustomLookAndFeel.cpp = ..\..\Source\CustomLookAndFeel.cpp
-		..\..\Source\CustomLookAndFeel.h = ..\..\Source\CustomLookAndFeel.h
-		..\..\Source\GameTimer.cpp = ..\..\Source\GameTimer.cpp
-		..\..\Source\GameTimer.h = ..\..\Source\GameTimer.h
-		..\..\Source\StopWatch.cpp = ..\..\Source\StopWatch.cpp
-		..\..\Source\StopWatch.h = ..\..\Source\StopWatch.h
-		..\..\Source\ScoreComponent.cpp = ..\..\Source\ScoreComponent.cpp
-		..\..\Source\ScoreComponent.h = ..\..\Source\ScoreComponent.h
-		..\..\Source\SnitchSliders.cpp = ..\..\Source\SnitchSliders.cpp
-		..\..\Source\SnitchSliders.h = ..\..\Source\SnitchSliders.h
-		..\..\Source\LabelAndListComponent.cpp = ..\..\Source\LabelAndListComponent.cpp
-		..\..\Source\LabelAndListComponent.h = ..\..\Source\LabelAndListComponent.h
-		..\..\Source\GameplayComponent.cpp = ..\..\Source\GameplayComponent.cpp
-		..\..\Source\GameplayComponent.h = ..\..\Source\GameplayComponent.h
-		..\..\Source\MenuBar.cpp = ..\..\Source\MenuBar.cpp
-		..\..\Source\MenuBar.h = ..\..\Source\MenuBar.h
-		..\..\Source\MainComponent.cpp = ..\..\Source\MainComponent.cpp
-		..\..\Source\MainComponent.h = ..\..\Source\MainComponent.h
-		..\..\Source\MainAppWindow.cpp = ..\..\Source\MainAppWindow.cpp
-		..\..\Source\MainAppWindow.h = ..\..\Source\MainAppWindow.h
-		..\..\Source\Main.cpp = ..\..\Source\Main.cpp
+		..\..\Source\Settings\FilePathPropertyComponent.h = ..\..\Source\Settings\FilePathPropertyComponent.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0E317A3-9FDE-B244-1224-9265816B3353}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Source\Gameplay\GameplayComponent.cpp = ..\..\Source\Gameplay\GameplayComponent.cpp
+		..\..\Source\Gameplay\GameplayComponent.h = ..\..\Source\Gameplay\GameplayComponent.h
+		..\..\Source\Gameplay\GameTimer.cpp = ..\..\Source\Gameplay\GameTimer.cpp
+		..\..\Source\Gameplay\GameTimer.h = ..\..\Source\Gameplay\GameTimer.h
+		..\..\Source\Gameplay\LabelAndListComponent.cpp = ..\..\Source\Gameplay\LabelAndListComponent.cpp
+		..\..\Source\Gameplay\LabelAndListComponent.h = ..\..\Source\Gameplay\LabelAndListComponent.h
+		..\..\Source\Gameplay\ScoreComponent.cpp = ..\..\Source\Gameplay\ScoreComponent.cpp
+		..\..\Source\Gameplay\ScoreComponent.h = ..\..\Source\Gameplay\ScoreComponent.h
+		..\..\Source\Gameplay\SnitchSliders.cpp = ..\..\Source\Gameplay\SnitchSliders.cpp
+		..\..\Source\Gameplay\SnitchSliders.h = ..\..\Source\Gameplay\SnitchSliders.h
+		..\..\Source\Gameplay\StopWatch.cpp = ..\..\Source\Gameplay\StopWatch.cpp
+		..\..\Source\Gameplay\StopWatch.h = ..\..\Source\Gameplay\StopWatch.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Source\TopLevel\CustomLookAndFeel.cpp = ..\..\Source\TopLevel\CustomLookAndFeel.cpp
+		..\..\Source\TopLevel\CustomLookAndFeel.h = ..\..\Source\TopLevel\CustomLookAndFeel.h
+		..\..\Source\TopLevel\Main.cpp = ..\..\Source\TopLevel\Main.cpp
+		..\..\Source\TopLevel\MainAppWindow.cpp = ..\..\Source\TopLevel\MainAppWindow.cpp
+		..\..\Source\TopLevel\MainAppWindow.h = ..\..\Source\TopLevel\MainAppWindow.h
+		..\..\Source\TopLevel\MainComponent.cpp = ..\..\Source\TopLevel\MainComponent.cpp
+		..\..\Source\TopLevel\MainComponent.h = ..\..\Source\TopLevel\MainComponent.h
+		..\..\Source\TopLevel\MenuBar.cpp = ..\..\Source\TopLevel\MenuBar.cpp
+		..\..\Source\TopLevel\MenuBar.h = ..\..\Source\TopLevel\MenuBar.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F6FED77A-DE92-3414-73F1-43C36AF11CAE}"
@@ -1684,6 +1695,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DEFB1A10-7AAC-D250-D194-5CD3A670D570} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
+		{E0E317A3-9FDE-B244-1224-9265816B3353} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
+		{708EF0B6-C821-BD63-36D5-D921290B7083} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{F6FED77A-DE92-3414-73F1-43C36AF11CAE} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{38CC7653-F3A6-CD45-4589-AF222076CAE2} = {7483D87D-48E9-D6F3-F053-3756FD6EA822}
 		{EBF046F5-7CA3-37D3-9D14-C9A7C0217454} = {7D98269F-FE96-6BA2-6982-95A094257474}

@@ -11,50 +11,50 @@
 #include "MainAppWindow.h"
 
 //==============================================================================
-#if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC
-
-// Just add a simple icon to the Window system tray area or Mac menu bar..
-struct TaskbarComponent  : public SystemTrayIconComponent,
-                            private Timer
-{
-    TaskbarComponent()
-    {
-        setIconImage (ImageCache::getFromMemory (BinaryData::willogo_png, BinaryData::willogo_pngSize));
-        setIconTooltip ("QuiddStream Assistant");
-    }
-    
-    void mouseDown (const MouseEvent&) override
-    {
-        // On OSX, there can be problems launching a menu when we're not the foreground
-        // process, so just in case, we'll first make our process active, and then use a
-        // timer to wait a moment before opening our menu, which gives the OS some time to
-        // get its act together and bring our windows to the front.
-        
-        Process::makeForegroundProcess();
-        startTimer (50);
-    }
-    
-    // This is invoked when the menu is clicked or dismissed
-    static void menuInvocationCallback (int chosenItemID, TaskbarComponent*)
-    {
-        if (chosenItemID == 1)
-            JUCEApplication::getInstance()->systemRequestedQuit();
-    }
-    
-    void timerCallback() override
-    {
-        stopTimer();
-        
-        PopupMenu m;
-        m.addItem (1, "Quit");
-        
-        // It's always better to open menus asynchronously when possible.
-        m.showMenuAsync (PopupMenu::Options(),
-                         ModalCallbackFunction::forComponent (menuInvocationCallback, this));
-    }
-};
-
-#endif
+//#if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC
+//
+//// Just add a simple icon to the Window system tray area or Mac menu bar..
+//struct TaskbarComponent  : public SystemTrayIconComponent,
+//                            private Timer
+//{
+//    TaskbarComponent()
+//    {
+//        setIconImage (ImageCache::getFromMemory (BinaryData::willogo_png, BinaryData::willogo_pngSize));
+//        setIconTooltip ("QuiddStream Assistant");
+//    }
+//    
+//    void mouseDown (const MouseEvent&) override
+//    {
+//        // On OSX, there can be problems launching a menu when we're not the foreground
+//        // process, so just in case, we'll first make our process active, and then use a
+//        // timer to wait a moment before opening our menu, which gives the OS some time to
+//        // get its act together and bring our windows to the front.
+//        
+//        Process::makeForegroundProcess();
+//        startTimer (50);
+//    }
+//    
+//    // This is invoked when the menu is clicked or dismissed
+//    static void menuInvocationCallback (int chosenItemID, TaskbarComponent*)
+//    {
+//        if (chosenItemID == 1)
+//            JUCEApplication::getInstance()->systemRequestedQuit();
+//    }
+//    
+//    void timerCallback() override
+//    {
+//        stopTimer();
+//        
+//        PopupMenu m;
+//        m.addItem (1, "Quit");
+//        
+//        // It's always better to open menus asynchronously when possible.
+//        m.showMenuAsync (PopupMenu::Options(),
+//                         ModalCallbackFunction::forComponent (menuInvocationCallback, this));
+//    }
+//};
+//
+//#endif
 //==============================================================================
 static ScopedPointer<ApplicationCommandManager> applicationCommandManager;
 
@@ -81,9 +81,9 @@ MainAppWindow::MainAppWindow()
     // this lets the command manager use keypresses that arrive in our window to send out commands
     addKeyListener (getApplicationCommandManager().getKeyMappings());
     
-    #if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC
-    taskbarIcon = new TaskbarComponent();
-    #endif
+//    #if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC
+//    taskbarIcon = new TaskbarComponent();
+//    #endif
     
 
 

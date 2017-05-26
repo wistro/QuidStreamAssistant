@@ -7,38 +7,46 @@
               companyWebsite="willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
-      <FILE id="hp3aV0" name="CustomLookAndFeel.cpp" compile="1" resource="0"
-            file="Source/CustomLookAndFeel.cpp"/>
-      <FILE id="sKa6xK" name="CustomLookAndFeel.h" compile="0" resource="0"
-            file="Source/CustomLookAndFeel.h"/>
-      <FILE id="YxtxV0" name="GameTimer.cpp" compile="1" resource="0" file="Source/GameTimer.cpp"/>
-      <FILE id="hkwzgS" name="GameTimer.h" compile="0" resource="0" file="Source/GameTimer.h"/>
-      <FILE id="Td0dwP" name="StopWatch.cpp" compile="1" resource="0" file="Source/StopWatch.cpp"/>
-      <FILE id="QewHSb" name="StopWatch.h" compile="0" resource="0" file="Source/StopWatch.h"/>
-      <FILE id="Y97dKH" name="ScoreComponent.cpp" compile="1" resource="0"
-            file="Source/ScoreComponent.cpp"/>
-      <FILE id="VN4IqD" name="ScoreComponent.h" compile="0" resource="0"
-            file="Source/ScoreComponent.h"/>
-      <FILE id="Lzkaiu" name="SnitchSliders.cpp" compile="1" resource="0"
-            file="Source/SnitchSliders.cpp"/>
-      <FILE id="zvf22j" name="SnitchSliders.h" compile="0" resource="0" file="Source/SnitchSliders.h"/>
-      <FILE id="ekTy4d" name="LabelAndListComponent.cpp" compile="1" resource="0"
-            file="Source/LabelAndListComponent.cpp"/>
-      <FILE id="mU9eih" name="LabelAndListComponent.h" compile="0" resource="0"
-            file="Source/LabelAndListComponent.h"/>
-      <FILE id="az2rUN" name="GameplayComponent.cpp" compile="1" resource="0"
-            file="Source/GameplayComponent.cpp"/>
-      <FILE id="odWFwl" name="GameplayComponent.h" compile="0" resource="0"
-            file="Source/GameplayComponent.h"/>
-      <FILE id="jfAIUz" name="MenuBar.cpp" compile="1" resource="0" file="Source/MenuBar.cpp"/>
-      <FILE id="RjHKkK" name="MenuBar.h" compile="0" resource="0" file="Source/MenuBar.h"/>
-      <FILE id="CGXE6E" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
-      <FILE id="jvYFZ4" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
-      <FILE id="kcNnYl" name="MainAppWindow.cpp" compile="1" resource="0"
-            file="Source/MainAppWindow.cpp"/>
-      <FILE id="bwNAW3" name="MainAppWindow.h" compile="0" resource="0" file="Source/MainAppWindow.h"/>
-      <FILE id="Eu0ao5" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <GROUP id="{484AC94F-0B43-E392-98C5-26271E67976A}" name="Settings">
+        <FILE id="iqRg2U" name="FilePathPropertyComponent.h" compile="0" resource="0"
+              file="Source/Settings/FilePathPropertyComponent.h"/>
+      </GROUP>
+      <GROUP id="{A5AE5DBA-5D3B-9130-A70B-1E69842765BD}" name="Gameplay">
+        <FILE id="U3n2sa" name="GameplayComponent.cpp" compile="1" resource="0"
+              file="Source/Gameplay/GameplayComponent.cpp"/>
+        <FILE id="T8BE23" name="GameplayComponent.h" compile="0" resource="0"
+              file="Source/Gameplay/GameplayComponent.h"/>
+        <FILE id="umyHcJ" name="GameTimer.cpp" compile="1" resource="0" file="Source/Gameplay/GameTimer.cpp"/>
+        <FILE id="XgxBZT" name="GameTimer.h" compile="0" resource="0" file="Source/Gameplay/GameTimer.h"/>
+        <FILE id="qKw1UI" name="LabelAndListComponent.cpp" compile="1" resource="0"
+              file="Source/Gameplay/LabelAndListComponent.cpp"/>
+        <FILE id="jhYW03" name="LabelAndListComponent.h" compile="0" resource="0"
+              file="Source/Gameplay/LabelAndListComponent.h"/>
+        <FILE id="IOqgNC" name="ScoreComponent.cpp" compile="1" resource="0"
+              file="Source/Gameplay/ScoreComponent.cpp"/>
+        <FILE id="dNh5RX" name="ScoreComponent.h" compile="0" resource="0"
+              file="Source/Gameplay/ScoreComponent.h"/>
+        <FILE id="z3GT5s" name="SnitchSliders.cpp" compile="1" resource="0"
+              file="Source/Gameplay/SnitchSliders.cpp"/>
+        <FILE id="LDNyjK" name="SnitchSliders.h" compile="0" resource="0" file="Source/Gameplay/SnitchSliders.h"/>
+        <FILE id="iMFXbZ" name="StopWatch.cpp" compile="1" resource="0" file="Source/Gameplay/StopWatch.cpp"/>
+        <FILE id="AehnIf" name="StopWatch.h" compile="0" resource="0" file="Source/Gameplay/StopWatch.h"/>
+      </GROUP>
+      <GROUP id="{EBC66C82-79C5-1438-601F-C17A83BBF938}" name="TopLevel">
+        <FILE id="D8Es0D" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/TopLevel/CustomLookAndFeel.cpp"/>
+        <FILE id="fYTOvq" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/TopLevel/CustomLookAndFeel.h"/>
+        <FILE id="OIA6X4" name="Main.cpp" compile="1" resource="0" file="Source/TopLevel/Main.cpp"/>
+        <FILE id="rtKV0Q" name="MainAppWindow.cpp" compile="1" resource="0"
+              file="Source/TopLevel/MainAppWindow.cpp"/>
+        <FILE id="PyRSnF" name="MainAppWindow.h" compile="0" resource="0" file="Source/TopLevel/MainAppWindow.h"/>
+        <FILE id="m5T36w" name="MainComponent.cpp" compile="1" resource="0"
+              file="Source/TopLevel/MainComponent.cpp"/>
+        <FILE id="DOHDZp" name="MainComponent.h" compile="0" resource="0" file="Source/TopLevel/MainComponent.h"/>
+        <FILE id="tQsA6i" name="MenuBar.cpp" compile="1" resource="0" file="Source/TopLevel/MenuBar.cpp"/>
+        <FILE id="ekVdVu" name="MenuBar.h" compile="0" resource="0" file="Source/TopLevel/MenuBar.h"/>
+      </GROUP>
       <GROUP id="{53307342-1F62-5F7F-EE8C-398371F6EE1C}" name="images">
         <FILE id="DpnL71" name="willogo.png" compile="0" resource="1" file="Source/images/willogo.png"/>
         <FILE id="DeqT6O" name="downStop.png" compile="0" resource="1" file="Source/images/downStop.png"/>

@@ -53,7 +53,7 @@ void CustomLookAndFeel::drawLabel (Graphics& g, Label& label)
         g.setColour (label.findColour (Label::outlineColourId));
     }
     
-    g.drawRoundedRectangle(label.getLocalBounds().toFloat(), 10.0f, 1.0f);
+    g.drawRoundedRectangle(label.getLocalBounds().toFloat(), 10.0f, 4.0f);
     
 }
 

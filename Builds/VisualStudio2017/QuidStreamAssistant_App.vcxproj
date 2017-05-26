@@ -138,17 +138,17 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\CustomLookAndFeel.cpp"/>
-    <ClCompile Include="..\..\Source\GameTimer.cpp"/>
-    <ClCompile Include="..\..\Source\StopWatch.cpp"/>
-    <ClCompile Include="..\..\Source\ScoreComponent.cpp"/>
-    <ClCompile Include="..\..\Source\SnitchSliders.cpp"/>
-    <ClCompile Include="..\..\Source\LabelAndListComponent.cpp"/>
-    <ClCompile Include="..\..\Source\GameplayComponent.cpp"/>
-    <ClCompile Include="..\..\Source\MenuBar.cpp"/>
-    <ClCompile Include="..\..\Source\MainComponent.cpp"/>
-    <ClCompile Include="..\..\Source\MainAppWindow.cpp"/>
-    <ClCompile Include="..\..\Source\Main.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\GameplayComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\GameTimer.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\LabelAndListComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\CustomLookAndFeel.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\Main.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\MainAppWindow.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\MainComponent.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\MenuBar.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
