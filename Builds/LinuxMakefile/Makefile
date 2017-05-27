@@ -66,12 +66,14 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/StoredSettings_b5af47d3.o \
   $(JUCE_OBJDIR)/GameplayComponent_416b7437.o \
   $(JUCE_OBJDIR)/GameTimer_85228a33.o \
   $(JUCE_OBJDIR)/LabelAndListComponent_d739d73c.o \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
+  $(JUCE_OBJDIR)/Application_5e04a6d9.o \
   $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o \
   $(JUCE_OBJDIR)/Main_c088d39a.o \
   $(JUCE_OBJDIR)/MainAppWindow_f244a841.o \
@@ -101,6 +103,11 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
 
+$(JUCE_OBJDIR)/StoredSettings_b5af47d3.o: ../../Source/Settings/StoredSettings.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling StoredSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/GameplayComponent_416b7437.o: ../../Source/Gameplay/GameplayComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling GameplayComponent.cpp"
@@ -129,6 +136,11 @@ $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o: ../../Source/Gameplay/SnitchSliders.cpp
 $(JUCE_OBJDIR)/StopWatch_da8048ad.o: ../../Source/Gameplay/StopWatch.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling StopWatch.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Application.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o: ../../Source/TopLevel/CustomLookAndFeel.cpp

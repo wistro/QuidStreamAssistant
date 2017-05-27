@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
 
 class MenuBar : public Component,

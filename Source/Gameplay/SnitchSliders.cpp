@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../Settings/OSDependencyThings.h"
 #include "SnitchSliders.h"
 
 //==============================================================================

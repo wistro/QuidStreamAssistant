@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../Settings/OSDependencyThings.h"
 #include "LabelAndListComponent.h"
 #include "SnitchSliders.h"
 #include "ScoreComponent.h"

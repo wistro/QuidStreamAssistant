@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\Source\Settings\FilePathPropertyComponent.h = ..\..\Source\Settings\FilePathPropertyComponent.h
+		..\..\Source\Settings\OSDependencyThings.h = ..\..\Source\Settings\OSDependencyThings.h
+		..\..\Source\Settings\StoredSettings.cpp = ..\..\Source\Settings\StoredSettings.cpp
+		..\..\Source\Settings\StoredSettings.h = ..\..\Source\Settings\StoredSettings.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0E317A3-9FDE-B244-1224-9265816B3353}"
@@ -30,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\TopLevel\Application.cpp = ..\..\Source\TopLevel\Application.cpp
+		..\..\Source\TopLevel\Application.h = ..\..\Source\TopLevel\Application.h
 		..\..\Source\TopLevel\CustomLookAndFeel.cpp = ..\..\Source\TopLevel\CustomLookAndFeel.cpp
 		..\..\Source\TopLevel\CustomLookAndFeel.h = ..\..\Source\TopLevel\CustomLookAndFeel.h
 		..\..\Source\TopLevel\Main.cpp = ..\..\Source\TopLevel\Main.cpp

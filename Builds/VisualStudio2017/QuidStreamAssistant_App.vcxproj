@@ -138,12 +138,14 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Settings\StoredSettings.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\GameplayComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\GameTimer.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\LabelAndListComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\Application.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\CustomLookAndFeel.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Main.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\MainAppWindow.cpp"/>

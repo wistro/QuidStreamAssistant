@@ -9,7 +9,7 @@
 */
 
 #pragma once
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "OSDependencyThings.h"
 
 class FilePathPropertyComponent  : public PropertyComponent
 {

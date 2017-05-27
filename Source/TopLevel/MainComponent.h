@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "GameplayComponent.h"
+#include "../Settings/OSDependencyThings.h"
+#include "../Gameplay/GameplayComponent.h"
 #include "CustomLookAndFeel.h"
 
 

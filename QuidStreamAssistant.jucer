@@ -10,6 +10,12 @@
       <GROUP id="{484AC94F-0B43-E392-98C5-26271E67976A}" name="Settings">
         <FILE id="iqRg2U" name="FilePathPropertyComponent.h" compile="0" resource="0"
               file="Source/Settings/FilePathPropertyComponent.h"/>
+        <FILE id="TPc7ZF" name="OSDependencyThings.h" compile="0" resource="0"
+              file="Source/Settings/OSDependencyThings.h"/>
+        <FILE id="rOfFOg" name="StoredSettings.cpp" compile="1" resource="0"
+              file="Source/Settings/StoredSettings.cpp"/>
+        <FILE id="CyWgEn" name="StoredSettings.h" compile="0" resource="0"
+              file="Source/Settings/StoredSettings.h"/>
       </GROUP>
       <GROUP id="{A5AE5DBA-5D3B-9130-A70B-1E69842765BD}" name="Gameplay">
         <FILE id="U3n2sa" name="GameplayComponent.cpp" compile="1" resource="0"
@@ -33,6 +39,8 @@
         <FILE id="AehnIf" name="StopWatch.h" compile="0" resource="0" file="Source/Gameplay/StopWatch.h"/>
       </GROUP>
       <GROUP id="{EBC66C82-79C5-1438-601F-C17A83BBF938}" name="TopLevel">
+        <FILE id="L1xNCs" name="Application.cpp" compile="1" resource="0" file="Source/TopLevel/Application.cpp"/>
+        <FILE id="yhs7hM" name="Application.h" compile="0" resource="0" file="Source/TopLevel/Application.h"/>
         <FILE id="D8Es0D" name="CustomLookAndFeel.cpp" compile="1" resource="0"
               file="Source/TopLevel/CustomLookAndFeel.cpp"/>
         <FILE id="fYTOvq" name="CustomLookAndFeel.h" compile="0" resource="0"

@@ -11,7 +11,7 @@ license under which this, and all other files in this project, are also licensed
 
 ==============================================================================
 */
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../Settings/OSDependencyThings.h"
 #include "MenuBar.h"
 
 
