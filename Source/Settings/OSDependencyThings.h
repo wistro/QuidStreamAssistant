@@ -40,4 +40,5 @@ typedef TargetOS::OS DependencyPathOS;
 
 //==============================================================================
 
+#include "PresetIDs.h"
 #include "../JuceLibraryCode/JuceHeader.h"

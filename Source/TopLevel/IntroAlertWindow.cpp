@@ -3,19 +3,39 @@
 
     IntroAlertWindow.cpp
     Created: 28 May 2017 7:35:17pm
-    Author:  Jason Rosenberg
+    Author:  Willow Rosenberg
 
   ==============================================================================
 */
 
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "../Settings/OSDependencyThings.h"
 #include "IntroAlertWindow.h"
+#include "../Settings/TeamSettings.h"
 
 //==============================================================================
 IntroAlertWindow::IntroAlertWindow()
+                    : teamStuff(true)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
+    addTeam.setButtonText("add New");
+    addTeam.addListener(this);
+    addAndMakeVisible(addTeam);
+    
+    quit.setButtonText("Quit");
+    quit.addListener(this);
+    addAndMakeVisible(quit);
+    
+    select.setButtonText("Select");
+    select.addListener(this);
+    addAndMakeVisible(select);
+    
+    teams = teamStuff.getTeamList();
+    
+    teamList.setEditableText(false);
+    
+    for (int i = 0; i < teams.size(); i++)
+    {
+        teamList.addItem(teams.operator[](i), (i + 1));
+    }
 
 }
 
@@ -49,3 +69,9 @@ void IntroAlertWindow::resized()
     // components that your component contains..
 
 }
+
+void buttonClicked (Button* button)
+{
+    
+}
+

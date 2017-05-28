@@ -12,9 +12,8 @@
 
 
 //==============================================================================
-MainContentComponent::MainContentComponent() : defaultLook(CustomLookAndFeel::getLightColourScheme())
+MainContentComponent::MainContentComponent()
 {
-    LookAndFeel::setDefaultLookAndFeel(&defaultLook);
     
     addAndMakeVisible (gameplay);
     

@@ -20,29 +20,29 @@ public:
     bool readFromXML (const XmlElement&);
     bool writeToFile (const File& file) const;
     
-    void updateColourScheme();
+    void updateTeamsList();
     void applyToCodeEditor (CodeEditorComponent& editor) const;
     
-    StringArray getColourNames() const;
-    Value getColourValue (const String& colourName);
+    StringArray getPlayerNumbers() const;
+    Value getPlayerInfo (const String& playerNumber);
     bool getColour (const String& name, Colour& resultIfFound) const;
     
-    Font getCodeFont() const;
-    Value getCodeFontValue();
+    String getTeamName() const;
     
-    ValueTree settings;
+    ValueTree teamData;
     
     static File getTeamsFolder();
     StringArray getTeamList();
     void refreshTeamsList();
     void selectTeam (int index);
     
-    static Font getDefaultCodeFont();
+    static String getDefaultTeamName();
     
     static void showGlobalPreferences (ScopedPointer<Component>& ownerPointer);
     
     static const char* getTeamFileSuffix()      { return ".team"; }
     static const char* getTeamFileWildCard()    { return "*.team"; }
+    static StringArray teamsList;
     
 private:
     
@@ -50,12 +50,12 @@ private:
     
     static void writeDefaultTeamFile (const String& xml, const String& name);
     
-    void valueTreePropertyChanged (ValueTree&, const Identifier&) override   { updateColourScheme(); }
-    void valueTreeChildAdded (ValueTree&, ValueTree&) override               { updateColourScheme(); }
-    void valueTreeChildRemoved (ValueTree&, ValueTree&, int) override        { updateColourScheme(); }
-    void valueTreeChildOrderChanged (ValueTree&, int, int) override          { updateColourScheme(); }
-    void valueTreeParentChanged (ValueTree&) override                        { updateColourScheme(); }
-    void valueTreeRedirected (ValueTree&) override                           { updateColourScheme(); }
+    void valueTreePropertyChanged (ValueTree&, const Identifier&) override   { updateTeamsList(); }
+    void valueTreeChildAdded (ValueTree&, ValueTree&) override               { updateTeamsList(); }
+    void valueTreeChildRemoved (ValueTree&, ValueTree&, int) override        { updateTeamsList(); }
+    void valueTreeChildOrderChanged (ValueTree&, int, int) override          { updateTeamsList(); }
+    void valueTreeParentChanged (ValueTree&) override                        { updateTeamsList(); }
+    void valueTreeRedirected (ValueTree&) override                           { updateTeamsList(); }
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TeamSettings)
 };

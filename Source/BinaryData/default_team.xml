@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<TEAM team="Winnipeg Whomping Willows" abv="WWW">
+<TEAM team="Default Team" abv="DT">
   <PLAYER first="Willow" last="Rosenberg" number="J" jersey="Willow" pronouns="she" positions="seeker" />
   <PLAYER first="Kira-Lyn" last="Lawrie" number="23" jersey="Lawrie" pronouns="she" positions="beater" />
   <PLAYER first="Alex" last="Lamoureux" number="55" jersey="Lamoureux" pronouns="he" positions="keeper|beater" />

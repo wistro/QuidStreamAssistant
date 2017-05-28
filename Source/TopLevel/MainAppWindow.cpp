@@ -61,17 +61,22 @@ static ScopedPointer<ApplicationCommandManager> applicationCommandManager;
 MainAppWindow::MainAppWindow()
             : DocumentWindow (JUCEApplication::getInstance()->getApplicationName(),
                   LookAndFeel::getDefaultLookAndFeel().findColour (ResizableWindow::backgroundColourId),
-                  DocumentWindow::allButtons)
+                  DocumentWindow::allButtons),
+            defaultLook(CustomLookAndFeel::getLightColourScheme())
 {
     setUsingNativeTitleBar (true);
-    setResizable (true, false);
-    setResizeLimits (400, 400, 10000, 10000);
+    setResizable (false, false);
+    setIcon(ImageCache::getFromMemory(BinaryData::willogo_png, BinaryData::willogo_pngSize));
     
-    setBounds ((int) (0.1f * getParentWidth()),
-               (int) (0.1f * getParentHeight()),
-               jmax (850, (int) (0.5f * getParentWidth())),
-               jmax (600, (int) (0.7f * getParentHeight())));
+
     
+//    setResizeLimits (400, 400, 10000, 10000);
+//    
+//    setBounds ((int) (0.1f * getParentWidth()),
+//               (int) (0.1f * getParentHeight()),
+//               jmax (850, (int) (0.5f * getParentWidth())),
+//               jmax (600, (int) (0.7f * getParentHeight())));
+//    
 //    juce::Component::addAndMakeVisible(content);
     
     content = new MainContentComponent;
@@ -302,23 +307,23 @@ bool MainAppWindow::perform (const InvocationInfo& info)
             case MainAppWindow::componentsTransforms:
             case MainAppWindow::componentsWebBrowsers:
             case MainAppWindow::useLookAndFeelV4Dark:
-                lookAndFeelV4.setColourScheme (LookAndFeel_V4::getDarkColourScheme());
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
+                defaultLook.setColourScheme (LookAndFeel_V4::getDarkColourScheme());
+                LookAndFeel::setDefaultLookAndFeel (&defaultLook);
 // these should probably be something?                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Midnight:
-                lookAndFeelV4.setColourScheme (LookAndFeel_V4::getMidnightColourScheme());
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
+                defaultLook.setColourScheme (LookAndFeel_V4::getMidnightColourScheme());
+                LookAndFeel::setDefaultLookAndFeel (&defaultLook);
 //                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Grey:
-                lookAndFeelV4.setColourScheme (LookAndFeel_V4::getGreyColourScheme());
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
+                defaultLook.setColourScheme (LookAndFeel_V4::getGreyColourScheme());
+                LookAndFeel::setDefaultLookAndFeel (&defaultLook);
 //                updateDemoListColours();
                 break;
             case MainAppWindow::useLookAndFeelV4Light:
-                lookAndFeelV4.setColourScheme (LookAndFeel_V4::getLightColourScheme());
-                LookAndFeel::setDefaultLookAndFeel (&lookAndFeelV4);
+                defaultLook.setColourScheme (LookAndFeel_V4::getLightColourScheme());
+                LookAndFeel::setDefaultLookAndFeel (&defaultLook);
 //                updateDemoListColours();
                 break;
                                 

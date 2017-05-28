@@ -9,6 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\Settings\Tournament.cpp = ..\..\Source\Settings\Tournament.cpp
+		..\..\Source\Settings\Tournament.h = ..\..\Source\Settings\Tournament.h
+		..\..\Source\Settings\PresetIDs.h = ..\..\Source\Settings\PresetIDs.h
 		..\..\Source\Settings\TeamSettings.cpp = ..\..\Source\Settings\TeamSettings.cpp
 		..\..\Source\Settings\TeamSettings.h = ..\..\Source\Settings\TeamSettings.h
 		..\..\Source\Settings\FilePathPropertyComponent.h = ..\..\Source\Settings\FilePathPropertyComponent.h
@@ -55,6 +58,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinaryData", "BinaryData", "{81CC2246-BEDD-2400-99E9-6D94223E64EA}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\Source\BinaryData\default_team.xml = ..\..\Source\BinaryData\default_team.xml
+		..\..\Source\BinaryData\default_tournament.xml = ..\..\Source\BinaryData\default_tournament.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{9B52159D-BFAF-AB33-BCF7-EBF59176E3F5}"

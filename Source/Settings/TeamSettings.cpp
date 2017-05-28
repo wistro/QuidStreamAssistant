@@ -13,32 +13,15 @@
 #include "OSDependencyThings.h"
 #include "TeamSettings.h"
 #include "StoredSettings.h"
+#include "../TopLevel/Application.h"
+#include "Player.h"
 
 //==============================================================================
 TeamSettings::TeamSettings (bool updateAppWhenChanged)
-: settings ("COLOUR_SCHEME")
+: teamData ("TEAM")
 {
-    if (! QuidStreamAssistantApplication::getApp().isRunningCommandLine)
-    {
-        ProjucerLookAndFeel lf;
-        
-        CodeDocument doc;
-        CPlusPlusCodeTokeniser tokeniser;
-        CodeEditorComponent editor (doc, &tokeniser);
-        
-        const CodeEditorComponent::ColourScheme cs (editor.getColourScheme());
-        
-        for (int i = cs.types.size(); --i >= 0;)
-        {
-            CodeEditorComponent::ColourScheme::TokenType& t = cs.types.getReference(i);
-            getColourValue (t.name) = t.colour.toString();
-        }
-        
-        getCodeFontValue() = getDefaultCodeFont().toString();
-        
-        if (updateAppWhenChanged)
-            settings.addListener (this);
-    }
+    if (updateAppWhenChanged)
+        teamData.addListener (this);
 }
 
 File TeamSettings::getTeamsFolder()
@@ -63,15 +46,14 @@ void TeamSettings::writeDefaultTeamFile (const String& xmlString, const String& 
 
 void TeamSettings::refreshTeamsList()
 {
-    writeDefaultSchemeFile (BinaryData::colourscheme_dark_xml,  "Default (Dark)");
-    writeDefaultSchemeFile (BinaryData::colourscheme_light_xml, "Default (Light)");
+    writeDefaultTeamFile (BinaryData::default_team_xml,  "Default Team");
     
-    Array<File> newSchemes;
-    getSchemesFolder().findChildFiles (newSchemes, File::findFiles, false, String ("*") + getSchemeFileSuffix());
+    Array<File> newTeams;
+    getTeamsFolder().findChildFiles (newTeams, File::findFiles, false, String ("*") + getTeamFileSuffix());
     
-    if (newSchemes != presetSchemeFiles)
+    if (newTeams != teamFiles)
     {
-        presetSchemeFiles.swapWith (newSchemes);
+        teamFiles.swapWith (newTeams);
         QuidStreamAssistantApplication::getCommandManager().commandStatusChanged();
     }
 }
@@ -92,19 +74,19 @@ void TeamSettings::selectTeam (int index)
 
 bool TeamSettings::readFromXML (const XmlElement& xml)
 {
-    if (xml.hasTagName (settings.getType().toString()))
+    if (xml.hasTagName (teamData.getType().toString()))
     {
         const ValueTree newTeam (ValueTree::fromXml (xml));
         
         // we'll manually copy across the new properties to the existing tree so that
         // any open editors will be kept up to date..
-        settings.copyPropertiesFrom (newTeam, nullptr);
+        teamData.copyPropertiesFrom (newTeam, nullptr);
         
-        for (int i = settings.getNumChildren(); --i >= 0;)
+        for (int i = teamData.getNumChildren(); --i >= 0;)
         {
-            ValueTree c (settings.getChild (i));
+            ValueTree c (teamData.getChild (i));
             
-            const ValueTree newValue (newSettings.getChildWithProperty (Ids::name, c.getProperty (Ids::name)));
+            const ValueTree newValue (newTeam.getChildWithProperty (Ids::name, c.getProperty (Ids::name)));
             
             if (newValue.isValid())
                 c.copyPropertiesFrom (newValue, nullptr);
@@ -124,33 +106,33 @@ bool TeamSettings::readFromFile (const File& file)
 
 bool TeamSettings::writeToFile (const File& file) const
 {
-    const ScopedPointer<XmlElement> xml (settings.createXml());
+    const ScopedPointer<XmlElement> xml (teamData.createXml());
     return xml != nullptr && xml->writeToFile (file, String());
 }
 
-Font TeamSettings::getDefaultCodeFont()
+String TeamSettings::getDefaultTeamName()
 {
-    return Font (Font::getDefaultMonospacedFontName(), Font::getDefaultStyle(), 13.0f);
+    return "Default Team";
 }
 
-StringArray TeamSettings::getColourNames() const
+StringArray TeamSettings::getPlayerNumbers() const
 {
     StringArray s;
     
-    for (int i = 0; i < settings.getNumChildren(); ++i)
+    for (int i = 0; i < teamData.getNumChildren(); ++i)
     {
-        const ValueTree c (settings.getChild(i));
+        const ValueTree c (teamData.getChild(i));
         
-        if (c.hasType ("COLOUR"))
-            s.add (c [Ids::name]);
+        if (c.hasType ("PLAYER"))
+            s.add (c [Ids::number]);
     }
     
     return s;
 }
 
-void TeamSettings::updateColourScheme()
+void TeamSettings::updateTeamsList()
 {
-    QuidStreamAssistantApplication::getApp().mainWindowList.sendLookAndFeelChange();
+    teamsList = getTeamList();
 }
 
 void TeamSettings::applyToCodeEditor (CodeEditorComponent& editor) const
@@ -164,40 +146,35 @@ void TeamSettings::applyToCodeEditor (CodeEditorComponent& editor) const
     }
     
     editor.setColourScheme (cs);
-    editor.setFont (getCodeFont());
     
     editor.setColour (ScrollBar::thumbColourId, editor.findColour (CodeEditorComponent::backgroundColourId)
                       .contrasting()
                       .withAlpha (0.13f));
 }
 
-Font TeamSettings::getCodeFont() const
+String TeamSettings::getTeamName() const
 {
-    const String fontString (settings [Ids::font].toString());
+    const String teamName (teamData [Ids::team].toString());
     
-    if (fontString.isEmpty())
-        return getDefaultCodeFont();
+    if (teamName.isEmpty())
+        return getDefaultTeamName();
     
-    return Font::fromString (fontString);
+    return teamName;
 }
 
-Value TeamSettings::getCodeFontValue()
-{
-    return settings.getPropertyAsValue (Ids::font, nullptr);
-}
 
-Value TeamSettings::getColourValue (const String& colourName)
+Value TeamSettings::getPlayerInfo (Player& player)
 {
-    ValueTree c (settings.getChildWithProperty (Ids::name, colourName));
+    ValueTree c (teamData.getChildWithProperty (Ids::number, player.getNum()));
     
     if (! c.isValid())
     {
-        c = ValueTree ("COLOUR");
-        c.setProperty (Ids::name, colourName, nullptr);
-        settings.addChild (c, -1, nullptr);
+        c = ValueTree ("PLAYER");
+        c.setProperty (Ids::number, playerNumber, nullptr);
+        teamData.addChild (c, -1, nullptr);
     }
     
-    return c.getPropertyAsValue (Ids::colour, nullptr);
+    return c.getPropertyAsValue (Ids::number, nullptr);
 }
 
 bool TeamSettings::getColour (const String& name, Colour& result) const

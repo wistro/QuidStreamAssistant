@@ -12,7 +12,7 @@
 
 #include <map>
 #include "OSDependencyThings.h"
-#include "AppearanceSettings.h"
+#include "TeamSettings.h"
 
 //==============================================================================
 class StoredSettings : public ValueTree::Listener
@@ -47,7 +47,7 @@ public:
     
     //==============================================================================
 
-    AppearanceSettings appearance;
+    TeamSettings team;
     StringArray monospacedFontNames;
     
     //==============================================================================

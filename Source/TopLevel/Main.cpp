@@ -29,6 +29,7 @@
 #include "../TopLevel/MainAppWindow.h"
 #include "../TopLevel/MainComponent.h"
 #include "../TopLevel/MenuBar.h"
+#include "../IntroAlertWindow.h"
 #include "Application.h"
 
 //==============================================================================

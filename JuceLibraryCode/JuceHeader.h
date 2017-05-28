@@ -40,7 +40,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "QuidStreamAssistant";
-    const char* const  versionString  = "0.0.1";
-    const int          versionNumber  = 0x1;
+    const char* const  versionString  = "0.1.0";
+    const int          versionNumber  = 0x100;
 }
 #endif

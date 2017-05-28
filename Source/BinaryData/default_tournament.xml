@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TOURNAMENT name="Enter Tournament Name" location="Where is the tournament?">
+    <ROUND round="Group Stage" />
+    <ROUND round="Round of 16" />
+    <ROUND round="Quarter Finals" />
+    <ROUND round="Semi Finals" />
+    <ROUND round="3rd Place Playoff" />
+    <ROUND round="Finals" />
+    <ROUND round="Consolation Round of 16" />
+    <ROUND round="Consolation Quarter Finals" />
+    <ROUND round="Consolation Semi Finals" />
+    <ROUND round="Consolation 3rd Place Playoff" />
+    <ROUND round="Consolation Finals" />
+    <TEAM team="" abv="" />
+    <LOGO></LOGO>
+</TOURNAMENT>
