@@ -12,6 +12,7 @@
 
 #include <map>
 #include "OSDependencyThings.h"
+#include "AppearanceSettings.h"
 
 //==============================================================================
 class StoredSettings : public ValueTree::Listener
@@ -45,14 +46,11 @@ public:
     };
     
     //==============================================================================
-    
+
+    AppearanceSettings appearance;
     StringArray monospacedFontNames;
     
     //==============================================================================
-    Value getGlobalPath (const Identifier& key, DependencyPathOS);
-    String getFallbackPath (const Identifier& key, DependencyPathOS);
-    
-    bool isGlobalPathValid (const File& relativeTo, const Identifier& key, const String& path);
     
 private:
     OwnedArray<PropertiesFile> propertyFiles;
@@ -68,10 +66,7 @@ private:
     void updateAppearanceSettings();
     void updateRecentFiles();
     void updateKeyMappings();
-    
-    void loadSwatchColours();
-    void saveSwatchColours();
-    
+        
     //==============================================================================
     void valueTreePropertyChanged (ValueTree&, const Identifier&) override  { changed(); }
     void valueTreeChildAdded (ValueTree&, ValueTree&) override              { changed(); }

@@ -66,6 +66,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/TeamSettings_1d618d8d.o \
+  $(JUCE_OBJDIR)/Player_d450344e.o \
   $(JUCE_OBJDIR)/StoredSettings_b5af47d3.o \
   $(JUCE_OBJDIR)/GameplayComponent_416b7437.o \
   $(JUCE_OBJDIR)/GameTimer_85228a33.o \
@@ -75,6 +77,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
   $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o \
+  $(JUCE_OBJDIR)/IntroAlertWindow_901022c1.o \
   $(JUCE_OBJDIR)/Main_c088d39a.o \
   $(JUCE_OBJDIR)/MainAppWindow_f244a841.o \
   $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o \
@@ -102,6 +105,16 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/TeamSettings_1d618d8d.o: ../../Source/Settings/TeamSettings.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling TeamSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Player_d450344e.o: ../../Source/Settings/Player.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Player.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/StoredSettings_b5af47d3.o: ../../Source/Settings/StoredSettings.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -146,6 +159,11 @@ $(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp
 $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o: ../../Source/TopLevel/CustomLookAndFeel.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling CustomLookAndFeel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/IntroAlertWindow_901022c1.o: ../../Source/TopLevel/IntroAlertWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling IntroAlertWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Main_c088d39a.o: ../../Source/TopLevel/Main.cpp

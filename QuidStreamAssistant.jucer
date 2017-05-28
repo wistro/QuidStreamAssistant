@@ -8,10 +8,15 @@
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
       <GROUP id="{484AC94F-0B43-E392-98C5-26271E67976A}" name="Settings">
+        <FILE id="iqxCur" name="TeamSettings.cpp" compile="1" resource="0"
+              file="Source/Settings/TeamSettings.cpp"/>
+        <FILE id="voIBeN" name="TeamSettings.h" compile="0" resource="0" file="Source/Settings/TeamSettings.h"/>
         <FILE id="iqRg2U" name="FilePathPropertyComponent.h" compile="0" resource="0"
               file="Source/Settings/FilePathPropertyComponent.h"/>
         <FILE id="TPc7ZF" name="OSDependencyThings.h" compile="0" resource="0"
               file="Source/Settings/OSDependencyThings.h"/>
+        <FILE id="p7AfUg" name="Player.cpp" compile="1" resource="0" file="Source/Settings/Player.cpp"/>
+        <FILE id="WR9kBg" name="Player.h" compile="0" resource="0" file="Source/Settings/Player.h"/>
         <FILE id="rOfFOg" name="StoredSettings.cpp" compile="1" resource="0"
               file="Source/Settings/StoredSettings.cpp"/>
         <FILE id="CyWgEn" name="StoredSettings.h" compile="0" resource="0"
@@ -45,6 +50,10 @@
               file="Source/TopLevel/CustomLookAndFeel.cpp"/>
         <FILE id="fYTOvq" name="CustomLookAndFeel.h" compile="0" resource="0"
               file="Source/TopLevel/CustomLookAndFeel.h"/>
+        <FILE id="YO2C67" name="IntroAlertWindow.cpp" compile="1" resource="0"
+              file="Source/TopLevel/IntroAlertWindow.cpp"/>
+        <FILE id="JeKLQd" name="IntroAlertWindow.h" compile="0" resource="0"
+              file="Source/TopLevel/IntroAlertWindow.h"/>
         <FILE id="OIA6X4" name="Main.cpp" compile="1" resource="0" file="Source/TopLevel/Main.cpp"/>
         <FILE id="rtKV0Q" name="MainAppWindow.cpp" compile="1" resource="0"
               file="Source/TopLevel/MainAppWindow.cpp"/>
@@ -55,18 +64,22 @@
         <FILE id="tQsA6i" name="MenuBar.cpp" compile="1" resource="0" file="Source/TopLevel/MenuBar.cpp"/>
         <FILE id="ekVdVu" name="MenuBar.h" compile="0" resource="0" file="Source/TopLevel/MenuBar.h"/>
       </GROUP>
-      <GROUP id="{53307342-1F62-5F7F-EE8C-398371F6EE1C}" name="images">
-        <FILE id="DpnL71" name="willogo.png" compile="0" resource="1" file="Source/images/willogo.png"/>
-        <FILE id="DeqT6O" name="downStop.png" compile="0" resource="1" file="Source/images/downStop.png"/>
-        <FILE id="chFSYR" name="mouseOverPause.png" compile="0" resource="1"
-              file="Source/images/mouseOverPause.png"/>
-        <FILE id="jRtRU4" name="mouseOverPlay.png" compile="0" resource="1"
-              file="Source/images/mouseOverPlay.png"/>
-        <FILE id="friSvT" name="mouseOverStop.png" compile="0" resource="1"
-              file="Source/images/mouseOverStop.png"/>
-        <FILE id="hGVA3P" name="pause.png" compile="0" resource="1" file="Source/images/pause.png"/>
-        <FILE id="piXx77" name="play.png" compile="0" resource="1" file="Source/images/play.png"/>
-        <FILE id="nseKJh" name="stop.png" compile="0" resource="1" file="Source/images/stop.png"/>
+      <GROUP id="{771C49ED-0A80-CC9A-C02D-EE4F21308F4E}" name="BinaryData">
+        <GROUP id="{33713996-4EAF-AC6F-26FD-AC0C42D38A80}" name="images">
+          <FILE id="isd5EB" name="downStop.png" compile="0" resource="1" file="Source/BinaryData/images/downStop.png"/>
+          <FILE id="eI36JY" name="mouseOverPause.png" compile="0" resource="1"
+                file="Source/BinaryData/images/mouseOverPause.png"/>
+          <FILE id="zaBHcZ" name="mouseOverPlay.png" compile="0" resource="1"
+                file="Source/BinaryData/images/mouseOverPlay.png"/>
+          <FILE id="AEPTTR" name="mouseOverStop.png" compile="0" resource="1"
+                file="Source/BinaryData/images/mouseOverStop.png"/>
+          <FILE id="igHKML" name="pause.png" compile="0" resource="1" file="Source/BinaryData/images/pause.png"/>
+          <FILE id="I80Eww" name="play.png" compile="0" resource="1" file="Source/BinaryData/images/play.png"/>
+          <FILE id="PXd7oK" name="stop.png" compile="0" resource="1" file="Source/BinaryData/images/stop.png"/>
+          <FILE id="O4UzfJ" name="willogo.png" compile="0" resource="1" file="Source/BinaryData/images/willogo.png"/>
+        </GROUP>
+        <FILE id="TXlueO" name="default_team.xml" compile="0" resource="1"
+              file="Source/BinaryData/default_team.xml"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>

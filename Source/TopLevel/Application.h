@@ -12,6 +12,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
 
+
 //==============================================================================
 class QuidStreamAssistantApplication  : public JUCEApplication
 {
@@ -20,6 +21,7 @@ public:
     QuidStreamAssistantApplication() {}
     
     static QuidStreamAssistantApplication& getApp();
+    static ApplicationCommandManager& getCommandManager();
     PropertiesFile::Options getPropertyFileOptionsFor (const String& filename);
     
     const String getApplicationName() override       { return ProjectInfo::projectName; }
@@ -37,6 +39,7 @@ public:
     //==============================================================================
 
     ScopedPointer<StoredSettings> settings;
+    ScopedPointer<ApplicationCommandManager> commandManager;
     
     //==============================================================================
     

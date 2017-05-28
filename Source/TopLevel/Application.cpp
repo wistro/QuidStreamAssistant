@@ -64,3 +64,10 @@ PropertiesFile::Options QuidStreamAssistantApplication::getPropertyFileOptionsFo
     
     return options;
 }
+
+ApplicationCommandManager& QuidStreamAssistantApplication::getCommandManager()
+{
+    ApplicationCommandManager* cm = QuidStreamAssistantApplication::getApp().commandManager;
+    jassert (cm != nullptr);
+    return *cm;
+}

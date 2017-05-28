@@ -11,6 +11,11 @@
 */
 
 #include "../Settings/OSDependencyThings.h"
+#include "../Settings/FilePathPropertyComponent.h"
+#include "../Settings/StoredSettings.h"
+#include "../Settings/Player.h"
+#include "../Settings/TeamSettings.h"
+
 #include "../Gameplay/ScoreComponent.h"
 #include "../Gameplay/GameTimer.h"
 #include "../Gameplay/LabelAndListComponent.h"

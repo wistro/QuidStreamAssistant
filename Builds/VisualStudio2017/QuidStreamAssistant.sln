@@ -9,8 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\Settings\TeamSettings.cpp = ..\..\Source\Settings\TeamSettings.cpp
+		..\..\Source\Settings\TeamSettings.h = ..\..\Source\Settings\TeamSettings.h
 		..\..\Source\Settings\FilePathPropertyComponent.h = ..\..\Source\Settings\FilePathPropertyComponent.h
 		..\..\Source\Settings\OSDependencyThings.h = ..\..\Source\Settings\OSDependencyThings.h
+		..\..\Source\Settings\Player.cpp = ..\..\Source\Settings\Player.cpp
+		..\..\Source\Settings\Player.h = ..\..\Source\Settings\Player.h
 		..\..\Source\Settings\StoredSettings.cpp = ..\..\Source\Settings\StoredSettings.cpp
 		..\..\Source\Settings\StoredSettings.h = ..\..\Source\Settings\StoredSettings.h
 	EndProjectSection
@@ -37,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{70
 		..\..\Source\TopLevel\Application.h = ..\..\Source\TopLevel\Application.h
 		..\..\Source\TopLevel\CustomLookAndFeel.cpp = ..\..\Source\TopLevel\CustomLookAndFeel.cpp
 		..\..\Source\TopLevel\CustomLookAndFeel.h = ..\..\Source\TopLevel\CustomLookAndFeel.h
+		..\..\Source\TopLevel\IntroAlertWindow.cpp = ..\..\Source\TopLevel\IntroAlertWindow.cpp
+		..\..\Source\TopLevel\IntroAlertWindow.h = ..\..\Source\TopLevel\IntroAlertWindow.h
 		..\..\Source\TopLevel\Main.cpp = ..\..\Source\TopLevel\Main.cpp
 		..\..\Source\TopLevel\MainAppWindow.cpp = ..\..\Source\TopLevel\MainAppWindow.cpp
 		..\..\Source\TopLevel\MainAppWindow.h = ..\..\Source\TopLevel\MainAppWindow.h
@@ -46,16 +52,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{70
 		..\..\Source\TopLevel\MenuBar.h = ..\..\Source\TopLevel\MenuBar.h
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F6FED77A-DE92-3414-73F1-43C36AF11CAE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinaryData", "BinaryData", "{81CC2246-BEDD-2400-99E9-6D94223E64EA}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\images\willogo.png = ..\..\Source\images\willogo.png
-		..\..\Source\images\downStop.png = ..\..\Source\images\downStop.png
-		..\..\Source\images\mouseOverPause.png = ..\..\Source\images\mouseOverPause.png
-		..\..\Source\images\mouseOverPlay.png = ..\..\Source\images\mouseOverPlay.png
-		..\..\Source\images\mouseOverStop.png = ..\..\Source\images\mouseOverStop.png
-		..\..\Source\images\pause.png = ..\..\Source\images\pause.png
-		..\..\Source\images\play.png = ..\..\Source\images\play.png
-		..\..\Source\images\stop.png = ..\..\Source\images\stop.png
+		..\..\Source\BinaryData\default_team.xml = ..\..\Source\BinaryData\default_team.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{9B52159D-BFAF-AB33-BCF7-EBF59176E3F5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Source\BinaryData\images\downStop.png = ..\..\Source\BinaryData\images\downStop.png
+		..\..\Source\BinaryData\images\mouseOverPause.png = ..\..\Source\BinaryData\images\mouseOverPause.png
+		..\..\Source\BinaryData\images\mouseOverPlay.png = ..\..\Source\BinaryData\images\mouseOverPlay.png
+		..\..\Source\BinaryData\images\mouseOverStop.png = ..\..\Source\BinaryData\images\mouseOverStop.png
+		..\..\Source\BinaryData\images\pause.png = ..\..\Source\BinaryData\images\pause.png
+		..\..\Source\BinaryData\images\play.png = ..\..\Source\BinaryData\images\play.png
+		..\..\Source\BinaryData\images\stop.png = ..\..\Source\BinaryData\images\stop.png
+		..\..\Source\BinaryData\images\willogo.png = ..\..\Source\BinaryData\images\willogo.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Juce Modules", "Juce Modules", "{AD2C04D4-7DBA-314E-4D66-F2B021015F59}"
@@ -1703,7 +1714,8 @@ Global
 		{DEFB1A10-7AAC-D250-D194-5CD3A670D570} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{E0E317A3-9FDE-B244-1224-9265816B3353} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{708EF0B6-C821-BD63-36D5-D921290B7083} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
-		{F6FED77A-DE92-3414-73F1-43C36AF11CAE} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
+		{9B52159D-BFAF-AB33-BCF7-EBF59176E3F5} = {81CC2246-BEDD-2400-99E9-6D94223E64EA}
+		{81CC2246-BEDD-2400-99E9-6D94223E64EA} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{38CC7653-F3A6-CD45-4589-AF222076CAE2} = {7483D87D-48E9-D6F3-F053-3756FD6EA822}
 		{EBF046F5-7CA3-37D3-9D14-C9A7C0217454} = {7D98269F-FE96-6BA2-6982-95A094257474}
 		{7CD42E50-9A58-3EBA-EE01-8BB53EE23455} = {7D98269F-FE96-6BA2-6982-95A094257474}
