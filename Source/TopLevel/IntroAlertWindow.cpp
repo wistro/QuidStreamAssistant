@@ -11,14 +11,11 @@
 #include "../Settings/OSDependencyThings.h"
 #include "IntroAlertWindow.h"
 #include "../Settings/TeamSettings.h"
+#include "Application.h"
 
 //==============================================================================
 IntroAlertWindow::IntroAlertWindow()
-                    : teamStuff(true)
 {
-    addTeam.setButtonText("add New");
-    addTeam.addListener(this);
-    addAndMakeVisible(addTeam);
     
     quit.setButtonText("Quit");
     quit.addListener(this);
@@ -28,14 +25,12 @@ IntroAlertWindow::IntroAlertWindow()
     select.addListener(this);
     addAndMakeVisible(select);
     
-    teams = teamStuff.getTeamList();
+    Tournament::refreshTournamentList();
     
-    teamList.setEditableText(false);
-    
-    for (int i = 0; i < teams.size(); i++)
-    {
-        teamList.addItem(teams.operator[](i), (i + 1));
-    }
+    tournamentList.addItemList(Tournament::tournamentList, 0);
+    tournamentList.setText("Add New Tournament", dontSendNotification);
+    tournamentList.setEditableText(false);
+    addAndMakeVisible(tournamentList);
 
 }
 
@@ -70,8 +65,21 @@ void IntroAlertWindow::resized()
 
 }
 
-void buttonClicked (Button* button)
+void IntroAlertWindow::buttonClicked (Button* button)
 {
-    
+    if ( button == &quit )
+        QuidStreamAssistantApplication::getApp().systemRequestedQuit();
+    else if ( button == &select )
+    {
+        if ( tournamentList.getSelectedId() == -1 )
+        {
+            //open a window to create a new tournament file
+        }
+        else
+        {
+            String tournament = tournamentList.getText();
+            //open main app window populated with this tournament's settings
+        }
+    }
 }
 

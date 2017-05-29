@@ -18,15 +18,10 @@
 const String Tournament::consolation = "Consolation";
 
 //==============================================================================
-Tournament::Tournament (bool updateAppWhenChanged)
-: tournament("TOURNAMENT")
+Tournament::Tournament ()
 {
     
-    if (updateAppWhenChanged)
-        tournament.addListener (this);
-    
     refreshTournamentList();
-    tournamentList = setTournamentList();
     
 }
 
@@ -56,13 +51,16 @@ void Tournament::refreshTournamentList()
         tournamentFiles.swapWith (newTournaments);
         QuidStreamAssistantApplication::getCommandManager().commandStatusChanged();
     }
+    
+    tournamentList = setTournamentList();
+    
 }
 
 void Tournament::restoreDefaultTournamentFile()
 {
     const File file (getTournamentsFolder().getChildFile ("Defaults").withFileExtension (getTournamentFileSuffix()));
     
-    Tournament defaults (false);
+    Tournament defaults;
     
     ScopedPointer<XmlElement> xml (XmlDocument::parse (BinaryData::default_tournament_xml));
     if (xml != nullptr)
@@ -73,8 +71,7 @@ void Tournament::restoreDefaultTournamentFile()
 
 void Tournament::setAsDefaults()
 {
-    Value v (tournament.getPropertyAsValue(Ids::name, nullptr));
-    const File file (getTournamentsFolder().getChildFile(v.toString()).withFileExtension(getTournamentFileSuffix()));
+    const File file (getTournamentsFolder().getChildFile("Defaults").withFileExtension(getTournamentFileSuffix()));
     
     if ( !file.exists() )
         file.create();
@@ -84,45 +81,107 @@ void Tournament::setAsDefaults()
     writeToFile(file);
 }
 
-void Tournament::updateTournament()
+//void Tournament::addTeam()
+//{
+//    
+//}
+
+void Tournament::addRound(String newRound)
 {
-    
+    roundsList.add(newRound);
 }
 
-bool Tournament::readFromXML (const XmlElement& xml)
+//void Tournament::removeTeam()
+//{
+//    
+//}
+
+void Tournament::removeRound(String badRound)
 {
-    if (xml.hasTagName (tournament.getType().toString()))
+    roundsList.removeString(badRound);
+}
+
+String Tournament::getTournamentName()
+{
+    return tournamentName;
+}
+
+String Tournament::getTournamentLocation()
+{
+    return tournamentLocation;
+}
+
+//StringArray Tournament::getTeamsList()
+//{
+//    
+//}
+
+StringArray Tournament::getRoundsList()
+{
+    return roundsList;
+}
+
+void Tournament::readFromXML (const XmlElement& xml)
+{
+    tournamentName = xml.getChildElementAllSubText("name", {});
+    tournamentLocation = xml.getChildElementAllSubText("location", {});
+    
+    XmlElement* rounds = xml.getChildByName("rounds");
+    
+    if ( rounds != nullptr )
     {
-        const ValueTree newTournament (ValueTree::fromXml (xml));
-        
-        // we'll manually copy across the new properties to the existing tree so that
-        // any open editors will be kept up to date..
-        tournament.copyPropertiesFrom (newTournament, nullptr);
-        
-        for (int i = tournament.getNumChildren(); --i >= 0;)
+        forEachXmlChildElement(*rounds, child)
         {
-            ValueTree c (tournament.getChild (i));
-            
-            const ValueTree newValue (newTournament.getChildWithProperty (Ids::round, c.getProperty (Ids::round)));
-            
-            if (newValue.isValid())
-                c.copyPropertiesFrom (newValue, nullptr);
+            if(child->hasTagName("rname"))
+                addRound(child->getAllSubText());
         }
-        
-        return true;
     }
+    delete rounds;
     
-    return false;
+//    XmlElement* teams = xml.getChildByName("teams");
+//    
+//    if ( teams != nullptr )
+//    {
+//        forEachXmlChildElement(*teams, child)
+//        {
+//            if(child->hasTagName("tname"))
+//                addTeam
+//        }
+//    }
+    
+    MemoryOutputStream imageData;
+    Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
+    logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+    
 }
 
-bool Tournament::readFromFile (const File& file)
+void Tournament::readFromFile (const File& file)
 {
     const ScopedPointer<XmlElement> xml (XmlDocument::parse (file));
-    return xml != nullptr && readFromXML (*xml);
+    readFromXML (*xml);
 }
 
-bool Tournament::writeToFile (const File& file) const
+void Tournament::writeToFile (const File& file) const
 {
-    const ScopedPointer<XmlElement> xml (tournament.createXml());
-    return xml != nullptr && xml->writeToFile (file, String());
+    XmlElement xml ("TOURNAMENT");
+    
+    xml.createNewChildElement("name")->addTextElement(tournamentName);
+    xml.createNewChildElement("location")->addTextElement(tournamentLocation);
+    
+    XmlElement rounds ("rounds");
+    
+    for( int i = 0; i < roundsList.size(); i++)
+    {
+        rounds.createNewChildElement("rname")->addTextElement(roundsList[i]);
+    }
+    
+    xml.addChildElement(&rounds);
+    
+    //do the team handling here once I've figured that out
+    
+    MemoryOutputStream imageData;
+    if (PNGImageFormat().writeImageToStream (logo, imageData))
+        xml.createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+    
+    xml.writeToFile (file, String());
 }

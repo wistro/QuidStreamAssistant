@@ -2318,20 +2318,26 @@ const char* default_team_xml = (const char*) temp_binary_data_8;
 static const unsigned char temp_binary_data_9[] =
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 "\n"
-"<TOURNAMENT name=\"Enter Tournament Name\" location=\"Where is the tournament?\">\n"
-"    <ROUND round=\"Group Stage\" />\n"
-"    <ROUND round=\"Round of 16\" />\n"
-"    <ROUND round=\"Quarter Finals\" />\n"
-"    <ROUND round=\"Semi Finals\" />\n"
-"    <ROUND round=\"3rd Place Playoff\" />\n"
-"    <ROUND round=\"Finals\" />\n"
-"    <ROUND round=\"Consolation Round of 16\" />\n"
-"    <ROUND round=\"Consolation Quarter Finals\" />\n"
-"    <ROUND round=\"Consolation Semi Finals\" />\n"
-"    <ROUND round=\"Consolation 3rd Place Playoff\" />\n"
-"    <ROUND round=\"Consolation Finals\" />\n"
-"    <TEAM team=\"\" abv=\"\" />\n"
-"    <LOGO></LOGO>\n"
+"<TOURNAMENT>\n"
+"    <name>Enter Tournament Name</name>\n"
+"    <location>Where is the tournament?</location>\n"
+"    <rounds>\n"
+"        <rname>Group Stage</rname>\n"
+"        <rname>Round of 16</rname>\n"
+"        <rname>Quarter Finals</rname>\n"
+"        <rname>Semi Finals</rname>\n"
+"        <rname>3rd Place Playoff</rname>\n"
+"        <rname>Finals</rname>\n"
+"        <rname>Consolation Round of 16</rname>\n"
+"        <rname>Consolation Quarter Finals</rname>\n"
+"        <rname>Consolation Semi Finals</rname>\n"
+"        <rname>Consolation 3rd Place Playoff</rname>\n"
+"        <rname>Consolation Finals</rname>\n"
+"    </rounds>\n"
+"    <teams>\n"
+"        <tname></tname>\n"
+"    </teams>\n"
+"    <logo></logo>\n"
 "</TOURNAMENT>\n";
 
 const char* default_tournament_xml = (const char*) temp_binary_data_9;
@@ -2356,7 +2362,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
         case 0x663b186c:  numBytes = 2117; return stop_png;
         case 0x6e2c2b6f:  numBytes = 58822; return willogo_png;
         case 0x96789f73:  numBytes = 81720; return default_team_xml;
-        case 0xc0496a7f:  numBytes = 620; return default_tournament_xml;
+        case 0xc0496a7f:  numBytes = 703; return default_tournament_xml;
         default: break;
     }
 

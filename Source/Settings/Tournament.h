@@ -12,26 +12,29 @@
 
 #pragma once
 
-class Tournament    : private ValueTree::Listener
+class Tournament
 {
 public:
-    Tournament (bool updateAppWhenChanged);
+    Tournament ();
     
-    bool readFromFile (const File& file);
-    bool readFromXML (const XmlElement&);
-    bool writeToFile (const File& file) const;
+    void readFromFile (const File& file);
+    void readFromXML (const XmlElement&);
+    void writeToFile (const File& file) const;
     
     static void restoreDefaultTournamentFile();
     void setAsDefaults();
     
-    void updateTournament();
+//    void addTeam();
+    void addRound(String newRound);
+//    void removeTeam();
+    void removeRound(String badRound);
     
-    void addTeam();
-    void addRound();
-    void removeTeam();
-    void removeRound();
+    String getTournamentName();
+    String getTournamentLocation();
+//    StringArray getTeamsList();
+    StringArray getRoundsList();
     
-    ValueTree tournament;
+    Image logo;
 
     static StringArray setTournamentList();
     static void refreshTournamentList();
@@ -48,15 +51,11 @@ private:
     
     static Array<File> tournamentFiles;
     
-    StringArray teamsList;
-    StringArray roundsList;
+    String tournamentName;
+    String tournamentLocation;
     
-    void valueTreePropertyChanged (ValueTree&, const Identifier&) override   { updateTournament(); }
-    void valueTreeChildAdded (ValueTree&, ValueTree&) override               { updateTournament(); }
-    void valueTreeChildRemoved (ValueTree&, ValueTree&, int) override        { updateTournament(); }
-    void valueTreeChildOrderChanged (ValueTree&, int, int) override          { updateTournament(); }
-    void valueTreeParentChanged (ValueTree&) override                        { updateTournament(); }
-    void valueTreeRedirected (ValueTree&) override                           { updateTournament(); }
+//    StringArray teamsList;
+    StringArray roundsList;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)
 };

@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../Settings/OSDependencyThings.h"
-#include "../Settings/TournamentDatabase.h"
+#include "../Settings/Tournament.h"
 
 //==============================================================================
 /*
@@ -31,11 +31,10 @@ private:
     
     StringArray tournaments;
     
-    TournamentDatabase theDB;
+//    Tournament tournament;
     
     TextButton quit;
     TextButton select;
-    TextButton addTeam;
     ComboBox tournamentList;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IntroAlertWindow)
