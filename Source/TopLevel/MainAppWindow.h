@@ -36,7 +36,6 @@ public:
 private:    
     
     ScopedPointer<IntroAlertWindow> intro;
-    CustomLookAndFeel defaultLook;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAppWindow)
 };

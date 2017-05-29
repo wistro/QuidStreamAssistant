@@ -22,19 +22,16 @@ public:
     /** Creates a CustomLookAndFeel object with a default colour scheme. */
     CustomLookAndFeel();
     
-    /** Creates a CustomLookAndFeel object with a given colour scheme. */
-    CustomLookAndFeel (ColourScheme);
     
     /** Destructor. */
     ~CustomLookAndFeel();
     
     
     void drawLabel (Graphics&, Label&) override;
-
+    void setupColours();
+    
 private:
     
-    void initialiseColours();
-    ColourScheme currentColourScheme;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomLookAndFeel)
 };

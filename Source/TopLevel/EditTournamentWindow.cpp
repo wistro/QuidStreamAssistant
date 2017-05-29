@@ -11,6 +11,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
 #include "EditTournamentWindow.h"
+#include "Application.h"
 
 //==============================================================================
 EditTournamentWindow::EditTournamentWindow()
@@ -22,10 +23,6 @@ EditTournamentWindow::EditTournamentWindow()
     cancel.setButtonText("Cancel");
     cancel.addListener(this);
     addAndMakeVisible(cancel);
-    
-    consolationBracket.setButtonText("Consolation Bracket?");
-    consolationBracket.addListener(this);
-    addAndMakeVisible(consolationBracket);
     
     browse.setButtonText("...");
     browse.addListener(this);
@@ -45,18 +42,26 @@ EditTournamentWindow::EditTournamentWindow()
     addAndMakeVisible(location);
     addAndMakeVisible(loc);
     
-    logoImage.setTextToShowWhenEmpty("path to logo image", Colours::black.withAlpha(0.5f));
-    logo.setText("Logo Image File\n(transparent bg, .svg preferred)", dontSendNotification);
+    logoImage.setTextToShowWhenEmpty("path to logo image (transparent bg, .svg preferred)", Colours::black.withAlpha(0.5f));
+    logo.setText("Logo Image File", dontSendNotification);
     logo.attachToComponent(&logoImage, true);
     
     addAndMakeVisible(logoImage);
     addAndMakeVisible(logo);
     
+    editRounds.setMultiLine(true);
+    editRounds.setReturnKeyStartsNewLine(true);
+    editRounds.setText(QuidStreamAssistantApplication::getApp().thisTournament->getRoundsList().joinIntoString("\n"));
+    rounds.setText("Rounds (one per line)", dontSendNotification);
+    rounds.attachToComponent(&editRounds, false);
     
+    addAndMakeVisible(editRounds);
+    addAndMakeVisible(rounds);
     
-    TextEditor editRounds;
-    
-    Label rounds;
+    consolationBracket.setButtonText("Consolation Bracket?");
+    consolationBracket.setToggleState(true, dontSendNotification);
+    consolationBracket.addListener(this);
+    addAndMakeVisible(consolationBracket);
 
 }
 
@@ -70,26 +75,120 @@ EditTournamentWindow::~EditTournamentWindow()
 
 void EditTournamentWindow::paint (Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
-
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
-
-
 }
 
 void EditTournamentWindow::buttonClicked (Button* button)
 {
-    
+    if ( button == &cancel )
+    {
+        QuidStreamAssistantApplication::getApp().mainWindow->showIntro();
+        QuidStreamAssistantApplication::getApp().editTournament = nullptr;
+    }
+    else if ( button == &save )
+    {
+        if ( tournName.isEmpty() )
+        {
+            AlertWindow::showMessageBoxAsync (AlertWindow::WarningIcon, "Please Enter a Tournament Name",
+                                              "", "OK");
+        }
+        else
+        {
+            Tournament* currentTournament = QuidStreamAssistantApplication::getApp().thisTournament;
+            
+            //some image input file was given, hopefully it was a real one
+            if ( ! logoImage.isEmpty() )
+            {
+                File image ( logoImage.getText() );
+                
+                //file path given exists and is an image
+                if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
+                {
+                    currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText(), image);
+                }
+                else
+                {
+                    AlertWindow::showMessageBoxAsync (AlertWindow::WarningIcon, "The Logo File Path Is Not Valid",
+                                                      "Please enter a valid file path or leave blank for no logo.", "OK");
+                }
+            }
+            else
+            {
+                currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText());
+            }
+        }
+    }
+    else if ( button == &browse )
+    {
+        ImagePreviewComponent imagePreview;
+        imagePreview.setSize (200, 200);
+        
+        FileChooser fc ("Choose the Tournament's Logo Image",
+                        File::getSpecialLocation (File::userPicturesDirectory),
+                        "*.jpg;*.jpeg;*.png;*.gif;*.svg",
+                        true);
+        
+        if ( fc.browseForFileToOpen() )
+        {
+            logoImage.setText(fc.getResult().getFullPathName());
+        }
+    }
+    else if ( button == &consolationBracket )
+    {
+        if ( consolationBracket.getToggleState() )
+        {
+            StringArray temp;
+            temp.addLines(editRounds.getText());
+            for ( int i = 0; i < Tournament::consolationBracket.size(); i++ )
+            {
+                temp.addIfNotAlreadyThere(Tournament::consolationBracket.operator[](i), true);
+            }
+            editRounds.setText(temp.joinIntoString("/n"));
+        }
+        else
+        {
+            StringArray temp;
+            temp.addLines(editRounds.getText());
+            for ( int i = 0; i < temp.size(); i++ )
+            {
+                if ( temp.operator[](i).startsWith(Tournament::consolation) )
+                {
+                    temp.remove(i);
+                }
+            }
+            editRounds.setText(temp.joinIntoString("/n"));
+        }
+    }
 }
 
 void EditTournamentWindow::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
+    Rectangle<int> area(getLocalBounds());
+    const int margin = 2;
+    const int textBoxHeight = 30;
+    const int buttonHeight = 40;
+    const int buttonWidth = 60;
+    
+    Rectangle<int> nameInput (area.removeFromTop(textBoxHeight).reduced(margin));
+    tournament.setBounds(nameInput.removeFromLeft(proportionOfWidth(0.2f)));
+    tournName.setBounds(nameInput);
+    
+    Rectangle<int> locInput (area.removeFromTop(textBoxHeight).reduced(margin));
+    loc.setBounds(locInput.removeFromLeft(proportionOfWidth(0.2f)));
+    location.setBounds(locInput);
+    
+    Rectangle<int> logoInput (area.removeFromTop(textBoxHeight).reduced(margin));
+    logo.setBounds(logoInput.removeFromLeft(proportionOfWidth(0.2f)));
+    browse.setBounds(logoInput.removeFromRight(buttonWidth).reduced(margin));
+    logoImage.setBounds(logoInput);
+    
+//    rounds.setBounds(area.removeFromTop(textBoxHeight).reduced(margin));
+    consolationBracket.setBounds(area.removeFromTop(textBoxHeight).reduced(margin).removeFromRight(proportionOfWidth(0.76f)).reduced(margin * 2));
+    
+    Rectangle<int> saveCancel (area.removeFromBottom(buttonHeight).reduced(margin));
+    saveCancel.removeFromLeft(saveCancel.getWidth() / 2);
+    save.setBounds(saveCancel.removeFromRight(saveCancel.getWidth() / 2).reduced(margin));
+    cancel.setBounds(saveCancel.reduced(margin));
+    
+    editRounds.setBounds(area.reduced(margin));
 
 }

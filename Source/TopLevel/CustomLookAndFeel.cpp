@@ -14,14 +14,9 @@
 //==============================================================================
 
 //==============================================================================
-CustomLookAndFeel::CustomLookAndFeel() : currentColourScheme (getLightColourScheme())
+CustomLookAndFeel::CustomLookAndFeel()
 {
-    initialiseColours();
-}
-
-CustomLookAndFeel::CustomLookAndFeel (ColourScheme scheme)  : currentColourScheme (scheme)
-{
-    initialiseColours();
+    setupColours();
 }
 
 CustomLookAndFeel::~CustomLookAndFeel()  {}
@@ -57,158 +52,96 @@ void CustomLookAndFeel::drawLabel (Graphics& g, Label& label)
     
 }
 
-//copied verbatim from Juce Modules/juce_gui_basics/lookandfeel/juce_LookAndFeel_V4
-//so that my custom look and feel class can implement LAFV4 colourschemes
-void CustomLookAndFeel::initialiseColours()
+void CustomLookAndFeel::setupColours()
 {
-    const uint32 transparent = 0x00000000;
+    auto& colourScheme = getCurrentColourScheme();
     
-    const uint32 coloursToUse[] =
+    if (colourScheme == getDarkColourScheme())
     {
-        TextButton::buttonColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        TextButton::buttonOnColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        TextButton::textColourOnId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedText).getARGB(),
-        TextButton::textColourOffId,                currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
+        setColour (backgroundColourId,                   Colour (0xff323e44));
+        setColour (secondaryBackgroundColourId,          Colour (0xff263238));
+        setColour (defaultTextColourId,                  Colours::white);
+        setColour (widgetTextColourId,                   Colours::white);
+        setColour (defaultButtonBackgroundColourId,      Colour (0xffa45c94));
+        setColour (secondaryButtonBackgroundColourId,    Colours::black);
+        setColour (userButtonBackgroundColourId,         Colour (0xffa45c94));
+        setColour (defaultIconColourId,                  Colours::white);
+        setColour (treeIconColourId,                     Colour (0xffa9a9a9));
+        setColour (defaultHighlightColourId,             Colour (0xffe0ec65));
+        setColour (defaultHighlightedTextColourId,       Colours::black);
+        setColour (codeEditorLineNumberColourId,         Colour (0xffaaaaaa));
+        setColour (activeTabIconColourId,                Colours::white);
+        setColour (inactiveTabBackgroundColourId,        Colour (0xff181f22));
+        setColour (inactiveTabIconColourId,              Colour (0xffa9a9a9));
+        setColour (contentHeaderBackgroundColourId,      Colours::black);
+        setColour (widgetBackgroundColourId,             Colour (0xff495358));
+        setColour (secondaryWidgetBackgroundColourId,    Colour (0xff303b41));
         
-        ToggleButton::textColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        ToggleButton::tickColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        ToggleButton::tickDisabledColourId,         currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).withAlpha (0.5f).getARGB(),
-        
-        TextEditor::backgroundColourId,             currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        TextEditor::textColourId,                   currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        TextEditor::highlightColourId,              currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        TextEditor::highlightedTextColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedText).getARGB(),
-        TextEditor::outlineColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        TextEditor::focusedOutlineColourId,         currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        TextEditor::shadowColourId,                 transparent,
-        
-        CaretComponent::caretColourId,              currentColourScheme.getUIColour (ColourScheme::UIColour::defaultFill).getARGB(),
-        
-        Label::backgroundColourId,                  transparent,
-        Label::textColourId,                        currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        Label::outlineColourId,                     transparent,
-        Label::textWhenEditingColourId,             currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        ScrollBar::backgroundColourId,              transparent,
-        ScrollBar::thumbColourId,                   currentColourScheme.getUIColour (ColourScheme::UIColour::defaultFill).getARGB(),
-        ScrollBar::trackColourId,                   transparent,
-        
-        TreeView::linesColourId,                    transparent,
-        TreeView::backgroundColourId,               transparent,
-        TreeView::dragAndDropIndicatorColourId,     currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        TreeView::selectedItemBackgroundColourId,   transparent,
-        TreeView::oddItemsColourId,                 transparent,
-        TreeView::evenItemsColourId,                transparent,
-        
-        PopupMenu::backgroundColourId,              currentColourScheme.getUIColour (ColourScheme::UIColour::menuBackground).getARGB(),
-        PopupMenu::textColourId,                    currentColourScheme.getUIColour (ColourScheme::UIColour::menuText).getARGB(),
-        PopupMenu::headerTextColourId,              currentColourScheme.getUIColour (ColourScheme::UIColour::menuText).getARGB(),
-        PopupMenu::highlightedTextColourId,         currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedText).getARGB(),
-        PopupMenu::highlightedBackgroundColourId,   currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        
-        ComboBox::buttonColourId,                   currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        ComboBox::outlineColourId,                  currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        ComboBox::textColourId,                     currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        ComboBox::backgroundColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        ComboBox::arrowColourId,                    currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        PropertyComponent::backgroundColourId,      currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        PropertyComponent::labelTextColourId,       currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        TextPropertyComponent::backgroundColourId,  currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        TextPropertyComponent::textColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        TextPropertyComponent::outlineColourId,     currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        BooleanPropertyComponent::backgroundColourId, currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        BooleanPropertyComponent::outlineColourId,    currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        ListBox::backgroundColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        ListBox::outlineColourId,                   currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        ListBox::textColourId,                      currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        Slider::backgroundColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        Slider::thumbColourId,                      currentColourScheme.getUIColour (ColourScheme::UIColour::defaultFill).getARGB(),
-        Slider::trackColourId,                      currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        Slider::rotarySliderFillColourId,           currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        Slider::rotarySliderOutlineColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        Slider::textBoxTextColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        Slider::textBoxBackgroundColourId,          currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).withAlpha (0.0f).getARGB(),
-        Slider::textBoxHighlightColourId,           currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        Slider::textBoxOutlineColourId,             currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        ResizableWindow::backgroundColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::windowBackground).getARGB(),
-        
-        DocumentWindow::textColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        AlertWindow::backgroundColourId,            currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        AlertWindow::textColourId,                  currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        AlertWindow::outlineColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        ProgressBar::backgroundColourId,            currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        ProgressBar::foregroundColourId,            currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        
-        TooltipWindow::backgroundColourId,          currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        TooltipWindow::textColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedText).getARGB(),
-        TooltipWindow::outlineColourId,             transparent,
-        
-        TabbedComponent::backgroundColourId,        transparent,
-        TabbedComponent::outlineColourId,           currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        TabbedButtonBar::tabOutlineColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::outline).withAlpha (0.5f).getARGB(),
-        TabbedButtonBar::frontOutlineColourId,      currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        Toolbar::backgroundColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).withAlpha (0.4f).getARGB(),
-        Toolbar::separatorColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        Toolbar::buttonMouseOverBackgroundColourId, currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).contrasting (0.2f).getARGB(),
-        Toolbar::buttonMouseDownBackgroundColourId, currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).contrasting (0.5f).getARGB(),
-        Toolbar::labelTextColourId,                 currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        Toolbar::editingModeOutlineColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        DrawableButton::textColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        DrawableButton::textColourOnId,             currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedText).getARGB(),
-        DrawableButton::backgroundColourId,         transparent,
-        DrawableButton::backgroundOnColourId,       currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        
-        HyperlinkButton::textColourId,              currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).interpolatedWith (Colours::blue, 0.4f).getARGB(),
-        
-        GroupComponent::outlineColourId,            currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        GroupComponent::textColourId,               currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        BubbleComponent::backgroundColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        BubbleComponent::outlineColourId,           currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        DirectoryContentsDisplayComponent::highlightColourId,   currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        DirectoryContentsDisplayComponent::textColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::menuText).getARGB(),
-        
-        0x1000440, /*LassoComponent::lassoFillColourId*/        currentColourScheme.getUIColour (ColourScheme::UIColour::defaultFill).getARGB(),
-        0x1000441, /*LassoComponent::lassoOutlineColourId*/     currentColourScheme.getUIColour (ColourScheme::UIColour::outline).getARGB(),
-        
-        0x1005000, /*MidiKeyboardComponent::whiteNoteColourId*/               0xffffffff,
-        0x1005001, /*MidiKeyboardComponent::blackNoteColourId*/               0xff000000,
-        0x1005002, /*MidiKeyboardComponent::keySeparatorLineColourId*/        0x66000000,
-        0x1005003, /*MidiKeyboardComponent::mouseOverKeyOverlayColourId*/     0x80ffff00,
-        0x1005004, /*MidiKeyboardComponent::keyDownOverlayColourId*/          0xffb6b600,
-        0x1005005, /*MidiKeyboardComponent::textLabelColourId*/               0xff000000,
-        0x1005006, /*MidiKeyboardComponent::upDownButtonBackgroundColourId*/  0xffd3d3d3,
-        0x1005007, /*MidiKeyboardComponent::upDownButtonArrowColourId*/       0xff000000,
-        0x1005008, /*MidiKeyboardComponent::shadowColourId*/                  0x4c000000,
-        
-        0x1004500, /*CodeEditorComponent::backgroundColourId*/                currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        0x1004502, /*CodeEditorComponent::highlightColourId*/                 currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).getARGB(),
-        0x1004503, /*CodeEditorComponent::defaultTextColourId*/               currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        0x1004504, /*CodeEditorComponent::lineNumberBackgroundId*/            currentColourScheme.getUIColour (ColourScheme::UIColour::highlightedFill).withAlpha (0.5f).getARGB(),
-        0x1004505, /*CodeEditorComponent::lineNumberTextId*/                  currentColourScheme.getUIColour (ColourScheme::UIColour::defaultFill).getARGB(),
-        
-        0x1007000, /*ColourSelector::backgroundColourId*/                     currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        0x1007001, /*ColourSelector::labelTextColourId*/                      currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        0x100ad00, /*KeyMappingEditorComponent::backgroundColourId*/          currentColourScheme.getUIColour (ColourScheme::UIColour::widgetBackground).getARGB(),
-        0x100ad01, /*KeyMappingEditorComponent::textColourId*/                currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-        
-        FileSearchPathListComponent::backgroundColourId,        currentColourScheme.getUIColour (ColourScheme::UIColour::menuBackground).getARGB(),
-        
-        FileChooserDialogBox::titleTextColourId,                currentColourScheme.getUIColour (ColourScheme::UIColour::defaultText).getARGB(),
-    };
+        colourScheme.setUIColour (LookAndFeel_V4::ColourScheme::UIColour::defaultFill, Colour (0xffa45c94));
+    }
+    else if (colourScheme == getGreyColourScheme())
+    {
+        setColour (backgroundColourId,                   Colour (0xff505050));
+        setColour (secondaryBackgroundColourId,          Colour (0xff424241));
+        setColour (defaultTextColourId,                  Colours::white);
+        setColour (widgetTextColourId,                   Colours::black);
+        setColour (defaultButtonBackgroundColourId,      Colour (0xff26ba90));
+        setColour (secondaryButtonBackgroundColourId,    Colours::black);
+        setColour (userButtonBackgroundColourId,         Colour (0xff26ba90));
+        setColour (defaultIconColourId,                  Colours::white);
+        setColour (treeIconColourId,                     Colour (0xffa9a9a9));
+        setColour (defaultHighlightColourId,             Colour (0xffe0ec65));
+        setColour (defaultHighlightedTextColourId,       Colours::black);
+        setColour (codeEditorLineNumberColourId,         Colour (0xffaaaaaa));
+        setColour (activeTabIconColourId,                Colours::white);
+        setColour (inactiveTabBackgroundColourId,        Colour (0xff373737));
+        setColour (inactiveTabIconColourId,              Colour (0xffa9a9a9));
+        setColour (contentHeaderBackgroundColourId,      Colours::black);
+        setColour (widgetBackgroundColourId,             Colours::white);
+        setColour (secondaryWidgetBackgroundColourId,    Colour (0xffdddddd));
+    }
+    else if (colourScheme == getLightColourScheme())
+    {
+        setColour (backgroundColourId,                   Colour (0xffefefef));
+        setColour (secondaryBackgroundColourId,          Colour (0xfff9f9f9));
+        setColour (defaultTextColourId,                  Colours::black);
+        setColour (widgetTextColourId,                   Colours::black);
+        setColour (defaultButtonBackgroundColourId,      Colour (0xff42a2c8));
+        setColour (secondaryButtonBackgroundColourId,    Colour (0xffa1c677));
+        setColour (userButtonBackgroundColourId,         Colour (0xffff5b5b));
+        setColour (defaultIconColourId,                  Colours::white);
+        setColour (treeIconColourId,                     Colour (0xffa9a9a9));
+        setColour (defaultHighlightColourId,             Colour (0xffffd05b));
+        setColour (defaultHighlightedTextColourId,       Colour (0xff585656));
+        setColour (codeEditorLineNumberColourId,         Colour (0xff888888));
+        setColour (activeTabIconColourId,                Colour (0xff42a2c8));
+        setColour (inactiveTabBackgroundColourId,        Colour (0xffd5d5d5));
+        setColour (inactiveTabIconColourId,              Colour (0xffa9a9a9));
+        setColour (contentHeaderBackgroundColourId,      Colour (0xff42a2c8));
+        setColour (widgetBackgroundColourId,             Colours::white);
+        setColour (secondaryWidgetBackgroundColourId,    Colour (0xfff4f4f4));
+    }
     
-    for (int i = 0; i < numElementsInArray (coloursToUse); i += 2)
-        setColour ((int) coloursToUse [i], Colour ((uint32) coloursToUse [i + 1]));
+    setColour (Label::textColourId,                             findColour (defaultTextColourId));
+    setColour (Label::textColourId,                             findColour (defaultTextColourId));
+    setColour (TextEditor::highlightColourId,                   findColour (defaultHighlightColourId));
+    setColour (TextEditor::highlightedTextColourId,             findColour (defaultHighlightedTextColourId));
+    setColour (TextEditor::outlineColourId,                     Colours::transparentBlack);
+    setColour (TextEditor::focusedOutlineColourId,              Colours::transparentBlack);
+    setColour (TextEditor::backgroundColourId,                  findColour (widgetBackgroundColourId));
+    setColour (TextEditor::textColourId,                        findColour (widgetTextColourId));
+    setColour (TextButton::buttonColourId,                      findColour (defaultButtonBackgroundColourId));
+    setColour (ScrollBar::ColourIds::thumbColourId,             Colour (0xffd0d8e0));
+    setColour (TextPropertyComponent::outlineColourId,          Colours::transparentBlack);
+    setColour (TextPropertyComponent::backgroundColourId,       findColour (widgetBackgroundColourId));
+    setColour (TextPropertyComponent::textColourId,             findColour (widgetTextColourId));
+    setColour (BooleanPropertyComponent::outlineColourId,       Colours::transparentBlack);
+    setColour (BooleanPropertyComponent::backgroundColourId,    findColour (widgetBackgroundColourId));
+    setColour (ToggleButton::tickDisabledColourId,              Colour (0xffa9a9a9));
+    setColour (ToggleButton::tickColourId,                      findColour (defaultButtonBackgroundColourId).withMultipliedBrightness(1.3f));
+    setColour (CodeEditorComponent::backgroundColourId,         findColour (secondaryBackgroundColourId));
+    setColour (CodeEditorComponent::lineNumberTextId,           findColour (codeEditorLineNumberColourId));
+    setColour (CodeEditorComponent::lineNumberBackgroundId,     findColour (backgroundColourId));
+    setColour (CaretComponent::caretColourId,                   findColour (defaultButtonBackgroundColourId));
+    setColour (TreeView::selectedItemBackgroundColourId,        findColour (defaultHighlightColourId));
 }

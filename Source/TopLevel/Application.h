@@ -48,9 +48,11 @@ public:
     ScopedPointer<ApplicationCommandManager> commandManager;
     ScopedPointer<Tournament> thisTournament;
     ScopedPointer<Component> editTournament;
+    CustomLookAndFeel defaultLook;
+    ScopedPointer<MainAppWindow> mainWindow;
     
     //==============================================================================
     
 private:
-    ScopedPointer<MainAppWindow> mainWindow;
+
 };

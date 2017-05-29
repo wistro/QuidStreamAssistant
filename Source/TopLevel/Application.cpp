@@ -21,6 +21,9 @@ void QuidStreamAssistantApplication::initialise (const String& commandLine)
     
     settings = new StoredSettings ();
     thisTournament = new Tournament ();
+    defaultLook.setColourScheme(CustomLookAndFeel::getLightColourScheme());
+    defaultLook.setUsingNativeAlertWindows(true);
+    LookAndFeel::setDefaultLookAndFeel(&defaultLook);
     
     mainWindow = new MainAppWindow ();
     commandManager = new ApplicationCommandManager ();
@@ -46,7 +49,7 @@ void QuidStreamAssistantApplication::showEditTournamentWindow()
     else
         new FloatingToolWindow ("Edit Tournament Details", {}, new EditTournamentWindow(),
                                 editTournament, false,
-                                500, 1000, 500, 1000, 500, 1000);
+                                600, 500, 600, 500, 600, 500);
 }
 
 //==============================================================================

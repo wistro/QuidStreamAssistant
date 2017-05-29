@@ -35,12 +35,16 @@ public:
 //    StringArray getTeamsList();
     StringArray getRoundsList();
     
+    void fillThisSucker(String name, String location, String rounds);
+    void fillThisSucker(String name, String location, String rounds, File pic);
+    
     Image logo;
 
     StringArray setTournamentList();
     void refreshTournamentList();
     
     static const String consolation;
+    static const StringArray consolationBracket;
     StringArray tournamentList;
     
     static File getTournamentsFolder();

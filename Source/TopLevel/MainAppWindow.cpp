@@ -15,13 +15,11 @@
 MainAppWindow::MainAppWindow()
             : DocumentWindow (JUCEApplication::getInstance()->getApplicationName(),
                   LookAndFeel::getDefaultLookAndFeel().findColour (ResizableWindow::backgroundColourId),
-                  DocumentWindow::allButtons),
-            defaultLook(CustomLookAndFeel::getLightColourScheme())
+                  DocumentWindow::allButtons)
 {
     setUsingNativeTitleBar (true);
     setResizable (false, false);
     setIcon(ImageCache::getFromMemory(BinaryData::willogo_png, BinaryData::willogo_pngSize));
-    setLookAndFeel(&defaultLook);
     
 //    setResizeLimits (400, 400, 10000, 10000);
 //    

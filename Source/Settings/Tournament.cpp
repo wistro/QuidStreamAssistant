@@ -17,6 +17,13 @@
 
 const String Tournament::consolation = "Consolation";
 
+const StringArray Tournament::consolationBracket =
+{   "Consolation Round of 16",
+    "Consolation Quarter Finals",
+    "Consolation Semi Finals",
+    "Consolation 3rd Place Playoff",
+    "Consolation Finals"
+};
 
 //==============================================================================
 Tournament::Tournament ()
@@ -88,8 +95,6 @@ void Tournament::setAsDefaults()
     if ( !file.exists() )
         file.create();
     
-    //I should do something with the result of this, in case the write operation fails
-    //but I don't feel like it so soz
     writeToFile(file);
 }
 
@@ -131,6 +136,30 @@ String Tournament::getTournamentLocation()
 StringArray Tournament::getRoundsList()
 {
     return roundsList;
+}
+
+void Tournament::fillThisSucker(String name, String location, String rounds)
+{
+    tournamentName = name;
+    tournamentLocation = location;
+    roundsList.clear();
+    roundsList.addLines(rounds);
+    
+    //once I add the "add teams" window I might move this to after that has been handled
+    //so that we're not constantly writing out to files
+    //for now, though, it goes here
+    const File file (getTournamentsFolder().getChildFile(tournamentName).withFileExtension(getTournamentFileSuffix()));
+    
+    if ( !file.exists() )
+        file.create();
+    
+    writeToFile(file);
+}
+
+void Tournament::fillThisSucker(String name, String location, String rounds, File pic)
+{
+    logo = ImageFileFormat::loadFrom(pic);
+    fillThisSucker(name, location, rounds);
 }
 
 void Tournament::readFromXML (const XmlElement& xml)

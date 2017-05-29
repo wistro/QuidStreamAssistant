@@ -24,15 +24,15 @@ struct TargetOS
     
     static OS getThisOS() noexcept
     {
-#if JUCE_WINDOWS
+        #if JUCE_WINDOWS
         return windows;
-#elif JUCE_MAC
+        #elif JUCE_MAC
         return osx;
-#elif JUCE_LINUX
+        #elif JUCE_LINUX
         return linux;
-#else
+        #else
         return unknown;
-#endif
+        #endif
     }
 };
 
