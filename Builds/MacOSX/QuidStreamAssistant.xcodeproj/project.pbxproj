@@ -20,8 +20,8 @@
 		67FD05DAEEA9C78B66AEE19E = {isa = PBXBuildFile; fileRef = FA2B0B138AE546520291CA46; };
 		41245503CFD9D49CAE3E54A6 = {isa = PBXBuildFile; fileRef = 6EC56AC2B2995FB183FE7567; };
 		FDEF73104920D291A5095072 = {isa = PBXBuildFile; fileRef = DA72F69631361BFFCC0C28CE; };
+		F71CDD6D8F9E1CBC5B773F36 = {isa = PBXBuildFile; fileRef = C3D2F3A422ECC70BA32F9FA9; };
 		6239AB53328C0A3F4E9FEF69 = {isa = PBXBuildFile; fileRef = 1DAEB7D90718492ADCEB33C9; };
-		C0E8EA144B84F4CAC6830717 = {isa = PBXBuildFile; fileRef = 69D6656685E479DDFF60CA37; };
 		97EEA5D593E770422B5A37A6 = {isa = PBXBuildFile; fileRef = 8FF25EA4D244B60213308275; };
 		82AF29F019E348453D0EBDDF = {isa = PBXBuildFile; fileRef = BDB0B4A3DF940BC1E8E4AE2C; };
 		12E778757A34414011133D31 = {isa = PBXBuildFile; fileRef = 4DD73DC12E8D0D22FE38DC90; };
@@ -64,7 +64,6 @@
 		172C45C5F67F24F5BA09303A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameTimer.h; path = ../../Source/Gameplay/GameTimer.h; sourceTree = "SOURCE_ROOT"; };
 		1D6FA72970C387184FD6372A = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = ../../Source/BinaryData/images/stop.png; sourceTree = "SOURCE_ROOT"; };
 		1DAEB7D90718492ADCEB33C9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tournament.cpp; path = ../../Source/Settings/Tournament.cpp; sourceTree = "SOURCE_ROOT"; };
-		1EE38C3E10A4EEC11D80ECCD = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FilePathPropertyComponent.h; path = ../../Source/Settings/FilePathPropertyComponent.h; sourceTree = "SOURCE_ROOT"; };
 		2156117E045DF1866DC87CA4 = {isa = PBXFileReference; lastKnownFileType = image.png; name = downStop.png; path = ../../Source/BinaryData/images/downStop.png; sourceTree = "SOURCE_ROOT"; };
 		28B0DA70F4F117942FA0F9BA = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2A707D316AC83BE04318D849 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_graphics.mm"; path = "../../JuceLibraryCode/include_juce_graphics.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -94,7 +93,6 @@
 		6044D693960E92EF2957FB37 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameplayComponent.h; path = ../../Source/Gameplay/GameplayComponent.h; sourceTree = "SOURCE_ROOT"; };
 		62663EBB4479C4A88FD0E886 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LabelAndListComponent.h; path = ../../Source/Gameplay/LabelAndListComponent.h; sourceTree = "SOURCE_ROOT"; };
 		697F1F23F54491111E327539 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = "SOURCE_ROOT"; };
-		69D6656685E479DDFF60CA37 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TeamSettings.cpp; path = ../../Source/Settings/TeamSettings.cpp; sourceTree = "SOURCE_ROOT"; };
 		6A83F323BD641AB5F35CC64C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainAppWindow.h; path = ../../Source/TopLevel/MainAppWindow.h; sourceTree = "SOURCE_ROOT"; };
 		6B18EBA4F28CB0B7C8E62DEA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_data_structures.mm"; path = "../../JuceLibraryCode/include_juce_data_structures.mm"; sourceTree = "SOURCE_ROOT"; };
 		6EC56AC2B2995FB183FE7567 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -125,8 +123,8 @@
 		B72545553F4A50B5626DBC8E = {isa = PBXFileReference; lastKnownFileType = file.xml; name = "default_tournament.xml"; path = "../../Source/BinaryData/default_tournament.xml"; sourceTree = "SOURCE_ROOT"; };
 		BBE7790796C42CDB62DF3C61 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScoreComponent.h; path = ../../Source/Gameplay/ScoreComponent.h; sourceTree = "SOURCE_ROOT"; };
 		BDB0B4A3DF940BC1E8E4AE2C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StoredSettings.cpp; path = ../../Source/Settings/StoredSettings.cpp; sourceTree = "SOURCE_ROOT"; };
-		C213DBAA8A82F2982228579E = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TeamSettings.h; path = ../../Source/Settings/TeamSettings.h; sourceTree = "SOURCE_ROOT"; };
 		C2F9FEFFC4B1115FE8B3E708 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		C3D2F3A422ECC70BA32F9FA9 = {isa = PBXFileReference; lastKnownFileType = file.icns; name = Icon.icns; path = Icon.icns; sourceTree = "SOURCE_ROOT"; };
 		C698D3C7A7DC7C368A442610 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OSDependencyThings.h; path = ../../Source/Settings/OSDependencyThings.h; sourceTree = "SOURCE_ROOT"; };
 		C6CC31D45B9297DF2188E933 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_gui_extra"; path = "../../../../../bin/JUCE/modules/juce_gui_extra"; sourceTree = "SOURCE_ROOT"; };
 		D0CA53EEA51239B3FB803E8C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tournament.h; path = ../../Source/Settings/Tournament.h; sourceTree = "SOURCE_ROOT"; };
@@ -146,9 +144,6 @@
 					1DAEB7D90718492ADCEB33C9,
 					D0CA53EEA51239B3FB803E8C,
 					6ED90999556B86841C81934C,
-					69D6656685E479DDFF60CA37,
-					C213DBAA8A82F2982228579E,
-					1EE38C3E10A4EEC11D80ECCD,
 					C698D3C7A7DC7C368A442610,
 					8FF25EA4D244B60213308275,
 					E1D8EC60791FEBC2289A4390,
@@ -235,7 +230,8 @@
 					697F1F23F54491111E327539, ); name = "Juce Library Code"; sourceTree = "<group>"; };
 		5EC4D3367FDC2F994CC354E5 = {isa = PBXGroup; children = (
 					0779AEBAB8717D67FF679619,
-					DA72F69631361BFFCC0C28CE, ); name = Resources; sourceTree = "<group>"; };
+					DA72F69631361BFFCC0C28CE,
+					C3D2F3A422ECC70BA32F9FA9, ); name = Resources; sourceTree = "<group>"; };
 		6109BB2A01F40DC1DCA2698E = {isa = PBXGroup; children = (
 					28B0DA70F4F117942FA0F9BA,
 					3E2C5DF246A13068012E1393,
@@ -357,10 +353,10 @@
 					BF17CFE3B8656CABF45C4D71,
 					188E4866CE1609C793A0C03B, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 		65308CB484640D0F9DB4977A = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (
-					FDEF73104920D291A5095072, ); runOnlyForDeploymentPostprocessing = 0; };
+					FDEF73104920D291A5095072,
+					F71CDD6D8F9E1CBC5B773F36, ); runOnlyForDeploymentPostprocessing = 0; };
 		E27EED951A9C61E4F55F85E4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 					6239AB53328C0A3F4E9FEF69,
-					C0E8EA144B84F4CAC6830717,
 					97EEA5D593E770422B5A37A6,
 					82AF29F019E348453D0EBDDF,
 					12E778757A34414011133D31,

@@ -139,7 +139,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Settings\Tournament.cpp"/>
-    <ClCompile Include="..\..\Source\Settings\TeamSettings.cpp"/>
     <ClCompile Include="..\..\Source\Settings\Player.cpp"/>
     <ClCompile Include="..\..\Source\Settings\StoredSettings.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\GameplayComponent.cpp"/>
@@ -171,6 +170,9 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup/>
+  <ItemGroup>
+    <None Include=".\icon.ico"/>
+  </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include=".\resources.rc"/>
   </ItemGroup>

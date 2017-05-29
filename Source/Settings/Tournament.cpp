@@ -17,12 +17,19 @@
 
 const String Tournament::consolation = "Consolation";
 
+
 //==============================================================================
 Tournament::Tournament ()
 {
+    File defaults = getTournamentsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTournamentFileSuffix());
     
-    refreshTournamentList();
+    //if defaults file doesn't exist, create it from stored defaults
+    if ( ! defaults.existsAsFile())
+    {
+        restoreDefaultTournamentFile();
+    }
     
+    readFromFile(defaults);
 }
 
 File Tournament::getTournamentsFolder()
@@ -34,6 +41,8 @@ File Tournament::getTournamentsFolder()
 
 StringArray Tournament::setTournamentList()
 {
+    
+    
     StringArray s;
     for (int i = 0; i < tournamentFiles.size(); ++i)
         s.add (tournamentFiles.getReference(i).getFileNameWithoutExtension());
@@ -56,22 +65,26 @@ void Tournament::refreshTournamentList()
     
 }
 
+String Tournament::getDefaultFileName()
+{
+    return "Defaults";
+}
+
 void Tournament::restoreDefaultTournamentFile()
 {
-    const File file (getTournamentsFolder().getChildFile ("Defaults").withFileExtension (getTournamentFileSuffix()));
+    const File file (getTournamentsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTournamentFileSuffix()));
     
-    Tournament defaults;
     
     ScopedPointer<XmlElement> xml (XmlDocument::parse (BinaryData::default_tournament_xml));
     if (xml != nullptr)
-        defaults.readFromXML (*xml);
+        readFromXML (*xml);
     
-    defaults.writeToFile (file);
+    writeToFile (file);
 }
 
 void Tournament::setAsDefaults()
 {
-    const File file (getTournamentsFolder().getChildFile("Defaults").withFileExtension(getTournamentFileSuffix()));
+    const File file (getTournamentsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTournamentFileSuffix()));
     
     if ( !file.exists() )
         file.create();
@@ -136,7 +149,7 @@ void Tournament::readFromXML (const XmlElement& xml)
                 addRound(child->getAllSubText());
         }
     }
-    delete rounds;
+//    delete rounds;
     
 //    XmlElement* teams = xml.getChildByName("teams");
 //    
@@ -149,9 +162,13 @@ void Tournament::readFromXML (const XmlElement& xml)
 //        }
 //    }
     
-    MemoryOutputStream imageData;
-    Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
-    logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+    
+    if ( xml.getChildElementAllSubText("logo", {}) != "NOLOGO" )
+    {
+        MemoryOutputStream imageData;
+        Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
+        logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+    }
     
 }
 
@@ -172,16 +189,20 @@ void Tournament::writeToFile (const File& file) const
     
     for( int i = 0; i < roundsList.size(); i++)
     {
-        rounds.createNewChildElement("rname")->addTextElement(roundsList[i]);
+        rounds.createNewChildElement("rname")->addTextElement(roundsList.operator[](i));
     }
     
     xml.addChildElement(&rounds);
     
     //do the team handling here once I've figured that out
-    
-    MemoryOutputStream imageData;
-    if (PNGImageFormat().writeImageToStream (logo, imageData))
-        xml.createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+    if ( logo.isValid() )
+    {
+        MemoryOutputStream imageData;
+        if (PNGImageFormat().writeImageToStream (logo, imageData))
+            xml.createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+    }
+    else
+        xml.createNewChildElement("logo")->addTextElement("NOLOGO");
     
     xml.writeToFile (file, String());
 }

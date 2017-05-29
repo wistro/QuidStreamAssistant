@@ -21,8 +21,9 @@ public:
     void readFromXML (const XmlElement&);
     void writeToFile (const File& file) const;
     
-    static void restoreDefaultTournamentFile();
+    void restoreDefaultTournamentFile();
     void setAsDefaults();
+    static String getDefaultFileName();
     
 //    void addTeam();
     void addRound(String newRound);
@@ -36,11 +37,11 @@ public:
     
     Image logo;
 
-    static StringArray setTournamentList();
-    static void refreshTournamentList();
+    StringArray setTournamentList();
+    void refreshTournamentList();
     
     static const String consolation;
-    static StringArray tournamentList;
+    StringArray tournamentList;
     
     static File getTournamentsFolder();
     static const char* getTournamentFileSuffix()      { return ".tourn"; }
@@ -49,13 +50,14 @@ public:
     
 private:
     
-    static Array<File> tournamentFiles;
+    Array<File> tournamentFiles;
     
     String tournamentName;
     String tournamentLocation;
     
 //    StringArray teamsList;
     StringArray roundsList;
+    
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)
 };

@@ -18,6 +18,7 @@ StoredSettings& getAppSettings()
     return *QuidStreamAssistantApplication::getApp().settings;
 }
 
+
 PropertiesFile& getGlobalProperties()
 {
     return getAppSettings().getGlobalProperties();
@@ -25,7 +26,7 @@ PropertiesFile& getGlobalProperties()
 
 //==============================================================================
 StoredSettings::StoredSettings()
-: appearance (true), projectDefaults ("PROJECT_DEFAULT_SETTINGS")
+:  projectDefaults ("PROJECT_DEFAULT_SETTINGS")
 {
     reload();
     projectDefaults.addListener (this);
@@ -36,6 +37,7 @@ StoredSettings::~StoredSettings()
     projectDefaults.removeListener (this);
     flush();
 }
+
 
 PropertiesFile& StoredSettings::getGlobalProperties()
 {
@@ -76,8 +78,8 @@ void StoredSettings::updateGlobalPreferences()
 
 void StoredSettings::updateAppearanceSettings()
 {
-    const ScopedPointer<XmlElement> xml (appearance.settings.createXml());
-    getGlobalProperties().setValue ("editorColours", xml);
+//    const ScopedPointer<XmlElement> xml (appearance.settings.createXml());
+//    getGlobalProperties().setValue ("editorColours", xml);
 }
 
 void StoredSettings::updateRecentFiles()
@@ -120,9 +122,9 @@ void StoredSettings::reload()
     recentFiles.restoreFromString (getGlobalProperties().getValue ("recentFiles"));
     recentFiles.removeNonExistentFiles();
         
-    appearance.readFromXML (*xml);
+//    appearance.readFromXML (*xml);
     
-    appearance.updateColourScheme();
+//    appearance.updateColourScheme();
 }
 
 Array<File> StoredSettings::getLastProjects()

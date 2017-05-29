@@ -11,9 +11,9 @@
 #include "OSDependencyThings.h"
 #include "Player.h"
 
-static const String they = "they|them|their";
-static const String he = "he|him|his";
-static const String she = "she|her|hers";
+const String Player::they = "they|them|their";
+const String Player::he = "he|him|his";
+const String Player::she = "she|her|hers";
 
 //==============================================================================
 Player::Player()

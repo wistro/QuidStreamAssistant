@@ -11,6 +11,7 @@
 #pragma once
 #include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
+#include "../Settings/StoredSettings.h"
 
 
 //==============================================================================

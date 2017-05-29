@@ -18,6 +18,8 @@ void QuidStreamAssistantApplication::initialise (const String& commandLine)
     
     // This method is where you should put your application's initialisation code..
     
+    settings = new StoredSettings ();
+    
     mainWindow = new MainAppWindow ();
 }
 

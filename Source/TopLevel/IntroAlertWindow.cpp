@@ -10,8 +10,8 @@
 
 #include "../Settings/OSDependencyThings.h"
 #include "IntroAlertWindow.h"
-#include "../Settings/TeamSettings.h"
 #include "Application.h"
+#include "../Settings/Tournament.h"
 
 //==============================================================================
 IntroAlertWindow::IntroAlertWindow()
@@ -25,9 +25,9 @@ IntroAlertWindow::IntroAlertWindow()
     select.addListener(this);
     addAndMakeVisible(select);
     
-    Tournament::refreshTournamentList();
+    tournament.refreshTournamentList();
     
-    tournamentList.addItemList(Tournament::tournamentList, 0);
+    tournamentList.addItemList(tournament.tournamentList, 0);
     tournamentList.setText("Add New Tournament", dontSendNotification);
     tournamentList.setEditableText(false);
     addAndMakeVisible(tournamentList);
@@ -40,22 +40,23 @@ IntroAlertWindow::~IntroAlertWindow()
 
 void IntroAlertWindow::paint (Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
-
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
 
-    g.setColour (Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (Colours::white);
+    Rectangle<int> area (getLocalBounds());
+    const int margin = 10;
+    const int buttonHeight = 30;
+    const int buttonWidth = 50;
+    
+    g.setColour (getLookAndFeel().findColour(Label::textColourId));
     g.setFont (14.0f);
-    g.drawText ("IntroAlertWindow", getLocalBounds(),
-                Justification::centred, true);   // draw some placeholder text
+    g.drawText ("What Tournament are you streaming?", area.removeFromTop(area.getHeight() / 2),
+                Justification::centred, false);
+    
+    Rectangle<int> buttons (area.removeFromBottom(buttonHeight).reduced(margin));
+    select.setBounds(buttons.removeFromRight(buttonWidth).reduced(margin));
+    quit.setBounds(buttons);
+    
+    tournamentList.setBounds(area);
 }
 
 void IntroAlertWindow::resized()

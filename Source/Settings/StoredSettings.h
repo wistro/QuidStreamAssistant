@@ -12,7 +12,6 @@
 
 #include <map>
 #include "OSDependencyThings.h"
-#include "TeamSettings.h"
 
 //==============================================================================
 class StoredSettings : public ValueTree::Listener
@@ -20,7 +19,7 @@ class StoredSettings : public ValueTree::Listener
 public:
     StoredSettings();
     ~StoredSettings();
-    
+        
     PropertiesFile& getGlobalProperties();
     PropertiesFile& getProjectProperties (const String& projectUID);
     
@@ -47,7 +46,7 @@ public:
     
     //==============================================================================
 
-    TeamSettings team;
+//    TeamSettings team;
     StringArray monospacedFontNames;
     
     //==============================================================================

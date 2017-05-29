@@ -11,11 +11,6 @@
         <FILE id="qabq5l" name="Tournament.cpp" compile="1" resource="0" file="Source/Settings/Tournament.cpp"/>
         <FILE id="LPogoO" name="Tournament.h" compile="0" resource="0" file="Source/Settings/Tournament.h"/>
         <FILE id="zIMPek" name="PresetIDs.h" compile="0" resource="0" file="Source/Settings/PresetIDs.h"/>
-        <FILE id="iqxCur" name="TeamSettings.cpp" compile="1" resource="0"
-              file="Source/Settings/TeamSettings.cpp"/>
-        <FILE id="voIBeN" name="TeamSettings.h" compile="0" resource="0" file="Source/Settings/TeamSettings.h"/>
-        <FILE id="iqRg2U" name="FilePathPropertyComponent.h" compile="0" resource="0"
-              file="Source/Settings/FilePathPropertyComponent.h"/>
         <FILE id="TPc7ZF" name="OSDependencyThings.h" compile="0" resource="0"
               file="Source/Settings/OSDependencyThings.h"/>
         <FILE id="p7AfUg" name="Player.cpp" compile="1" resource="0" file="Source/Settings/Player.cpp"/>
@@ -89,7 +84,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="DpnL71">
+    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="O4UzfJ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="QuidStreamAssistant"/>
@@ -110,7 +105,7 @@
         <MODULEPATH id="juce_audio_processors" path="../../../bin/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2017 targetFolder="Builds/VisualStudio2017" bigIcon="DpnL71">
+    <VS2017 targetFolder="Builds/VisualStudio2017" bigIcon="O4UzfJ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
@@ -133,7 +128,7 @@
         <MODULEPATH id="juce_audio_processors" path="../../../bin/JUCE/modules"/>
       </MODULEPATHS>
     </VS2017>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" bigIcon="DpnL71">
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" bigIcon="O4UzfJ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="QuidStreamAssistant"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="QuidStreamAssistant"/>

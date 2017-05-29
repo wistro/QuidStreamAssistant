@@ -11,6 +11,7 @@ Author:  Willow Rosenberg
 #pragma once
 #include "../Settings/OSDependencyThings.h"
 #include "MainComponent.h"
+#include "IntroAlertWindow.h"
 
 //==============================================================================
 /*
@@ -80,6 +81,7 @@ private:
     ScopedPointer<BubbleMessageComponent> currentBubbleMessage;
     
     ScopedPointer<MainContentComponent> content;
+    ScopedPointer<IntroAlertWindow> intro;
     
     TooltipWindow tooltipWindow; // to add tooltips to an application, you
                                  // just need to create one of these and leave it

@@ -2337,7 +2337,7 @@ static const unsigned char temp_binary_data_9[] =
 "    <teams>\n"
 "        <tname></tname>\n"
 "    </teams>\n"
-"    <logo></logo>\n"
+"    <logo>NOLOGO</logo>\n"
 "</TOURNAMENT>\n";
 
 const char* default_tournament_xml = (const char*) temp_binary_data_9;
@@ -2362,7 +2362,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
         case 0x663b186c:  numBytes = 2117; return stop_png;
         case 0x6e2c2b6f:  numBytes = 58822; return willogo_png;
         case 0x96789f73:  numBytes = 81720; return default_team_xml;
-        case 0xc0496a7f:  numBytes = 703; return default_tournament_xml;
+        case 0xc0496a7f:  numBytes = 709; return default_tournament_xml;
         default: break;
     }
 

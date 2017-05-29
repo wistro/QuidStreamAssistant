@@ -68,6 +68,9 @@ MainAppWindow::MainAppWindow()
     setResizable (false, false);
     setIcon(ImageCache::getFromMemory(BinaryData::willogo_png, BinaryData::willogo_pngSize));
     
+    intro = new IntroAlertWindow;
+    setContentNonOwned(intro, false);
+    setVisible(true);
 
     
 //    setResizeLimits (400, 400, 10000, 10000);
@@ -79,9 +82,9 @@ MainAppWindow::MainAppWindow()
 //    
 //    juce::Component::addAndMakeVisible(content);
     
-    content = new MainContentComponent;
-    setContentNonOwned(content, false);
-    setVisible(true);
+//    content = new MainContentComponent;
+//    setContentNonOwned(content, false);
+//    setVisible(true);
     
     // this lets the command manager use keypresses that arrive in our window to send out commands
     addKeyListener (getApplicationCommandManager().getKeyMappings());
@@ -96,7 +99,8 @@ MainAppWindow::MainAppWindow()
 
 MainAppWindow::~MainAppWindow()
 {
-    content = nullptr;
+//    content = nullptr;
+    intro = nullptr;
     applicationCommandManager = nullptr;
 }
 
