@@ -147,13 +147,13 @@
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\EditTournamentWindow.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Application.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\CustomLookAndFeel.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\IntroAlertWindow.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Main.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\MainAppWindow.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\MainComponent.cpp"/>
-    <ClCompile Include="..\..\Source\TopLevel\MenuBar.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>

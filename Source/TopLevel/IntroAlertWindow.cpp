@@ -11,6 +11,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "IntroAlertWindow.h"
 #include "Application.h"
+#include "MainAppWindow.h"
 #include "../Settings/Tournament.h"
 
 //==============================================================================
@@ -25,17 +26,43 @@ IntroAlertWindow::IntroAlertWindow()
     select.addListener(this);
     addAndMakeVisible(select);
     
-    tournament.refreshTournamentList();
+    tournament = new Tournament;
     
-    tournamentList.addItemList(tournament.tournamentList, 0);
+    tournament->refreshTournamentList();
+    
+    tournamentList.addItemList(tournament->tournamentList, 1);
     tournamentList.setText("Add New Tournament", dontSendNotification);
     tournamentList.setEditableText(false);
     addAndMakeVisible(tournamentList);
 
 }
 
+IntroAlertWindow::IntroAlertWindow(Tournament* t)
+{
+    
+    quit.setButtonText("Quit");
+    quit.addListener(this);
+    addAndMakeVisible(quit);
+    
+    select.setButtonText("Select");
+    select.addListener(this);
+    addAndMakeVisible(select);
+    
+    tournament = t;
+    
+    tournament->refreshTournamentList();
+    
+    tournamentList.addItemList(tournament->tournamentList, 1);
+    tournamentList.setText("Add New Tournament", dontSendNotification);
+    tournamentList.setEditableText(false);
+    addAndMakeVisible(tournamentList);
+    
+}
+
 IntroAlertWindow::~IntroAlertWindow()
 {
+    quit.removeListener(this);
+    select.removeListener(this);
 }
 
 void IntroAlertWindow::paint (Graphics& g)
@@ -44,25 +71,26 @@ void IntroAlertWindow::paint (Graphics& g)
 
     Rectangle<int> area (getLocalBounds());
     const int margin = 10;
-    const int buttonHeight = 30;
-    const int buttonWidth = 50;
+    const int buttonHeight = 70;
     
     g.setColour (getLookAndFeel().findColour(Label::textColourId));
-    g.setFont (14.0f);
+    g.setFont (20.0f);
     g.drawText ("What Tournament are you streaming?", area.removeFromTop(area.getHeight() / 2),
                 Justification::centred, false);
     
-    Rectangle<int> buttons (area.removeFromBottom(buttonHeight).reduced(margin));
-    select.setBounds(buttons.removeFromRight(buttonWidth).reduced(margin));
-    quit.setBounds(buttons);
+    area.removeFromRight(margin);
+    area.removeFromLeft(margin);
     
-    tournamentList.setBounds(area);
+    Rectangle<int> buttons (area.removeFromBottom(buttonHeight).reduced(margin));
+    select.setBounds(buttons.removeFromRight((buttons.getWidth() / 2) - (margin / 2)).reduced(margin));
+    quit.setBounds(buttons.removeFromLeft(buttons.getWidth() - (margin / 2)).reduced(margin));
+    
+    tournamentList.setBounds(area.removeFromBottom(buttonHeight));
 }
 
 void IntroAlertWindow::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
+    // never resized so not bothering
 
 }
 
@@ -72,15 +100,13 @@ void IntroAlertWindow::buttonClicked (Button* button)
         QuidStreamAssistantApplication::getApp().systemRequestedQuit();
     else if ( button == &select )
     {
-        if ( tournamentList.getSelectedId() == -1 )
+        //changing this to open the edit file no matter what, but load the selected tournament first if one is selected
+        if ( tournamentList.getSelectedId() > 0 )
         {
-            //open a window to create a new tournament file
+            tournament->readFromFile(tournament->getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(tournament->getTournamentFileSuffix()));
         }
-        else
-        {
-            String tournament = tournamentList.getText();
-            //open main app window populated with this tournament's settings
-        }
+        MainAppWindow::getMainAppWindow()->closeButtonPressed();
+        QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
     }
 }
 

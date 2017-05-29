@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\Settings\FloatingToolWindow.h = ..\..\Source\Settings\FloatingToolWindow.h
 		..\..\Source\Settings\Tournament.cpp = ..\..\Source\Settings\Tournament.cpp
 		..\..\Source\Settings\Tournament.h = ..\..\Source\Settings\Tournament.h
 		..\..\Source\Settings\PresetIDs.h = ..\..\Source\Settings\PresetIDs.h
@@ -37,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\TopLevel\EditTournamentWindow.cpp = ..\..\Source\TopLevel\EditTournamentWindow.cpp
+		..\..\Source\TopLevel\EditTournamentWindow.h = ..\..\Source\TopLevel\EditTournamentWindow.h
 		..\..\Source\TopLevel\Application.cpp = ..\..\Source\TopLevel\Application.cpp
 		..\..\Source\TopLevel\Application.h = ..\..\Source\TopLevel\Application.h
 		..\..\Source\TopLevel\CustomLookAndFeel.cpp = ..\..\Source\TopLevel\CustomLookAndFeel.cpp
@@ -48,8 +51,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{70
 		..\..\Source\TopLevel\MainAppWindow.h = ..\..\Source\TopLevel\MainAppWindow.h
 		..\..\Source\TopLevel\MainComponent.cpp = ..\..\Source\TopLevel\MainComponent.cpp
 		..\..\Source\TopLevel\MainComponent.h = ..\..\Source\TopLevel\MainComponent.h
-		..\..\Source\TopLevel\MenuBar.cpp = ..\..\Source\TopLevel\MenuBar.cpp
-		..\..\Source\TopLevel\MenuBar.h = ..\..\Source\TopLevel\MenuBar.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinaryData", "BinaryData", "{81CC2246-BEDD-2400-99E9-6D94223E64EA}"

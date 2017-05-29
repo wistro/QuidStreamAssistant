@@ -21,6 +21,7 @@ class IntroAlertWindow    : public Component,
 {
 public:
     IntroAlertWindow();
+    IntroAlertWindow(Tournament*);
     ~IntroAlertWindow();
 
     void paint (Graphics&) override;
@@ -31,7 +32,7 @@ private:
     
     StringArray tournaments;
     
-    Tournament tournament;
+    Tournament* tournament;
     
     TextButton quit;
     TextButton select;

@@ -10,6 +10,7 @@
 
 #include "../Settings/OSDependencyThings.h"
 #include "Application.h"
+#include "../Settings/FloatingToolWindow.h"
 
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
 {
@@ -19,15 +20,33 @@ void QuidStreamAssistantApplication::initialise (const String& commandLine)
     // This method is where you should put your application's initialisation code..
     
     settings = new StoredSettings ();
+    thisTournament = new Tournament ();
     
     mainWindow = new MainAppWindow ();
+    commandManager = new ApplicationCommandManager ();
 }
 
 void QuidStreamAssistantApplication::shutdown()
 {
     // Add your application's shutdown code here..
     
-    mainWindow = nullptr; // (deletes our window)
+    settings = nullptr;
+    thisTournament = nullptr;
+    commandManager = nullptr;
+    mainWindow = nullptr;
+    editTournament = nullptr;
+}
+
+//==============================================================================
+
+void QuidStreamAssistantApplication::showEditTournamentWindow()
+{
+    if (editTournament != nullptr)
+        editTournament->toFront (true);
+    else
+        new FloatingToolWindow ("Edit Tournament Details", {}, new EditTournamentWindow(),
+                                editTournament, false,
+                                500, 1000, 500, 1000, 500, 1000);
 }
 
 //==============================================================================

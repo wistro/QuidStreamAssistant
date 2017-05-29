@@ -75,13 +75,13 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
+  $(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
   $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o \
   $(JUCE_OBJDIR)/IntroAlertWindow_901022c1.o \
   $(JUCE_OBJDIR)/Main_c088d39a.o \
   $(JUCE_OBJDIR)/MainAppWindow_f244a841.o \
   $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o \
-  $(JUCE_OBJDIR)/MenuBar_1edf17bd.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -151,6 +151,11 @@ $(JUCE_OBJDIR)/StopWatch_da8048ad.o: ../../Source/Gameplay/StopWatch.cpp
 	@echo "Compiling StopWatch.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o: ../../Source/TopLevel/EditTournamentWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling EditTournamentWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Application.cpp"
@@ -179,11 +184,6 @@ $(JUCE_OBJDIR)/MainAppWindow_f244a841.o: ../../Source/TopLevel/MainAppWindow.cpp
 $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o: ../../Source/TopLevel/MainComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainComponent.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MenuBar_1edf17bd.o: ../../Source/TopLevel/MenuBar.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MenuBar.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp

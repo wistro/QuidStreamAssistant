@@ -11,8 +11,9 @@
 #pragma once
 #include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
+#include "EditTournamentWindow.h"
 #include "../Settings/StoredSettings.h"
-
+#include "../Settings/Tournament.h"
 
 //==============================================================================
 class QuidStreamAssistantApplication  : public JUCEApplication
@@ -38,9 +39,15 @@ public:
     void anotherInstanceStarted (const String& commandLine) override;
     
     //==============================================================================
+    
+    void showEditTournamentWindow();
+    
+    //==============================================================================
 
     ScopedPointer<StoredSettings> settings;
     ScopedPointer<ApplicationCommandManager> commandManager;
+    ScopedPointer<Tournament> thisTournament;
+    ScopedPointer<Component> editTournament;
     
     //==============================================================================
     

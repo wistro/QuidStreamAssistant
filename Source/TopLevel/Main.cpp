@@ -27,7 +27,6 @@
 #include "../TopLevel/CustomLookAndFeel.h"
 #include "../TopLevel/MainAppWindow.h"
 #include "../TopLevel/MainComponent.h"
-#include "../TopLevel/MenuBar.h"
 #include "../TopLevel/IntroAlertWindow.h"
 #include "Application.h"
 

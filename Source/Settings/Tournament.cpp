@@ -58,7 +58,6 @@ void Tournament::refreshTournamentList()
     if (newTournaments != tournamentFiles)
     {
         tournamentFiles.swapWith (newTournaments);
-        QuidStreamAssistantApplication::getCommandManager().commandStatusChanged();
     }
     
     tournamentList = setTournamentList();
@@ -180,29 +179,29 @@ void Tournament::readFromFile (const File& file)
 
 void Tournament::writeToFile (const File& file) const
 {
-    XmlElement xml ("TOURNAMENT");
+    XmlElement* xml = new XmlElement ("TOURNAMENT");
     
-    xml.createNewChildElement("name")->addTextElement(tournamentName);
-    xml.createNewChildElement("location")->addTextElement(tournamentLocation);
+    xml->createNewChildElement("name")->addTextElement(tournamentName);
+    xml->createNewChildElement("location")->addTextElement(tournamentLocation);
     
-    XmlElement rounds ("rounds");
+    XmlElement* rounds = new XmlElement ("rounds");
     
     for( int i = 0; i < roundsList.size(); i++)
     {
-        rounds.createNewChildElement("rname")->addTextElement(roundsList.operator[](i));
+        rounds->createNewChildElement("rname")->addTextElement(roundsList.operator[](i));
     }
     
-    xml.addChildElement(&rounds);
+    xml->addChildElement(rounds);
     
     //do the team handling here once I've figured that out
     if ( logo.isValid() )
     {
         MemoryOutputStream imageData;
         if (PNGImageFormat().writeImageToStream (logo, imageData))
-            xml.createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+            xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
     }
     else
-        xml.createNewChildElement("logo")->addTextElement("NOLOGO");
+        xml->createNewChildElement("logo")->addTextElement("NOLOGO");
     
-    xml.writeToFile (file, String());
+    xml->writeToFile (file, String());
 }
