@@ -142,20 +142,22 @@ void EditTournamentWindow::buttonClicked (Button* button)
             {
                 temp.addIfNotAlreadyThere(Tournament::consolationBracket.operator[](i), true);
             }
-            editRounds.setText(temp.joinIntoString("/n"));
+            editRounds.setText(temp.joinIntoString("\n"));
         }
         else
         {
             StringArray temp;
             temp.addLines(editRounds.getText());
+            temp.trim();
             for ( int i = 0; i < temp.size(); i++ )
             {
-                if ( temp.operator[](i).startsWith(Tournament::consolation) )
+                if ( temp[i].startsWithIgnoreCase(Tournament::consolation) )
                 {
                     temp.remove(i);
+                    i--; //by removing an entry, we need to reiterate on the last index because it's value has changed
                 }
             }
-            editRounds.setText(temp.joinIntoString("/n"));
+            editRounds.setText(temp.joinIntoString("\n"));
         }
     }
 }
