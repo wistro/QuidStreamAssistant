@@ -87,6 +87,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
     }
     
     //save entered tournament settings as a .tourn setting file
+    //next step, this has to close this window and open the AddTeamsWindow
     else if ( button == &save )
     {
         if ( tournName.isEmpty() )

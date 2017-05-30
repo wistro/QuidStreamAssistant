@@ -21,6 +21,7 @@
 		41245503CFD9D49CAE3E54A6 = {isa = PBXBuildFile; fileRef = 6EC56AC2B2995FB183FE7567; };
 		FDEF73104920D291A5095072 = {isa = PBXBuildFile; fileRef = DA72F69631361BFFCC0C28CE; };
 		F71CDD6D8F9E1CBC5B773F36 = {isa = PBXBuildFile; fileRef = C3D2F3A422ECC70BA32F9FA9; };
+		A0643452AF663773F1D3EBED = {isa = PBXBuildFile; fileRef = 0183FB93A47D34A150BD7979; };
 		6239AB53328C0A3F4E9FEF69 = {isa = PBXBuildFile; fileRef = 1DAEB7D90718492ADCEB33C9; };
 		97EEA5D593E770422B5A37A6 = {isa = PBXBuildFile; fileRef = 8FF25EA4D244B60213308275; };
 		82AF29F019E348453D0EBDDF = {isa = PBXBuildFile; fileRef = BDB0B4A3DF940BC1E8E4AE2C; };
@@ -51,6 +52,7 @@
 		E41EC2EC45458FE7098B7D8C = {isa = PBXBuildFile; fileRef = 8418A6A00B23318EA1AD7B27; };
 		54D0E64C2463794D3CB1F924 = {isa = PBXBuildFile; fileRef = F02EE7E194EAFDA64BAF1687; };
 		3A25A58C1F56D3C17094506D = {isa = PBXBuildFile; fileRef = D7D1D9745C2B58F7AF81586C; };
+		0183FB93A47D34A150BD7979 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Team.cpp; path = ../../Source/Settings/Team.cpp; sourceTree = "SOURCE_ROOT"; };
 		02D6B27D42B72FF9B8F2B135 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroAlertWindow.h; path = ../../Source/TopLevel/IntroAlertWindow.h; sourceTree = "SOURCE_ROOT"; };
 		046B27F780907A7DEC7C9963 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		05A526D35C562FE0F57E8597 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = "SOURCE_ROOT"; };
@@ -62,6 +64,7 @@
 		12487D8276A96DF5BCC86346 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_core"; path = "../../../../../bin/JUCE/modules/juce_core"; sourceTree = "SOURCE_ROOT"; };
 		13E27A14DE88A26B7AA3588A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_opengl"; path = "../../../../../bin/JUCE/modules/juce_opengl"; sourceTree = "SOURCE_ROOT"; };
 		172C45C5F67F24F5BA09303A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameTimer.h; path = ../../Source/Gameplay/GameTimer.h; sourceTree = "SOURCE_ROOT"; };
+		19B2169995474BBD1E6E5B8B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Team.h; path = ../../Source/Settings/Team.h; sourceTree = "SOURCE_ROOT"; };
 		1D6FA72970C387184FD6372A = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = ../../Source/BinaryData/images/stop.png; sourceTree = "SOURCE_ROOT"; };
 		1DAEB7D90718492ADCEB33C9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tournament.cpp; path = ../../Source/Settings/Tournament.cpp; sourceTree = "SOURCE_ROOT"; };
 		2156117E045DF1866DC87CA4 = {isa = PBXFileReference; lastKnownFileType = image.png; name = downStop.png; path = ../../Source/BinaryData/images/downStop.png; sourceTree = "SOURCE_ROOT"; };
@@ -142,6 +145,8 @@
 		FA2B0B138AE546520291CA46 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FF16C97F003FE233C8D02386 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StopWatch.cpp; path = ../../Source/Gameplay/StopWatch.cpp; sourceTree = "SOURCE_ROOT"; };
 		62343B963B9FD89947A87389 = {isa = PBXGroup; children = (
+					0183FB93A47D34A150BD7979,
+					19B2169995474BBD1E6E5B8B,
 					C37589192868B2DDC8652D88,
 					1DAEB7D90718492ADCEB33C9,
 					D0CA53EEA51239B3FB803E8C,
@@ -358,6 +363,7 @@
 					FDEF73104920D291A5095072,
 					F71CDD6D8F9E1CBC5B773F36, ); runOnlyForDeploymentPostprocessing = 0; };
 		E27EED951A9C61E4F55F85E4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
+					A0643452AF663773F1D3EBED,
 					6239AB53328C0A3F4E9FEF69,
 					97EEA5D593E770422B5A37A6,
 					82AF29F019E348453D0EBDDF,
