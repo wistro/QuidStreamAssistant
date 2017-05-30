@@ -11,9 +11,12 @@
 */
 
 #include "../Settings/OSDependencyThings.h"
+#include "../Settings/PresetIDs.h"
 #include "../Settings/StoredSettings.h"
 #include "../Settings/Player.h"
 #include "../Settings/Tournament.h"
+#include "../Settings/FloatingToolWindow.h"
+#include "../Settings/Team.h"
 
 #include "../Gameplay/ScoreComponent.h"
 #include "../Gameplay/GameTimer.h"
@@ -28,6 +31,7 @@
 #include "../TopLevel/MainAppWindow.h"
 #include "../TopLevel/MainComponent.h"
 #include "../TopLevel/IntroAlertWindow.h"
+#include "../TopLevel/EditTournamentWindow.h"
 #include "Application.h"
 
 //==============================================================================
