@@ -79,11 +79,14 @@ void EditTournamentWindow::paint (Graphics& g)
 
 void EditTournamentWindow::buttonClicked (Button* button)
 {
+    //cancel and go back to tournament select screen
     if ( button == &cancel )
     {
         QuidStreamAssistantApplication::getApp().mainWindow->showIntro();
         QuidStreamAssistantApplication::getApp().editTournament = nullptr;
     }
+    
+    //save entered tournament settings as a .tourn setting file
     else if ( button == &save )
     {
         if ( tournName.isEmpty() )
@@ -117,6 +120,8 @@ void EditTournamentWindow::buttonClicked (Button* button)
             }
         }
     }
+    
+    //open a file browser to get an image
     else if ( button == &browse )
     {
         ImagePreviewComponent imagePreview;
@@ -132,6 +137,9 @@ void EditTournamentWindow::buttonClicked (Button* button)
             logoImage.setText(fc.getResult().getFullPathName());
         }
     }
+    
+    //(when checking the box) adds the default list of Consolation rounds
+    //(when unchecking the box) removes all rounds that begin with the word "Consolation" (ignorescase)
     else if ( button == &consolationBracket )
     {
         if ( consolationBracket.getToggleState() )
