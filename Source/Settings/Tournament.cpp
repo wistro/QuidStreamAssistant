@@ -25,6 +25,7 @@ const StringArray Tournament::consolationBracket =
     "Consolation Finals"
 };
 
+const String Tournament::defaultTournamentName = "DEFAULT";
 //==============================================================================
 Tournament::Tournament ()
 {
@@ -222,7 +223,12 @@ void Tournament::writeToFile (const File& file) const
 {
     ScopedPointer<XmlElement> xml = new XmlElement ("TOURNAMENT");
     
-    xml->createNewChildElement("name")->addTextElement(tournamentName);
+    //default tournament name will ALWAYS be DEFAULT
+    if ( file.getFileNameWithoutExtension() == getDefaultFileName() )
+        xml->createNewChildElement("name")->addTextElement(defaultTournamentName);
+    else
+        xml->createNewChildElement("name")->addTextElement(tournamentName);
+    
     xml->createNewChildElement("location")->addTextElement(tournamentLocation);
     
     xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));

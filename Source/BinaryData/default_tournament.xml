@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <TOURNAMENT>
-    <name>Enter Tournament Name</name>
-    <location>Where is the tournament?</location>
+    <name>DEFAULT</name>
+    <location>LOCATION</location>
     <rounds>Group Stage|Round of 16|Quarter Finals|Semi Finals|3rd Place Playoff|Finals|Consolation Round of 16|Consolation Quarter Finals|Consolation Semi Finals|Consolation 3rd Place Playoff|Consolation Finals</rounds>
     <teams>
         <tname></tname>

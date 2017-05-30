@@ -16,6 +16,9 @@
 //==============================================================================
 EditTournamentWindow::EditTournamentWindow()
 {
+    //grab tournament name to check for changes on save
+    curTournName = QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName();
+    
     save.setButtonText("Save");
     save.addListener(this);
     addAndMakeVisible(save);
@@ -23,6 +26,14 @@ EditTournamentWindow::EditTournamentWindow()
     cancel.setButtonText("Cancel");
     cancel.addListener(this);
     addAndMakeVisible(cancel);
+    
+    setDefault.setButtonText("Set As Default");
+    setDefault.addListener(this);
+    addAndMakeVisible(setDefault);
+    
+    restoreFactory.setButtonText("Restore Factory Defaults");
+    restoreFactory.addListener(this);
+    addAndMakeVisible(restoreFactory);
     
     browse.setButtonText("...");
     browse.addListener(this);
@@ -59,9 +70,25 @@ EditTournamentWindow::EditTournamentWindow()
     addAndMakeVisible(rounds);
     
     consolationBracket.setButtonText("Consolation Bracket?");
-    consolationBracket.setToggleState(true, dontSendNotification);
+    
+    //if at least one line in the rounds list starts with the word Consolation,
+    //consolation button starts checked, otherwise start unchecked
+    if ( editRounds.getText().contains("\nConsolation") )
+        consolationBracket.setToggleState(true, dontSendNotification);
+    else
+        consolationBracket.setToggleState(false, dontSendNotification);
+    
     consolationBracket.addListener(this);
     addAndMakeVisible(consolationBracket);
+    
+    if ( curTournName != Tournament::defaultTournamentName )
+    {
+        ScopedPointer<Tournament> editTourn = QuidStreamAssistantApplication::getApp().thisTournament;
+        tournName.setText(editTourn->getTournamentName());
+        location.setText(editTourn->getTournamentLocation());
+        if ( editTourn->logo.isValid() )
+            logoImage.setTextToShowWhenEmpty("logo exists for this Tournament. add file here to change", Colours::black.withAlpha(0.5f));
+    }
 
 }
 
@@ -71,6 +98,8 @@ EditTournamentWindow::~EditTournamentWindow()
     cancel.removeListener(this);
     consolationBracket.removeListener(this);
     browse.removeListener(this);
+    setDefault.removeListener(this);
+    restoreFactory.removeListener(this);
 }
 
 void EditTournamentWindow::paint (Graphics& g)
@@ -98,6 +127,23 @@ void EditTournamentWindow::buttonClicked (Button* button)
         else
         {
             Tournament* currentTournament = QuidStreamAssistantApplication::getApp().thisTournament;
+            
+            if ( curTournName != tournName.getText() )
+            {
+                if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
+                                              "Tournament Name Changed!",
+                                              "You have edited the name of this Tournament. Do you want to overwrite the original version, or make a new Tournament with the new name (keeping both)?",
+                                              String("Overwrite Existing"),
+                                              String("Create New")) )
+                {
+                    //alert window true = overwrite existing
+                    //but really, we're just going to delete it because
+                    //all of the info from it we need is already in memory
+                    const File old ( currentTournament->getTournamentsFolder().getChildFile(curTournName).withFileExtension(currentTournament->getTournamentFileSuffix()) );
+                    old.deleteFile();
+                }
+                //no else necessary, create new just means ignore the old file and it'll stick around
+            }
             
             //some image input file was given, hopefully it was a real one
             if ( ! logoImage.isEmpty() )
@@ -196,9 +242,11 @@ void EditTournamentWindow::resized()
     consolationBracket.setBounds(area.removeFromTop(textBoxHeight).reduced(margin).removeFromRight(proportionOfWidth(0.76f)).reduced(margin * 2));
     
     Rectangle<int> saveCancel (area.removeFromBottom(buttonHeight).reduced(margin));
-    saveCancel.removeFromLeft(saveCancel.getWidth() / 2);
-    save.setBounds(saveCancel.removeFromRight(saveCancel.getWidth() / 2).reduced(margin));
-    cancel.setBounds(saveCancel.reduced(margin));
+    //saveCancel.removeFromLeft(saveCancel.getWidth() / 2);
+    save.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
+    cancel.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
+    setDefault.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
+    restoreFactory.setBounds(saveCancel.reduced(margin));
     
     editRounds.setBounds(area.reduced(margin));
 

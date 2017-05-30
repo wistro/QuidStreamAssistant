@@ -31,6 +31,8 @@ private:
     TextButton save;
     TextButton cancel;
     TextButton browse;
+    TextButton setDefault;
+    TextButton restoreFactory;
     
     TextEditor tournName;
     TextEditor location;
@@ -43,6 +45,7 @@ private:
     Label rounds;
     
     ToggleButton consolationBracket;
+    String curTournName; //save this in case we are editing a tournament to prompt user on save
     
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditTournamentWindow)

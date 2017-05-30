@@ -46,9 +46,14 @@ public:
     static const char blue = 'b';
     static const char yellow = 'y';
     static const char red = 'r';
+    
     static const String they;
     static const String he;
     static const String she;
+
+    static const String allowedNumbers;
+    static const String pi;
+    static const String infinity;
 
     
 

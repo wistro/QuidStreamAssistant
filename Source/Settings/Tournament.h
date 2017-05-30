@@ -47,6 +47,7 @@ public:
     static const StringArray consolationBracket;
     StringArray tournamentList;
     
+    static const String defaultTournamentName;
     static File getTournamentsFolder();
     static const char* getTournamentFileSuffix()      { return ".tourn"; }
     static const char* getTournamentFileWildCard()    { return "*.tourn"; }

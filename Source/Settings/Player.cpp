@@ -15,6 +15,11 @@ const String Player::they = "they|them|their";
 const String Player::he = "he|him|his";
 const String Player::she = "she|her|hers";
 
+const String Player::infinity = CharPointer_UTF8 ("\xe2\x88\x9e");
+const String Player::pi = CharPointer_UTF8 ("\xCF\x80");
+
+const String Player::allowedNumbers = "0123456789AGHJKNPRWXY#" + Player::infinity + Player::pi ;
+
 //==============================================================================
 Player::Player()
 {

@@ -1,23 +1,23 @@
 /*
   ==============================================================================
 
-    TournamentDatabase.cpp
+    TeamDatabase.cpp
     Created: 28 May 2017 10:17:40pm
     Author:  Willow Rosenberg
 
   ==============================================================================
 */
 
-#include "Tournament.h"
+#include "Team.h"
 
 #include "OSDependencyThings.h"
 #include "StoredSettings.h"
 #include "../TopLevel/Application.h"
 
 
-const String Tournament::consolation = "Consolation";
+const String Team::consolation = "Consolation";
 
-const StringArray Tournament::consolationBracket =
+const StringArray Team::consolationBracket =
 {   "Consolation Round of 16",
     "Consolation Quarter Finals",
     "Consolation Semi Finals",
@@ -26,27 +26,27 @@ const StringArray Tournament::consolationBracket =
 };
 
 //==============================================================================
-Tournament::Tournament ()
+Team::Team ()
 {
-    File defaults = getTournamentsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTournamentFileSuffix());
+    File defaults = getTeamsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTeamFileSuffix());
     
     //if defaults file doesn't exist, create it from stored defaults
     if ( ! defaults.existsAsFile())
     {
-        restoreDefaultTournamentFile();
+        restoreDefaultTeamFile();
     }
     
     readFromFile(defaults);
 }
 
-File Tournament::getTournamentsFolder()
+File Team::getTeamsFolder()
 {
-    File f (getGlobalProperties().getFile().getSiblingFile ("Tournaments"));
+    File f (getGlobalProperties().getFile().getSiblingFile ("Teams"));
     f.createDirectory();
     return f;
 }
 
-StringArray Tournament::setTournamentList()
+StringArray Team::setTeamList()
 {
     
     
@@ -57,35 +57,35 @@ StringArray Tournament::setTournamentList()
     return s;
 }
 
-void Tournament::refreshTournamentList()
+void Team::refreshTeamList()
 {
     //I don't want the default tournament file in the list
     //so we will remove it once we've created the list
-    const File remove (getTournamentsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTournamentFileSuffix()));
-    Array<File> newTournaments;
-    getTournamentsFolder().findChildFiles (newTournaments, File::findFiles, false, getTournamentFileWildCard());
+    const File remove (getTeamsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTeamFileSuffix()));
+    Array<File> newTeams;
+    getTeamsFolder().findChildFiles (newTeams, File::findFiles, false, getTeamFileWildCard());
     
-    if( ! newTournaments.isEmpty() && newTournaments.contains(remove) )
-        newTournaments.removeFirstMatchingValue(remove);
+    if( ! newTeams.isEmpty() && newTeams.contains(remove) )
+        newTeams.removeFirstMatchingValue(remove);
     
     
-    if (newTournaments != tournamentFiles)
+    if (newTeams != tournamentFiles)
     {
-        tournamentFiles.swapWith (newTournaments);
+        tournamentFiles.swapWith (newTeams);
     }
     
-    tournamentList = setTournamentList();
+    tournamentList = setTeamList();
     
 }
 
-String Tournament::getDefaultFileName()
+String Team::getDefaultFileName()
 {
     return "Defaults";
 }
 
-void Tournament::restoreDefaultTournamentFile()
+void Team::restoreDefaultTeamFile()
 {
-    const File file (getTournamentsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTournamentFileSuffix()));
+    const File file (getTeamsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTeamFileSuffix()));
     
     
     ScopedPointer<XmlElement> xml (XmlDocument::parse (BinaryData::default_tournament_xml));
@@ -95,9 +95,9 @@ void Tournament::restoreDefaultTournamentFile()
     writeToFile (file);
 }
 
-void Tournament::setAsDefaults()
+void Team::setAsDefaults()
 {
-    const File file (getTournamentsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTournamentFileSuffix()));
+    const File file (getTeamsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTeamFileSuffix()));
     
     if ( !file.exists() )
         file.create();
@@ -105,47 +105,47 @@ void Tournament::setAsDefaults()
     writeToFile(file);
 }
 
-//void Tournament::addTeam()
+//void Team::addTeam()
 //{
 //    
 //}
 
-void Tournament::addRound(String newRound)
+void Team::addRound(String newRound)
 {
     roundsList.add(newRound);
 }
 
-//void Tournament::removeTeam()
+//void Team::removeTeam()
 //{
 //    
 //}
 
-void Tournament::removeRound(String badRound)
+void Team::removeRound(String badRound)
 {
     roundsList.removeString(badRound);
 }
 
-String Tournament::getTournamentName()
+String Team::getTeamName()
 {
     return tournamentName;
 }
 
-String Tournament::getTournamentLocation()
+String Team::getTeamLocation()
 {
     return tournamentLocation;
 }
 
-//StringArray Tournament::getTeamsList()
+//StringArray Team::getTeamsList()
 //{
 //    
 //}
 
-StringArray Tournament::getRoundsList()
+StringArray Team::getRoundsList()
 {
     return roundsList;
 }
 
-void Tournament::fillThisSucker(String name, String location, String rounds)
+void Team::fillThisSucker(String name, String location, String rounds)
 {
     tournamentName = name;
     tournamentLocation = location;
@@ -155,7 +155,7 @@ void Tournament::fillThisSucker(String name, String location, String rounds)
     //once I add the "add teams" window I might move this to after that has been handled
     //so that we're not constantly writing out to files
     //for now, though, it goes here
-    const File file (getTournamentsFolder().getChildFile(tournamentName).withFileExtension(getTournamentFileSuffix()));
+    const File file (getTeamsFolder().getChildFile(tournamentName).withFileExtension(getTeamFileSuffix()));
     
     if ( !file.exists() )
         file.create();
@@ -163,13 +163,13 @@ void Tournament::fillThisSucker(String name, String location, String rounds)
     writeToFile(file);
 }
 
-void Tournament::fillThisSucker(String name, String location, String rounds, File pic)
+void Team::fillThisSucker(String name, String location, String rounds, File pic)
 {
     logo = ImageFileFormat::loadFrom(pic);
     fillThisSucker(name, location, rounds);
 }
 
-void Tournament::readFromXML (const XmlElement& xml)
+void Team::readFromXML (const XmlElement& xml)
 {
     forEachXmlChildElement(xml, e)
     {
@@ -212,13 +212,13 @@ void Tournament::readFromXML (const XmlElement& xml)
     }
 }
 
-void Tournament::readFromFile (const File& file)
+void Team::readFromFile (const File& file)
 {
     const ScopedPointer<XmlElement> xml (XmlDocument::parse (file));
     readFromXML (*xml);
 }
 
-void Tournament::writeToFile (const File& file) const
+void Team::writeToFile (const File& file) const
 {
     ScopedPointer<XmlElement> xml = new XmlElement ("TOURNAMENT");
     

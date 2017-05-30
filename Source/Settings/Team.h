@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    Tournament.h
+    Team.h
     Created: 28 May 2017 10:17:40pm
     Author:  Willow Rosenberg
 
@@ -12,44 +12,41 @@
 
 #pragma once
 
-class Tournament
+class Team
 {
 public:
-    Tournament ();
+    Team ();
     
     void readFromFile (const File& file);
     void readFromXML (const XmlElement&);
     void writeToFile (const File& file) const;
     
-    void restoreDefaultTournamentFile();
+    void restoreDefaultTeamFile();
     void setAsDefaults();
     static String getDefaultFileName();
     
-//    void addTeam();
-    void addRound(String newRound);
-//    void removeTeam();
-    void removeRound(String badRound);
+    void addPlayer();
+    void removePlayer();
     
-    String getTournamentName();
-    String getTournamentLocation();
-//    StringArray getTeamsList();
-    StringArray getRoundsList();
+    String getTeamName();
+    String getTeamAbv();
+    StringArray getRoster();
     
-    void fillThisSucker(String name, String location, String rounds);
-    void fillThisSucker(String name, String location, String rounds, File pic);
+//    void fillThisSucker(String name, String location, String rounds);
+//    void fillThisSucker(String name, String location, String rounds, File pic);
     
     Image logo;
 
-    StringArray setTournamentList();
-    void refreshTournamentList();
+    StringArray setTeamList();
+    void refreshTeamList();
     
     static const String consolation;
     static const StringArray consolationBracket;
     StringArray tournamentList;
     
-    static File getTournamentsFolder();
-    static const char* getTournamentFileSuffix()      { return ".tourn"; }
-    static const char* getTournamentFileWildCard()    { return "*.tourn"; }
+    static File getTeamsFolder();
+    static const char* getTeamFileSuffix()      { return ".tourn"; }
+    static const char* getTeamFileWildCard()    { return "*.tourn"; }
 
     
 private:
@@ -63,5 +60,5 @@ private:
     StringArray roundsList;
     
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };
