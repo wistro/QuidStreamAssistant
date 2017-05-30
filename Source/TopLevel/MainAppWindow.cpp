@@ -63,6 +63,8 @@ void MainAppWindow::closeButtonPressed()
 
 void MainAppWindow::showIntro()
 {
+    QuidStreamAssistantApplication::getApp().thisTournament->refreshTournamentList();
+    intro->updateTournamentList();
     setVisible(true);
 }
 

@@ -59,8 +59,15 @@ StringArray Tournament::setTournamentList()
 
 void Tournament::refreshTournamentList()
 {
+    //I don't want the default tournament file in the list
+    //so we will remove it once we've created the list
+    const File remove (getTournamentsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTournamentFileSuffix()));
     Array<File> newTournaments;
     getTournamentsFolder().findChildFiles (newTournaments, File::findFiles, false, getTournamentFileWildCard());
+    
+    if( ! newTournaments.isEmpty() && newTournaments.contains(remove) )
+        newTournaments.removeFirstMatchingValue(remove);
+    
     
     if (newTournaments != tournamentFiles)
     {
@@ -164,40 +171,45 @@ void Tournament::fillThisSucker(String name, String location, String rounds, Fil
 
 void Tournament::readFromXML (const XmlElement& xml)
 {
-    tournamentName = xml.getChildElementAllSubText("name", {});
-    tournamentLocation = xml.getChildElementAllSubText("location", {});
-    
-    XmlElement* rounds = xml.getChildByName("rounds");
-    
-    if ( rounds != nullptr )
+    forEachXmlChildElement(xml, e)
     {
-        forEachXmlChildElement(*rounds, child)
+        if ( e->hasTagName("name") )
         {
-            if(child->hasTagName("rname"))
-                addRound(child->getAllSubText());
+            tournamentName = e->getAllSubText();
+        }
+        else if ( e->hasTagName("location") )
+        {
+            tournamentLocation = e->getAllSubText();
+        }
+        else if ( e->hasTagName("rounds") )
+        {
+            roundsList.clear();
+            roundsList.addTokens(e->getAllSubText(), "|", "");
+        }
+        
+        //    delete rounds;
+        
+        //    XmlElement* teams = xml.getChildByName("teams");
+        //
+        //    if ( teams != nullptr )
+        //    {
+        //        forEachXmlChildElement(*teams, child)
+        //        {
+        //            if(child->hasTagName("tname"))
+        //                addTeam
+        //        }
+        //    }
+        
+        else if ( e->hasTagName("logo") )
+        {
+            if ( e->getAllSubText() != "NOLOGO" )
+            {
+                MemoryOutputStream imageData;
+                Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
+                logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+            }
         }
     }
-//    delete rounds;
-    
-//    XmlElement* teams = xml.getChildByName("teams");
-//    
-//    if ( teams != nullptr )
-//    {
-//        forEachXmlChildElement(*teams, child)
-//        {
-//            if(child->hasTagName("tname"))
-//                addTeam
-//        }
-//    }
-    
-    
-    if ( xml.getChildElementAllSubText("logo", {}) != "NOLOGO" )
-    {
-        MemoryOutputStream imageData;
-        Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
-        logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
-    }
-    
 }
 
 void Tournament::readFromFile (const File& file)
@@ -208,19 +220,12 @@ void Tournament::readFromFile (const File& file)
 
 void Tournament::writeToFile (const File& file) const
 {
-    XmlElement* xml = new XmlElement ("TOURNAMENT");
+    ScopedPointer<XmlElement> xml = new XmlElement ("TOURNAMENT");
     
     xml->createNewChildElement("name")->addTextElement(tournamentName);
     xml->createNewChildElement("location")->addTextElement(tournamentLocation);
     
-    XmlElement* rounds = new XmlElement ("rounds");
-    
-    for( int i = 0; i < roundsList.size(); i++)
-    {
-        rounds->createNewChildElement("rname")->addTextElement(roundsList.operator[](i));
-    }
-    
-    xml->addChildElement(rounds);
+    xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));
     
     //do the team handling here once I've figured that out
     if ( logo.isValid() )

@@ -94,6 +94,15 @@ void IntroAlertWindow::resized()
 
 }
 
+void IntroAlertWindow::updateTournamentList()
+{
+    tournament->refreshTournamentList();
+    tournamentList.clear();
+    tournamentList.addItemList(tournament->tournamentList, 1);
+    tournamentList.setText("Add New Tournament", dontSendNotification);
+    tournamentList.setEditableText(false);
+}
+
 void IntroAlertWindow::buttonClicked (Button* button)
 {
     if ( button == &quit )

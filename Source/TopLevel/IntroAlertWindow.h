@@ -27,6 +27,9 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     void buttonClicked (Button* button) override;
+    
+    void updateTournamentList();
+
 
 private:
     
