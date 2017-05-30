@@ -13,19 +13,23 @@
 #include "OSDependencyThings.h"
 #include "StoredSettings.h"
 #include "../TopLevel/Application.h"
+#include "Player.h"
 
-
-const String Team::consolation = "Consolation";
-
-const StringArray Team::consolationBracket =
-{   "Consolation Round of 16",
-    "Consolation Quarter Finals",
-    "Consolation Semi Finals",
-    "Consolation 3rd Place Playoff",
-    "Consolation Finals"
-};
+StringArray Team::teamList = {};
 
 //==============================================================================
+
+
+//void addPlayer( Player newPlayer );
+//
+//void removePlayer( Player* oldPlayer );
+//void removePlayer( String number );
+//
+//void editPlayer( Player* editMe );
+//void editPlayer( String number );
+//
+//
+
 Team::Team ()
 {
     File defaults = getTeamsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTeamFileSuffix());
@@ -33,7 +37,11 @@ Team::Team ()
     //if defaults file doesn't exist, create it from stored defaults
     if ( ! defaults.existsAsFile())
     {
-        restoreDefaultTeamFile();
+        ScopedPointer<XmlElement> xml (XmlDocument::parse (BinaryData::default_team_xml));
+        if (xml != nullptr)
+            readFromXML (*xml);
+        
+        writeToFile (defaults);
     }
     
     readFromFile(defaults);
@@ -46,13 +54,14 @@ File Team::getTeamsFolder()
     return f;
 }
 
+//==============================================================================
+
+
 StringArray Team::setTeamList()
 {
-    
-    
     StringArray s;
-    for (int i = 0; i < tournamentFiles.size(); ++i)
-        s.add (tournamentFiles.getReference(i).getFileNameWithoutExtension());
+    for (int i = 0; i < teamFiles.size(); ++i)
+        s.add (teamFiles.getReference(i).getFileNameWithoutExtension());
     
     return s;
 }
@@ -69,147 +78,95 @@ void Team::refreshTeamList()
         newTeams.removeFirstMatchingValue(remove);
     
     
-    if (newTeams != tournamentFiles)
+    if (newTeams != teamFiles)
     {
-        tournamentFiles.swapWith (newTeams);
+        teamFiles.swapWith (newTeams);
     }
     
-    tournamentList = setTeamList();
-    
+    teamList = setTeamList();
 }
+
+//==============================================================================
 
 String Team::getDefaultFileName()
 {
     return "Defaults";
 }
 
-void Team::restoreDefaultTeamFile()
-{
-    const File file (getTeamsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTeamFileSuffix()));
-    
-    
-    ScopedPointer<XmlElement> xml (XmlDocument::parse (BinaryData::default_tournament_xml));
-    if (xml != nullptr)
-        readFromXML (*xml);
-    
-    writeToFile (file);
-}
-
-void Team::setAsDefaults()
-{
-    const File file (getTeamsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTeamFileSuffix()));
-    
-    if ( !file.exists() )
-        file.create();
-    
-    writeToFile(file);
-}
-
-//void Team::addTeam()
-//{
-//    
-//}
-
-void Team::addRound(String newRound)
-{
-    roundsList.add(newRound);
-}
-
-//void Team::removeTeam()
-//{
-//    
-//}
-
-void Team::removeRound(String badRound)
-{
-    roundsList.removeString(badRound);
-}
-
 String Team::getTeamName()
 {
-    return tournamentName;
+    return teamName;
 }
 
-String Team::getTeamLocation()
+String Team::getTeamAbv()
 {
-    return tournamentLocation;
+    return teamAbv;
 }
 
-//StringArray Team::getTeamsList()
-//{
-//    
-//}
-
-StringArray Team::getRoundsList()
+StringArray Team::getRoster()
 {
-    return roundsList;
+    return roster;
 }
 
-void Team::fillThisSucker(String name, String location, String rounds)
+void Team::refreshRoster()
 {
-    tournamentName = name;
-    tournamentLocation = location;
-    roundsList.clear();
-    roundsList.addLines(rounds);
-    
-    //once I add the "add teams" window I might move this to after that has been handled
-    //so that we're not constantly writing out to files
-    //for now, though, it goes here
-    const File file (getTeamsFolder().getChildFile(tournamentName).withFileExtension(getTeamFileSuffix()));
-    
-    if ( !file.exists() )
-        file.create();
-    
-    writeToFile(file);
+    for ( int i = 0; i < team.size(); i++ )
+    {
+        roster.add(team[i].getRosterEntry());
+    }
 }
 
-void Team::fillThisSucker(String name, String location, String rounds, File pic)
-{
-    logo = ImageFileFormat::loadFrom(pic);
-    fillThisSucker(name, location, rounds);
-}
+//==============================================================================
 
 void Team::readFromXML (const XmlElement& xml)
 {
+    teamName = xml.getStringAttribute("name");
+    teamAbv = xml.getStringAttribute("abv");
+    
     forEachXmlChildElement(xml, e)
     {
-        if ( e->hasTagName("name") )
+        if ( e->hasTagName("PLAYER") )
         {
-            tournamentName = e->getAllSubText();
+            String number, first, last, jersey, pronouns, positions;
+            bool keeper, chaser, beater, seeker;
+            PlayerComparator comparator;
+            
+            number = e->getStringAttribute("number");
+            first = e->getStringAttribute("first");
+            last = e->getStringAttribute("last");
+            jersey = e->getStringAttribute("jersey");
+            positions = e->getStringAttribute("positions");
+            pronouns = e->getStringAttribute("pronouns");
+            
+            if ( positions == "utility" )
+                keeper = chaser = beater = seeker = true;
+            else
+            {
+                if ( positions.contains("keeper") )
+                    keeper = true;
+                if ( positions.contains("chaser") )
+                    chaser = true;
+                if ( positions.contains("beater") )
+                    beater = true;
+                if ( positions.contains("seeker") )
+                    seeker = true;
+            }
+            
+            team.addSorted(comparator, Player(first, last, number, jersey, pronouns, keeper, chaser, beater, seeker) );
+            
         }
-        else if ( e->hasTagName("location") )
-        {
-            tournamentLocation = e->getAllSubText();
-        }
-        else if ( e->hasTagName("rounds") )
-        {
-            roundsList.clear();
-            roundsList.addTokens(e->getAllSubText(), "|", "");
-        }
-        
-        //    delete rounds;
-        
-        //    XmlElement* teams = xml.getChildByName("teams");
-        //
-        //    if ( teams != nullptr )
-        //    {
-        //        forEachXmlChildElement(*teams, child)
-        //        {
-        //            if(child->hasTagName("tname"))
-        //                addTeam
-        //        }
-        //    }
-        
-        else if ( e->hasTagName("logo") )
+        else if ( e->hasTagName("LOGO") )
         {
             if ( e->getAllSubText() != "NOLOGO" )
             {
                 MemoryOutputStream imageData;
-                Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
+                Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("LOGO", {}));
                 logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
             }
         }
     }
+    
+    refreshRoster();
 }
 
 void Team::readFromFile (const File& file)
@@ -220,22 +177,62 @@ void Team::readFromFile (const File& file)
 
 void Team::writeToFile (const File& file) const
 {
-    ScopedPointer<XmlElement> xml = new XmlElement ("TOURNAMENT");
+    ScopedPointer<XmlElement> xml = new XmlElement ("TEAM");
     
-    xml->createNewChildElement("name")->addTextElement(tournamentName);
-    xml->createNewChildElement("location")->addTextElement(tournamentLocation);
+    xml->setAttribute("name", teamName);
+    xml->setAttribute("abv", teamAbv);
     
-    xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));
+    for ( int i = 0; i < team.size(); i++ )
+    {
+        ScopedPointer<XmlElement> player = new XmlElement ("PLAYER");
+        
+        player->setAttribute ("first", team[i].getFirst());
+        player->setAttribute ("last", team[i].getLast());
+        player->setAttribute ("jersey", team[i].getJersey());
+        player->setAttribute("number", team[i].getNum());
+        player->setAttribute("pronouns", team[i].getPronouns());
+        
+        if ( team[i].isUtility() )
+        {
+            player->setAttribute("positions", "utility");
+        }
+        else
+        {
+            String positions = "";
+            if ( team[i].isKeeper() )
+            {
+                positions += "keeper|";
+            }
+            if ( team[i].isChaser() )
+            {
+                positions += "chaser|";
+            }
+            if ( team[i].isBeater() )
+            {
+                positions += "beater|";
+            }
+            if ( team[i].isSeeker() )
+            {
+                positions += "seeker";
+            }
+            
+            player->setAttribute("positions", positions);
+        }
+        
+        
+        // ..and add our new element to the parent node
+        xml->addChildElement (player);
+    }
     
     //do the team handling here once I've figured that out
     if ( logo.isValid() )
     {
         MemoryOutputStream imageData;
         if (PNGImageFormat().writeImageToStream (logo, imageData))
-            xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+            xml->createNewChildElement ("LOGO")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
     }
     else
-        xml->createNewChildElement("logo")->addTextElement("NOLOGO");
+        xml->createNewChildElement("LOGO")->addTextElement("NOLOGO");
     
     xml->writeToFile (file, String());
 }

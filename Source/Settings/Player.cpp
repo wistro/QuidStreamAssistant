@@ -15,16 +15,23 @@ const String Player::they = "they|them|their";
 const String Player::he = "he|him|his";
 const String Player::she = "she|her|hers";
 
-const String Player::infinity = CharPointer_UTF8 ("\xe2\x88\x9e");
-const String Player::pi = CharPointer_UTF8 ("\xCF\x80");
+const String Player::digits = "0123456789";
 
-const String Player::allowedNumbers = "0123456789AGHJKNPRWXY#" + Player::infinity + Player::pi ;
+//if playing by USQ RB10 or below rules, comment this line and uncomment the next
+const String Player::allowedLetters = "AGHJKNPRWXY"; //IQA RB does not allow M or T
+//const String Player::allowedLetters = "AGHJKMNPRTWXY"; //USQ letters include M and T
+
+const String Player::pi = CharPointer_UTF8 ("\xCF\x80");
+const String Player::infinity = CharPointer_UTF8 ("\xe2\x88\x9e");
+const String Player::hashtag = "#";
+
+const String Player::allowedNumbers = Player::digits + Player::allowedLetters + Player::pi + Player::infinity + Player::hashtag;
 
 //==============================================================================
 Player::Player()
 {
     setPronouns();
-    utility();
+    setPositions();
     reset();
 }
 
@@ -35,10 +42,7 @@ Player::Player( String first, String last, String num, String jersey, String pn,
     setNumber(num);
     setPronouns(pn);
     
-    keeper = k;
-    chaser = c;
-    beater = b;
-    seeker = s;
+    setPositions(k, c, b, s);
     
     reset();
 }
@@ -47,6 +51,8 @@ Player::~Player()
 {
     
 }
+
+//==============================================================================
 
 void Player::setName(String first, String last, String jersey)
 {
@@ -77,10 +83,39 @@ void Player::reset()
     redCard = false;
 }
 
+//==============================================================================
+
 String Player::getNum()
 {
     return number;
 }
+
+String Player::getRosterEntry()
+{
+    return (number + " " + jerseyName);
+}
+
+String Player::getFirst()
+{
+    return firstName;
+}
+
+String Player::getLast()
+{
+    return lastName;
+}
+
+String Player::getJersey()
+{
+    return jerseyName == "" ? lastName : jerseyName;
+}
+
+String Player::getPronouns()
+{
+    return pronouns;
+}
+
+//==============================================================================
 
 void Player::scored()
 {
@@ -106,12 +141,12 @@ bool Player::ejected()
     return redCard;
 }
 
-void Player::utility()
+void Player::setPositions(bool k, bool c, bool b, bool s)
 {
-    keeper = true;
-    chaser = true;
-    beater = true;
-    seeker = true;
+    keeper = k;
+    chaser = c;
+    beater = b;
+    seeker = s;
 }
 
 bool Player::isKeeper() { return keeper; }

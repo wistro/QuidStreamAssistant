@@ -5,10 +5,21 @@
     Created: 28 May 2017 10:17:40pm
     Author:  Willow Rosenberg
 
+    Need:
+        List of Players (probably an array of Player objects)
+        team name
+        team abbreviation
+        logo
+        addPlayer()
+        removePlayer()
+        editPlayer()
+        set/refresh master team list
+        read/write file/xml
   ==============================================================================
 */
 
 #include "OSDependencyThings.h"
+#include "Player.h"
 
 #pragma once
 
@@ -21,44 +32,47 @@ public:
     void readFromXML (const XmlElement&);
     void writeToFile (const File& file) const;
     
-    void restoreDefaultTeamFile();
-    void setAsDefaults();
     static String getDefaultFileName();
     
-    void addPlayer();
-    void removePlayer();
+    void addPlayer( Player newPlayer );
+    
+    void removePlayer( Player* oldPlayer );
+    void removePlayer( String number );
+    
+    void editPlayer( Player* editMe );
+    void editPlayer( String number );
     
     String getTeamName();
     String getTeamAbv();
     StringArray getRoster();
+    
+    void refreshRoster();
     
 //    void fillThisSucker(String name, String location, String rounds);
 //    void fillThisSucker(String name, String location, String rounds, File pic);
     
     Image logo;
 
-    StringArray setTeamList();
-    void refreshTeamList();
+    static StringArray setTeamList();
+    static void refreshTeamList();
     
-    static const String consolation;
-    static const StringArray consolationBracket;
-    StringArray tournamentList;
+    static StringArray teamList;
     
     static File getTeamsFolder();
-    static const char* getTeamFileSuffix()      { return ".tourn"; }
-    static const char* getTeamFileWildCard()    { return "*.tourn"; }
+    static const char* getTeamFileSuffix()      { return ".team"; }
+    static const char* getTeamFileWildCard()    { return "*.team"; }
 
     
 private:
     
-    Array<File> tournamentFiles;
+    static Array<File> teamFiles;
     
-    String tournamentName;
-    String tournamentLocation;
+    String teamName;
+    String teamAbv;
     
-//    StringArray teamsList;
-    StringArray roundsList;
+    StringArray roster;
     
+    Array<Player> team;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };
