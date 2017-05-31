@@ -15,7 +15,7 @@
 //==============================================================================
 /*
 */
-class Player
+class Player : public Component
 {
 public:
     Player();
@@ -97,7 +97,7 @@ private:
 class PlayerComparator
 {
 public:
-    static int compareElements (Player first, Player second)
+    static int compareElements (Player* first, Player* second)
     {
         const int oneFirst = -1;
         const int equal = 0;
@@ -105,8 +105,8 @@ public:
         String one, two;
         int returnValue = 0;
         
-        one = first.getNum();
-        two = second.getNum();
+        one = first->getNum();
+        two = second->getNum();
         
         if ( one.containsOnly(Player::digits) )
         {

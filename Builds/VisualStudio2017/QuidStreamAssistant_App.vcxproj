@@ -148,6 +148,7 @@
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
+    <ClCompile Include="..\..\Source\TopLevel\SelectTeamsWindow.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\EditTournamentWindow.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Application.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\CustomLookAndFeel.cpp"/>

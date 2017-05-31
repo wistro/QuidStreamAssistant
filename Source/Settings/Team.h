@@ -5,16 +5,10 @@
     Created: 28 May 2017 10:17:40pm
     Author:  Willow Rosenberg
 
-    Need:
-        List of Players (probably an array of Player objects)
-        team name
-        team abbreviation
-        logo
-        addPlayer()
-        removePlayer()
-        editPlayer()
-        set/refresh master team list
-        read/write file/xml
+    TODO:
+       - figure out the whole Player roster thing. it's acting weird so we're
+        going to remove it for now and come back to it later
+ 
   ==============================================================================
 */
 
@@ -34,13 +28,13 @@ public:
     
     static String getDefaultFileName();
     
-    void addPlayer( Player newPlayer );
+    void addPlayer( Player* newPlayer );
     
     void removePlayer( Player* oldPlayer );
     void removePlayer( String number );
     
-    void editPlayer( Player* editMe );
-    void editPlayer( String number );
+//    void editPlayer( Player* editMe );
+//    void editPlayer( String number );
     
     String getTeamName();
     String getTeamAbv();
@@ -72,7 +66,7 @@ private:
     
     StringArray roster;
     
-    Array<Player> team;
+    OwnedArray<Player> team;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };

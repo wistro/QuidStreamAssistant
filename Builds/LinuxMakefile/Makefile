@@ -76,6 +76,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
+  $(JUCE_OBJDIR)/SelectTeamsWindow_729e433.o \
   $(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
   $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o \
@@ -155,6 +156,11 @@ $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o: ../../Source/Gameplay/SnitchSliders.cpp
 $(JUCE_OBJDIR)/StopWatch_da8048ad.o: ../../Source/Gameplay/StopWatch.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling StopWatch.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SelectTeamsWindow_729e433.o: ../../Source/TopLevel/SelectTeamsWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SelectTeamsWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o: ../../Source/TopLevel/EditTournamentWindow.cpp

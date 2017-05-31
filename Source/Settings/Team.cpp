@@ -19,17 +19,6 @@ StringArray Team::teamList = {};
 
 //==============================================================================
 
-
-//void addPlayer( Player newPlayer );
-//
-//void removePlayer( Player* oldPlayer );
-//void removePlayer( String number );
-//
-//void editPlayer( Player* editMe );
-//void editPlayer( String number );
-//
-//
-
 Team::Team ()
 {
     File defaults = getTeamsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTeamFileSuffix());
@@ -112,9 +101,45 @@ void Team::refreshRoster()
 {
     for ( int i = 0; i < team.size(); i++ )
     {
-        roster.add(team[i].getRosterEntry());
+        roster.add(team[i]->getRosterEntry());
     }
 }
+
+//==============================================================================
+
+void Team::addPlayer( Player* newPlayer )
+{
+    PlayerComparator sorter;
+    team.addSorted(sorter, newPlayer);
+}
+
+void Team::removePlayer( Player* oldPlayer )
+{
+    team.removeObject(oldPlayer);
+}
+
+void Team::removePlayer( String number )
+{
+    for ( int i = 0; i < team.size(); i++ )
+    {
+        if ( team[i]->getNum() == number )
+        {
+            team.remove(i);
+            break; //we're going to assume there can be only one player with a specific number
+                   //this will be enforced elsewhere in the roster edit window
+        }
+    }
+}
+
+//void Team::editPlayer( Player* editMe )
+//{
+//    
+//}
+//
+//void Team::editPlayer( String number )
+//{
+//    
+//}
 
 //==============================================================================
 
@@ -127,16 +152,15 @@ void Team::readFromXML (const XmlElement& xml)
     {
         if ( e->hasTagName("PLAYER") )
         {
-            String number, first, last, jersey, pronouns, positions;
             bool keeper, chaser, beater, seeker;
-            PlayerComparator comparator;
+            String positions;
+            Player newPlayer;
             
-            number = e->getStringAttribute("number");
-            first = e->getStringAttribute("first");
-            last = e->getStringAttribute("last");
-            jersey = e->getStringAttribute("jersey");
+            newPlayer.setNumber( e->getStringAttribute("number") );
+            newPlayer.setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
+            newPlayer.setPronouns( e->getStringAttribute("pronouns") );
+            
             positions = e->getStringAttribute("positions");
-            pronouns = e->getStringAttribute("pronouns");
             
             if ( positions == "utility" )
                 keeper = chaser = beater = seeker = true;
@@ -152,7 +176,9 @@ void Team::readFromXML (const XmlElement& xml)
                     seeker = true;
             }
             
-            team.addSorted(comparator, Player(first, last, number, jersey, pronouns, keeper, chaser, beater, seeker) );
+            newPlayer.setPositions( keeper, chaser, beater, seeker );
+            
+            addPlayer(&newPlayer);
             
         }
         else if ( e->hasTagName("LOGO") )
@@ -166,7 +192,7 @@ void Team::readFromXML (const XmlElement& xml)
         }
     }
     
-    refreshRoster();
+//    refreshRoster();
 }
 
 void Team::readFromFile (const File& file)
@@ -186,32 +212,32 @@ void Team::writeToFile (const File& file) const
     {
         ScopedPointer<XmlElement> player = new XmlElement ("PLAYER");
         
-        player->setAttribute ("first", team[i].getFirst());
-        player->setAttribute ("last", team[i].getLast());
-        player->setAttribute ("jersey", team[i].getJersey());
-        player->setAttribute("number", team[i].getNum());
-        player->setAttribute("pronouns", team[i].getPronouns());
+        player->setAttribute ("first", team[i]->getFirst());
+        player->setAttribute ("last", team[i]->getLast());
+        player->setAttribute ("jersey", team[i]->getJersey());
+        player->setAttribute("number", team[i]->getNum());
+        player->setAttribute("pronouns", team[i]->getPronouns());
         
-        if ( team[i].isUtility() )
+        if ( team[i]->isUtility() )
         {
             player->setAttribute("positions", "utility");
         }
         else
         {
             String positions = "";
-            if ( team[i].isKeeper() )
+            if ( team[i]->isKeeper() )
             {
                 positions += "keeper|";
             }
-            if ( team[i].isChaser() )
+            if ( team[i]->isChaser() )
             {
                 positions += "chaser|";
             }
-            if ( team[i].isBeater() )
+            if ( team[i]->isBeater() )
             {
                 positions += "beater|";
             }
-            if ( team[i].isSeeker() )
+            if ( team[i]->isSeeker() )
             {
                 positions += "seeker";
             }

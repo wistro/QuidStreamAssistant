@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\TopLevel\SelectTeamsWindow.cpp = ..\..\Source\TopLevel\SelectTeamsWindow.cpp
+		..\..\Source\TopLevel\SelectTeamsWindow.h = ..\..\Source\TopLevel\SelectTeamsWindow.h
 		..\..\Source\TopLevel\EditTournamentWindow.cpp = ..\..\Source\TopLevel\EditTournamentWindow.cpp
 		..\..\Source\TopLevel\EditTournamentWindow.h = ..\..\Source\TopLevel\EditTournamentWindow.h
 		..\..\Source\TopLevel\Application.cpp = ..\..\Source\TopLevel\Application.cpp
