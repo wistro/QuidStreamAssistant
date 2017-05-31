@@ -10,8 +10,8 @@
 
 #pragma once
 #include "../Settings/OSDependencyThings.h"
-#include "MainAppWindow.h"
-#include "EditTournamentWindow.h"
+#include "../ToolWindows/MainAppWindow.h"
+#include "../ToolWindows/EditTournamentWindow.h"
 #include "../Settings/StoredSettings.h"
 #include "../Settings/Tournament.h"
 
@@ -54,5 +54,5 @@ public:
     //==============================================================================
     
 private:
-
+    TooltipWindow tooltipWindow;
 };

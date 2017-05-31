@@ -16,6 +16,7 @@
 #include "Player.h"
 
 StringArray Team::teamList = {};
+Array<File> Team::teamFiles = {};
 
 //==============================================================================
 

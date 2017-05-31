@@ -25,6 +25,8 @@ public:
     void setAsDefaults();
     static String getDefaultFileName();
     
+    void clear();
+    
 //    void addTeam();
     void addRound(String newRound);
 //    void removeTeam();
@@ -40,12 +42,12 @@ public:
     
     Image logo;
 
-    StringArray setTournamentList();
-    void refreshTournamentList();
+    static StringArray setTournamentList();
+    static void refreshTournamentList();
     
     static const String consolation;
     static const StringArray consolationBracket;
-    StringArray tournamentList;
+    static StringArray tournamentList;
     
     static const String defaultTournamentName;
     static File getTournamentsFolder();
@@ -55,7 +57,7 @@ public:
     
 private:
     
-    Array<File> tournamentFiles;
+    static Array<File> tournamentFiles;
     
     String tournamentName;
     String tournamentLocation;

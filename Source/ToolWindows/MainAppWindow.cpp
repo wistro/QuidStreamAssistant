@@ -9,7 +9,7 @@
 */
 
 #include "MainAppWindow.h"
-#include "Application.h"
+#include "../TopLevel/Application.h"
 
 //==============================================================================
 MainAppWindow::MainAppWindow()
@@ -31,7 +31,7 @@ MainAppWindow::MainAppWindow()
     
     centreWithSize(400, 200);
     
-    intro = new IntroAlertWindow(QuidStreamAssistantApplication::getApp().thisTournament);
+    intro = new IntroAlertWindow();
     setContentNonOwned(intro, false);
     setVisible(true);
 

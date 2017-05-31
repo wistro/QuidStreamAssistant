@@ -35,7 +35,7 @@ private:
     
     StringArray tournaments;
     
-    Tournament* tournament;
+//    Tournament* tournament;
     
     TextButton quit;
     TextButton select;

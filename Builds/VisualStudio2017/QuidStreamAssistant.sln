@@ -9,17 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38CC76
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{DEFB1A10-7AAC-D250-D194-5CD3A670D570}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\Settings\Team.cpp = ..\..\Source\Settings\Team.cpp
-		..\..\Source\Settings\Team.h = ..\..\Source\Settings\Team.h
+		..\..\Source\Settings\CustomLookAndFeel.cpp = ..\..\Source\Settings\CustomLookAndFeel.cpp
+		..\..\Source\Settings\CustomLookAndFeel.h = ..\..\Source\Settings\CustomLookAndFeel.h
 		..\..\Source\Settings\FloatingToolWindow.h = ..\..\Source\Settings\FloatingToolWindow.h
-		..\..\Source\Settings\Tournament.cpp = ..\..\Source\Settings\Tournament.cpp
-		..\..\Source\Settings\Tournament.h = ..\..\Source\Settings\Tournament.h
-		..\..\Source\Settings\PresetIDs.h = ..\..\Source\Settings\PresetIDs.h
 		..\..\Source\Settings\OSDependencyThings.h = ..\..\Source\Settings\OSDependencyThings.h
 		..\..\Source\Settings\Player.cpp = ..\..\Source\Settings\Player.cpp
 		..\..\Source\Settings\Player.h = ..\..\Source\Settings\Player.h
+		..\..\Source\Settings\PresetIDs.h = ..\..\Source\Settings\PresetIDs.h
 		..\..\Source\Settings\StoredSettings.cpp = ..\..\Source\Settings\StoredSettings.cpp
 		..\..\Source\Settings\StoredSettings.h = ..\..\Source\Settings\StoredSettings.h
+		..\..\Source\Settings\Team.cpp = ..\..\Source\Settings\Team.cpp
+		..\..\Source\Settings\Team.h = ..\..\Source\Settings\Team.h
+		..\..\Source\Settings\Tournament.cpp = ..\..\Source\Settings\Tournament.cpp
+		..\..\Source\Settings\Tournament.h = ..\..\Source\Settings\Tournament.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0E317A3-9FDE-B244-1224-9265816B3353}"
@@ -38,21 +40,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0
 		..\..\Source\Gameplay\StopWatch.h = ..\..\Source\Gameplay\StopWatch.h
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToolWindows", "ToolWindows", "{FABD0CA4-D858-CE2E-2DC3-3C455C40AEF2}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Source\ToolWindows\EditTournamentWindow.cpp = ..\..\Source\ToolWindows\EditTournamentWindow.cpp
+		..\..\Source\ToolWindows\EditTournamentWindow.h = ..\..\Source\ToolWindows\EditTournamentWindow.h
+		..\..\Source\ToolWindows\IntroAlertWindow.cpp = ..\..\Source\ToolWindows\IntroAlertWindow.cpp
+		..\..\Source\ToolWindows\IntroAlertWindow.h = ..\..\Source\ToolWindows\IntroAlertWindow.h
+		..\..\Source\ToolWindows\MainAppWindow.cpp = ..\..\Source\ToolWindows\MainAppWindow.cpp
+		..\..\Source\ToolWindows\MainAppWindow.h = ..\..\Source\ToolWindows\MainAppWindow.h
+		..\..\Source\ToolWindows\SelectTeamsWindow.cpp = ..\..\Source\ToolWindows\SelectTeamsWindow.cpp
+		..\..\Source\ToolWindows\SelectTeamsWindow.h = ..\..\Source\ToolWindows\SelectTeamsWindow.h
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Source\TopLevel\SelectTeamsWindow.cpp = ..\..\Source\TopLevel\SelectTeamsWindow.cpp
-		..\..\Source\TopLevel\SelectTeamsWindow.h = ..\..\Source\TopLevel\SelectTeamsWindow.h
-		..\..\Source\TopLevel\EditTournamentWindow.cpp = ..\..\Source\TopLevel\EditTournamentWindow.cpp
-		..\..\Source\TopLevel\EditTournamentWindow.h = ..\..\Source\TopLevel\EditTournamentWindow.h
 		..\..\Source\TopLevel\Application.cpp = ..\..\Source\TopLevel\Application.cpp
 		..\..\Source\TopLevel\Application.h = ..\..\Source\TopLevel\Application.h
-		..\..\Source\TopLevel\CustomLookAndFeel.cpp = ..\..\Source\TopLevel\CustomLookAndFeel.cpp
-		..\..\Source\TopLevel\CustomLookAndFeel.h = ..\..\Source\TopLevel\CustomLookAndFeel.h
-		..\..\Source\TopLevel\IntroAlertWindow.cpp = ..\..\Source\TopLevel\IntroAlertWindow.cpp
-		..\..\Source\TopLevel\IntroAlertWindow.h = ..\..\Source\TopLevel\IntroAlertWindow.h
 		..\..\Source\TopLevel\Main.cpp = ..\..\Source\TopLevel\Main.cpp
-		..\..\Source\TopLevel\MainAppWindow.cpp = ..\..\Source\TopLevel\MainAppWindow.cpp
-		..\..\Source\TopLevel\MainAppWindow.h = ..\..\Source\TopLevel\MainAppWindow.h
 		..\..\Source\TopLevel\MainComponent.cpp = ..\..\Source\TopLevel\MainComponent.cpp
 		..\..\Source\TopLevel\MainComponent.h = ..\..\Source\TopLevel\MainComponent.h
 	EndProjectSection
@@ -1719,6 +1723,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DEFB1A10-7AAC-D250-D194-5CD3A670D570} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{E0E317A3-9FDE-B244-1224-9265816B3353} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
+		{FABD0CA4-D858-CE2E-2DC3-3C455C40AEF2} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{708EF0B6-C821-BD63-36D5-D921290B7083} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}
 		{9B52159D-BFAF-AB33-BCF7-EBF59176E3F5} = {81CC2246-BEDD-2400-99E9-6D94223E64EA}
 		{81CC2246-BEDD-2400-99E9-6D94223E64EA} = {38CC7653-F3A6-CD45-4589-AF222076CAE2}

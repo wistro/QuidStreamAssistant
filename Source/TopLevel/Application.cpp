@@ -81,7 +81,7 @@ PropertiesFile::Options QuidStreamAssistantApplication::getPropertyFileOptionsFo
     options.filenameSuffix      = "settings";
     options.osxLibrarySubFolder = "Application Support";
     #if JUCE_LINUX
-    options.folderName          = "~/.config/Projucer";
+    options.folderName          = "~/.config/QuidStreamAssistant";
     #else
     options.folderName          = "QuidStreamAssistant";
     #endif

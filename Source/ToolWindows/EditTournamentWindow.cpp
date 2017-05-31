@@ -11,7 +11,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "MainAppWindow.h"
 #include "EditTournamentWindow.h"
-#include "Application.h"
+#include "../TopLevel/Application.h"
 
 //==============================================================================
 EditTournamentWindow::EditTournamentWindow()
@@ -28,14 +28,17 @@ EditTournamentWindow::EditTournamentWindow()
     addAndMakeVisible(cancel);
     
     setDefault.setButtonText("Set As Default");
+    setDefault.setTooltip("Save this tournament's round, location, team and logo data as default.");
     setDefault.addListener(this);
     addAndMakeVisible(setDefault);
     
     restoreFactory.setButtonText("Restore Factory Defaults");
+    restoreFactory.setTooltip("Go back to the original default settings for new tournaments.");
     restoreFactory.addListener(this);
     addAndMakeVisible(restoreFactory);
     
     browse.setButtonText("...");
+    browse.setTooltip("Browse for Image file");
     browse.addListener(this);
     addAndMakeVisible(browse);
     
@@ -70,6 +73,7 @@ EditTournamentWindow::EditTournamentWindow()
     addAndMakeVisible(rounds);
     
     consolationBracket.setButtonText("Consolation Bracket?");
+    consolationBracket.setTooltip("When checked, adds default consolation bracket to rounds list. When unchecked, removes all rounds starting with \"Consolation\" from the list");
     
     //if at least one line in the rounds list starts with the word Consolation,
     //consolation button starts checked, otherwise start unchecked
@@ -83,10 +87,9 @@ EditTournamentWindow::EditTournamentWindow()
     
     if ( curTournName != Tournament::defaultTournamentName )
     {
-        ScopedPointer<Tournament> editTourn = QuidStreamAssistantApplication::getApp().thisTournament;
-        tournName.setText(editTourn->getTournamentName());
-        location.setText(editTourn->getTournamentLocation());
-        if ( editTourn->logo.isValid() )
+        tournName.setText(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName());
+        location.setText(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentLocation());
+        if ( QuidStreamAssistantApplication::getApp().thisTournament->logo.isValid() )
             logoImage.setTextToShowWhenEmpty("logo exists for this Tournament. add file here to change", Colours::black.withAlpha(0.5f));
     }
 
@@ -111,6 +114,10 @@ void EditTournamentWindow::buttonClicked (Button* button)
     //cancel and go back to tournament select screen
     if ( button == &cancel )
     {
+        if ( curTournName != Tournament::defaultTournamentName )
+        {
+            QuidStreamAssistantApplication::getApp().thisTournament->clear();
+        }
         QuidStreamAssistantApplication::getApp().mainWindow->showIntro();
         QuidStreamAssistantApplication::getApp().editTournament = nullptr;
     }
@@ -214,6 +221,18 @@ void EditTournamentWindow::buttonClicked (Button* button)
             }
             editRounds.setText(temp.joinIntoString("\n"));
         }
+    }
+    
+    else if ( button == &setDefault )
+    {
+        QuidStreamAssistantApplication::getApp().thisTournament->setAsDefaults();
+        AlertWindow::showMessageBoxAsync (AlertWindow::InfoIcon, "Defaults Changed.", "", "OK");
+    }
+    
+    else if ( button == &restoreFactory )
+    {
+        QuidStreamAssistantApplication::getApp().thisTournament->restoreDefaultTournamentFile();
+        AlertWindow::showMessageBoxAsync (AlertWindow::InfoIcon, "Defaults Restored.", "", "OK");
     }
 }
 

@@ -10,28 +10,34 @@
   ==============================================================================
 */
 
+#include "../Settings/CustomLookAndFeel.h"
+#include "../Settings/FloatingToolWindow.h"
 #include "../Settings/OSDependencyThings.h"
+#include "../Settings/Player.h"
 #include "../Settings/PresetIDs.h"
 #include "../Settings/StoredSettings.h"
-#include "../Settings/Player.h"
-#include "../Settings/Tournament.h"
-#include "../Settings/FloatingToolWindow.h"
 #include "../Settings/Team.h"
-
-#include "../Gameplay/ScoreComponent.h"
-#include "../Gameplay/GameTimer.h"
-#include "../Gameplay/LabelAndListComponent.h"
-#include "../Gameplay/SnitchSliders.h"
-#include "../Gameplay/StopWatch.h"
-#include "../Gameplay/GameplayComponent.h"
+#include "../Settings/Tournament.h"
 
 //==============================================================================
 
-#include "../TopLevel/CustomLookAndFeel.h"
-#include "../TopLevel/MainAppWindow.h"
+#include "../Gameplay/GameplayComponent.h"
+#include "../Gameplay/GameTimer.h"
+#include "../Gameplay/LabelAndListComponent.h"
+#include "../Gameplay/ScoreComponent.h"
+#include "../Gameplay/SnitchSliders.h"
+#include "../Gameplay/StopWatch.h"
+
+//==============================================================================
+
+#include "../ToolWindows/EditTournamentWindow.h"
+#include "../ToolWindows/IntroAlertWindow.h"
+#include "../ToolWindows/MainAppWindow.h"
+#include "../ToolWindows/SelectTeamsWindow.h"
+
+//==============================================================================
+
 #include "../TopLevel/MainComponent.h"
-#include "../TopLevel/IntroAlertWindow.h"
-#include "../TopLevel/EditTournamentWindow.h"
 #include "Application.h"
 
 //==============================================================================

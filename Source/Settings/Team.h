@@ -67,6 +67,6 @@ private:
     StringArray roster;
     
     OwnedArray<Player> team;
-    
+        
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };

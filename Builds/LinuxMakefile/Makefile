@@ -66,23 +66,23 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
-  $(JUCE_OBJDIR)/Team_43982bca.o \
-  $(JUCE_OBJDIR)/Tournament_9d26d356.o \
+  $(JUCE_OBJDIR)/CustomLookAndFeel_5883fe4a.o \
   $(JUCE_OBJDIR)/Player_d450344e.o \
   $(JUCE_OBJDIR)/StoredSettings_b5af47d3.o \
+  $(JUCE_OBJDIR)/Team_43982bca.o \
+  $(JUCE_OBJDIR)/Tournament_9d26d356.o \
   $(JUCE_OBJDIR)/GameplayComponent_416b7437.o \
   $(JUCE_OBJDIR)/GameTimer_85228a33.o \
   $(JUCE_OBJDIR)/LabelAndListComponent_d739d73c.o \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
-  $(JUCE_OBJDIR)/SelectTeamsWindow_729e433.o \
-  $(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o \
+  $(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o \
+  $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o \
+  $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o \
+  $(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
-  $(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o \
-  $(JUCE_OBJDIR)/IntroAlertWindow_901022c1.o \
   $(JUCE_OBJDIR)/Main_c088d39a.o \
-  $(JUCE_OBJDIR)/MainAppWindow_f244a841.o \
   $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
@@ -108,14 +108,9 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
 
-$(JUCE_OBJDIR)/Team_43982bca.o: ../../Source/Settings/Team.cpp
+$(JUCE_OBJDIR)/CustomLookAndFeel_5883fe4a.o: ../../Source/Settings/CustomLookAndFeel.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Team.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/Tournament_9d26d356.o: ../../Source/Settings/Tournament.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Tournament.cpp"
+	@echo "Compiling CustomLookAndFeel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Player_d450344e.o: ../../Source/Settings/Player.cpp
@@ -126,6 +121,16 @@ $(JUCE_OBJDIR)/Player_d450344e.o: ../../Source/Settings/Player.cpp
 $(JUCE_OBJDIR)/StoredSettings_b5af47d3.o: ../../Source/Settings/StoredSettings.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling StoredSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Team_43982bca.o: ../../Source/Settings/Team.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Team.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Tournament_9d26d356.o: ../../Source/Settings/Tournament.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Tournament.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/GameplayComponent_416b7437.o: ../../Source/Gameplay/GameplayComponent.cpp
@@ -158,14 +163,24 @@ $(JUCE_OBJDIR)/StopWatch_da8048ad.o: ../../Source/Gameplay/StopWatch.cpp
 	@echo "Compiling StopWatch.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/SelectTeamsWindow_729e433.o: ../../Source/TopLevel/SelectTeamsWindow.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling SelectTeamsWindow.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EditTournamentWindow_eaabbe44.o: ../../Source/TopLevel/EditTournamentWindow.cpp
+$(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o: ../../Source/ToolWindows/EditTournamentWindow.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EditTournamentWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o: ../../Source/ToolWindows/IntroAlertWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling IntroAlertWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o: ../../Source/ToolWindows/MainAppWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MainAppWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o: ../../Source/ToolWindows/SelectTeamsWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SelectTeamsWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp
@@ -173,24 +188,9 @@ $(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp
 	@echo "Compiling Application.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/CustomLookAndFeel_591fa856.o: ../../Source/TopLevel/CustomLookAndFeel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling CustomLookAndFeel.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/IntroAlertWindow_901022c1.o: ../../Source/TopLevel/IntroAlertWindow.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling IntroAlertWindow.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/Main_c088d39a.o: ../../Source/TopLevel/Main.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Main.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MainAppWindow_f244a841.o: ../../Source/TopLevel/MainAppWindow.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MainAppWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o: ../../Source/TopLevel/MainComponent.cpp

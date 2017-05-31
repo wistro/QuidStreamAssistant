@@ -8,21 +8,25 @@
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
       <GROUP id="{484AC94F-0B43-E392-98C5-26271E67976A}" name="Settings">
-        <FILE id="N2F6xK" name="Team.cpp" compile="1" resource="0" file="Source/Settings/Team.cpp"/>
-        <FILE id="pqTIJQ" name="Team.h" compile="0" resource="0" file="Source/Settings/Team.h"/>
+        <FILE id="cOu2aZ" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/Settings/CustomLookAndFeel.cpp"/>
+        <FILE id="fMHm13" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/Settings/CustomLookAndFeel.h"/>
         <FILE id="AHFHQv" name="FloatingToolWindow.h" compile="0" resource="0"
               file="Source/Settings/FloatingToolWindow.h"/>
-        <FILE id="qabq5l" name="Tournament.cpp" compile="1" resource="0" file="Source/Settings/Tournament.cpp"/>
-        <FILE id="LPogoO" name="Tournament.h" compile="0" resource="0" file="Source/Settings/Tournament.h"/>
-        <FILE id="zIMPek" name="PresetIDs.h" compile="0" resource="0" file="Source/Settings/PresetIDs.h"/>
         <FILE id="TPc7ZF" name="OSDependencyThings.h" compile="0" resource="0"
               file="Source/Settings/OSDependencyThings.h"/>
         <FILE id="p7AfUg" name="Player.cpp" compile="1" resource="0" file="Source/Settings/Player.cpp"/>
         <FILE id="WR9kBg" name="Player.h" compile="0" resource="0" file="Source/Settings/Player.h"/>
+        <FILE id="zIMPek" name="PresetIDs.h" compile="0" resource="0" file="Source/Settings/PresetIDs.h"/>
         <FILE id="rOfFOg" name="StoredSettings.cpp" compile="1" resource="0"
               file="Source/Settings/StoredSettings.cpp"/>
         <FILE id="CyWgEn" name="StoredSettings.h" compile="0" resource="0"
               file="Source/Settings/StoredSettings.h"/>
+        <FILE id="N2F6xK" name="Team.cpp" compile="1" resource="0" file="Source/Settings/Team.cpp"/>
+        <FILE id="pqTIJQ" name="Team.h" compile="0" resource="0" file="Source/Settings/Team.h"/>
+        <FILE id="qabq5l" name="Tournament.cpp" compile="1" resource="0" file="Source/Settings/Tournament.cpp"/>
+        <FILE id="LPogoO" name="Tournament.h" compile="0" resource="0" file="Source/Settings/Tournament.h"/>
       </GROUP>
       <GROUP id="{A5AE5DBA-5D3B-9130-A70B-1E69842765BD}" name="Gameplay">
         <FILE id="U3n2sa" name="GameplayComponent.cpp" compile="1" resource="0"
@@ -45,29 +49,27 @@
         <FILE id="iMFXbZ" name="StopWatch.cpp" compile="1" resource="0" file="Source/Gameplay/StopWatch.cpp"/>
         <FILE id="AehnIf" name="StopWatch.h" compile="0" resource="0" file="Source/Gameplay/StopWatch.h"/>
       </GROUP>
+      <GROUP id="{D51B4980-CFE8-735B-2AAF-F0A5DBA578F2}" name="ToolWindows">
+        <FILE id="N7446l" name="EditTournamentWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/EditTournamentWindow.cpp"/>
+        <FILE id="TrzExt" name="EditTournamentWindow.h" compile="0" resource="0"
+              file="Source/ToolWindows/EditTournamentWindow.h"/>
+        <FILE id="mVhgUO" name="IntroAlertWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/IntroAlertWindow.cpp"/>
+        <FILE id="DJEaIy" name="IntroAlertWindow.h" compile="0" resource="0"
+              file="Source/ToolWindows/IntroAlertWindow.h"/>
+        <FILE id="dr4wd7" name="MainAppWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/MainAppWindow.cpp"/>
+        <FILE id="FUkcDT" name="MainAppWindow.h" compile="0" resource="0" file="Source/ToolWindows/MainAppWindow.h"/>
+        <FILE id="w1TApu" name="SelectTeamsWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/SelectTeamsWindow.cpp"/>
+        <FILE id="Xu0Y46" name="SelectTeamsWindow.h" compile="0" resource="0"
+              file="Source/ToolWindows/SelectTeamsWindow.h"/>
+      </GROUP>
       <GROUP id="{EBC66C82-79C5-1438-601F-C17A83BBF938}" name="TopLevel">
-        <FILE id="OZiwrh" name="SelectTeamsWindow.cpp" compile="1" resource="0"
-              file="Source/TopLevel/SelectTeamsWindow.cpp"/>
-        <FILE id="QoP1cG" name="SelectTeamsWindow.h" compile="0" resource="0"
-              file="Source/TopLevel/SelectTeamsWindow.h"/>
-        <FILE id="Wub8Yh" name="EditTournamentWindow.cpp" compile="1" resource="0"
-              file="Source/TopLevel/EditTournamentWindow.cpp"/>
-        <FILE id="f7Lokt" name="EditTournamentWindow.h" compile="0" resource="0"
-              file="Source/TopLevel/EditTournamentWindow.h"/>
         <FILE id="L1xNCs" name="Application.cpp" compile="1" resource="0" file="Source/TopLevel/Application.cpp"/>
         <FILE id="yhs7hM" name="Application.h" compile="0" resource="0" file="Source/TopLevel/Application.h"/>
-        <FILE id="D8Es0D" name="CustomLookAndFeel.cpp" compile="1" resource="0"
-              file="Source/TopLevel/CustomLookAndFeel.cpp"/>
-        <FILE id="fYTOvq" name="CustomLookAndFeel.h" compile="0" resource="0"
-              file="Source/TopLevel/CustomLookAndFeel.h"/>
-        <FILE id="YO2C67" name="IntroAlertWindow.cpp" compile="1" resource="0"
-              file="Source/TopLevel/IntroAlertWindow.cpp"/>
-        <FILE id="JeKLQd" name="IntroAlertWindow.h" compile="0" resource="0"
-              file="Source/TopLevel/IntroAlertWindow.h"/>
         <FILE id="OIA6X4" name="Main.cpp" compile="1" resource="0" file="Source/TopLevel/Main.cpp"/>
-        <FILE id="rtKV0Q" name="MainAppWindow.cpp" compile="1" resource="0"
-              file="Source/TopLevel/MainAppWindow.cpp"/>
-        <FILE id="PyRSnF" name="MainAppWindow.h" compile="0" resource="0" file="Source/TopLevel/MainAppWindow.h"/>
         <FILE id="m5T36w" name="MainComponent.cpp" compile="1" resource="0"
               file="Source/TopLevel/MainComponent.cpp"/>
         <FILE id="DOHDZp" name="MainComponent.h" compile="0" resource="0" file="Source/TopLevel/MainComponent.h"/>

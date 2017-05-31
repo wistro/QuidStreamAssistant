@@ -26,6 +26,9 @@ const StringArray Tournament::consolationBracket =
 };
 
 const String Tournament::defaultTournamentName = "DEFAULT";
+StringArray Tournament::tournamentList = {};
+Array<File> Tournament::tournamentFiles = {};
+
 //==============================================================================
 Tournament::Tournament ()
 {
@@ -40,6 +43,8 @@ Tournament::Tournament ()
     readFromFile(defaults);
 }
 
+//==============================================================================
+
 File Tournament::getTournamentsFolder()
 {
     File f (getGlobalProperties().getFile().getSiblingFile ("Tournaments"));
@@ -49,7 +54,6 @@ File Tournament::getTournamentsFolder()
 
 StringArray Tournament::setTournamentList()
 {
-    
     
     StringArray s;
     for (int i = 0; i < tournamentFiles.size(); ++i)
@@ -79,6 +83,8 @@ void Tournament::refreshTournamentList()
     
 }
 
+//==============================================================================
+
 String Tournament::getDefaultFileName()
 {
     return "Defaults";
@@ -105,6 +111,21 @@ void Tournament::setAsDefaults()
     
     writeToFile(file);
 }
+
+void Tournament::clear()
+{
+    File defaults = getTournamentsFolder().getChildFile(getDefaultFileName()).withFileExtension(getTournamentFileSuffix());
+    
+    //if defaults file doesn't exist, create it from stored defaults
+    if ( ! defaults.existsAsFile())
+    {
+        restoreDefaultTournamentFile();
+    }
+    
+    readFromFile(defaults);
+}
+
+//==============================================================================
 
 //void Tournament::addTeam()
 //{
@@ -146,6 +167,8 @@ StringArray Tournament::getRoundsList()
     return roundsList;
 }
 
+//==============================================================================
+
 void Tournament::fillThisSucker(String name, String location, String rounds)
 {
     tournamentName = name;
@@ -170,44 +193,49 @@ void Tournament::fillThisSucker(String name, String location, String rounds, Fil
     fillThisSucker(name, location, rounds);
 }
 
+//==============================================================================
+
 void Tournament::readFromXML (const XmlElement& xml)
 {
-    forEachXmlChildElement(xml, e)
+    if ( xml.hasTagName("TOURNAMENT") )
     {
-        if ( e->hasTagName("name") )
+        forEachXmlChildElement(xml, e)
         {
-            tournamentName = e->getAllSubText();
-        }
-        else if ( e->hasTagName("location") )
-        {
-            tournamentLocation = e->getAllSubText();
-        }
-        else if ( e->hasTagName("rounds") )
-        {
-            roundsList.clear();
-            roundsList.addTokens(e->getAllSubText(), "|", "");
-        }
-        
-        //    delete rounds;
-        
-        //    XmlElement* teams = xml.getChildByName("teams");
-        //
-        //    if ( teams != nullptr )
-        //    {
-        //        forEachXmlChildElement(*teams, child)
-        //        {
-        //            if(child->hasTagName("tname"))
-        //                addTeam
-        //        }
-        //    }
-        
-        else if ( e->hasTagName("logo") )
-        {
-            if ( e->getAllSubText() != "NOLOGO" )
+            if ( e->hasTagName("name") )
             {
-                MemoryOutputStream imageData;
-                Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
-                logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+                tournamentName = e->getAllSubText();
+            }
+            else if ( e->hasTagName("location") )
+            {
+                tournamentLocation = e->getAllSubText();
+            }
+            else if ( e->hasTagName("rounds") )
+            {
+                roundsList.clear();
+                roundsList.addTokens(e->getAllSubText(), "|", "");
+            }
+            
+            //    delete rounds;
+            
+            //    XmlElement* teams = xml.getChildByName("teams");
+            //
+            //    if ( teams != nullptr )
+            //    {
+            //        forEachXmlChildElement(*teams, child)
+            //        {
+            //            if(child->hasTagName("tname"))
+            //                addTeam
+            //        }
+            //    }
+            
+            else if ( e->hasTagName("logo") )
+            {
+                if ( e->getAllSubText() != "NOLOGO" )
+                {
+                    MemoryOutputStream imageData;
+                    Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("logo", {}));
+                    logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+                }
             }
         }
     }

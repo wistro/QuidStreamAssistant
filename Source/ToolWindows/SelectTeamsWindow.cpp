@@ -10,7 +10,7 @@
 
 #include "SelectTeamsWindow.h"
 #include "../Settings/Team.h"
-#include "Application.h"
+#include "../TopLevel/Application.h"
 
 
 SelectTeamsWindow::SelectTeamsWindow()   : font (14.0f)
@@ -26,6 +26,45 @@ SelectTeamsWindow::SelectTeamsWindow()   : font (14.0f)
         selectTeams.add(new SelectableTeam(Team::teamList[i]));
     }
     
+    initBasics();
+}
+
+SelectTeamsWindow::SelectTeamsWindow( String teamsPipeDelineated ) : font(14.0f)
+{
+    Team::refreshTeamList();
+    
+    selectTeams.clear();
+
+    StringArray prevSelectedTeams;
+    prevSelectedTeams.addTokens(teamsPipeDelineated, "|");
+    
+    numRows = Team::teamList.size();
+    
+    for ( int i = 0; i < numRows; i++ )
+    {
+        selectTeams.add(new SelectableTeam(Team::teamList[i]));
+        
+        if ( prevSelectedTeams.contains(Team::teamList[i]) )
+        {
+            selectTeams[i]->selected.setToggleState(true, dontSendNotification);
+        }
+    }
+    
+    initBasics();
+}
+
+SelectTeamsWindow::~SelectTeamsWindow()
+{
+    selectAll.removeListener(this);
+    selectNone.removeListener(this);
+    saveTournament.removeListener(this);
+    cancel.removeListener(this);
+    editSelectedTeam.removeListener(this);
+    addTeam.removeListener(this);
+}
+
+void SelectTeamsWindow::initBasics()
+{
     tournamentHeader.setText(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName(), dontSendNotification);
     tournamentHeader.setFont(20.0f);
     addAndMakeVisible(tournamentHeader);
@@ -37,6 +76,26 @@ SelectTeamsWindow::SelectTeamsWindow()   : font (14.0f)
     selectNone.setButtonText("Select None");
     selectNone.addListener(this);
     addAndMakeVisible(selectNone);
+    
+    saveTournament.setButtonText("Save");
+    saveTournament.setTooltip("Selected teams will be available to show when creating game overlays");
+    saveTournament.addListener(this);
+    addAndMakeVisible(saveTournament);
+    
+    cancel.setButtonText("Cancel");
+    cancel.setTooltip("Return to Tournament Edit Screen. Does not save changes.");
+    cancel.addListener(this);
+    addAndMakeVisible(cancel);
+    
+    editSelectedTeam.setButtonText("Edit Selected Team");
+    editSelectedTeam.setTooltip("Opens a new window to change the details of the selected team.");
+    editSelectedTeam.addListener(this);
+    addAndMakeVisible(editSelectedTeam);
+    
+    addTeam.setButtonText("Add New Team");
+    addTeam.setTooltip("Opens a new window to create a new team from defaults");
+    addTeam.addListener(this);
+    addAndMakeVisible(addTeam);
     
     // Create our table component and add it to this component..
     addAndMakeVisible (table);
@@ -52,16 +111,7 @@ SelectTeamsWindow::SelectTeamsWindow()   : font (14.0f)
                                 TableHeaderComponent::visible | TableHeaderComponent::sortable | TableHeaderComponent::resizable
                                 | TableHeaderComponent::sortedForwards, -1);
     
-    // un-comment this line to have a go of stretch-to-fit mode
     table.getHeader().setStretchToFitActive (true);
-    
-    table.setMultipleSelectionEnabled (true);
-}
-
-SelectTeamsWindow::~SelectTeamsWindow()
-{
-    selectAll.removeListener(this);
-    selectNone.removeListener(this);
 }
 
 //==============================================================================
@@ -203,5 +253,23 @@ void SelectTeamsWindow::buttonClicked(Button* button)
         {
             setToggled(i, false);
         }
+    }
+    else if ( button == &saveTournament )
+    {
+        //add teams to tournament
+    }
+    else if ( button == &cancel )
+    {
+        //go back to previous window
+    }
+    else if ( button == &editSelectedTeam )
+    {
+        //open edit team window with that team's data loaded
+        //haven't written this window yet.
+        //So it goes.
+    }
+    else if ( button == &addTeam)
+    {
+        //open edit team window with default data
     }
 }

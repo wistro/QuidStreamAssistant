@@ -34,6 +34,7 @@ class SelectTeamsWindow    : public Component,
 {
 public:
     SelectTeamsWindow();
+    SelectTeamsWindow( String teamsPipeDelineated );
     ~SelectTeamsWindow();
     
     // This is overloaded from TableListBoxModel, and must return the total number of rows in our table
@@ -84,11 +85,19 @@ private:
     TextButton selectAll;
     TextButton selectNone;
     
+    TextButton saveTournament;
+    TextButton cancel;
+    
+    TextButton editSelectedTeam;
+    TextButton addTeam;
+    
     Label tournamentHeader;
     
     int numRows;            // The number of rows of data we've got
     
     String getAttributeNameForColumnId (const int columnId) const;
+    
+    void initBasics();
     
     //==============================================================================
     // This is a custom component containing a combo box, which we're going to put inside

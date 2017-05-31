@@ -10,7 +10,7 @@
 
 #include "../Settings/OSDependencyThings.h"
 #include "IntroAlertWindow.h"
-#include "Application.h"
+#include "../TopLevel/Application.h"
 #include "MainAppWindow.h"
 #include "../Settings/Tournament.h"
 
@@ -25,12 +25,14 @@ IntroAlertWindow::IntroAlertWindow()
     select.setButtonText("Select");
     select.addListener(this);
     addAndMakeVisible(select);
+
+    QuidStreamAssistantApplication::getApp().thisTournament->refreshTournamentList();
     
-    tournament = new Tournament;
+//    tournament = new Tournament;
+//    
+//    tournament->refreshTournamentList();
     
-    tournament->refreshTournamentList();
-    
-    tournamentList.addItemList(tournament->tournamentList, 1);
+    tournamentList.addItemList(QuidStreamAssistantApplication::getApp().thisTournament->tournamentList, 1);
     tournamentList.setText("Add New Tournament", dontSendNotification);
     tournamentList.setEditableText(false);
     addAndMakeVisible(tournamentList);
@@ -48,11 +50,9 @@ IntroAlertWindow::IntroAlertWindow(Tournament* t)
     select.addListener(this);
     addAndMakeVisible(select);
     
-    tournament = t;
+    t->refreshTournamentList();
     
-    tournament->refreshTournamentList();
-    
-    tournamentList.addItemList(tournament->tournamentList, 1);
+    tournamentList.addItemList(t->tournamentList, 1);
     tournamentList.setText("Add New Tournament", dontSendNotification);
     tournamentList.setEditableText(false);
     addAndMakeVisible(tournamentList);
@@ -96,9 +96,9 @@ void IntroAlertWindow::resized()
 
 void IntroAlertWindow::updateTournamentList()
 {
-    tournament->refreshTournamentList();
+    QuidStreamAssistantApplication::getApp().thisTournament->refreshTournamentList();
     tournamentList.clear();
-    tournamentList.addItemList(tournament->tournamentList, 1);
+    tournamentList.addItemList(QuidStreamAssistantApplication::getApp().thisTournament->tournamentList, 1);
     tournamentList.setText("Add New Tournament", dontSendNotification);
     tournamentList.setEditableText(false);
 }
@@ -112,7 +112,7 @@ void IntroAlertWindow::buttonClicked (Button* button)
         //changing this to open the edit file no matter what, but load the selected tournament first if one is selected
         if ( tournamentList.getSelectedId() > 0 )
         {
-            tournament->readFromFile(tournament->getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(tournament->getTournamentFileSuffix()));
+            QuidStreamAssistantApplication::getApp().thisTournament->readFromFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentFileSuffix()));
         }
         MainAppWindow::getMainAppWindow()->closeButtonPressed();
         QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
