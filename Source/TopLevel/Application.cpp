@@ -12,6 +12,7 @@
 #include "Application.h"
 #include "../Settings/FloatingToolWindow.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
+#include "../ToolWindows/EditTeamWindow.h"
 
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
 {
@@ -61,6 +62,16 @@ void QuidStreamAssistantApplication::showTeamSelectWindow()
     else
         new FloatingToolWindow ("Select The Teams That Will Be Attending", "teamSelectWindowPos", new SelectTeamsWindow(),
                                 teamSelect, false,
+                                600, 500, 600, 500, 600, 500);
+}
+
+void QuidStreamAssistantApplication::showEditTeamWindow()
+{
+    if (editTeam != nullptr)
+        editTeam->toFront (true);
+    else
+        new FloatingToolWindow ("Edit Team Details", "editTeamWindowPos", new EditTeamWindow(),
+                                editTeam, false,
                                 600, 500, 600, 500, 600, 500);
 }
 

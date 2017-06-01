@@ -46,15 +46,17 @@ public:
     
     void refreshRoster();
     
-//    void fillThisSucker(String name, String location, String rounds);
-//    void fillThisSucker(String name, String location, String rounds, File pic);
+    void fillThisSucker(String name, String abv);
+    void fillThisSucker(String name, String abv, File pic);
     
     Image logo;
+    OwnedArray<Player> team;
 
     static void refreshTeamList();
     
     static StringArray teamList;
     
+    static const String defaultTeamName;
     static File getTeamsFolder();
     static const char* getTeamFileSuffix()      { return ".team"; }
     static const char* getTeamFileWildCard()    { return "*.team"; }
@@ -70,7 +72,6 @@ private:
     
     StringArray roster;
     
-    OwnedArray<Player> team;
-        
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };

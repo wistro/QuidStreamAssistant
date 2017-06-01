@@ -17,6 +17,7 @@
 
 StringArray Team::teamList = {};
 Array<File> Team::teamFiles = {};
+const String Team::defaultTeamName = "Default Team";
 
 //==============================================================================
 
@@ -56,6 +57,31 @@ File Team::getTeamsFolder()
     f.createDirectory();
     return f;
 }
+
+//==============================================================================
+
+void Team::fillThisSucker(String name, String abv)
+{
+    teamName = name;
+    teamAbv = abv;
+    
+    //once I add the "add teams" window I might move this to after that has been handled
+    //so that we're not constantly writing out to files
+    //for now, though, it goes here
+    const File file (getTeamsFolder().getChildFile(teamName).withFileExtension(getTeamFileSuffix()));
+    
+    if ( !file.exists() )
+        file.create();
+    
+    writeToFile(file);
+}
+
+void Team::fillThisSucker(String name, String abv, File pic)
+{
+    logo = ImageFileFormat::loadFrom(pic);
+    fillThisSucker(name, abv);
+}
+
 
 //==============================================================================
 
@@ -170,49 +196,52 @@ void Team::removePlayer( String number )
 
 void Team::readFromXML (const XmlElement& xml)
 {
-    teamName = xml.getStringAttribute("name");
-    teamAbv = xml.getStringAttribute("abv");
-    
-    forEachXmlChildElement(xml, e)
+    if ( xml.hasTagName("TEAM") )
     {
-        if ( e->hasTagName("PLAYER") )
+        teamName = xml.getStringAttribute("name");
+        teamAbv = xml.getStringAttribute("abv");
+        
+        forEachXmlChildElement(xml, e)
         {
-            bool keeper, chaser, beater, seeker;
-            String positions;
-            Player newPlayer;
-            
-            newPlayer.setNumber( e->getStringAttribute("number") );
-            newPlayer.setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
-            newPlayer.setPronouns( e->getStringAttribute("pronouns") );
-            
-            positions = e->getStringAttribute("positions");
-            
-            if ( positions == "utility" )
-                keeper = chaser = beater = seeker = true;
-            else
+            if ( e->hasTagName("PLAYER") )
             {
-                if ( positions.contains("keeper") )
-                    keeper = true;
-                if ( positions.contains("chaser") )
-                    chaser = true;
-                if ( positions.contains("beater") )
-                    beater = true;
-                if ( positions.contains("seeker") )
-                    seeker = true;
+                bool keeper, chaser, beater, seeker;
+                String positions;
+                Player newPlayer;
+                
+                newPlayer.setNumber( e->getStringAttribute("number") );
+                newPlayer.setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
+                newPlayer.setPronouns( e->getStringAttribute("pronouns") );
+                
+                positions = e->getStringAttribute("positions");
+                
+                if ( positions == "utility" )
+                    keeper = chaser = beater = seeker = true;
+                else
+                {
+                    if ( positions.contains("keeper") )
+                        keeper = true;
+                    if ( positions.contains("chaser") )
+                        chaser = true;
+                    if ( positions.contains("beater") )
+                        beater = true;
+                    if ( positions.contains("seeker") )
+                        seeker = true;
+                }
+                
+                newPlayer.setPositions( keeper, chaser, beater, seeker );
+                
+                addPlayer(&newPlayer);
+                
             }
-            
-            newPlayer.setPositions( keeper, chaser, beater, seeker );
-            
-            addPlayer(&newPlayer);
-            
-        }
-        else if ( e->hasTagName("LOGO") )
-        {
-            if ( e->getAllSubText() != "NOLOGO" )
+            else if ( e->hasTagName("LOGO") )
             {
-                MemoryOutputStream imageData;
-                Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("LOGO", {}));
-                logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+                if ( e->getAllSubText() != "NOLOGO" )
+                {
+                    MemoryOutputStream imageData;
+                    Base64::convertFromBase64 (imageData, xml.getChildElementAllSubText ("LOGO", {}));
+                    logo = ImageFileFormat::loadFrom (imageData.getData(), imageData.getDataSize());
+                }
             }
         }
     }

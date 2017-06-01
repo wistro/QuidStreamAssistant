@@ -37,6 +37,11 @@ public:
     String getJersey();
     String getPronouns();
     
+    void setAttribute(String attribute, String data);
+    String getAttribute(String attribute);
+    void setPosition(String position, bool data);
+    bool getPosition(String position);
+    
     void scored();
     void gotCarded( char colour );
     bool ejected();

@@ -42,12 +42,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameplay", "Gameplay", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToolWindows", "ToolWindows", "{FABD0CA4-D858-CE2E-2DC3-3C455C40AEF2}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Source\ToolWindows\EditTeamWindow.cpp = ..\..\Source\ToolWindows\EditTeamWindow.cpp
+		..\..\Source\ToolWindows\EditTeamWindow.h = ..\..\Source\ToolWindows\EditTeamWindow.h
 		..\..\Source\ToolWindows\EditTournamentWindow.cpp = ..\..\Source\ToolWindows\EditTournamentWindow.cpp
 		..\..\Source\ToolWindows\EditTournamentWindow.h = ..\..\Source\ToolWindows\EditTournamentWindow.h
 		..\..\Source\ToolWindows\IntroAlertWindow.cpp = ..\..\Source\ToolWindows\IntroAlertWindow.cpp
 		..\..\Source\ToolWindows\IntroAlertWindow.h = ..\..\Source\ToolWindows\IntroAlertWindow.h
 		..\..\Source\ToolWindows\MainAppWindow.cpp = ..\..\Source\ToolWindows\MainAppWindow.cpp
 		..\..\Source\ToolWindows\MainAppWindow.h = ..\..\Source\ToolWindows\MainAppWindow.h
+		..\..\Source\ToolWindows\RosterListBoxComponent.cpp = ..\..\Source\ToolWindows\RosterListBoxComponent.cpp
+		..\..\Source\ToolWindows\RosterListBoxComponent.h = ..\..\Source\ToolWindows\RosterListBoxComponent.h
 		..\..\Source\ToolWindows\SelectTeamsWindow.cpp = ..\..\Source\ToolWindows\SelectTeamsWindow.cpp
 		..\..\Source\ToolWindows\SelectTeamsWindow.h = ..\..\Source\ToolWindows\SelectTeamsWindow.h
 		..\..\Source\ToolWindows\TeamListBoxComponent.cpp = ..\..\Source\ToolWindows\TeamListBoxComponent.cpp

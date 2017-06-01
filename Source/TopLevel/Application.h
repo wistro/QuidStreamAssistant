@@ -42,6 +42,7 @@ public:
     
     void showEditTournamentWindow();
     void showTeamSelectWindow();
+    void showEditTeamWindow();
     
     //==============================================================================
 
@@ -51,6 +52,7 @@ public:
     
     ScopedPointer<Component> editTournament;
     ScopedPointer<Component> teamSelect;
+    ScopedPointer<Component> editTeam;
     
     CustomLookAndFeel defaultLook;
     ScopedPointer<MainAppWindow> mainWindow;

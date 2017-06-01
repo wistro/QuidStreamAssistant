@@ -65,9 +65,9 @@ void TeamListBoxComponent::initBasics()
     table.setColour (ListBox::outlineColourId, getLookAndFeel().findColour(Slider::textBoxOutlineColourId));
     table.setOutlineThickness (1);
     
-    table.getHeader().addColumn ("Select", 1, 30, 30, -1,
+    table.getHeader().addColumn ("Select", 1, font.getStringWidth ("Select"), 30, -1,
                                  TableHeaderComponent::visible | TableHeaderComponent::sortable, 0);
-    table.getHeader().addColumn("Team Name", 2, 200, 100, -1,
+    table.getHeader().addColumn("Team Name", 2, 500, 100, -1,
                                 TableHeaderComponent::visible | TableHeaderComponent::sortable | TableHeaderComponent::resizable
                                 | TableHeaderComponent::sortedForwards, -1);
     

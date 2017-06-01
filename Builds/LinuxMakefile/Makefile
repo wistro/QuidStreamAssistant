@@ -77,9 +77,11 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
+  $(JUCE_OBJDIR)/EditTeamWindow_340f7744.o \
   $(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o \
   $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o \
   $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o \
+  $(JUCE_OBJDIR)/RosterListBoxComponent_e20d9ec8.o \
   $(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o \
   $(JUCE_OBJDIR)/TeamListBoxComponent_b9a0239a.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
@@ -164,6 +166,11 @@ $(JUCE_OBJDIR)/StopWatch_da8048ad.o: ../../Source/Gameplay/StopWatch.cpp
 	@echo "Compiling StopWatch.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/EditTeamWindow_340f7744.o: ../../Source/ToolWindows/EditTeamWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling EditTeamWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o: ../../Source/ToolWindows/EditTournamentWindow.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EditTournamentWindow.cpp"
@@ -177,6 +184,11 @@ $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o: ../../Source/ToolWindows/IntroAlertW
 $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o: ../../Source/ToolWindows/MainAppWindow.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainAppWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/RosterListBoxComponent_e20d9ec8.o: ../../Source/ToolWindows/RosterListBoxComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling RosterListBoxComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o: ../../Source/ToolWindows/SelectTeamsWindow.cpp

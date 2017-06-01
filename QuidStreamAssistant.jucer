@@ -50,6 +50,10 @@
         <FILE id="AehnIf" name="StopWatch.h" compile="0" resource="0" file="Source/Gameplay/StopWatch.h"/>
       </GROUP>
       <GROUP id="{D51B4980-CFE8-735B-2AAF-F0A5DBA578F2}" name="ToolWindows">
+        <FILE id="EcUXoT" name="EditTeamWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/EditTeamWindow.cpp"/>
+        <FILE id="m8trwd" name="EditTeamWindow.h" compile="0" resource="0"
+              file="Source/ToolWindows/EditTeamWindow.h"/>
         <FILE id="N7446l" name="EditTournamentWindow.cpp" compile="1" resource="0"
               file="Source/ToolWindows/EditTournamentWindow.cpp"/>
         <FILE id="TrzExt" name="EditTournamentWindow.h" compile="0" resource="0"
@@ -61,6 +65,10 @@
         <FILE id="dr4wd7" name="MainAppWindow.cpp" compile="1" resource="0"
               file="Source/ToolWindows/MainAppWindow.cpp"/>
         <FILE id="FUkcDT" name="MainAppWindow.h" compile="0" resource="0" file="Source/ToolWindows/MainAppWindow.h"/>
+        <FILE id="RHiyi0" name="RosterListBoxComponent.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/RosterListBoxComponent.cpp"/>
+        <FILE id="bRbm7R" name="RosterListBoxComponent.h" compile="0" resource="0"
+              file="Source/ToolWindows/RosterListBoxComponent.h"/>
         <FILE id="w1TApu" name="SelectTeamsWindow.cpp" compile="1" resource="0"
               file="Source/ToolWindows/SelectTeamsWindow.cpp"/>
         <FILE id="Xu0Y46" name="SelectTeamsWindow.h" compile="0" resource="0"

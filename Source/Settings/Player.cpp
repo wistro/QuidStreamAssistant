@@ -83,6 +83,50 @@ void Player::reset()
     redCard = false;
 }
 
+void Player::setAttribute(String attribute, String data)
+{
+    if ( attribute == "Number" )
+    {
+        setNumber(data);
+    }
+    else if ( attribute == "First Name" )
+    {
+        firstName = data;
+    }
+    else if ( attribute == "Last Name" )
+    {
+        lastName = data;
+    }
+    else if ( attribute == "Jersey Name" )
+    {
+        jerseyName = data;
+    }
+    else if ( attribute == "Pronouns" )
+    {
+        pronouns = data;
+    }
+}
+
+void Player::setPosition(String position, bool data)
+{
+    if ( position == "Keeper" )
+    {
+        keeper = data;
+    }
+    else if ( position == "Chaser" )
+    {
+        chaser = data;
+    }
+    else if ( position == "Beater" )
+    {
+        beater = data;
+    }
+    else if ( position == "Seeker" )
+    {
+        seeker = data;
+    }
+}
+
 //==============================================================================
 
 String Player::getNum()
@@ -114,6 +158,59 @@ String Player::getPronouns()
 {
     return pronouns;
 }
+
+String Player::getAttribute(String attribute )
+{
+    String result = "";
+    
+    if ( attribute == "Number" )
+    {
+        result = getNum();
+    }
+    else if ( attribute == "First Name" )
+    {
+        result = getFirst();
+    }
+    else if ( attribute == "Last Name" )
+    {
+        result = getLast();
+    }
+    else if ( attribute == "Jersey Name" )
+    {
+        result = getJersey();
+    }
+    else if ( attribute == "Pronouns" )
+    {
+        result = getPronouns();
+    }
+
+    return result;
+}
+
+bool Player::getPosition(String position)
+{
+    bool result = false;
+    
+    if ( position == "Keeper" )
+    {
+        result = keeper;
+    }
+    else if ( position == "Chaser" )
+    {
+        result = chaser;
+    }
+    else if ( position == "Beater" )
+    {
+        result = beater;
+    }
+    else if ( position == "Seeker" )
+    {
+        result = seeker;
+    }
+    
+    return result;
+}
+
 
 //==============================================================================
 

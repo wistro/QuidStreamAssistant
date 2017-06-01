@@ -36,6 +36,8 @@
 #include "../ToolWindows/MainAppWindow.h"
 #include "../ToolWindows/TeamListBoxComponent.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
+#include "../ToolWindows/RosterListBoxComponent.h"
+#include "../ToolWindows/EditTeamWindow.h"
 
 //==============================================================================
 

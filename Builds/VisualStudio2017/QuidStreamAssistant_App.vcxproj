@@ -149,9 +149,11 @@
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
+    <ClCompile Include="..\..\Source\ToolWindows\EditTeamWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\EditTournamentWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\IntroAlertWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\MainAppWindow.cpp"/>
+    <ClCompile Include="..\..\Source\ToolWindows\RosterListBoxComponent.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\SelectTeamsWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\TeamListBoxComponent.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Application.cpp"/>
