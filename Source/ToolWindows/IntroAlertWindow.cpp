@@ -39,25 +39,25 @@ IntroAlertWindow::IntroAlertWindow()
 
 }
 
-IntroAlertWindow::IntroAlertWindow(Tournament* t)
-{
-    
-    quit.setButtonText("Quit");
-    quit.addListener(this);
-    addAndMakeVisible(quit);
-    
-    select.setButtonText("Select");
-    select.addListener(this);
-    addAndMakeVisible(select);
-    
-    t->refreshTournamentList();
-    
-    tournamentList.addItemList(t->tournamentList, 1);
-    tournamentList.setText("Add New Tournament", dontSendNotification);
-    tournamentList.setEditableText(false);
-    addAndMakeVisible(tournamentList);
-    
-}
+//IntroAlertWindow::IntroAlertWindow(Tournament* t)
+//{
+//    
+//    quit.setButtonText("Quit");
+//    quit.addListener(this);
+//    addAndMakeVisible(quit);
+//    
+//    select.setButtonText("Select");
+//    select.addListener(this);
+//    addAndMakeVisible(select);
+//    
+//    t->refreshTournamentList();
+//    
+//    tournamentList.addItemList(t->tournamentList, 1);
+//    tournamentList.setText("Add New Tournament", dontSendNotification);
+//    tournamentList.setEditableText(false);
+//    addAndMakeVisible(tournamentList);
+//    
+//}
 
 IntroAlertWindow::~IntroAlertWindow()
 {

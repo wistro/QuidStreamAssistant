@@ -4,10 +4,6 @@
     Team.h
     Created: 28 May 2017 10:17:40pm
     Author:  Willow Rosenberg
-
-    TODO:
-       - figure out the whole Player roster thing. it's acting weird so we're
-        going to remove it for now and come back to it later
  
   ==============================================================================
 */

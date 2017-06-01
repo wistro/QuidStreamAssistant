@@ -71,7 +71,7 @@ void QuidStreamAssistantApplication::showEditTeamWindow()
     if (editTeam != nullptr)
         editTeam->toFront (true);
     else
-        new FloatingToolWindow ("Edit Team Details", "editTeamWindowPos", new EditTeamWindow(),
+        new FloatingToolWindow ("Add New Team Details", "editTeamWindowPos", new EditTeamWindow(),
                                 editTeam, false,
                                 800, 600, 800, 600, 800, 600);
 }

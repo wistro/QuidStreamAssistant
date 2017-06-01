@@ -98,6 +98,7 @@ void RosterListBoxComponent::initBasics()
     
     table.getHeader().setSortColumnId(1, true);
     table.getHeader().setStretchToFitActive (true);
+    table.setMultipleSelectionEnabled (true);
 }
 
 //==============================================================================

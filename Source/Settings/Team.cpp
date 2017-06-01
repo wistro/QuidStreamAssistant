@@ -308,6 +308,8 @@ void Team::writeToFile (const File& file) const
     
     if ( logo.isValid() )
     {
+        //probably need to change this if I'm going to allow non-png images...
+        //problem for another day
         MemoryOutputStream imageData;
         if (PNGImageFormat().writeImageToStream (logo, imageData))
             xml->createNewChildElement ("LOGO")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));

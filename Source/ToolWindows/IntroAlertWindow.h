@@ -21,7 +21,7 @@ class IntroAlertWindow    : public Component,
 {
 public:
     IntroAlertWindow();
-    IntroAlertWindow(Tournament*);
+//    IntroAlertWindow(Tournament*);
     ~IntroAlertWindow();
 
     void paint (Graphics&) override;
