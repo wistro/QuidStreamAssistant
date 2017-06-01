@@ -9,6 +9,7 @@
 */
 
 #include "OSDependencyThings.h"
+#include "Team.h"
 
 #pragma once
 
@@ -27,15 +28,16 @@ public:
     
     void clear();
     
-//    void addTeam();
+    void addTeam(String teamName);
     void addRound(String newRound);
-//    void removeTeam();
+    void removeTeam(String teamName);
     void removeRound(String badRound);
     
     String getTournamentName();
     String getTournamentLocation();
-//    StringArray getTeamsList();
     StringArray getRoundsList();
+    
+    String getTeamList(); //pipe delineated
     
     void fillThisSucker(String name, String location, String rounds);
     void fillThisSucker(String name, String location, String rounds, File pic);
@@ -62,7 +64,9 @@ private:
     String tournamentName;
     String tournamentLocation;
     
-//    StringArray teamsList;
+    OwnedArray<Team> teams;
+    
+    StringArray teamsList;
     StringArray roundsList;
     
     

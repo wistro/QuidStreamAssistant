@@ -173,6 +173,9 @@ void EditTournamentWindow::buttonClicked (Button* button)
                 currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText());
             }
         }
+        
+        QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+        QuidStreamAssistantApplication::getApp().editTournament = nullptr;
     }
     
     //open a file browser to get an image

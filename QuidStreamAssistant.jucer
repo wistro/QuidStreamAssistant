@@ -65,6 +65,10 @@
               file="Source/ToolWindows/SelectTeamsWindow.cpp"/>
         <FILE id="Xu0Y46" name="SelectTeamsWindow.h" compile="0" resource="0"
               file="Source/ToolWindows/SelectTeamsWindow.h"/>
+        <FILE id="oK0VFD" name="TeamListBoxComponent.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/TeamListBoxComponent.cpp"/>
+        <FILE id="mk3fYF" name="TeamListBoxComponent.h" compile="0" resource="0"
+              file="Source/ToolWindows/TeamListBoxComponent.h"/>
       </GROUP>
       <GROUP id="{EBC66C82-79C5-1438-601F-C17A83BBF938}" name="TopLevel">
         <FILE id="L1xNCs" name="Application.cpp" compile="1" resource="0" file="Source/TopLevel/Application.cpp"/>

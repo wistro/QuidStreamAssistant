@@ -36,6 +36,7 @@
 		1B9576BF5D83D3A770CD2DB8 = {isa = PBXBuildFile; fileRef = A59AF41FBA0C4E1440DBDD71; };
 		2DC68F95EBC2A56E063B3D8A = {isa = PBXBuildFile; fileRef = FF7F4B318639024E448175D0; };
 		5C3553836610DC056B2D0414 = {isa = PBXBuildFile; fileRef = DCB9FD082DCBF45947B61208; };
+		310A04F05318405429205408 = {isa = PBXBuildFile; fileRef = DA1EFDB39D007017925A9499; };
 		59A3D22FA97501F334DE0A7A = {isa = PBXBuildFile; fileRef = 549C891CD01A19E99F8A4A9A; };
 		983A2580CBD45C03540A9E24 = {isa = PBXBuildFile; fileRef = 77A95BEF5488A154C67F2AFB; };
 		D63A76324E46E86EFBD76590 = {isa = PBXBuildFile; fileRef = B4103EC603AF311EBECA789F; };
@@ -107,6 +108,7 @@
 		81132B8A002AD0879051538A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../../../bin/JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
 		8418A6A00B23318EA1AD7B27 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_gui_extra.mm"; path = "../../JuceLibraryCode/include_juce_gui_extra.mm"; sourceTree = "SOURCE_ROOT"; };
 		875AF73FDFC8C67F5A7DB8D3 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_video"; path = "../../../../../bin/JUCE/modules/juce_video"; sourceTree = "SOURCE_ROOT"; };
+		89087EF286B75F4A3433A32F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TeamListBoxComponent.h; path = ../../Source/ToolWindows/TeamListBoxComponent.h; sourceTree = "SOURCE_ROOT"; };
 		8B3A4C60EEA4E08B24807839 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8FF25EA4D244B60213308275 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../../Source/Settings/Player.cpp; sourceTree = "SOURCE_ROOT"; };
 		94B59D105D278DA2F2A07922 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SnitchSliders.cpp; path = ../../Source/Gameplay/SnitchSliders.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -133,6 +135,7 @@
 		D483E346925F788D4B25CBC8 = {isa = PBXFileReference; lastKnownFileType = image.png; name = mouseOverPause.png; path = ../../Source/BinaryData/images/mouseOverPause.png; sourceTree = "SOURCE_ROOT"; };
 		D7953C35B3EB25D5FE39DF9C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EditTournamentWindow.h; path = ../../Source/ToolWindows/EditTournamentWindow.h; sourceTree = "SOURCE_ROOT"; };
 		D7D1D9745C2B58F7AF81586C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_video.mm"; path = "../../JuceLibraryCode/include_juce_video.mm"; sourceTree = "SOURCE_ROOT"; };
+		DA1EFDB39D007017925A9499 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TeamListBoxComponent.cpp; path = ../../Source/ToolWindows/TeamListBoxComponent.cpp; sourceTree = "SOURCE_ROOT"; };
 		DA72F69631361BFFCC0C28CE = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = "SOURCE_ROOT"; };
 		DC84D9B2510DECCA53EEFB76 = {isa = PBXFileReference; lastKnownFileType = file.xml; name = "default_team.xml"; path = "../../Source/BinaryData/default_team.xml"; sourceTree = "SOURCE_ROOT"; };
 		DCB9FD082DCBF45947B61208 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SelectTeamsWindow.cpp; path = ../../Source/ToolWindows/SelectTeamsWindow.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -182,7 +185,9 @@
 					FF7F4B318639024E448175D0,
 					FE153A201CAB25F7EEDDA526,
 					DCB9FD082DCBF45947B61208,
-					B73A761297519C991592D9B5, ); name = ToolWindows; sourceTree = "<group>"; };
+					B73A761297519C991592D9B5,
+					DA1EFDB39D007017925A9499,
+					89087EF286B75F4A3433A32F, ); name = ToolWindows; sourceTree = "<group>"; };
 		FA7F8E39BF1EDA3D58DF662F = {isa = PBXGroup; children = (
 					549C891CD01A19E99F8A4A9A,
 					525B94D71F307A78B37A5A85,
@@ -385,6 +390,7 @@
 					1B9576BF5D83D3A770CD2DB8,
 					2DC68F95EBC2A56E063B3D8A,
 					5C3553836610DC056B2D0414,
+					310A04F05318405429205408,
 					59A3D22FA97501F334DE0A7A,
 					983A2580CBD45C03540A9E24,
 					D63A76324E46E86EFBD76590,

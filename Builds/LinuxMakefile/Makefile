@@ -81,6 +81,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o \
   $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o \
   $(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o \
+  $(JUCE_OBJDIR)/TeamListBoxComponent_b9a0239a.o \
   $(JUCE_OBJDIR)/Application_5e04a6d9.o \
   $(JUCE_OBJDIR)/Main_c088d39a.o \
   $(JUCE_OBJDIR)/MainComponent_90b8b9cd.o \
@@ -181,6 +182,11 @@ $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o: ../../Source/ToolWindows/MainAppWindow.
 $(JUCE_OBJDIR)/SelectTeamsWindow_3014bfa7.o: ../../Source/ToolWindows/SelectTeamsWindow.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SelectTeamsWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/TeamListBoxComponent_b9a0239a.o: ../../Source/ToolWindows/TeamListBoxComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling TeamListBoxComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Application_5e04a6d9.o: ../../Source/TopLevel/Application.cpp

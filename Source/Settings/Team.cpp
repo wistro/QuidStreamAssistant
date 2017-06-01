@@ -37,6 +37,19 @@ Team::Team ()
     readFromFile(defaults);
 }
 
+Team::Team ( const File& file )
+{
+    //if file path is invalid, load defaults instead
+    if ( ! file.existsAsFile() )
+    {
+        Team();
+    }
+    else
+    {
+        readFromFile(file);
+    }
+}
+
 File Team::getTeamsFolder()
 {
     File f (getGlobalProperties().getFile().getSiblingFile ("Teams"));
@@ -104,6 +117,17 @@ void Team::refreshRoster()
     {
         roster.add(team[i]->getRosterEntry());
     }
+}
+
+//==============================================================================
+void Team::setTeamName( String newName)
+{
+    teamName = newName;
+}
+
+void Team::setTeamAbv( String newAbv )
+{
+    teamAbv = newAbv;
 }
 
 //==============================================================================

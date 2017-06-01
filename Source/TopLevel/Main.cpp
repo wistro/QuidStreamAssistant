@@ -11,11 +11,12 @@
 */
 
 #include "../Settings/CustomLookAndFeel.h"
-#include "../Settings/FloatingToolWindow.h"
 #include "../Settings/OSDependencyThings.h"
-#include "../Settings/Player.h"
 #include "../Settings/PresetIDs.h"
 #include "../Settings/StoredSettings.h"
+
+#include "../Settings/Player.h"
+#include "../Settings/FloatingToolWindow.h"
 #include "../Settings/Team.h"
 #include "../Settings/Tournament.h"
 
@@ -33,6 +34,7 @@
 #include "../ToolWindows/EditTournamentWindow.h"
 #include "../ToolWindows/IntroAlertWindow.h"
 #include "../ToolWindows/MainAppWindow.h"
+#include "../ToolWindows/TeamListBoxComponent.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
 
 //==============================================================================

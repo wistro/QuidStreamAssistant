@@ -13,6 +13,7 @@
 #include "OSDependencyThings.h"
 #include "StoredSettings.h"
 #include "../TopLevel/Application.h"
+#include "Team.h"
 
 
 const String Tournament::consolation = "Consolation";
@@ -39,6 +40,9 @@ Tournament::Tournament ()
     {
         restoreDefaultTournamentFile();
     }
+    
+    teamsList.clear();
+    teams.clear();
     
     readFromFile(defaults);
 }
@@ -127,20 +131,49 @@ void Tournament::clear()
 
 //==============================================================================
 
-//void Tournament::addTeam()
-//{
-//    
-//}
+void Tournament::addTeam(String teamName)
+{
+    const File file (Team::getTeamsFolder().getChildFile(teamName).withFileExtension(Team::getTeamFileSuffix()));
+    
+    //if the file doesn't exist, create a new team object with default settings
+    if ( ! file.existsAsFile() )
+    {
+        Team newTeam;
+        newTeam.setTeamName(teamName);
+        
+        teams.add(&newTeam);
+    }
+    else //team settings file for this team exists, so we populate its data in the new team object
+    {
+        ScopedPointer<Team> newTeam = new Team(file);
+        
+        teams.add(newTeam);
+    }
+    
+    teamsList.addIfNotAlreadyThere(teamName); //teamsList is a StringArray containing the names of all teams at this tournament
+}
 
 void Tournament::addRound(String newRound)
 {
     roundsList.add(newRound);
 }
 
-//void Tournament::removeTeam()
-//{
-//    
-//}
+void Tournament::removeTeam(String teamName)
+{
+    if ( teamsList.contains(teamName) )
+    {
+        for ( int i = 0; i < teams.size(); i++ )
+        {
+            if ( teams[i]->getTeamName() == teamName )
+            {
+                teams.remove(i);
+                break;
+            }
+        }
+        
+        teamsList.removeString(teamName);
+    }
+}
 
 void Tournament::removeRound(String badRound)
 {
@@ -157,10 +190,10 @@ String Tournament::getTournamentLocation()
     return tournamentLocation;
 }
 
-//StringArray Tournament::getTeamsList()
-//{
-//    
-//}
+String Tournament::getTeamList()
+{
+    return teamsList.joinIntoString("|"); //returns a pipe delineated string of all teams at this tournament
+}
 
 StringArray Tournament::getRoundsList()
 {
@@ -214,19 +247,17 @@ void Tournament::readFromXML (const XmlElement& xml)
                 roundsList.clear();
                 roundsList.addTokens(e->getAllSubText(), "|", "");
             }
-            
-            //    delete rounds;
-            
-            //    XmlElement* teams = xml.getChildByName("teams");
-            //
-            //    if ( teams != nullptr )
-            //    {
-            //        forEachXmlChildElement(*teams, child)
-            //        {
-            //            if(child->hasTagName("tname"))
-            //                addTeam
-            //        }
-            //    }
+            else if ( e->hasTagName("teams") )
+            {
+                teams.clear();
+                teamsList.clear();
+                teamsList.addTokens(e->getAllSubText(), "|", "");
+                
+                for ( int i = 0; i < teamsList.size(); i++ )
+                {
+                    addTeam(teamsList[i]);
+                }
+            }
             
             else if ( e->hasTagName("logo") )
             {
@@ -261,7 +292,15 @@ void Tournament::writeToFile (const File& file) const
     
     xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));
     
-    //do the team handling here once I've figured that out
+    xml->createNewChildElement("teams")->addTextElement(teamsList.joinIntoString("|"));
+    
+    //also make sure each team has it's settings file
+    for ( int i = 0; i < teams.size(); i++ )
+    {
+        const File file(Team::getTeamsFolder().getChildFile(teams[i]->getTeamName()).withFileExtension(Team::getTeamFileSuffix()));
+        teams[i]->writeToFile(file);
+    }
+    
     if ( logo.isValid() )
     {
         MemoryOutputStream imageData;

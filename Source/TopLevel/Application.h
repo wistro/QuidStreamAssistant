@@ -41,13 +41,17 @@ public:
     //==============================================================================
     
     void showEditTournamentWindow();
+    void showTeamSelectWindow();
     
     //==============================================================================
 
     ScopedPointer<StoredSettings> settings;
     ScopedPointer<ApplicationCommandManager> commandManager;
     ScopedPointer<Tournament> thisTournament;
+    
     ScopedPointer<Component> editTournament;
+    ScopedPointer<Component> teamSelect;
+    
     CustomLookAndFeel defaultLook;
     ScopedPointer<MainAppWindow> mainWindow;
     

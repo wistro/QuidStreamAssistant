@@ -11,6 +11,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "Application.h"
 #include "../Settings/FloatingToolWindow.h"
+#include "../ToolWindows/SelectTeamsWindow.h"
 
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
 {
@@ -38,6 +39,7 @@ void QuidStreamAssistantApplication::shutdown()
     commandManager = nullptr;
     mainWindow = nullptr;
     editTournament = nullptr;
+    teamSelect = nullptr;
 }
 
 //==============================================================================
@@ -47,8 +49,18 @@ void QuidStreamAssistantApplication::showEditTournamentWindow()
     if (editTournament != nullptr)
         editTournament->toFront (true);
     else
-        new FloatingToolWindow ("Edit Tournament Details", {}, new EditTournamentWindow(),
+        new FloatingToolWindow ("Edit Tournament Details", "editTournamentWindowPos", new EditTournamentWindow(),
                                 editTournament, false,
+                                600, 500, 600, 500, 600, 500);
+}
+
+void QuidStreamAssistantApplication::showTeamSelectWindow()
+{
+    if (teamSelect != nullptr)
+        teamSelect->toFront (true);
+    else
+        new FloatingToolWindow ("Select The Teams That Will Be Attending", "teamSelectWindowPos", new SelectTeamsWindow(),
+                                teamSelect, false,
                                 600, 500, 600, 500, 600, 500);
 }
 

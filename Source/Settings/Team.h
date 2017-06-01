@@ -21,6 +21,7 @@ class Team
 {
 public:
     Team ();
+    Team ( const File& file );
     
     void readFromFile (const File& file);
     void readFromXML (const XmlElement&);
@@ -40,6 +41,9 @@ public:
     String getTeamAbv();
     StringArray getRoster();
     
+    void setTeamName( String newName );
+    void setTeamAbv( String newAbv);
+    
     void refreshRoster();
     
 //    void fillThisSucker(String name, String location, String rounds);
@@ -47,7 +51,6 @@ public:
     
     Image logo;
 
-    static StringArray setTeamList();
     static void refreshTeamList();
     
     static StringArray teamList;
@@ -60,6 +63,7 @@ public:
 private:
     
     static Array<File> teamFiles;
+    static StringArray setTeamList();
     
     String teamName;
     String teamAbv;

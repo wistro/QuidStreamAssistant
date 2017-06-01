@@ -52,7 +52,7 @@ static PropertiesFile* createPropsFile (const String& filename)
 
 PropertiesFile& StoredSettings::getProjectProperties (const String& projectUID)
 {
-    const String filename ("Introjucer_Project_" + projectUID);
+    const String filename ("QuidStreamAssistant" + projectUID);
     
     for (int i = propertyFiles.size(); --i >= 0;)
     {
@@ -111,7 +111,7 @@ void StoredSettings::flush()
 void StoredSettings::reload()
 {
     propertyFiles.clear();
-    propertyFiles.add (createPropsFile ("Introjucer"));
+    propertyFiles.add (createPropsFile ("QuidStreamAssistant"));
     
     ScopedPointer<XmlElement> projectDefaultsXml (propertyFiles.getFirst()->getXmlValue ("PROJECT_DEFAULT_SETTINGS"));
     

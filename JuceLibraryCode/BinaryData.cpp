@@ -2322,9 +2322,7 @@ static const unsigned char temp_binary_data_9[] =
 "    <name>DEFAULT</name>\n"
 "    <location>LOCATION</location>\n"
 "    <rounds>Group Stage|Round of 16|Quarter Finals|Semi Finals|3rd Place Playoff|Finals|Consolation Round of 16|Consolation Quarter Finals|Consolation Semi Finals|Consolation 3rd Place Playoff|Consolation Finals</rounds>\n"
-"    <teams>\n"
-"        <tname></tname>\n"
-"    </teams>\n"
+"    <teams></teams>\n"
 "    <logo>NOLOGO</logo>\n"
 "</TOURNAMENT>\n";
 
@@ -2350,7 +2348,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
         case 0x663b186c:  numBytes = 2117; return stop_png;
         case 0x6e2c2b6f:  numBytes = 58822; return willogo_png;
         case 0x96789f73:  numBytes = 81720; return default_team_xml;
-        case 0xc0496a7f:  numBytes = 420; return default_tournament_xml;
+        case 0xc0496a7f:  numBytes = 391; return default_tournament_xml;
         default: break;
     }
 

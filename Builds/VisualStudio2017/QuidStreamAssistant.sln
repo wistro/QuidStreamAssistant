@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToolWindows", "ToolWindows"
 		..\..\Source\ToolWindows\MainAppWindow.h = ..\..\Source\ToolWindows\MainAppWindow.h
 		..\..\Source\ToolWindows\SelectTeamsWindow.cpp = ..\..\Source\ToolWindows\SelectTeamsWindow.cpp
 		..\..\Source\ToolWindows\SelectTeamsWindow.h = ..\..\Source\ToolWindows\SelectTeamsWindow.h
+		..\..\Source\ToolWindows\TeamListBoxComponent.cpp = ..\..\Source\ToolWindows\TeamListBoxComponent.cpp
+		..\..\Source\ToolWindows\TeamListBoxComponent.h = ..\..\Source\ToolWindows\TeamListBoxComponent.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopLevel", "TopLevel", "{708EF0B6-C821-BD63-36D5-D921290B7083}"

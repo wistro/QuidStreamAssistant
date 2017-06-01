@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\Source\ToolWindows\IntroAlertWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\MainAppWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\SelectTeamsWindow.cpp"/>
+    <ClCompile Include="..\..\Source\ToolWindows\TeamListBoxComponent.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Application.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\Main.cpp"/>
     <ClCompile Include="..\..\Source\TopLevel\MainComponent.cpp"/>
