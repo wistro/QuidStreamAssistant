@@ -108,7 +108,7 @@ private:
             owner.setText (columnId, row, getText());
         }
         
-        // Our demo code will call this when we may need to update our contents
+        // called when we may need to update our contents
         void setRowAndColumn (const int newRow, const int newColumn)
         {
             row = newRow;
@@ -119,11 +119,14 @@ private:
         void paint (Graphics& g) override
         {
             auto& lf = getLookAndFeel();
-            if (! dynamic_cast<LookAndFeel_V4*> (&lf))
+            
+            if ( ! dynamic_cast<LookAndFeel_V4*> (&lf) )
+            {
                 lf.setColour (textColourId, Colours::black);
-                
-                Label::paint (g);
-                }
+            }
+            
+            Label::paint (g);
+        }
         
     private:
         RosterListBoxComponent& owner;

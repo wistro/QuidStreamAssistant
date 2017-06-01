@@ -42,7 +42,9 @@ public:
     
     void showEditTournamentWindow();
     void showTeamSelectWindow();
+    
     void showEditTeamWindow();
+    void showEditTeamWindow(String teamName);
     
     //==============================================================================
 

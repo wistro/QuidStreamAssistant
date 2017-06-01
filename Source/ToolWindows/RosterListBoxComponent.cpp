@@ -74,8 +74,7 @@ void RosterListBoxComponent::initBasics()
     table.setOutlineThickness (1);
     
     table.getHeader().addColumn ("#", 1, font.getStringWidth ("#"), 30, -1,
-                                 TableHeaderComponent::visible | TableHeaderComponent::sortable |
-                                 TableHeaderComponent::sortedForwards, 0);
+                                 TableHeaderComponent::visible | TableHeaderComponent::sortable, 0);
     table.getHeader().addColumn("First Name", 2, 100, 100, -1,
                                 TableHeaderComponent::visible | TableHeaderComponent::sortable |
                                 TableHeaderComponent::resizable);
@@ -97,6 +96,7 @@ void RosterListBoxComponent::initBasics()
     table.getHeader().addColumn("Seeker", 9, 30, 30, -1,
                                 TableHeaderComponent::visible | TableHeaderComponent::sortable);
     
+    table.getHeader().setSortColumnId(1, true);
     table.getHeader().setStretchToFitActive (true);
 }
 
@@ -127,10 +127,10 @@ void RosterListBoxComponent::paintCell (Graphics& g, int rowNumber, int columnId
     g.setColour (getLookAndFeel().findColour (ListBox::textColourId));
     g.setFont (font);
     
-//    if ( rowNumber < numRows )
-//    {
-//        g.drawText (selectTeams[rowNumber]->teamName, 2, 0, width - 4, height, Justification::centredLeft, true);
-//    }
+    if ( rowNumber < numRows )
+    {
+        g.drawText (roster[rowNumber]->getAttribute(getAttributeNameForColumnId(columnId)), 2, 0, width - 4, height, Justification::centredLeft, true);
+    }
     
     g.setColour (getLookAndFeel().findColour (ListBox::backgroundColourId));
     g.fillRect (width - 1, 0, 1, height);
@@ -209,6 +209,7 @@ int RosterListBoxComponent::getColumnAutoSizeWidth (int columnId)
 void RosterListBoxComponent::addBlankPlayer()
 {
     roster.add(new Player("I'm NEW!", "Double Click to Edit Me!", "418", "Teapot"));
+    numRows++;
     table.updateContent();
 }
 
@@ -219,19 +220,22 @@ void RosterListBoxComponent::removeSelected()
         if ( table.isRowSelected(i) )
         {
             roster.remove(i);
-            table.deselectRow(i);
-            table.updateContent();
+            numRows--;
         }
     }
+    
+    table.updateContent();
 }
 
 void RosterListBoxComponent::givePi()
 {
-    //will only do anything if only one row is selected
+    
     if ( table.getNumSelectedRows() == 1 )
     {
         roster[table.getSelectedRow()]->setNumber(Player::pi);
     }
+    
+    table.updateContent();
 }
 
 void RosterListBoxComponent::infiniteLove()
@@ -241,6 +245,7 @@ void RosterListBoxComponent::infiniteLove()
     {
         roster[table.getSelectedRow()]->setNumber(Player::infinity);
     }
+    table.updateContent();
 }
 
 //==============================================================================
@@ -272,7 +277,7 @@ String RosterListBoxComponent::getText (const int columnNumber, const int rowNum
 
 void RosterListBoxComponent::setText (const int columnNumber, const int rowNumber, const String& newText)
 {
-    const String& columnName = table.getHeader().getColumnName (columnNumber);
+    const String& columnName = getAttributeNameForColumnId(columnNumber);
     roster[rowNumber]->setAttribute(columnName, newText);
 }
 
@@ -301,12 +306,13 @@ void RosterListBoxComponent::readFromXML (const XmlElement& xml)
             if ( e->hasTagName("PLAYER") )
             {
                 bool keeper, chaser, beater, seeker;
-                String positions;
-                Player newPlayer;
+                keeper = chaser = beater = seeker = false;
+                String positions = "";
+                Player* newPlayer = new Player();
                 
-                newPlayer.setNumber( e->getStringAttribute("number") );
-                newPlayer.setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
-                newPlayer.setPronouns( e->getStringAttribute("pronouns") );
+                newPlayer->setNumber( e->getStringAttribute("number") );
+                newPlayer->setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
+                newPlayer->setPronouns( e->getStringAttribute("pronouns") );
                 
                 positions = e->getStringAttribute("positions");
                 
@@ -324,9 +330,9 @@ void RosterListBoxComponent::readFromXML (const XmlElement& xml)
                         seeker = true;
                 }
                 
-                newPlayer.setPositions( keeper, chaser, beater, seeker );
+                newPlayer->setPositions( keeper, chaser, beater, seeker );
                 
-                roster.add(&newPlayer);
+                roster.add(newPlayer);
             }
         }
     }

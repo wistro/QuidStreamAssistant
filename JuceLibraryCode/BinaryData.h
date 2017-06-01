@@ -33,7 +33,7 @@ namespace BinaryData
     const int            willogo_pngSize = 58822;
 
     extern const char*   default_team_xml;
-    const int            default_team_xmlSize = 81720;
+    const int            default_team_xmlSize = 3293;
 
     extern const char*   default_tournament_xml;
     const int            default_tournament_xmlSize = 391;

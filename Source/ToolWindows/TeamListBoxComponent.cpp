@@ -82,6 +82,11 @@ int TeamListBoxComponent::getNumRows()
     return numRows;
 }
 
+int TeamListBoxComponent::getSelectedRow()
+{
+    return table.getSelectedRow();
+}
+
 // This is overloaded from TableListBoxModel, and should fill in the background of the whole row
 void TeamListBoxComponent::paintRowBackground (Graphics& g, int rowNumber, int /*width*/, int /*height*/, bool rowIsSelected)
 {
@@ -181,6 +186,16 @@ void TeamListBoxComponent::setToggled (const int rowNumber, const bool shouldBeO
 String TeamListBoxComponent::getTeamName ( const int rowNumber ) const
 {
     return selectTeams[rowNumber]->teamName;
+}
+
+void TeamListBoxComponent::toggleAll(bool shouldBeOn)
+{
+    for ( int i = 0; i < getNumRows(); i++ )
+    {
+        setToggled(i, shouldBeOn);
+    }
+    
+    table.updateContent();
 }
 
 //==============================================================================

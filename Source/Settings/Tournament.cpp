@@ -138,14 +138,14 @@ void Tournament::addTeam(String teamName)
     //if the file doesn't exist, create a new team object with default settings
     if ( ! file.existsAsFile() )
     {
-        Team newTeam;
-        newTeam.setTeamName(teamName);
+        Team* newTeam = new Team();
+        newTeam->setTeamName(teamName);
         
-        teams.add(&newTeam);
+        teams.add(newTeam);
     }
     else //team settings file for this team exists, so we populate its data in the new team object
     {
-        ScopedPointer<Team> newTeam = new Team(file);
+        Team* newTeam = new Team(file);
         
         teams.add(newTeam);
     }
@@ -293,13 +293,16 @@ void Tournament::writeToFile (const File& file) const
     xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));
     
     xml->createNewChildElement("teams")->addTextElement(teamsList.joinIntoString("|"));
-    
-    //also make sure each team has it's settings file
-    for ( int i = 0; i < teams.size(); i++ )
-    {
-        const File file(Team::getTeamsFolder().getChildFile(teams[i]->getTeamName()).withFileExtension(Team::getTeamFileSuffix()));
-        teams[i]->writeToFile(file);
-    }
+
+    //teams will always already be files when this is called
+    //recreating them each time is a lot of processing for no purpose
+//    //also make sure each team has it's settings file
+//    for ( int i = 0; i < teams.size(); i++ )
+//    {
+//        const File file(Team::getTeamsFolder().getChildFile(teams[i]->getTeamName())\
+//                        .withFileExtension(Team::getTeamFileSuffix()));
+//        teams[i]->writeToFile(file);
+//    }
     
     if ( logo.isValid() )
     {

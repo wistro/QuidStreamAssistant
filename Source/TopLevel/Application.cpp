@@ -41,6 +41,7 @@ void QuidStreamAssistantApplication::shutdown()
     mainWindow = nullptr;
     editTournament = nullptr;
     teamSelect = nullptr;
+    editTeam = nullptr;
 }
 
 //==============================================================================
@@ -72,7 +73,17 @@ void QuidStreamAssistantApplication::showEditTeamWindow()
     else
         new FloatingToolWindow ("Edit Team Details", "editTeamWindowPos", new EditTeamWindow(),
                                 editTeam, false,
-                                600, 500, 600, 500, 600, 500);
+                                800, 600, 800, 600, 800, 600);
+}
+
+void QuidStreamAssistantApplication::showEditTeamWindow(String teamName)
+{
+    if (editTeam != nullptr)
+        editTeam->toFront (true);
+    else
+        new FloatingToolWindow ("Edit Team Details", "editTeamWindowPos", new EditTeamWindow(teamName),
+                                editTeam, false,
+                                800, 600, 800, 600, 800, 600);
 }
 
 //==============================================================================

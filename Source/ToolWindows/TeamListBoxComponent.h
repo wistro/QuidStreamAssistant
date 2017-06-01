@@ -39,6 +39,7 @@ public:
     
     // This is overloaded from TableListBoxModel, and must return the total number of rows in our table
     int getNumRows() override;
+    int getSelectedRow();
     
     // This is overloaded from TableListBoxModel, and should fill in the background of the whole row
     void paintRowBackground (Graphics& g, int rowNumber, int /*width*/, int /*height*/, bool rowIsSelected) override;
@@ -70,6 +71,8 @@ public:
     String getTeamName ( const int rowNumber) const;
     
     void setToggled (const int rowNumber, const bool shouldBeOn);
+    
+    void toggleAll( bool shouldBeOn );
     
     //==============================================================================
     void resized() override;    

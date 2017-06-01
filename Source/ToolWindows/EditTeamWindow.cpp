@@ -264,15 +264,15 @@ void EditTeamWindow::resized()
     
 //    rounds.setBounds(area.removeFromTop(textBoxHeight).reduced(margin));
     Rectangle<int> numberButtons ( area.removeFromTop(textBoxHeight).reduced(margin).removeFromRight(proportionOfWidth(0.76f)).reduced(margin * 2) );
-    pi.setBounds(numberButtons.removeFromLeft(10));
-    infinity.setBounds(numberButtons.removeFromLeft(10));
+    pi.setBounds(numberButtons.removeFromLeft(25));
+    infinity.setBounds(numberButtons.removeFromLeft(25));
     
     Rectangle<int> saveCancel (area.removeFromBottom(buttonHeight).reduced(margin));
     //saveCancel.removeFromLeft(saveCancel.getWidth() / 2);
     save.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
     cancel.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
     
-    Rectangle<int> selectButtons (area.removeFromTop(buttonHeight).reduced(margin));
+    Rectangle<int> selectButtons (area.removeFromBottom(buttonHeight).reduced(margin));
     addPlayer.setBounds(selectButtons.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
     removePlayer.setBounds(selectButtons.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
     

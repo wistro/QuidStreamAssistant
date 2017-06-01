@@ -17,7 +17,7 @@
 
 StringArray Team::teamList = {};
 Array<File> Team::teamFiles = {};
-const String Team::defaultTeamName = "Default Team";
+const String Team::defaultTeamName = "Default";
 
 //==============================================================================
 
@@ -119,7 +119,7 @@ void Team::refreshTeamList()
 
 String Team::getDefaultFileName()
 {
-    return "Defaults";
+    return "Default";
 }
 
 String Team::getTeamName()
@@ -198,7 +198,7 @@ void Team::readFromXML (const XmlElement& xml)
 {
     if ( xml.hasTagName("TEAM") )
     {
-        teamName = xml.getStringAttribute("name");
+        teamName = xml.getStringAttribute("team");
         teamAbv = xml.getStringAttribute("abv");
         
         forEachXmlChildElement(xml, e)
@@ -206,12 +206,13 @@ void Team::readFromXML (const XmlElement& xml)
             if ( e->hasTagName("PLAYER") )
             {
                 bool keeper, chaser, beater, seeker;
-                String positions;
-                Player newPlayer;
+                keeper = chaser = beater = seeker = false;
+                String positions = "";
+                Player* newPlayer = new Player();
                 
-                newPlayer.setNumber( e->getStringAttribute("number") );
-                newPlayer.setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
-                newPlayer.setPronouns( e->getStringAttribute("pronouns") );
+                newPlayer->setNumber( e->getStringAttribute("number") );
+                newPlayer->setName( e->getStringAttribute("first"), e->getStringAttribute("last"), e->getStringAttribute("jersey") );
+                newPlayer->setPronouns( e->getStringAttribute("pronouns") );
                 
                 positions = e->getStringAttribute("positions");
                 
@@ -229,10 +230,9 @@ void Team::readFromXML (const XmlElement& xml)
                         seeker = true;
                 }
                 
-                newPlayer.setPositions( keeper, chaser, beater, seeker );
+                newPlayer->setPositions( keeper, chaser, beater, seeker );
                 
-                addPlayer(&newPlayer);
-                
+                addPlayer(newPlayer);
             }
             else if ( e->hasTagName("LOGO") )
             {
@@ -259,12 +259,12 @@ void Team::writeToFile (const File& file) const
 {
     ScopedPointer<XmlElement> xml = new XmlElement ("TEAM");
     
-    xml->setAttribute("name", teamName);
+    xml->setAttribute("team", teamName);
     xml->setAttribute("abv", teamAbv);
     
     for ( int i = 0; i < team.size(); i++ )
     {
-        ScopedPointer<XmlElement> player = new XmlElement ("PLAYER");
+        XmlElement* player = new XmlElement ("PLAYER");
         
         player->setAttribute ("first", team[i]->getFirst());
         player->setAttribute ("last", team[i]->getLast());
@@ -296,6 +296,8 @@ void Team::writeToFile (const File& file) const
                 positions += "seeker";
             }
             
+            positions = positions.trimCharactersAtEnd("|");
+            
             player->setAttribute("positions", positions);
         }
         
@@ -304,7 +306,6 @@ void Team::writeToFile (const File& file) const
         xml->addChildElement (player);
     }
     
-    //do the team handling here once I've figured that out
     if ( logo.isValid() )
     {
         MemoryOutputStream imageData;
@@ -312,7 +313,9 @@ void Team::writeToFile (const File& file) const
             xml->createNewChildElement ("LOGO")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
     }
     else
+    {
         xml->createNewChildElement("LOGO")->addTextElement("NOLOGO");
+    }
     
     xml->writeToFile (file, String());
 }

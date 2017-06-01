@@ -104,17 +104,11 @@ void SelectTeamsWindow::buttonClicked(Button* button)
 {
     if ( button == &selectAll )
     {
-        for ( int i = 0; i < teamList->getNumRows(); i++ )
-        {
-            teamList->setToggled(i, true);
-        }
+        teamList->toggleAll(true);
     }
     else if (  button == &selectNone )
     {
-        for ( int i = 0; i < teamList->getNumRows(); i++ )
-        {
-            teamList->setToggled(i, false);
-        }
+        teamList->toggleAll(false);
     }
     else if ( button == &saveTournament )
     {
@@ -124,7 +118,13 @@ void SelectTeamsWindow::buttonClicked(Button* button)
             {
                 QuidStreamAssistantApplication::getApp().thisTournament->addTeam(teamList->getTeamName(i));
             }
+            else
+            {
+                QuidStreamAssistantApplication::getApp().thisTournament->removeTeam(teamList->getTeamName(i));
+            }
         }
+        const File file ( Tournament::getTournamentsFolder().getChildFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName()).withFileExtension(Tournament::getTournamentFileSuffix()));
+        QuidStreamAssistantApplication::getApp().thisTournament->writeToFile(file);
     }
     else if ( button == &cancel )
     {
@@ -133,12 +133,12 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     }
     else if ( button == &editSelectedTeam )
     {
-        //open edit team window with that team's data loaded
-        //haven't written this window yet.
-        //So it goes.
+        QuidStreamAssistantApplication::getApp().showEditTeamWindow(teamList->getTeamName(teamList->getSelectedRow()));
+        QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
     }
     else if ( button == &addTeam)
     {
-        //open edit team window with default data
+        QuidStreamAssistantApplication::getApp().showEditTeamWindow();
+        QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
     }
 }
