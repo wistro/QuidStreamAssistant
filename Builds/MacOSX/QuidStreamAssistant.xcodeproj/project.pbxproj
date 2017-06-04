@@ -295,8 +295,8 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=0.1.0",
-					"JUCE_APP_VERSION_HEX=0x100",
+					"JUCE_APP_VERSION=0.6.0",
+					"JUCE_APP_VERSION_HEX=0x600",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -310,7 +310,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.QuidStreamAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilloWorks.QuidStreamAssistant;
 				SDKROOT_ppc = macosx10.5; }; name = Debug; };
 		188E4866CE1609C793A0C03B = {isa = XCBuildConfiguration; buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -324,8 +324,8 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
-					"JUCE_APP_VERSION=0.1.0",
-					"JUCE_APP_VERSION_HEX=0x100",
+					"JUCE_APP_VERSION=0.6.0",
+					"JUCE_APP_VERSION_HEX=0x600",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -340,7 +340,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.QuidStreamAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilloWorks.QuidStreamAssistant;
 				SDKROOT_ppc = macosx10.5; }; name = Release; };
 		76973F32D9DB2F4D7AD4AADB = {isa = XCBuildConfiguration; buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;

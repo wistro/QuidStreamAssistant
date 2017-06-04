@@ -1,0 +1,142 @@
+:root
+{
+  --block-height: 60px;
+  --gutter-width: -4px;
+  
+  --match-width: 260px;
+  --score-width: 80px;
+
+  --score-offset: 240px;
+}
+
+.colourB { height: var(--block-height); }
+.title { line-height: calc(var(--block-height) - var(--border-width) *2); }
+.small .title { text-transform: uppercase; }
+
+.match
+{
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--match-width) / 2);
+  right: calc(50% - var(--match-width) / 2);
+  -webkit-clip-path: polygon(
+    0%    50%,
+    0%    50%,
+    0%    50%,
+    100%  50%,
+    100%  50%,
+    100%  50%
+  );
+}
+.match.display
+{
+  -webkit-clip-path: polygon(
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        0%,
+    0%                                                          50%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        100%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 100%,
+    100%                                                        50%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 0%
+  );
+}
+
+.player
+{
+  position: absolute;
+  top: 0;
+  width: calc(50% - var(--score-width) - var(--match-width) / 2 - var(--gutter-width) * 2);
+}
+.player1
+{
+  left: calc(var(--score-width) + var(--gutter-width));
+  -webkit-clip-path: polygon(
+    100%                                                        0%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
+    100%                                                        100%,
+    100%                                                        100%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
+    100%                                                        0%
+  );
+}
+.player2
+{
+  right: calc(var(--score-width) + var(--gutter-width));
+  -webkit-clip-path: polygon(
+    0%                                                          0%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
+    0%                                                          100%,
+    0%                                                          100%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
+    0%                                                          0%
+  );
+}
+.player.display
+{
+  -webkit-clip-path: polygon(
+    0%                                                          0%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
+    0%                                                          100%,
+    100%                                                        100%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
+    100%                                                        0%
+  );
+}
+
+.player1 .title { padding-right: 100px; text-align: right; }
+.player2 .title { padding-left: 100px; text-align: left; }
+.player1 .title.display { padding-right: 30px; }
+.player2 .title.display { padding-left: 30px; }
+
+.player .thumb
+{
+  position: absolute;
+  top: var(--border-width);
+  bottom: var(--border-width);
+  width: 200px;
+  z-index: 50;
+  opacity: 1.0;
+}
+.player1 .thumb { left: 0px; }
+.player2 .thumb { right: 0px; }
+
+.score
+{
+  position: absolute;
+  top: 0;
+  width: var(--score-width);
+}
+.score1
+{
+  left: 0;
+  transform: translateX(calc(0px - var(--score-offset)));
+  -webkit-clip-path: polygon(
+    0%                                                          0%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
+    0%                                                          100%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 100%,
+    100%                                                        50%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 0%
+  );
+}
+.score2
+{
+  right: 0;
+  transform: translateX(calc(100% + var(--score-offset)));
+  -webkit-clip-path: polygon(
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        0%,
+    0%                                                          50%,
+    calc(var(--block-height) / 2 * var(--arrow-tangent))        100%,
+    100%                                                        100%,
+    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
+    100%                                                        0%
+  );
+}
+.score.display
+{
+  transform: initial;
+}
+
+.score1 .title { padding-right: 100px; text-align: right; }
+.score2 .title { padding-left: 100px; text-align: left; }
+.score1 .title.display { padding-right: 30px; }
+.score2 .title.display { padding-left: 30px; }

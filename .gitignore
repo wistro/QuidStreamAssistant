@@ -55,3 +55,4 @@ xcuserdata/
 *.exe
 *.out
 *.app
+/Overlays/nbproject/private/

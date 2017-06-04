@@ -1,0 +1,69 @@
+:root 
+{
+  --body-width: 600px;
+  --arrow-tangent: 0.4;
+  --border-width: 5px;
+
+  --border-color: rgba(000,000,000,0.5);
+  --main-color1: rgba(255,000,000,0.5);
+  --main-color2: rgba(000,255,255,0.5);
+  --main-color3: rgba(255,255,255,0.5);
+
+  --font-family: 'Franklin Gothic';
+  --font-color: #FFFFFF;
+  --font-xsmall: 14px;
+  --font-small: 20px;
+  --font-large: 26px;
+  --font-xlarge: 50px;
+  --font-shadow: 1px 1px 0 #000, -1px 1px 0px #000, -1px -1px 0 #000;
+
+  --fast-speed: 0.5s;
+  --slow-speed: 1.0s;
+  --xslow-speed: calc(var(--slow-speed) * 2);
+}
+
+body
+{
+  position: relative;
+  margin: 0 auto;
+  width: var(--body-width);
+  color: var(--font-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  text-shadow: var(--font-shadow);
+  text-align: center;
+  overflow: hidden;
+}
+
+.xslow { transition: all var(--xslow-speed) ease-out; }
+.slow { transition: all var(--slow-speed) ease-out; }
+.fast { transition: all var(--fast-speed) ease-in; } 
+
+.colourB { background: var(--border-color); }
+.colour1 { background: var(--main-color1); }
+.colour2 { background: var(--main-color2); }
+.colour3 { background: var(--main-color3); }
+
+.title
+{
+  position: relative;
+  z-index: 100;
+  margin: var(--border-width) 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  opacity: 0;
+}
+.title.display { opacity: 1; }
+
+.small .title { font-size: var(--font-small); }
+.large .title { font-size: var(--font-large); }
+.xlarge .title { font-size: var(--font-xlarge); }
+
+.icon { display: inline-block; }
+
+.small .icon { margin: 2px 0 -2px; height: 18px; width: 18px; }
+.large .icon { margin: 4px 0 -4px; height: 26px; width: 26px; }
+.xlarge .icon { margin: 6px 0 -6px; height: 46px; width: 46px; }
+
+.icon.iTW { background: url('../icons/TW.png'); background-position: center; background-size:100%; }

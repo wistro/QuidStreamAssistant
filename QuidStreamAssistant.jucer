@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="WntMa9" name="QuidStreamAssistant" displaySplashScreen="0"
               reportAppUsage="0" splashScreenColour="Light" projectType="guiapp"
-              version="0.1.0" bundleIdentifier="com.yourcompany.QuidStreamAssistant"
+              version="0.6.0" bundleIdentifier="com.WilloWorks.QuidStreamAssistant"
               includeBinaryInAppConfig="1" jucerVersion="5.0.1" companyEmail="willow@willowrosenberg.space"
               companyWebsite="willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
