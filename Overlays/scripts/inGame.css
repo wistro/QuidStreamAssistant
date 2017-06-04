@@ -1,17 +1,111 @@
 :root
 {
-  --block-height: 60px;
+  --block-height: 40px;
   --gutter-width: -4px;
 
-  --match-width: 260px;
-  --score-width: 80px;
+/*don't ask. I have no idea why any of these really random numbers work nicely
+together, but they do so we're not questioning it */
+  --corner-width: calc(100% * 5/15);
+  --corner-inset: 10px;
 
-  --score-offset: 240px;
+  --width-small: calc(100% / 9);
+  --width-med: calc(var(--width-small) * (2));
+  --width-large: calc(var(--width-small) * 2.6);
 }
 
-.colourBorder { height: var(--block-height); }
+.colorB { height: var(--block-height); }
 .title { line-height: calc(var(--block-height) - var(--border-width) *2); }
 .small .title { text-transform: uppercase; }
+
+.corner
+{
+  position: absolute;
+  top: var(--block-height);
+  left: var(--corner-inset);
+  width: var(--corner-width);
+  border-radius: var(--border-curve);
+  -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 0% 100%, 0% 50%, 0% 0%);
+}
+.corner.display
+{
+  -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 100% 0%);
+}
+
+.team
+{
+  position: absolute;
+  top: var(--border-width);
+  width: calc(var(--width-large));
+  bottom: var(--border-width);
+}
+.team1
+{
+  border-radius: calc(var(--border-curve)/2) 0 0 calc(var(--border-curve)/2);
+  left: var(--border-width);
+}
+.team2
+{
+  right: calc(var(--width-small) + var(--border-width) * 2);
+}
+
+.team1 .title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle;}
+.team2 .title { padding-left: calc(var(--border-width)*2); text-align: left; vertical-align: middle;}
+
+.team .thumb
+{
+  position: absolute;
+  top: var(--border-width);
+  bottom: var(--border-width);
+  width: calc(var(--width-large) * 80%);
+  z-index: 50;
+  opacity: 0.5;
+}
+.team1 .thumb { left: 10px; }
+.team2 .thumb { right: 10px; }
+
+.score
+{
+  position: absolute;
+  top: var(--border-width);
+  left: calc(var(--width-large) + var(--border-width)*2);
+  width: calc(var(--width-med) + var(--border-width));
+  bottom: var(--border-width);
+}
+.score .title
+{
+  position: absolute;
+  top: 0;
+}
+.score1.title
+{
+  left: 0;
+  width: 40%;
+  text-align: right;
+  padding-right: 5px;
+}
+.scoreDivider.title
+{
+  left: 40%;
+  width: 20%;
+  text-align: center;
+}
+.score2.title
+{
+  left: 60%;
+  width: 40%;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.gameTime
+{
+  position: absolute;
+  top: var(--border-width);
+  right: var(--border-width);
+  width: calc(var(--width-small));
+  bottom: var(--border-width);
+  border-radius: 0 calc(var(--border-curve)/2) calc(var(--border-curve)/2) 0;
+}
 
 .tournament
 {
@@ -39,104 +133,3 @@
     calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 0%
   );
 }
-
-.player
-{
-  position: absolute;
-  top: 0;
-  width: calc(50% - var(--score-width) - var(--match-width) / 2 - var(--gutter-width) * 2);
-}
-.player1
-{
-  left: calc(var(--score-width) + var(--gutter-width));
-  -webkit-clip-path: polygon(
-    100%                                                        0%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
-    100%                                                        100%,
-    100%                                                        100%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
-    100%                                                        0%
-  );
-}
-.player2
-{
-  right: calc(var(--score-width) + var(--gutter-width));
-  -webkit-clip-path: polygon(
-    0%                                                          0%,
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
-    0%                                                          100%,
-    0%                                                          100%,
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
-    0%                                                          0%
-  );
-}
-.player.display
-{
-  -webkit-clip-path: polygon(
-    0%                                                          0%,
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
-    0%                                                          100%,
-    100%                                                        100%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
-    100%                                                        0%
-  );
-}
-
-.player1 .title { padding-right: 100px; text-align: right; }
-.player2 .title { padding-left: 100px; text-align: left; }
-.player1 .title.display { padding-right: 30px; }
-.player2 .title.display { padding-left: 30px; }
-
-.player .thumb
-{
-  position: absolute;
-  top: var(--border-width);
-  bottom: var(--border-width);
-  width: 200px;
-  z-index: 50;
-  opacity: 0.5;
-}
-.player1 .thumb { left: 0px; }
-.player2 .thumb { right: 0px; }
-
-.score
-{
-  position: absolute;
-  top: 0;
-  width: var(--score-width);
-}
-.score1
-{
-  left: 0;
-  transform: translateX(calc(0px - var(--score-offset)));
-  -webkit-clip-path: polygon(
-    0%                                                          0%,
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        50%,
-    0%                                                          100%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 100%,
-    100%                                                        50%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 0%
-  );
-}
-.score2
-{
-  right: 0;
-  transform: translateX(calc(100% + var(--score-offset)));
-  -webkit-clip-path: polygon(
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        0%,
-    0%                                                          50%,
-    calc(var(--block-height) / 2 * var(--arrow-tangent))        100%,
-    100%                                                        100%,
-    calc(100% - var(--block-height) / 2 * var(--arrow-tangent)) 50%,
-    100%                                                        0%
-  );
-}
-.score.display
-{
-  transform: initial;
-}
-
-.score1 .title { padding-right: 100px; text-align: right; }
-.score2 .title { padding-left: 100px; text-align: left; }
-.score1 .title.display { padding-right: 30px; }
-.score2 .title.display { padding-left: 30px; }

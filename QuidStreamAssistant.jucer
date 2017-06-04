@@ -3,7 +3,7 @@
 <JUCERPROJECT id="WntMa9" name="QuidStreamAssistant" displaySplashScreen="0"
               reportAppUsage="0" splashScreenColour="Light" projectType="guiapp"
               version="0.6.0" bundleIdentifier="com.WilloWorks.QuidStreamAssistant"
-              includeBinaryInAppConfig="1" jucerVersion="5.0.1" companyEmail="willow@willowrosenberg.space"
+              includeBinaryInAppConfig="1" jucerVersion="5.0.2" companyEmail="willow@willowrosenberg.space"
               companyWebsite="willowrosenberg.space">
   <MAINGROUP id="mLq0Mi" name="QuidStreamAssistant">
     <GROUP id="{85521552-CFE7-32C1-50E4-00323BB7ADE3}" name="Source">
@@ -35,10 +35,6 @@
               file="Source/Gameplay/GameplayComponent.h"/>
         <FILE id="umyHcJ" name="GameTimer.cpp" compile="1" resource="0" file="Source/Gameplay/GameTimer.cpp"/>
         <FILE id="XgxBZT" name="GameTimer.h" compile="0" resource="0" file="Source/Gameplay/GameTimer.h"/>
-        <FILE id="qKw1UI" name="LabelAndListComponent.cpp" compile="1" resource="0"
-              file="Source/Gameplay/LabelAndListComponent.cpp"/>
-        <FILE id="jhYW03" name="LabelAndListComponent.h" compile="0" resource="0"
-              file="Source/Gameplay/LabelAndListComponent.h"/>
         <FILE id="IOqgNC" name="ScoreComponent.cpp" compile="1" resource="0"
               file="Source/Gameplay/ScoreComponent.cpp"/>
         <FILE id="dNh5RX" name="ScoreComponent.h" compile="0" resource="0"
@@ -82,9 +78,6 @@
         <FILE id="L1xNCs" name="Application.cpp" compile="1" resource="0" file="Source/TopLevel/Application.cpp"/>
         <FILE id="yhs7hM" name="Application.h" compile="0" resource="0" file="Source/TopLevel/Application.h"/>
         <FILE id="OIA6X4" name="Main.cpp" compile="1" resource="0" file="Source/TopLevel/Main.cpp"/>
-        <FILE id="m5T36w" name="MainComponent.cpp" compile="1" resource="0"
-              file="Source/TopLevel/MainComponent.cpp"/>
-        <FILE id="DOHDZp" name="MainComponent.h" compile="0" resource="0" file="Source/TopLevel/MainComponent.h"/>
       </GROUP>
       <GROUP id="{771C49ED-0A80-CC9A-C02D-EE4F21308F4E}" name="BinaryData">
         <GROUP id="{33713996-4EAF-AC6F-26FD-AC0C42D38A80}" name="images">

@@ -1,11 +1,11 @@
 /*
   ==============================================================================
 
-    Main.cpp
-    Created: 22 May 2017 11:30:54pm
-    Author:  Willow Rosenberg
+  Main.cpp
+  Created: 22 May 2017 11:30:54pm
+  Author:  Willow Rosenberg
 
-    It contains the basic startup code for a Juce application.
+  It contains the basic startup code for a Juce application.
 
   ==============================================================================
 */
@@ -24,7 +24,6 @@
 
 #include "../Gameplay/GameplayComponent.h"
 #include "../Gameplay/GameTimer.h"
-#include "../Gameplay/LabelAndListComponent.h"
 #include "../Gameplay/ScoreComponent.h"
 #include "../Gameplay/SnitchSliders.h"
 #include "../Gameplay/StopWatch.h"

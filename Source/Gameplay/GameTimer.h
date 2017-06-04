@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    GameTimer.h
-    Created: 23 May 2017 6:47:52pm
-    Author:  Willow Rosenberg
+  GameTimer.h
+  Created: 23 May 2017 6:47:52pm
+  Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -16,34 +16,34 @@
 //==============================================================================
 /*
 */
-class GameTimer    : public Component,
-                        public Button::Listener
+class GameTimer  : public Component,
+            public Button::Listener
 {
 public:
-    GameTimer();
-    ~GameTimer();
+  GameTimer();
+  ~GameTimer();
 
-    void paint (Graphics&) override;
-    void resized() override;
-    void buttonClicked (Button* button) override;
+  void paint (Graphics&) override;
+  void resized() override;
+  void buttonClicked (Button* button) override;
+  
+  StopWatch gameTime;
 
 private:
-    
-    DrawableButton playPause;
-    DrawableButton stop;
-    
-    DrawableImage play;
-    DrawableImage pause;
-    DrawableImage mouseOverPlay;
-    DrawableImage mouseOverPause;
-    
-    DrawableImage stopNormal;
-    DrawableImage stopMouse;
-    DrawableImage stopDown;
-    
-    StopWatch gameTime;
-    
-    Label nameTheThing;
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameTimer)
+  
+  DrawableButton playPause;
+  DrawableButton stop;
+  
+  DrawableImage play;
+  DrawableImage pause;
+  DrawableImage mouseOverPlay;
+  DrawableImage mouseOverPause;
+  
+  DrawableImage stopNormal;
+  DrawableImage stopMouse;
+  DrawableImage stopDown;
+  
+  Label nameTheThing;
+  
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameTimer)
 };

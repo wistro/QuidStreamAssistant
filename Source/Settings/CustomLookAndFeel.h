@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    CustomLookAndFeel.h
-    Created: 25 May 2017 9:29:11pm
-    Author:  Willow Rosenberg
+  CustomLookAndFeel.h
+  Created: 25 May 2017 9:29:11pm
+  Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -15,23 +15,23 @@
 //==============================================================================
 /*
 */
-class CustomLookAndFeel    : public LookAndFeel_V4
+class CustomLookAndFeel  : public LookAndFeel_V4
 {
 public:
-    //==============================================================================
-    /** Creates a CustomLookAndFeel object with a default colour scheme. */
-    CustomLookAndFeel();
-    
-    
-    /** Destructor. */
-    ~CustomLookAndFeel();
-    
-    
-    void drawLabel (Graphics&, Label&) override;
-    void setupColours();
-    
+  //==============================================================================
+  /** Creates a CustomLookAndFeel object with a default colour scheme. */
+  CustomLookAndFeel();
+  
+  
+  /** Destructor. */
+  ~CustomLookAndFeel();
+  
+  
+  void drawLabel (Graphics&, Label&) override;
+  void setupColours();
+  
 private:
-    
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomLookAndFeel)
+  
+  
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomLookAndFeel)
 };

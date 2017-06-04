@@ -1,12 +1,13 @@
 :root
 {
   --arrow-tangent: 0.4;
-  --border-width: 5px;
+  --border-curve: 3px;
+  --border-width: 3px;
 
-  --border-colour: rgba(000,000,000,0.5);
-  --main-colour1: rgba(255,000,000,0.5);
-  --main-colour2: rgba(000,255,255,0.5);
-  --main-colour3: rgba(255,255,255,0.5);
+  --border-color: rgba(000,000,000,0.5);
+  --main-color1: rgba(255,000,000,0.5);
+  --main-color2: rgba(000,255,255,0.5);
+  --main-color3: rgba(255,255,255,0.5);
 
   --font-family: 'Helvetica';
   --font-color: #FFFFFF;
@@ -14,7 +15,7 @@
   --font-small: 20px;
   --font-large: 26px;
   --font-xlarge: 50px;
-  --font-shadow: 1px 1px 0 #000, -1px 1px 0px #000, -1px -1px 0 #000;
+  --font-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
 
   --fast-speed: 0.5s;
   --slow-speed: 1.0s;
@@ -37,10 +38,10 @@ body
 .slow { transition: all var(--slow-speed) ease-out; }
 .fast { transition: all var(--fast-speed) ease-in; }
 
-.colourBorder { background: var(--border-color); }
-.colourMain { background: var(--main-color1); }
-.colourAccent { background: var(--main-color2); }
-.colourExtra { background: var(--main-color3); }
+.colorB { background: var(--border-color); }
+.color1 { background: var(--main-color1); }
+.color2 { background: var(--main-color2); }
+.color3 { background: var(--main-color3); }
 
 .title
 {

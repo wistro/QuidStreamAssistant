@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    SnitchSliders.h
-    Created: 23 May 2017 12:39:24am
-    Author:  Willow Rosenberg
+  SnitchSliders.h
+  Created: 23 May 2017 12:39:24am
+  Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -15,27 +15,27 @@
 //==============================================================================
 /*
 */
-class SnitchSliders    : public Component
+class SnitchSliders  : public Component
 {
 public:
-    
-    //snitch catch sliders
-    Slider snitchReg;
-    Slider snitchOT;
-    Slider snitch2OT;
-    
-    SnitchSliders();
-    ~SnitchSliders();
+  
+  //snitch catch sliders
+  Slider snitchReg;
+  Slider snitchOT;
+  Slider snitch2OT;
+  
+  SnitchSliders();
+  ~SnitchSliders();
 
-    void paint (Graphics&) override;
-    void resized() override;
+  void paint (Graphics&) override;
+  void resized() override;
 
 private:
-    
-    //labels for sliders
-    Label regulation;
-    Label overTime;
-    Label doubleOverTime;
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SnitchSliders)
+  
+  //labels for sliders
+  Label regulation;
+  Label overTime;
+  Label doubleOverTime;
+  
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SnitchSliders)
 };

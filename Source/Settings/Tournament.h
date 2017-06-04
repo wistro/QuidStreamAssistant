@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    Tournament.h
-    Created: 28 May 2017 10:17:40pm
-    Author:  Willow Rosenberg
+  Tournament.h
+  Created: 28 May 2017 10:17:40pm
+  Author:  Willow Rosenberg
 
   ==============================================================================
 */
@@ -16,59 +16,59 @@
 class Tournament
 {
 public:
-    Tournament ();
-    
-    void readFromFile (const File& file);
-    void readFromXML (const XmlElement&);
-    void writeToFile (const File& file) const;
-    
-    void restoreDefaultTournamentFile();
-    void setAsDefaults();
-    static String getDefaultFileName();
-    
-    void clear();
-    
-    void addTeam(String teamName);
-    void addRound(String newRound);
-    void removeTeam(String teamName);
-    void removeRound(String badRound);
-    
-    String getTournamentName();
-    String getTournamentLocation();
-    StringArray getRoundsList();
-    
-    String getTeamList(); //pipe delineated
-    
-    void fillThisSucker(String name, String location, String rounds);
-    void fillThisSucker(String name, String location, String rounds, File pic);
-    
-    Image logo;
+  Tournament ();
+  
+  void readFromFile (const File& file);
+  void readFromXML (const XmlElement&);
+  void writeToFile (const File& file) const;
+  
+  void restoreDefaultTournamentFile();
+  void setAsDefaults();
+  static String getDefaultFileName();
+  
+  void clear();
+  
+  void addTeam(String teamName);
+  void addRound(String newRound);
+  void removeTeam(String teamName);
+  void removeRound(String badRound);
+  
+  String getTournamentName();
+  String getTournamentLocation();
+  StringArray getRoundsList();
+  
+  String getTeamList(); //pipe delineated
+  
+  void fillThisSucker(String name, String location, String rounds);
+  void fillThisSucker(String name, String location, String rounds, File pic);
+  
+  Image logo;
 
-    static StringArray setTournamentList();
-    static void refreshTournamentList();
-    
-    static const String consolation;
-    static const StringArray consolationBracket;
-    static StringArray tournamentList;
-    
-    static const String defaultTournamentName;
-    static File getTournamentsFolder();
-    static const char* getTournamentFileSuffix()      { return ".tourn"; }
-    static const char* getTournamentFileWildCard()    { return "*.tourn"; }
+  static StringArray setTournamentList();
+  static void refreshTournamentList();
+  
+  static const String consolation;
+  static const StringArray consolationBracket;
+  static StringArray tournamentList;
+  
+  static const String defaultTournamentName;
+  static File getTournamentsFolder();
+  static const char* getTournamentFileSuffix()    { return ".tourn"; }
+  static const char* getTournamentFileWildCard()  { return "*.tourn"; }
 
-    
+  
 private:
-    
-    static Array<File> tournamentFiles;
-    
-    String tournamentName;
-    String tournamentLocation;
-    
-    OwnedArray<Team> teams;
-    
-    StringArray teamsList;
-    StringArray roundsList;
-    
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)
+  
+  static Array<File> tournamentFiles;
+  
+  String tournamentName;
+  String tournamentLocation;
+  
+  OwnedArray<Team> teams;
+  
+  StringArray teamsList;
+  StringArray roundsList;
+  
+  
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)
 };
