@@ -27,7 +27,7 @@ GameplayComponent::GameplayComponent()
   addAndMakeVisible(gameTime);
   
   outputFileBox.setTextToShowWhenEmpty("This will be the file or folder that your Javascript is looking at",
-           Colours::black.withAlpha(0.5f));
+                                       Colours::black.withAlpha(0.5f));
   outputFile.setText("Select an Output File", dontSendNotification);
   outputFile.attachToComponent(&outputFileBox, true);
   
@@ -179,7 +179,7 @@ void GameplayComponent::labelTextChanged (Label* label)
 {
   if ( label == &gameTime.gameTime.currentTime );
   {
-  void writeToFile (file);
+      writeToFile (writeHere);
   }
 }
 
