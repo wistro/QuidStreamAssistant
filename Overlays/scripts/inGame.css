@@ -2,18 +2,18 @@
 {
   --block-height: 60px;
   --gutter-width: -4px;
-  
+
   --match-width: 260px;
   --score-width: 80px;
 
   --score-offset: 240px;
 }
 
-.colourB { height: var(--block-height); }
+.colourBorder { height: var(--block-height); }
 .title { line-height: calc(var(--block-height) - var(--border-width) *2); }
 .small .title { text-transform: uppercase; }
 
-.match
+.tournament
 {
   position: absolute;
   top: 0;
@@ -28,7 +28,7 @@
     100%  50%
   );
 }
-.match.display
+.tournament.display
 {
   -webkit-clip-path: polygon(
     calc(var(--block-height) / 2 * var(--arrow-tangent))        0%,
@@ -94,7 +94,7 @@
   bottom: var(--border-width);
   width: 200px;
   z-index: 50;
-  opacity: 1.0;
+  opacity: 0.5;
 }
 .player1 .thumb { left: 0px; }
 .player2 .thumb { right: 0px; }

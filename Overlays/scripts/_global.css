@@ -1,15 +1,14 @@
-:root 
+:root
 {
-  --body-width: 600px;
   --arrow-tangent: 0.4;
   --border-width: 5px;
 
-  --border-color: rgba(000,000,000,0.5);
-  --main-color1: rgba(255,000,000,0.5);
-  --main-color2: rgba(000,255,255,0.5);
-  --main-color3: rgba(255,255,255,0.5);
+  --border-colour: rgba(000,000,000,0.5);
+  --main-colour1: rgba(255,000,000,0.5);
+  --main-colour2: rgba(000,255,255,0.5);
+  --main-colour3: rgba(255,255,255,0.5);
 
-  --font-family: 'Franklin Gothic';
+  --font-family: 'Helvetica';
   --font-color: #FFFFFF;
   --font-xsmall: 14px;
   --font-small: 20px;
@@ -26,7 +25,6 @@ body
 {
   position: relative;
   margin: 0 auto;
-  width: var(--body-width);
   color: var(--font-color);
   font-family: var(--font-family);
   font-weight: bold;
@@ -37,12 +35,12 @@ body
 
 .xslow { transition: all var(--xslow-speed) ease-out; }
 .slow { transition: all var(--slow-speed) ease-out; }
-.fast { transition: all var(--fast-speed) ease-in; } 
+.fast { transition: all var(--fast-speed) ease-in; }
 
-.colourB { background: var(--border-color); }
-.colour1 { background: var(--main-color1); }
-.colour2 { background: var(--main-color2); }
-.colour3 { background: var(--main-color3); }
+.colourBorder { background: var(--border-color); }
+.colourMain { background: var(--main-color1); }
+.colourAccent { background: var(--main-color2); }
+.colourExtra { background: var(--main-color3); }
 
 .title
 {
@@ -66,4 +64,7 @@ body
 .large .icon { margin: 4px 0 -4px; height: 26px; width: 26px; }
 .xlarge .icon { margin: 6px 0 -6px; height: 46px; width: 46px; }
 
-.icon.iTW { background: url('../icons/TW.png'); background-position: center; background-size:100%; }
+.icon.iTW { background: url('../icons/TW.png'); background-position: center; background-size: 100%; }
+.icon.iFB { background: url('../icons/FB.png'); background-position: center; background-size: 100%; }
+.icon.iTY { background: url('../icons/YT.png'); background-position: center; background-size: 100%; }
+.icon.TWC { background: url('../icons/TWC.png'); background-position: center; background-size: 100%; }
