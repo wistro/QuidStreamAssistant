@@ -19,9 +19,9 @@
 /*
 */
 class GameplayComponent  : public Component,
-              public Slider::Listener,
-              public Button::Listener,
-              public Label::Listener
+                            public Slider::Listener,
+                            public Button::Listener,
+                            public Label::Listener
 {
 public:
   GameplayComponent();
@@ -35,21 +35,24 @@ public:
   
   void checkSnitchMistakes(char period);
   
-  void writeToFile (const File& file) const;
+  void writeToFile ( bool gameSetup = false ) const;
 
 private:
-  
-  static const char reg = 'r';
-  static const char ot = 'o';
-  static const char dot = 'd';
-  
+    
   //team, tournament and round dropdown lists with labels
   Label tournament;
   Label round;
+  Label teamOne;
+  Label teamTwo;
+  
+  ComboBox roundList;
+  ComboBox team1;
+  ComboBox team2;
   
   Label outputFile;
   TextEditor outputFileBox;
   TextButton browse;
+  TextButton gameSetup;
   
   File writeHere;
   File writeHereDir;
@@ -62,6 +65,14 @@ private:
   
   GameTimer gameTime;
   
+  String tournamentName;
+  StringArray teamList;
+  StringArray teamAbvs;
+  ToggleButton useAbvs;
+  
+  ToggleButton corner;
+  ToggleButton lowerthird;
+  ToggleButton endScreen;
 
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameplayComponent)

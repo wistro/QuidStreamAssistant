@@ -87,7 +87,7 @@ void EditTeamWindow::initBasics()
   addAndMakeVisible(abvBox);
   addAndMakeVisible(abv);
   
-  logoImage.setTextToShowWhenEmpty("path to logo image (transparent bg, .svg preferred)", Colours::black.withAlpha(0.5f));
+  logoImage.setTextToShowWhenEmpty("path to logo image (png, jpg or gif)", Colours::black.withAlpha(0.5f));
   logo.setText("Logo Image File", dontSendNotification);
   logo.attachToComponent(&logoImage, true);
   
@@ -177,7 +177,7 @@ void EditTeamWindow::buttonClicked (Button* button)
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
         {
           for ( int i = 0; i < roster->getNumRows(); i++ )
           {
@@ -188,8 +188,7 @@ void EditTeamWindow::buttonClicked (Button* button)
         else
         {
           AlertWindow::showMessageBoxAsync (AlertWindow::WarningIcon, "The Logo File Path Is Not Valid",
-                            "Please enter a valid file path to an image (JPEG, PNG, GIF \
-                            or SVG) or leave blank for no logo.", "OK");
+                            "Please enter a valid file path to an image (JPEG, PNG, GIF) or leave blank for no logo.", "OK");
         }
       }
       else

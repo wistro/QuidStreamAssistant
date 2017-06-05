@@ -142,12 +142,14 @@ void Tournament::addTeam(String teamName)
     newTeam->setTeamName(teamName);
     
     teams.add(newTeam);
+    teamsAbvList.add(newTeam->getTeamAbv());
   }
   else //team settings file for this team exists, so we populate its data in the new team object
   {
     Team* newTeam = new Team(file);
     
     teams.add(newTeam);
+    teamsAbvList.add(newTeam->getTeamAbv());
   }
   
   teamsList.addIfNotAlreadyThere(teamName); //teamsList is a StringArray containing the names of all teams at this tournament
@@ -166,6 +168,7 @@ void Tournament::removeTeam(String teamName)
     {
       if ( teams[i]->getTeamName() == teamName )
       {
+        teamsAbvList.removeString(teams[i]->getTeamAbv());
         teams.remove(i);
         break;
       }
@@ -198,6 +201,11 @@ String Tournament::getTeamList()
 StringArray Tournament::getRoundsList()
 {
   return roundsList;
+}
+
+StringArray Tournament::getTeamAbvList()
+{
+  return teamsAbvList;
 }
 
 //==============================================================================
@@ -309,6 +317,10 @@ void Tournament::writeToFile (const File& file) const
     MemoryOutputStream imageData;
     if (PNGImageFormat().writeImageToStream (logo, imageData))
       xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+//    else if (JPEGImageFormat().writeImageToStream(logo, imageData))
+//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+//    else if (GIFImageFormat().writeImageToStream(logo, imageData))
+//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
   }
   else
     xml->createNewChildElement("logo")->addTextElement("NOLOGO");

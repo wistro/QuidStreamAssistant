@@ -56,7 +56,7 @@ EditTournamentWindow::EditTournamentWindow()
   addAndMakeVisible(location);
   addAndMakeVisible(loc);
   
-  logoImage.setTextToShowWhenEmpty("path to logo image (transparent bg, .svg preferred)", Colours::black.withAlpha(0.5f));
+  logoImage.setTextToShowWhenEmpty("path to logo image (png, jpg or gif)", Colours::black.withAlpha(0.5f));
   logo.setText("Logo Image File", dontSendNotification);
   logo.attachToComponent(&logoImage, true);
   
@@ -135,11 +135,11 @@ void EditTournamentWindow::buttonClicked (Button* button)
     {
       Tournament* currentTournament = QuidStreamAssistantApplication::getApp().thisTournament;
       
-      if ( curTournName != tournName.getText() )
+      if ( curTournName != tournName.getText() && curTournName != Tournament::defaultTournamentName )
       {
         if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
                         "Tournament Name Changed!",
-                        "You have edited the name of this Tournament. Do you want to overwrite the original version, or make a new Tournament with the new name (keeping both)?",
+                        "You have edited the name of this Tournament. Do you want to overwrite the original version (OK), or make a new Tournament with the new name (keeping both) (Cancel)?",
                         String("Overwrite Existing"),
                         String("Create New")) )
         {
@@ -158,7 +158,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
         {
           currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText(), image);
         }

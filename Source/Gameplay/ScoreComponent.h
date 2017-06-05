@@ -28,6 +28,10 @@ public:
   
   Label showScore;
   
+  static const char reg = 'r';
+  static const char ot = 'o';
+  static const char dot = 'd';
+  
   ScoreComponent(bool areButtonsOnLeft = true);
   ~ScoreComponent();
 
@@ -35,7 +39,7 @@ public:
   void resized() override;
   void buttonClicked (Button* button) override;
   
-  String getScoreWithSnitchMarks();
+  String getScoreWithSnitchMarks() const;
   int getScore();
   bool getSnitchCatchState(char period = 'r');
   
@@ -49,10 +53,6 @@ private:
   static const String regMarker;
   static const String otMarker;
   static const String dotMarker;
-  
-  static const char reg = 'r';
-  static const char ot = 'o';
-  static const char dot = 'd';
   
   bool leftButtons;
   

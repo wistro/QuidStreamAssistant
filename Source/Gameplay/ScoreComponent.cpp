@@ -100,7 +100,7 @@ void ScoreComponent::buttonClicked (Button* button)
 
 }
 
-String ScoreComponent::getScoreWithSnitchMarks()
+String ScoreComponent::getScoreWithSnitchMarks() const
 {
   return showScore.getText();
 }

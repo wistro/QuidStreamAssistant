@@ -36,6 +36,7 @@ public:
   String getTournamentName();
   String getTournamentLocation();
   StringArray getRoundsList();
+  StringArray getTeamAbvList();
   
   String getTeamList(); //pipe delineated
   
@@ -43,6 +44,7 @@ public:
   void fillThisSucker(String name, String location, String rounds, File pic);
   
   Image logo;
+  OwnedArray<Team> teams;
 
   static StringArray setTournamentList();
   static void refreshTournamentList();
@@ -64,9 +66,8 @@ private:
   String tournamentName;
   String tournamentLocation;
   
-  OwnedArray<Team> teams;
-  
   StringArray teamsList;
+  StringArray teamsAbvList;
   StringArray roundsList;
   
   

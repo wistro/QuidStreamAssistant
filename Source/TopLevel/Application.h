@@ -14,6 +14,7 @@
 #include "../ToolWindows/EditTournamentWindow.h"
 #include "../Settings/StoredSettings.h"
 #include "../Settings/Tournament.h"
+#include "../Settings/CustomLookAndFeel.h"
 
 //==============================================================================
 class QuidStreamAssistantApplication  : public JUCEApplication

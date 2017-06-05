@@ -10,7 +10,6 @@ Author:  Willow Rosenberg
 
 #pragma once
 #include "../Settings/OSDependencyThings.h"
-#include "../TopLevel/MainComponent.h"
 #include "IntroAlertWindow.h"
 
 //==============================================================================
