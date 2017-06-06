@@ -90,7 +90,13 @@ EditTournamentWindow::EditTournamentWindow()
     tournName.setText(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName());
     location.setText(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentLocation());
     if ( QuidStreamAssistantApplication::getApp().thisTournament->logo.isValid() )
-      logoImage.setTextToShowWhenEmpty("logo exists for this Tournament. add file here to change", Colours::black.withAlpha(0.5f));
+      logoImage.setTextToShowWhenEmpty("logo exists for this Tournament. add file here to change",
+                                       Colours::black.withAlpha(0.5f));
+    prevTeams.addArray(QuidStreamAssistantApplication::getApp().thisTournament->getTeamList());
+  }
+  else
+  {
+    prevTeams = {};
   }
 
 }
@@ -174,7 +180,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
       }
     }
     
-    QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+    QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
     QuidStreamAssistantApplication::getApp().editTournament = nullptr;
   }
   

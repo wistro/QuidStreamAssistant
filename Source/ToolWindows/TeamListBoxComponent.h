@@ -34,7 +34,7 @@ class TeamListBoxComponent  : public Component,
 {
 public:
   TeamListBoxComponent();
-  TeamListBoxComponent( StringArray teams );
+  TeamListBoxComponent( StringArray prevTeams );
   ~TeamListBoxComponent();
   
   // This is overloaded from TableListBoxModel, and must return the total number of rows in our table

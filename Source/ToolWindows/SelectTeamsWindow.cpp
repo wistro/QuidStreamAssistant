@@ -112,6 +112,7 @@ void SelectTeamsWindow::buttonClicked(Button* button)
   }
   else if ( button == &saveTournament )
   {
+    QuidStreamAssistantApplication::getApp().thisTournament->clearTeamsList();
     for ( int i = 0; i < teamList->getNumRows(); i++ )
     {
       if ( teamList->getToggled(i) )

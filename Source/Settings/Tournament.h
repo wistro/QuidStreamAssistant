@@ -27,6 +27,7 @@ public:
   static String getDefaultFileName();
   
   void clear();
+  void clearTeamsList();
   
   void addTeam(String teamName);
   void addRound(String newRound);

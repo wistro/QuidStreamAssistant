@@ -131,14 +131,15 @@ void GameplayComponent::resized()
   const int fullWidth = area.getWidth();
   
   Rectangle<int> topBar(area.removeFromTop(textHeight * 3));
-  Rectangle<int> team1Side ( topBar.removeFromLeft( (fullWidth - timeWidth) / 2 ) );
+  Rectangle<int> team1Side ( topBar.removeFromLeft( (fullWidth - timeWidth) / 2 ));
   tournament.setBounds(team1Side.removeFromTop(textHeight).reduced(margin));
-  useAbvs.setBounds(topBar.removeFromBottom(textHeight).reduced(margin));
+  useAbvs.setBounds(team1Side.removeFromBottom(textHeight).reduced(margin));
   teamOne.setBounds(team1Side.removeFromLeft(buttonWidth).reduced(margin));
   team1.setBounds(team1Side.reduced(margin));
 
-  
-  gameTime.setBounds(topBar.removeFromLeft(timeWidth));
+  Rectangle<int> timeDisplay (topBar.removeFromLeft(timeWidth));
+  timeDisplay.removeFromBottom(textHeight);
+  gameTime.setBounds(timeDisplay);
   
   Rectangle<int> roundBit ( topBar.removeFromTop(textHeight) );
   round.setBounds(roundBit.removeFromLeft(buttonWidth).reduced(margin));
@@ -148,8 +149,6 @@ void GameplayComponent::resized()
   teamTwo.setBounds(topBar.removeFromLeft(buttonWidth).reduced(margin));
   team2.setBounds(topBar.reduced(margin));
   
-  Rectangle<int> bottomBar(area.removeFromBottom(textHeight * 2));
-  gameSetup.setBounds(bottomBar.removeFromRight(buttonWidth));
 //  outputFile.setBounds(bottomBar.removeFromLeft(timeWidth).reduced(margin));
 //  browse.setBounds(bottomBar.removeFromRight(buttonWidth).reduced(margin));
 //  outputFileBox.setBounds(bottomBar.reduced(margin));
@@ -157,7 +156,9 @@ void GameplayComponent::resized()
   //if the math checks out, these two lines leave a box of width scoresWidth
   //at the centre of the window
   area.removeFromLeft( ( fullWidth - scoresWidth ) / 2);
-  area.removeFromRight( ( fullWidth - scoresWidth ) / 2);
+  Rectangle<int> bottomBar (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
+  bottomBar = bottomBar.removeFromBottom(textHeight * 2);
+  gameSetup.setBounds(bottomBar.removeFromRight(buttonWidth));
   
   snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
   score1.setBounds(area.removeFromLeft(scoresWidth / 3).reduced(margin));

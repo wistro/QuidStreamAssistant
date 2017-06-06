@@ -97,7 +97,7 @@ StringArray Team::setTeamList()
 
 void Team::refreshTeamList()
 {
-  //I don't want the default tournament file in the list
+  //I don't want the default team file in the list
   //so we will remove it once we've created the list
   const File remove (getTeamsFolder().getChildFile (getDefaultFileName()).withFileExtension (getTeamFileSuffix()));
   Array<File> newTeams;
@@ -311,10 +311,6 @@ void Team::writeToFile (const File& file) const
     MemoryOutputStream imageData;
     if (PNGImageFormat().writeImageToStream (logo, imageData))
       xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
-//    else if (JPEGImageFormat().writeImageToStream(logo, imageData))
-//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
-//    else if (GIFImageFormat().writeImageToStream(logo, imageData))
-//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
   }
   else
   {

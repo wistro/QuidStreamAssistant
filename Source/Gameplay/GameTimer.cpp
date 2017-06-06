@@ -57,7 +57,7 @@ GameTimer::GameTimer()
   
   nameTheThing.setText("Game Time", dontSendNotification);
   nameTheThing.setJustificationType(Justification::centred);
-  nameTheThing.setFont(14.0f);
+  nameTheThing.setFont(20.0f);
   addAndMakeVisible(nameTheThing);
 }
 
@@ -79,14 +79,14 @@ void GameTimer::resized()
   Rectangle<int> area(getLocalBounds());
   const int margin = 4;
   const int buttonDim = (area.getHeight() / 2) - (margin / 2);
-  const int textHeight = 20;
-
-  nameTheThing.setBounds(area.removeFromBottom(textHeight));
+  const int textHeight = 21;
   
   Rectangle<int> buttonArea(area.removeFromRight(buttonDim));
   playPause.setBounds(buttonArea.removeFromTop(buttonDim));
   stop.setBounds(buttonArea.removeFromBottom(buttonDim));
-  
+
+  nameTheThing.setBounds(area.removeFromBottom(textHeight));
+
   gameTime.setBounds(area);
 
 }

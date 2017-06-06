@@ -158,7 +158,7 @@ void EditTeamWindow::buttonClicked (Button* button)
       {
         if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
                         "Team Name Changed!",
-                        "You have edited the name of this Team. Do you want to overwrite the original version, or make a new Team with the new name (keeping both)?",
+                        "You have edited the name of this Team. Do you want to overwrite the original version (OK), or make a new Team with the new name (keeping both) (Cancel)?",
                         String("Overwrite Existing"),
                         String("Create New")) )
         {

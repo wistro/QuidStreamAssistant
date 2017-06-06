@@ -129,6 +129,13 @@ void Tournament::clear()
   readFromFile(defaults);
 }
 
+void Tournament::clearTeamsList()
+{
+  teams.clear();
+  teamsList.clear();
+  teamsAbvList.clear();
+}
+
 //==============================================================================
 
 void Tournament::addTeam(String teamName)
@@ -317,10 +324,6 @@ void Tournament::writeToFile (const File& file) const
     MemoryOutputStream imageData;
     if (PNGImageFormat().writeImageToStream (logo, imageData))
       xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
-//    else if (JPEGImageFormat().writeImageToStream(logo, imageData))
-//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
-//    else if (GIFImageFormat().writeImageToStream(logo, imageData))
-//      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
   }
   else
     xml->createNewChildElement("logo")->addTextElement("NOLOGO");

@@ -69,6 +69,16 @@ void QuidStreamAssistantApplication::showTeamSelectWindow()
                 600, 500, 600, 500, 600, 500);
 }
 
+void QuidStreamAssistantApplication::showTeamSelectWindow( StringArray prevTeams )
+{
+  if (teamSelect != nullptr)
+    teamSelect->toFront (true);
+  else
+    new FloatingToolWindow ("Select The Teams That Will Be Attending", "teamSelectWindowPos", new SelectTeamsWindow(prevTeams),
+                            teamSelect, false,
+                            600, 500, 600, 500, 600, 500);
+}
+
 void QuidStreamAssistantApplication::showEditTeamWindow()
 {
   if (editTeam != nullptr)
@@ -96,7 +106,7 @@ void QuidStreamAssistantApplication::showStreamingWindow()
   else
     new FloatingToolWindow ("Streaming Nervecentre", "streamingWindowPos", new GameplayComponent(),
                             streamingWindow, false,
-                            1200, 500, 1200, 500, 1200, 500);
+                            1000, 380, 1000, 380, 1000, 380);
 }
 
 //==============================================================================
