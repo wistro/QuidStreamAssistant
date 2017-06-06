@@ -27,14 +27,11 @@ TeamListBoxComponent::TeamListBoxComponent()   : font (14.0f)
   initBasics();
 }
 
-TeamListBoxComponent::TeamListBoxComponent( String teamsPipeDelineated ) : font(14.0f)
+TeamListBoxComponent::TeamListBoxComponent( StringArray prevTeams ) : font(14.0f)
 {
   Team::refreshTeamList();
   
   selectTeams.clear();
-  
-  StringArray prevSelectedTeams;
-  prevSelectedTeams.addTokens(teamsPipeDelineated, "|");
   
   numRows = Team::teamList.size();
   
@@ -42,7 +39,7 @@ TeamListBoxComponent::TeamListBoxComponent( String teamsPipeDelineated ) : font(
   {
     selectTeams.add(new SelectableTeam(Team::teamList[i]));
     
-    if ( prevSelectedTeams.contains(Team::teamList[i]) )
+    if ( prevTeams.contains(Team::teamList[i]) )
     {
       selectTeams[i]->selected.setToggleState(true, dontSendNotification);
     }

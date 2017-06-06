@@ -38,7 +38,7 @@ public:
   StringArray getRoundsList();
   StringArray getTeamAbvList();
   
-  String getTeamList(); //pipe delineated
+  StringArray getTeamList();
   
   void fillThisSucker(String name, String location, String rounds);
   void fillThisSucker(String name, String location, String rounds, File pic);

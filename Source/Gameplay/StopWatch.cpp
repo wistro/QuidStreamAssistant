@@ -71,6 +71,7 @@ void StopWatch::paint (Graphics& g)
   }
   
   currentTime.setText (min + ":" + sec, sendNotification);
+  currentTime.setBounds(getLocalBounds());
 }
 
 void StopWatch::resized()

@@ -15,13 +15,15 @@
 #include "../Settings/Tournament.h"
 
 //==============================================================================
-GameplayComponent::GameplayComponent() : score2(false)
+GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
 {
   //default locations
   writeHereDir = File::getSpecialLocation(File::userHomeDirectory).getChildFile("QuidStreamAssistant/Overlays/output");
   writeHere = writeHereDir.getChildFile("output.xml");
+  writeHere.create(); //for now, just make them, we'll let people choose later
+  
   tournamentName = QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName();
-  teamList.addTokens( QuidStreamAssistantApplication::getApp().thisTournament->getTeamList(), "|" );
+  teamList.addArray(QuidStreamAssistantApplication::getApp().thisTournament->getTeamList());
   teamAbvs.addArray(QuidStreamAssistantApplication::getApp().thisTournament->getTeamAbvList());
   
   team1.addItemList(teamList, 1);
@@ -37,6 +39,7 @@ GameplayComponent::GameplayComponent() : score2(false)
   addAndMakeVisible(teamTwo);
   
   tournament.setText(tournamentName, dontSendNotification);
+  tournament.setFont(35.0f);
   addAndMakeVisible(tournament);
   
   round.setText("Round:", dontSendNotification);
@@ -65,6 +68,10 @@ GameplayComponent::GameplayComponent() : score2(false)
   gameSetup.addListener(this);
   addAndMakeVisible(gameSetup);
   
+  switchEnds.setButtonText("Switch\nEnds");
+  switchEnds.addListener(this);
+  addAndMakeVisible(switchEnds);
+  
   useAbvs.setButtonText("Use Team Abbvreviations in Stream");
   addAndMakeVisible(useAbvs);
   
@@ -84,6 +91,10 @@ GameplayComponent::GameplayComponent() : score2(false)
   snitchesGetStitches.snitchOT.addListener(this);
   snitchesGetStitches.snitch2OT.addListener(this);
   gameTime.gameTime.currentTime.addListener(this);
+  
+  sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
+//  sopShow.addListener(this);
+  addAndMakeVisible(sopShow);
 
 }
 
@@ -97,6 +108,7 @@ GameplayComponent::~GameplayComponent()
   lowerthird.removeListener(this);
   endScreen.removeListener(this);
   gameSetup.removeListener(this);
+  switchEnds.removeListener(this);
 }
 
 //==============================================================================
@@ -107,14 +119,50 @@ void GameplayComponent::paint (Graphics& g)
 
 void GameplayComponent::resized()
 {
-  // This method is where you should set the bounds of any child
-  // components that your component contains..
+  const int timeWidth = 170;
+  const int textHeight = 40;
+  const int buttonWidth = 70;
+  const int margin = 4;
+  const int scoresWidth = 240;
+  const int snitchHeight = 170;
   
-  snitchesGetStitches.setBounds(0, 0, 100, 155);
-  score1.setBounds(110, 160, 70, 50);
-  score2.setBounds(200, 160, 70, 50);
-  gameTime.setBounds(150, 0, 170, 90);
+  Rectangle<int> area(getLocalBounds());
+  
+  const int fullWidth = area.getWidth();
+  
+  Rectangle<int> topBar(area.removeFromTop(textHeight * 3));
+  Rectangle<int> team1Side ( topBar.removeFromLeft( (fullWidth - timeWidth) / 2 ) );
+  tournament.setBounds(team1Side.removeFromTop(textHeight).reduced(margin));
+  useAbvs.setBounds(topBar.removeFromBottom(textHeight).reduced(margin));
+  teamOne.setBounds(team1Side.removeFromLeft(buttonWidth).reduced(margin));
+  team1.setBounds(team1Side.reduced(margin));
 
+  
+  gameTime.setBounds(topBar.removeFromLeft(timeWidth));
+  
+  Rectangle<int> roundBit ( topBar.removeFromTop(textHeight) );
+  round.setBounds(roundBit.removeFromLeft(buttonWidth).reduced(margin));
+  roundList.setBounds(roundBit.reduced(margin));
+  
+  sopShow.setBounds(topBar.removeFromBottom(textHeight).reduced(margin));
+  teamTwo.setBounds(topBar.removeFromLeft(buttonWidth).reduced(margin));
+  team2.setBounds(topBar.reduced(margin));
+  
+  Rectangle<int> bottomBar(area.removeFromBottom(textHeight * 2));
+  gameSetup.setBounds(bottomBar.removeFromRight(buttonWidth));
+//  outputFile.setBounds(bottomBar.removeFromLeft(timeWidth).reduced(margin));
+//  browse.setBounds(bottomBar.removeFromRight(buttonWidth).reduced(margin));
+//  outputFileBox.setBounds(bottomBar.reduced(margin));
+  
+  //if the math checks out, these two lines leave a box of width scoresWidth
+  //at the centre of the window
+  area.removeFromLeft( ( fullWidth - scoresWidth ) / 2);
+  area.removeFromRight( ( fullWidth - scoresWidth ) / 2);
+  
+  snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
+  score1.setBounds(area.removeFromLeft(scoresWidth / 3).reduced(margin));
+  switchEnds.setBounds(area.removeFromLeft(scoresWidth / 3).reduced(margin));
+  score2.setBounds(area.reduced(margin));
 }
 
 //==============================================================================
@@ -229,6 +277,45 @@ void GameplayComponent::buttonClicked (Button* button)
     //...in theory
     writeToFile( true );
   }
+  else if ( button == &switchEnds )
+  {
+    int tempTeam = team1.getSelectedId();
+    int tempScore = score1.getScore();
+    String tempSnitchMarkers = score1.getSnitchMarkers();
+    
+    team1.setSelectedId(team2.getSelectedId());
+    team2.setSelectedId(tempTeam);
+    
+    score1.setScore(score2.getScore(), score2.getSnitchMarkers());
+    score2.setScore(tempScore, tempSnitchMarkers);
+    
+    if ( snitchesGetStitches.snitchReg.getValue() != 1 )
+    {
+      //slider.getValue() will either be 0 or 2.
+      //if it is 2, we want it to be 0, if it's 0 we want it to be 2.
+      //so, we subtract 2 from the value and then take the absolute value of the result
+      //giving either 0 or 2
+      snitchesGetStitches.snitchReg.setValue(abs(int(snitchesGetStitches.snitchReg.getValue() - 2)), dontSendNotification);
+    }
+    
+    if ( snitchesGetStitches.snitchOT.getValue() != 1 )
+    {
+      //slider.getValue() will either be 0 or 2.
+      //if it is 2, we want it to be 0, if it's 0 we want it to be 2.
+      //so, we subtract 2 from the value and then take the absolute value of the result
+      //giving either 0 or 2
+      snitchesGetStitches.snitchOT.setValue(abs(int(snitchesGetStitches.snitchOT.getValue() - 2)), dontSendNotification);
+    }
+    
+    if ( snitchesGetStitches.snitch2OT.getValue() != 1 )
+    {
+      //slider.getValue() will either be 0 or 2.
+      //if it is 2, we want it to be 0, if it's 0 we want it to be 2.
+      //so, we subtract 2 from the value and then take the absolute value of the result
+      //giving either 0 or 2
+      snitchesGetStitches.snitch2OT.setValue(abs(int(snitchesGetStitches.snitch2OT.getValue() - 2)), dontSendNotification);
+    }
+  }
 }
 
 void GameplayComponent::labelTextChanged (Label* label)
@@ -236,6 +323,8 @@ void GameplayComponent::labelTextChanged (Label* label)
   if ( label == &gameTime.gameTime.currentTime );
   {
     writeToFile ();
+    sopTimer.operator-=(1);
+    sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
   }
 }
 

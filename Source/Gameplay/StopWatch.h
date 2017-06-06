@@ -34,10 +34,10 @@ public:
   void resetTimer();
   
   Label currentTime;
+  RelativeTime timer;
+
 
 private:
-  
-  RelativeTime timer;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (StopWatch)
 };

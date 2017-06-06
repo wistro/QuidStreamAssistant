@@ -19,7 +19,7 @@ class SelectTeamsWindow  : public Component,
 {
 public:
   SelectTeamsWindow();
-  SelectTeamsWindow( String teamsPipeDelineated );
+  SelectTeamsWindow( StringArray teams );
   ~SelectTeamsWindow();
   
   //==============================================================================

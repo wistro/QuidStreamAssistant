@@ -21,9 +21,9 @@ SelectTeamsWindow::SelectTeamsWindow()
   initBasics();
 }
 
-SelectTeamsWindow::SelectTeamsWindow( String teamsPipeDelineated )
+SelectTeamsWindow::SelectTeamsWindow( StringArray teams )
 {
-  teamList = new TeamListBoxComponent( teamsPipeDelineated );
+  teamList = new TeamListBoxComponent( teams );
   addAndMakeVisible(teamList);
   
   initBasics();
@@ -125,6 +125,8 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     }
     const File file ( Tournament::getTournamentsFolder().getChildFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName()).withFileExtension(Tournament::getTournamentFileSuffix()));
     QuidStreamAssistantApplication::getApp().thisTournament->writeToFile(file);
+    QuidStreamAssistantApplication::getApp().showStreamingWindow();
+    QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
   }
   else if ( button == &cancel )
   {

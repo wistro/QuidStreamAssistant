@@ -193,9 +193,9 @@ String Tournament::getTournamentLocation()
   return tournamentLocation;
 }
 
-String Tournament::getTeamList()
+StringArray Tournament::getTeamList()
 {
-  return teamsList.joinIntoString("|"); //returns a pipe delineated string of all teams at this tournament
+  return teamsList; //returns a pipe delineated string of all teams at this tournament
 }
 
 StringArray Tournament::getRoundsList()

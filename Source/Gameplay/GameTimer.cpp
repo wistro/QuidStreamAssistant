@@ -51,7 +51,6 @@ GameTimer::GameTimer()
   addAndMakeVisible(playPause);
   addAndMakeVisible(stop);
   addAndMakeVisible(gameTime);
-  addAndMakeVisible(nameTheThing);
   
   playPause.addListener(this);
   stop.addListener(this);
@@ -59,7 +58,7 @@ GameTimer::GameTimer()
   nameTheThing.setText("Game Time", dontSendNotification);
   nameTheThing.setJustificationType(Justification::centred);
   nameTheThing.setFont(14.0f);
-  addAndMakeVisible(gameTime);
+  addAndMakeVisible(nameTheThing);
 }
 
 GameTimer::~GameTimer()

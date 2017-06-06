@@ -47,6 +47,8 @@ public:
   void showEditTeamWindow();
   void showEditTeamWindow(String teamName);
   
+  void showStreamingWindow();
+  
   //==============================================================================
 
   ScopedPointer<StoredSettings> settings;
@@ -56,6 +58,7 @@ public:
   ScopedPointer<Component> editTournament;
   ScopedPointer<Component> teamSelect;
   ScopedPointer<Component> editTeam;
+  ScopedPointer<Component> streamingWindow;
   
   CustomLookAndFeel defaultLook;
   ScopedPointer<MainAppWindow> mainWindow;

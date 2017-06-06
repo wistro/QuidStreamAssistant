@@ -51,6 +51,8 @@ ScoreComponent::~ScoreComponent()
   decrease.removeListener(this);
 }
 
+//==============================================================================
+
 void ScoreComponent::paint (Graphics& g)
 {
    
@@ -100,9 +102,17 @@ void ScoreComponent::buttonClicked (Button* button)
 
 }
 
+//==============================================================================
+
 String ScoreComponent::getScoreWithSnitchMarks() const
 {
   return showScore.getText();
+}
+
+void ScoreComponent::setScore(int newScore, String newMarkers)
+{
+  score = newScore;
+  snitchMarkers = newMarkers;
 }
 
 //returns true if the corresponding snitch catch flag is true
@@ -133,6 +143,13 @@ int ScoreComponent::getScore()
 {
   return score;
 }
+
+String ScoreComponent::getSnitchMarkers()
+{
+  return snitchMarkers;
+}
+
+//==============================================================================
 
 void ScoreComponent::addSnitchCatch(char period)
 {

@@ -36,6 +36,14 @@ public:
   void checkSnitchMistakes(char period);
   
   void writeToFile ( bool gameSetup = false ) const;
+  
+  //technically this is 17 min and 1 second because
+  //we update the sop timer every time the gametime value changes
+  //and so it gets updated when the initial 00:00 gets set
+  //so at that point it will remove the extra second and the timer will be accurate
+  static const int sopInSec = 1021; //17 minutes in seconds
+  static const int seekersInSec = 60; //1 minute after snitch released
+  static const int handicapsInSec = 300; //after seekers released, each handicap is 5 minutes
 
 private:
     
@@ -53,6 +61,7 @@ private:
   TextEditor outputFileBox;
   TextButton browse;
   TextButton gameSetup;
+  TextButton switchEnds;
   
   File writeHere;
   File writeHereDir;
@@ -70,6 +79,10 @@ private:
   StringArray teamAbvs;
   ToggleButton useAbvs;
   
+  RelativeTime sopTimer;
+  ToggleButton sopShow;
+  
+  //probably going to move these to their own window
   ToggleButton corner;
   ToggleButton lowerthird;
   ToggleButton endScreen;

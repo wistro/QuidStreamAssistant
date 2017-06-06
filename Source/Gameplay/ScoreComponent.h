@@ -41,10 +41,13 @@ public:
   
   String getScoreWithSnitchMarks() const;
   int getScore();
+  String getSnitchMarkers();
   bool getSnitchCatchState(char period = 'r');
   
   void addSnitchCatch(char period = 'r');
   void removeSnitchCatch(char period = 'r');
+  
+  void setScore(int newScore, String newMarkers);
 
 private:
   

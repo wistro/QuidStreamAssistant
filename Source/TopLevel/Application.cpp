@@ -13,6 +13,7 @@
 #include "../Settings/FloatingToolWindow.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
 #include "../ToolWindows/EditTeamWindow.h"
+#include "../Gameplay/GameplayComponent.h"
 
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
 {
@@ -35,13 +36,15 @@ void QuidStreamAssistantApplication::shutdown()
 {
   // Add your application's shutdown code here..
   
-  settings = nullptr;
-  thisTournament = nullptr;
-  commandManager = nullptr;
   mainWindow = nullptr;
   editTournament = nullptr;
   teamSelect = nullptr;
   editTeam = nullptr;
+  streamingWindow = nullptr;
+  thisTournament = nullptr;
+
+  settings = nullptr;
+  commandManager = nullptr;
 }
 
 //==============================================================================
@@ -84,6 +87,16 @@ void QuidStreamAssistantApplication::showEditTeamWindow(String teamName)
     new FloatingToolWindow ("Edit Team Details", "editTeamWindowPos", new EditTeamWindow(teamName),
                 editTeam, false,
                 800, 600, 800, 600, 800, 600);
+}
+
+void QuidStreamAssistantApplication::showStreamingWindow()
+{
+  if (streamingWindow != nullptr)
+    streamingWindow->toFront (true);
+  else
+    new FloatingToolWindow ("Streaming Nervecentre", "streamingWindowPos", new GameplayComponent(),
+                            streamingWindow, false,
+                            1200, 500, 1200, 500, 1200, 500);
 }
 
 //==============================================================================
