@@ -3,14 +3,14 @@
   --block-height: 40px;
   --gutter-width: -4px;
 
-/*don't ask. I have no idea why any of these really random numbers work nicely
-together, but they do so we're not questioning it */
-  --corner-width: calc(100% * 5/15);
+/*1/4 of the width of a 1080p display */
+/*if streaming in 720p, change corner-width to 320px*/
+  --corner-width: 480px;
   --corner-inset: 10px;
 
-  --width-small: calc(100% / 9);
-  --width-med: calc(var(--width-small) * (2));
-  --width-large: calc(var(--width-small) * 2.6);
+  --width-small: calc((var(--corner-width) / 4));
+/*  --width-med: calc(var(--width-small) * (2)); */
+  --width-large: calc(var(--width-small) * 1.5);
 }
 
 .colorB { height: var(--block-height); }
@@ -34,18 +34,18 @@ together, but they do so we're not questioning it */
 .team
 {
   position: absolute;
-  top: var(--border-width);
-  width: calc(var(--width-large));
-  bottom: var(--border-width);
+  top: 0;
+  width: var(--width-small);
+  bottom: 0;
 }
 .team1
 {
-  border-radius: calc(var(--border-curve)/2) 0 0 calc(var(--border-curve)/2);
-  left: var(--border-width);
+  border-radius: var(--border-curve) 0 0 var(--border-curve);
+  left: 0;
 }
 .team2
 {
-  right: calc(var(--width-small) + var(--border-width) * 2);
+  right: var(--width-small);
 }
 
 .team1 .title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle;}
@@ -54,8 +54,8 @@ together, but they do so we're not questioning it */
 .team .thumb
 {
   position: absolute;
-  top: var(--border-width);
-  bottom: var(--border-width);
+  top: 0;
+  bottom: 0;
   width: calc(var(--width-large) * 80%);
   z-index: 50;
   opacity: 0.5;
@@ -66,10 +66,10 @@ together, but they do so we're not questioning it */
 .score
 {
   position: absolute;
-  top: var(--border-width);
-  left: calc(var(--width-large) + var(--border-width)*2);
-  width: calc(var(--width-med) + var(--border-width));
-  bottom: var(--border-width);
+  top: 0;
+  left: var(--width-small);
+  width: var(--width-small);
+  bottom: 0;
 }
 .score .title
 {
@@ -100,11 +100,11 @@ together, but they do so we're not questioning it */
 .gameTime
 {
   position: absolute;
-  top: var(--border-width);
-  right: var(--border-width);
-  width: calc(var(--width-small));
-  bottom: var(--border-width);
-  border-radius: 0 calc(var(--border-curve)/2) calc(var(--border-curve)/2) 0;
+  top: 0;
+  right: 0;
+  width: var(--width-small);
+  bottom: 0;
+  border-radius: 0 var(--border-curve) var(--border-curve) 0;
 }
 
 .tournament

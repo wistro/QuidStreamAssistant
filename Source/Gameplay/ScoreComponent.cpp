@@ -113,6 +113,7 @@ void ScoreComponent::setScore(int newScore, String newMarkers)
 {
   score = newScore;
   snitchMarkers = newMarkers;
+  showScore.setText(String(score) + snitchMarkers, sendNotification);
 }
 
 //returns true if the corresponding snitch catch flag is true

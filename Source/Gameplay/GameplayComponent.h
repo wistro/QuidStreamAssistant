@@ -44,6 +44,7 @@ public:
   static const int sopInSec = 1021; //17 minutes in seconds
   static const int seekersInSec = 60; //1 minute after snitch released
   static const int handicapsInSec = 300; //after seekers released, each handicap is 5 minutes
+  static const StringArray FLAGS;
 
 private:
     
@@ -86,7 +87,11 @@ private:
   ToggleButton corner;
   ToggleButton lowerthird;
   ToggleButton endScreen;
-
+  
+  int countdownFlag;
+  bool showCorner;
+  bool showLowerThird;
+  bool showEndScreen;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameplayComponent)
 };

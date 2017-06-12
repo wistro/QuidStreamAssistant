@@ -14,6 +14,15 @@
 #include "ScoreComponent.h"
 #include "../Settings/Tournament.h"
 
+const StringArray GameplayComponent::FLAGS =
+{
+  "Snitch on Pitch in: ",
+  "Seekers Released in: ",
+  "1st Handicap in: ",
+  "2nd Handicap in: ",
+  "3rd Handicap in: "
+};
+
 //==============================================================================
 GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
 {
@@ -21,6 +30,7 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
   writeHereDir = File::getSpecialLocation(File::userHomeDirectory).getChildFile("QuidStreamAssistant/Overlays/output");
   writeHere = writeHereDir.getChildFile("output.xml");
   writeHere.create(); //for now, just make them, we'll let people choose later
+  writeHere.getChildFile("tournament.png").deleteFile(); //on init, delete any old tournament logo file that exists
   
   tournamentName = QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName();
   teamList.addArray(QuidStreamAssistantApplication::getApp().thisTournament->getTeamList());
@@ -95,6 +105,11 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
   sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
 //  sopShow.addListener(this);
   addAndMakeVisible(sopShow);
+  
+  countdownFlag = 0; //0 = Snitch on pitch countdown
+  showCorner = false;
+  showLowerThird = false;
+  showEndScreen = false;
 
 }
 
@@ -149,6 +164,11 @@ void GameplayComponent::resized()
   teamTwo.setBounds(topBar.removeFromLeft(buttonWidth).reduced(margin));
   team2.setBounds(topBar.reduced(margin));
   
+  Rectangle<int> bottomBar ( area.removeFromBottom(textHeight) );
+  corner.setBounds(bottomBar.removeFromLeft(fullWidth / 3).reduced(margin));
+  lowerthird.setBounds(bottomBar.removeFromLeft(fullWidth / 3).reduced(margin));
+  endScreen.setBounds(bottomBar.reduced(margin));
+  
 //  outputFile.setBounds(bottomBar.removeFromLeft(timeWidth).reduced(margin));
 //  browse.setBounds(bottomBar.removeFromRight(buttonWidth).reduced(margin));
 //  outputFileBox.setBounds(bottomBar.reduced(margin));
@@ -156,9 +176,9 @@ void GameplayComponent::resized()
   //if the math checks out, these two lines leave a box of width scoresWidth
   //at the centre of the window
   area.removeFromLeft( ( fullWidth - scoresWidth ) / 2);
-  Rectangle<int> bottomBar (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
-  bottomBar = bottomBar.removeFromBottom(textHeight * 2);
-  gameSetup.setBounds(bottomBar.removeFromRight(buttonWidth));
+  Rectangle<int> cornerButton (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
+  cornerButton = cornerButton.removeFromBottom(textHeight * 2);
+  gameSetup.setBounds(cornerButton.removeFromRight(buttonWidth));
   
   snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
   score1.setBounds(area.removeFromLeft(scoresWidth / 3).reduced(margin));
@@ -261,16 +281,15 @@ void GameplayComponent::buttonClicked (Button* button)
   }
   else if ( button == &corner )
   {
-    //find a way to signal to the JS to show/hide the thing without rewriting an entire XML file
+    showCorner = corner.getToggleState();
   }
   else if ( button == &lowerthird )
   {
-    //same as above
+    showLowerThird = lowerthird.getToggleState();
   }
   else if ( button == &endScreen )
   {
-    //and again, do the thing!
-    //maybe new files that either exist or don't?
+    showEndScreen = endScreen.getToggleState();
   }
   else if ( button == &gameSetup )
   {
@@ -323,9 +342,22 @@ void GameplayComponent::labelTextChanged (Label* label)
 {
   if ( label == &gameTime.gameTime.currentTime );
   {
-    writeToFile ();
     sopTimer.operator-=(1);
     sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
+    if ( sopTimer.inSeconds() == 0 )
+    {
+      countdownFlag++; //1 = seekers; 2 = 1st HC; 3 = 2nd HC; 4 = 3rd HC
+      if ( gameTime.gameTime.currentTimeSec() == sopInSec )
+      {
+        sopTimer.operator+=(seekersInSec);
+      }
+      else
+      {
+        sopTimer.operator+=(handicapsInSec);
+      }
+    }
+    
+    writeToFile ();
   }
 }
 
@@ -382,6 +414,35 @@ void GameplayComponent::writeToFile (bool gameSetup) const
   xml->createNewChildElement("s1")->addTextElement(score1.getScoreWithSnitchMarks());
   xml->createNewChildElement("s2")->addTextElement(score2.getScoreWithSnitchMarks());
   xml->createNewChildElement("gt")->addTextElement(gameTime.gameTime.currentTime.getText());
+  xml->createNewChildElement("corner")->addTextElement(String(showCorner));
+  xml->createNewChildElement("lowerthird")->addTextElement(String(showLowerThird));
+  xml->createNewChildElement("endscreen")->addTextElement(String(showEndScreen));
+  
+  int minutes = floor(sopTimer.inMinutes());
+  int seconds = sopTimer.inSeconds() - (minutes * 60);
+  
+  String min = "";
+  String sec = "";
+  
+  if ( minutes < 10 )
+  {
+    min = "0" + String(minutes);
+  }
+  else
+  {
+    min = String(minutes);
+  }
+  
+  if ( seconds < 10 )
+  {
+    sec = "0" + String(seconds);
+  }
+  else
+  {
+    sec = String(seconds);
+  }
+  
+  xml->createNewChildElement("countdown")->addTextElement(GameplayComponent::FLAGS[countdownFlag] + min + ":" + sec);
   
   if ( ! useAbvs.getToggleState() )
   {
@@ -413,10 +474,6 @@ void GameplayComponent::writeToFile (bool gameSetup) const
 
       if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
         imageData.flush();
-//      else if (JPEGImageFormat().writeImageToStream(QuidStreamAssistant::getapp().thisTournament->logo, imageData))
-//        imageData.flush();
-//      else if (GIFImageFormat().writeImageToStream(QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-//        imageData.flush();
     }
     
     if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo.isValid() )
@@ -425,10 +482,6 @@ void GameplayComponent::writeToFile (bool gameSetup) const
       
       if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
         imageData.flush();
-//      else if (JPEGImageFormat().writeImageToStream(QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-//        imageData.flush();
-//      else if (GIFImageFormat().writeImageToStream(QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-//        imageData.flush();
     }
     
     if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo.isValid() )
@@ -437,10 +490,6 @@ void GameplayComponent::writeToFile (bool gameSetup) const
       
       if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
         imageData.flush();
-      //      else if (JPEGImageFormat().writeImageToStream(QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-      //        imageData.flush();
-      //      else if (GIFImageFormat().writeImageToStream(QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-      //        imageData.flush();
     }
   }
   

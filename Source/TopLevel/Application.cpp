@@ -106,7 +106,7 @@ void QuidStreamAssistantApplication::showStreamingWindow()
   else
     new FloatingToolWindow ("Streaming Nervecentre", "streamingWindowPos", new GameplayComponent(),
                             streamingWindow, false,
-                            1000, 380, 1000, 380, 1000, 380);
+                            1000, 410, 1000, 410, 1000, 410);
 }
 
 //==============================================================================

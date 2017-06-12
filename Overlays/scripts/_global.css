@@ -4,12 +4,13 @@
   --border-curve: 3px;
   --border-width: 3px;
 
-  --border-color: rgba(000,000,000,0.5);
-  --main-color1: rgba(255,000,000,0.5);
-  --main-color2: rgba(000,255,255,0.5);
-  --main-color3: rgba(255,255,255,0.5);
+  --border-color: rgba(255, 255, 255, 1);
+  --main-color1: rgba(22, 47, 113, 1);
+  --main-color2: linear-gradient(to right, rgba(22, 47, 113, 1), rgba(43, 66, 181, 1) 10%, rgba(43, 66, 181, 1) 90%, rgba(22, 47, 113, 1));
+  --main-color3: rgba(255, 255, 255, 0.5);
+  --main-color4: linear-gradient(to right, rgba(22, 47, 113, 1), rgba(43, 66, 181, 1) 10%);
 
-  --font-family: 'Helvetica';
+  --font-family: 'ABeeZee', sans-serif;
   --font-color: #FFFFFF;
   --font-xsmall: 14px;
   --font-small: 20px;
@@ -29,7 +30,7 @@ body
   color: var(--font-color);
   font-family: var(--font-family);
   font-weight: bold;
-  text-shadow: var(--font-shadow);
+/*  text-shadow: var(--font-shadow); */
   text-align: center;
   overflow: hidden;
 }
@@ -42,6 +43,7 @@ body
 .color1 { background: var(--main-color1); }
 .color2 { background: var(--main-color2); }
 .color3 { background: var(--main-color3); }
+.color4 { background: var(--main-color4); }
 
 .title
 {
