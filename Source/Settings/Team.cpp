@@ -58,6 +58,11 @@ File Team::getTeamsFolder()
   return f;
 }
 
+Team::~Team()
+{
+  team.clear();
+}
+
 //==============================================================================
 
 void Team::fillThisSucker(String name, String abv)

@@ -17,6 +17,7 @@ class Tournament
 {
 public:
   Tournament ();
+  ~Tournament();
   
   void readFromFile (const File& file);
   void readFromXML (const XmlElement&);

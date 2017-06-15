@@ -171,19 +171,22 @@ void EditTeamWindow::buttonClicked (Button* button)
         //no else necessary, create new just means ignore the old file and it'll stick around
       }
       
+      for ( int i = 0; i < roster->getNumRows(); i++ )
+      {
+        thisTeam->addPlayer(roster->getPlayer(i));
+      }
+      
       //some image input file was given, hopefully it was a real one
       if ( ! logoImage.isEmpty() )
       {
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
         {
-          for ( int i = 0; i < roster->getNumRows(); i++ )
-          {
-            thisTeam->addPlayer(roster->getPlayer(i));
-          }
           thisTeam->fillThisSucker(teamName.getText(), abvBox.getText(), image);
+          QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+          QuidStreamAssistantApplication::getApp().editTeam = nullptr;
         }
         else
         {
@@ -194,11 +197,10 @@ void EditTeamWindow::buttonClicked (Button* button)
       else
       {
         thisTeam->fillThisSucker(teamName.getText(), abvBox.getText());
+        QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+        QuidStreamAssistantApplication::getApp().editTeam = nullptr;
       }
     }
-    
-    QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
-    QuidStreamAssistantApplication::getApp().editTeam = nullptr;
   }
   
   //open a file browser to get an image

@@ -18,6 +18,7 @@ class Team
 public:
   Team ();
   Team ( const File& file );
+  ~Team();
   
   void readFromFile (const File& file);
   void readFromXML (const XmlElement&);

@@ -51,6 +51,7 @@ RosterListBoxComponent::RosterListBoxComponent( String teamName ) : font(14.0f)
   }
   else
   {
+    roster.clear();
     readFromFile(file);
   }
   
@@ -300,7 +301,7 @@ String RosterListBoxComponent::getAttributeNameForColumnId (const int columnId) 
 
 void RosterListBoxComponent::readFromXML (const XmlElement& xml)
 {
-  if ( xml.hasTagName("ROSTER") || xml.hasTagName("TEAM") )
+  if ( xml.hasTagName("TEAM") )
   {
     forEachXmlChildElement(xml, e)
     {

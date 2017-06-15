@@ -164,9 +164,11 @@ void EditTournamentWindow::buttonClicked (Button* button)
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
         {
           currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText(), image);
+          QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
+          QuidStreamAssistantApplication::getApp().editTournament = nullptr;
         }
         else
         {
@@ -177,11 +179,10 @@ void EditTournamentWindow::buttonClicked (Button* button)
       else
       {
         currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText());
+        QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
+        QuidStreamAssistantApplication::getApp().editTournament = nullptr;
       }
     }
-    
-    QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
-    QuidStreamAssistantApplication::getApp().editTournament = nullptr;
   }
   
   //open a file browser to get an image

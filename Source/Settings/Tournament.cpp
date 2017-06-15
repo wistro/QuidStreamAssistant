@@ -47,6 +47,11 @@ Tournament::Tournament ()
   readFromFile(defaults);
 }
 
+Tournament::~Tournament()
+{
+  teams.clear();
+}
+
 //==============================================================================
 
 File Tournament::getTournamentsFolder()

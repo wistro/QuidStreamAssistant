@@ -104,8 +104,8 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
   gameTime.gameTime.currentTime.addListener(this);
   gameTime.stop.addListener(this);
   
-  sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
-//  sopShow.addListener(this);
+  sopShow.setButtonText("Show Snitch On Pitch/Seekers/Handicap Countdown");
+  sopShow.addListener(this);
   addAndMakeVisible(sopShow);
   
   countdownFlag = 0; //0 = Snitch on pitch countdown
@@ -133,6 +133,7 @@ GameplayComponent::~GameplayComponent()
   endScreen.removeListener(this);
   gameSetup.removeListener(this);
   switchEnds.removeListener(this);
+  sopShow.removeListener(this);
 }
 
 //==============================================================================
@@ -156,7 +157,7 @@ void GameplayComponent::resized()
   
   Rectangle<int> topBar(area.removeFromTop(textHeight * 3));
   Rectangle<int> team1Side ( topBar.removeFromLeft( (fullWidth - timeWidth) / 2 ));
-  team1Side = team1Side.removeFromBottom(textHeight);
+  team1Side.removeFromBottom(textHeight);
   tournament.setBounds(team1Side.removeFromTop(textHeight).reduced(margin));
   teamOne.setBounds(team1Side.removeFromLeft(buttonWidth).reduced(margin));
   team1.setBounds(team1Side.reduced(margin));
@@ -331,11 +332,10 @@ void GameplayComponent::labelTextChanged (Label* label)
   if ( label == &gameTime.gameTime.currentTime );
   {
     sopTimer.operator-=(1);
-    sopShow.setButtonText("Show Snitch On Pitch/Handicap Countdown (" + sopTimer.getDescription() + ")");
     if ( sopTimer.inSeconds() == 0 )
     {
       countdownFlag++; //1 = seekers; 2 = 1st HC; 3 = 2nd HC; 4 = 3rd HC
-      if ( gameTime.gameTime.currentTimeSec() == sopInSec )
+      if ( countdownFlag == 1 )
       {
         sopTimer.operator+=(seekersInSec);
       }

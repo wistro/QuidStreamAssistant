@@ -15,7 +15,7 @@
 //==============================================================================
 /*
 */
-class Player : public Component
+class Player
 {
 public:
   Player();
