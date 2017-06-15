@@ -57,6 +57,7 @@ body
 }
 .title.display { opacity: 1; }
 
+.xsmall .title { font-size: var(--font-xsmall); }
 .small .title { font-size: var(--font-small); }
 .large .title { font-size: var(--font-large); }
 .xlarge .title { font-size: var(--font-xlarge); }
@@ -71,3 +72,8 @@ body
 .icon.iFB { background: url('../icons/FB.png'); background-position: center; background-size: 100%; }
 .icon.iTY { background: url('../icons/YT.png'); background-position: center; background-size: 100%; }
 .icon.TWC { background: url('../icons/TWC.png'); background-position: center; background-size: 100%; }
+
+.logo { display: block; height: 100%; }
+.logo.TN { background: url('../output/tournament.png'); background-position: center; background-size: 100%; }
+.logo.T1 { background: url('../output/t1.png'); background-position: center; background-size: 100%; }
+.logo.T2 {background: url('../output/t2.png'); background-position: center; background-size: 100%; }

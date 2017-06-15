@@ -47,7 +47,7 @@ public:
   void addSnitchCatch(char period = 'r');
   void removeSnitchCatch(char period = 'r');
   
-  void setScore(int newScore, String newMarkers);
+  void setScore(int newScore, String newMarkers = "");
 
 private:
   

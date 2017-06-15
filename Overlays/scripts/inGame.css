@@ -9,8 +9,9 @@
   --corner-inset: 10px;
 
   --width-small: calc((var(--corner-width) / 4));
-/*  --width-med: calc(var(--width-small) * (2)); */
-  --width-large: calc(var(--width-small) * 1.5);
+  --width-xsmall: calc((var(--width-small)) * 0.75);
+  --width-med: calc(var(--width-small) * 1.25);
+  /*--width-large: calc(var(--width-small) * 1.5);*/
 }
 
 .colorB { height: var(--block-height); }
@@ -45,7 +46,7 @@
 }
 .team2
 {
-  right: var(--width-small);
+  right: var(--width-xsmall);
 }
 
 .team1 .title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle;}
@@ -56,7 +57,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc(var(--width-large) * 80%);
+  width: calc(var(--width-small) * 80%);
   z-index: 50;
   opacity: 0.5;
 }
@@ -68,7 +69,7 @@
   position: absolute;
   top: 0;
   left: var(--width-small);
-  width: var(--width-small);
+  width: var(--width-med);
   bottom: 0;
 }
 .score .title
@@ -81,7 +82,7 @@
   left: 0;
   width: 40%;
   text-align: right;
-  padding-right: 5px;
+  /*padding-right: 5px;*/
 }
 .scoreDivider.title
 {
@@ -94,7 +95,7 @@
   left: 60%;
   width: 40%;
   text-align: left;
-  padding-left: 5px;
+  /*padding-left: 5px;*/
 }
 
 .gameTime
@@ -102,7 +103,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: var(--width-small);
+  width: var(--width-xsmall);
   bottom: 0;
   border-radius: 0 var(--border-curve) var(--border-curve) 0;
 }

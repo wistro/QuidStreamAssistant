@@ -21,7 +21,8 @@
 class GameplayComponent  : public Component,
                             public Slider::Listener,
                             public Button::Listener,
-                            public Label::Listener
+                            public Label::Listener,
+                            public ComboBox::Listener
 {
 public:
   GameplayComponent();
@@ -32,6 +33,7 @@ public:
   void sliderValueChanged (Slider* slider) override;
   void buttonClicked (Button* button) override;
   void labelTextChanged (Label* label) override;
+  void comboBoxChanged (ComboBox* box) override;
   
   void checkSnitchMistakes(char period);
   
@@ -54,13 +56,16 @@ private:
   Label teamOne;
   Label teamTwo;
   
+  ImageComponent t1logo;
+  ImageComponent t2logo;
+  
   ComboBox roundList;
   ComboBox team1;
   ComboBox team2;
   
-  Label outputFile;
-  TextEditor outputFileBox;
-  TextButton browse;
+//  Label outputFile;
+//  TextEditor outputFileBox;
+//  TextButton browse;
   TextButton gameSetup;
   TextButton switchEnds;
   
@@ -78,7 +83,6 @@ private:
   String tournamentName;
   StringArray teamList;
   StringArray teamAbvs;
-  ToggleButton useAbvs;
   
   RelativeTime sopTimer;
   ToggleButton sopShow;
@@ -92,6 +96,10 @@ private:
   bool showCorner;
   bool showLowerThird;
   bool showEndScreen;
+  bool hasLogoTourn;
+  bool hasLogoT1;
+  bool hasLogoT2;
+  bool showSOP;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameplayComponent)
 };

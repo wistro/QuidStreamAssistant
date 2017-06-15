@@ -28,12 +28,12 @@ public:
   void buttonClicked (Button* button) override;
   
   StopWatch gameTime;
+  DrawableButton stop;
 
 private:
   
   DrawableButton playPause;
-  DrawableButton stop;
-  
+
   DrawableImage play;
   DrawableImage pause;
   DrawableImage mouseOverPlay;

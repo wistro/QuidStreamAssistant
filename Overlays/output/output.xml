@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<output>
+  <tournament>QC Nats</tournament>
+  <round>Group Stage</round>
+  <s1>630*&#94;$</s1>
+  <s2>0</s2>
+  <t1>Valhalla</t1>
+  <t2>Winnipeg Whomping Willows</t2>
+  <t1short>VAL</t1short>
+  <t2short>WWW</t2short>
+  <gt>00:00</gt>
+  <corner>true</corner>
+  <lowerthird>false</lowerthird>
+  <endscreen>false</endscreen>
+  <sop>false</sop>
+  <tournlogo>true</tournlogo>
+  <t1logo>false</t1logo>
+  <t2logo>false</t2logo>
+</output>

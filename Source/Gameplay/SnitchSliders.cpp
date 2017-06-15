@@ -82,3 +82,10 @@ void SnitchSliders::resized()
   snitch2OT.setBounds(area.removeFromTop(sliderHeight));
   
 }
+
+void SnitchSliders::reset()
+{
+  snitchReg.setValue(1, dontSendNotification);
+  snitchOT.setValue(1, dontSendNotification);
+  snitch2OT.setValue(1, dontSendNotification);
+}

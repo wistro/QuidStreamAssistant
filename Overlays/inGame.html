@@ -1,6 +1,5 @@
 <head>
   <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/_global.js"></script>
   <script src="scripts/inGame.js"></script>
 
   <link rel="stylesheet" type="text/css" href="scripts/_global.css">
@@ -8,20 +7,24 @@
 </head>
 <body>
   <!-- top left corner in-game display -->
-  <div class="corner colorB xslow">
+  <div id="corner" class="corner colorB xslow">
     <div class="team team1 color1 small">
-      <div id="t1" class="title xslow display">NOR</div>
+      <div id="t1s" class="title xslow display">&nbsp;</div>
       <div id="i1" class="thumb"></div>
     </div>
 
     <div class="score color2 small">
-      <div id="s1" class="score1 title xslow display">0</div>
+      <div id="s1size" class="small">
+        <div id="s1" class="score1 title xslow display">0</div>
+      </div>
       <div id="sdivider" class="scoreDivider title xslow display">&nbsp;-&nbsp;</div>
-      <div id="s2" class="score2 title xslow display">0</div>
+      <div id="s1size" class="small">
+        <div id="s2" class="score2 title xslow display">0</div>
+      </div>
     </div>
 
     <div class="team team2 color1 small">
-      <div id="t2" class="title xslow display">UK</div>
+      <div id="t2s" class="title xslow display">&nbsp;</div>
       <div id="i2" class="thumb"></div>
     </div>
 
