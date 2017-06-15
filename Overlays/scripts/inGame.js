@@ -72,6 +72,14 @@ function runUpdate() {
   $('#s1').text(s1);
   $('#s2').text(s2);
   $('#gt').text(gt);
+  $('#cdn').text(cdn);
+
+  if ( showcountdown == "true" ) {
+    $('#cdn').parent().addClass('display');
+  }
+  else {
+    $('#cdn').parent().removeClass('display');
+  }
 
   if ( showI1 == "true" ) {
     $('#i1').addClass('logo T1 display');

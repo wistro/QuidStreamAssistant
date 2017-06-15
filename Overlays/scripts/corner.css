@@ -1,6 +1,8 @@
 :root
 {
-  --block-height: 40px;
+  --corner-height: 60px;
+  --bar-height: 38px;
+  --drpdwn-height: calc( 18px + var(--border-width) );
   --gutter-width: -4px;
 
 /*1/4 of the width of a 1080p display */
@@ -14,14 +16,15 @@
   /*--width-large: calc(var(--width-small) * 1.5);*/
 }
 
-.colorB { height: var(--block-height); }
-.title { line-height: calc(var(--block-height) - var(--border-width) *2); }
+.colorB { height: var(--corner-height); }
+.title { line-height: calc(var(--bar-height) - var(--border-width) *2); }
+.smol.title { line-height: calc(var(--drpdwn-height) - var(--border-width) *2); padding-top: var(--border-width);}
 .small .title { text-transform: uppercase; }
 
 .corner
 {
   position: absolute;
-  top: var(--block-height);
+  top: var(--corner-height);
   left: var(--corner-inset);
   width: var(--corner-width);
   border-radius: var(--border-curve);
@@ -32,27 +35,27 @@
   -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 100% 0%);
 }
 
-.team
+.corner .team
 {
   position: absolute;
   top: 0;
   width: var(--width-small);
-  bottom: 0;
+  height: var(--bar-height);
 }
-.team1
+.corner .team1
 {
   border-radius: var(--border-curve) 0 0 var(--border-curve);
   left: 0;
 }
-.team2
+.corner .team2
 {
   right: var(--width-xsmall);
 }
 
-.team1 .title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle;}
-.team2 .title { padding-left: calc(var(--border-width)*2); text-align: left; vertical-align: middle;}
+.corner .team1 .title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle;}
+.corner .team2 .title { padding-left: calc(var(--border-width)*2); text-align: left; vertical-align: middle;}
 
-.team .thumb
+.corner .team .thumb
 {
   position: absolute;
   top: 0;
@@ -61,36 +64,36 @@
   z-index: 50;
   opacity: 0.5;
 }
-.team1 .thumb { left: 10px; }
-.team2 .thumb { right: 10px; }
+.corner .team1 .thumb { left: 10px; }
+.corner .team2 .thumb { right: 10px; }
 
-.score
+.corner .score
 {
   position: absolute;
   top: 0;
   left: var(--width-small);
   width: var(--width-med);
-  bottom: 0;
+  height: var(--bar-height);
 }
-.score .title
+.corner .score .title
 {
   position: absolute;
   top: 0;
 }
-.score1.title
+.corner .score1.title
 {
   left: 0;
   width: 40%;
   text-align: right;
   /*padding-right: 5px;*/
 }
-.scoreDivider.title
+.corner .scoreDivider.title
 {
   left: 40%;
   width: 20%;
   text-align: center;
 }
-.score2.title
+.corner .score2.title
 {
   left: 60%;
   width: 40%;
@@ -98,14 +101,30 @@
   /*padding-left: 5px;*/
 }
 
-.gameTime
+.corner .gameTime
 {
   position: absolute;
   top: 0;
   right: 0;
   width: var(--width-xsmall);
-  bottom: 0;
+  height: var(--bar-height);
   border-radius: 0 var(--border-curve) var(--border-curve) 0;
+}
+
+.corner .cdn
+{
+  position: absolute;
+  top: calc(var(--bar-height) - var(--border-width));
+  right: 0;
+  height: var(--drpdwn-height);
+  width: calc(var(--width-small) * 1.5);
+  border-radius: 0 0 var(--border-curve) var(--border-curve);
+  z-index: -1;
+  -webkit-clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 0%, 50% 0%, 0% 0%);
+}
+.corner .cdn.display
+{
+  -webkit-clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
 }
 
 .tournament

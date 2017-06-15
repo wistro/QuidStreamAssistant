@@ -3,13 +3,13 @@
 <output>
   <tournament>QC Nats</tournament>
   <round>Group Stage</round>
-  <s1>630*&#94;$</s1>
+  <s1>0</s1>
   <s2>0</s2>
-  <t1>Valhalla</t1>
-  <t2>Winnipeg Whomping Willows</t2>
-  <t1short>VAL</t1short>
-  <t2short>WWW</t2short>
-  <gt>00:00</gt>
+  <t1>Edmonton Aurors</t1>
+  <t2>Calgary Mudbloods</t2>
+  <t1short>EA</t1short>
+  <t2short>CM</t2short>
+  <gt>18:24</gt>
   <corner>true</corner>
   <lowerthird>false</lowerthird>
   <endscreen>false</endscreen>
