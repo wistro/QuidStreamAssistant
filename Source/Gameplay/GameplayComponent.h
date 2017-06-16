@@ -37,7 +37,7 @@ public:
   
   void checkSnitchMistakes(char period);
   
-  void writeToFile ( bool gameSetup = false ) const;
+  void writeToFile ( bool gameSetup = false );
   
   //technically this is 17 min and 1 second because
   //we update the sop timer every time the gametime value changes
@@ -100,6 +100,7 @@ private:
   bool hasLogoT1;
   bool hasLogoT2;
   bool showSOP;
+  bool isFirstGame;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GameplayComponent)
 };

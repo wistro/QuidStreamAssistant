@@ -30,7 +30,7 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
   writeHereDir = File::getSpecialLocation(File::userHomeDirectory).getChildFile("Dropbox/Livestreaming/QuidStreamAssistant/Overlays/output");
   writeHere = writeHereDir.getChildFile("output.xml");
   writeHere.create(); //for now, just make them, we'll let people choose later
-  writeHere.getChildFile("tournament.png").deleteFile(); //on init, delete any old tournament logo file that exists
+  isFirstGame = true; //on init, we will delete old tournament picture file and write new one (if it exists)
   
   tournamentName = QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName();
   teamList.addArray(QuidStreamAssistantApplication::getApp().thisTournament->getTeamList());
@@ -417,7 +417,7 @@ void GameplayComponent::checkSnitchMistakes(char period)
   
 }
 
-void GameplayComponent::writeToFile (bool gameSetup) const
+void GameplayComponent::writeToFile (bool gameSetup)
 {
   ScopedPointer<XmlElement> xml = new XmlElement ("output");
   
@@ -479,13 +479,21 @@ void GameplayComponent::writeToFile (bool gameSetup) const
     
 
     //only output the tournament image file once so it doesn't keep getting rewritten all the time
-    if ( ! tourn.existsAsFile() && hasLogoTourn )
+    if ( isFirstGame )
     {
       tourn.deleteFile();
-      FileOutputStream imageData (tourn);
+      isFirstGame = false;
+      
+      if ( hasLogoTourn )
+      {
+        FileOutputStream imageData (tourn);
 
-      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
-        imageData.flush();
+        if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
+                                                 thisTournament->logo, imageData))
+        {
+          imageData.flush();
+        }
+      }
     }
     
     if ( hasLogoT1 )
@@ -494,7 +502,9 @@ void GameplayComponent::writeToFile (bool gameSetup) const
       
       if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
                                                thisTournament->teams[team1.getSelectedId() - 1]->logo, imageData))
+      {
         imageData.flush();
+      }
     }
     
     if ( hasLogoT2 )
@@ -503,7 +513,9 @@ void GameplayComponent::writeToFile (bool gameSetup) const
       
       if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
                                                thisTournament->teams[team2.getSelectedId() - 1]->logo, imageData))
+      {
         imageData.flush();
+      }
     }
   }
   
