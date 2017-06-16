@@ -164,7 +164,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
         {
           currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText(), image);
           QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
@@ -193,7 +193,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
     
     FileChooser fc ("Choose the Tournament's Logo Image",
             File::getSpecialLocation (File::userPicturesDirectory),
-            "*.jpg;*.jpeg;*.png;*.gif;*.svg",
+            "*.jpg;*.jpeg;*.png;*.gif",
             true);
     
     if ( fc.browseForFileToOpen() )

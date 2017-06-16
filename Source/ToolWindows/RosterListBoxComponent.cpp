@@ -16,7 +16,7 @@
 
 const StringArray RosterListBoxComponent::columnIds =
 {
-  "NOZEROTHCOLUMN", //instead of constantly checking (columnId + 1)
+  "NO ZEROTH COLUMN", //instead of constantly checking (columnId + 1)
   "Number",
   "First Name",
   "Last Name",
@@ -217,7 +217,7 @@ void RosterListBoxComponent::addBlankPlayer()
 
 void RosterListBoxComponent::removeSelected()
 {
-  for ( int i = 0; i < numRows; i++ )
+  for ( int i = numRows; i >= 0; i-- )
   {
     if ( table.isRowSelected(i) )
     {

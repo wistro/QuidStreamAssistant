@@ -315,7 +315,7 @@ void Team::writeToFile (const File& file) const
   {
     MemoryOutputStream imageData;
     if (PNGImageFormat().writeImageToStream (logo, imageData))
-      xml->createNewChildElement ("logo")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
+      xml->createNewChildElement ("LOGO")->addTextElement (Base64::toBase64 (imageData.getData(), imageData.getDataSize()));
   }
   else
   {

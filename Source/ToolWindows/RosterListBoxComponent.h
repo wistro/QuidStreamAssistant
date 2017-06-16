@@ -74,7 +74,7 @@ private:
   TableListBox table;
   Font font;
   
-  OwnedArray<Player> roster;
+  ReferenceCountedArray<Player> roster;
   
   int numRows;      // The number of rows of data we've got
   

@@ -171,6 +171,7 @@ void EditTeamWindow::buttonClicked (Button* button)
         //no else necessary, create new just means ignore the old file and it'll stick around
       }
       
+      thisTeam->team.clear();
       for ( int i = 0; i < roster->getNumRows(); i++ )
       {
         thisTeam->addPlayer(roster->getPlayer(i));
@@ -182,7 +183,7 @@ void EditTeamWindow::buttonClicked (Button* button)
         File image ( logoImage.getText() );
         
         //file path given exists and is an image
-        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif;svg"))
+        if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
         {
           thisTeam->fillThisSucker(teamName.getText(), abvBox.getText(), image);
           QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
@@ -211,7 +212,7 @@ void EditTeamWindow::buttonClicked (Button* button)
     
     FileChooser fc ("Choose the Tournament's Logo Image",
             File::getSpecialLocation (File::userPicturesDirectory),
-            "*.jpg;*.jpeg;*.png;*.gif;*.svg",
+            "*.jpg;*.jpeg;*.png;*.gif",
             true);
     
     if ( fc.browseForFileToOpen() )

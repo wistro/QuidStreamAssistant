@@ -103,6 +103,8 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
   snitchesGetStitches.snitch2OT.addListener(this);
   gameTime.gameTime.currentTime.addListener(this);
   gameTime.stop.addListener(this);
+  team1.addListener(this);
+  team2.addListener(this);
   
   sopShow.setButtonText("Show Snitch On Pitch/Seekers/Handicap Countdown");
   sopShow.addListener(this);
@@ -134,6 +136,8 @@ GameplayComponent::~GameplayComponent()
   gameSetup.removeListener(this);
   switchEnds.removeListener(this);
   sopShow.removeListener(this);
+  team1.removeListener(this);
+  team2.removeListener(this);
 }
 
 //==============================================================================
@@ -192,7 +196,7 @@ void GameplayComponent::resized()
   Rectangle<int> logoAreaRight (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
   Rectangle<int> cornerButton (logoAreaRight.removeFromBottom(textHeight * 2));
   gameSetup.setBounds(cornerButton.removeFromRight(buttonWidth));
-  t2logo.setBounds(logoAreaLeft.reduced(margin));
+  t2logo.setBounds(logoAreaRight.reduced(margin));
   
   snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
   score1.setBounds(area.removeFromLeft(scoresWidth / 3).reduced(margin));
@@ -363,7 +367,7 @@ void GameplayComponent::comboBoxChanged (ComboBox* box)
   {
     if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo.isValid() )
     {
-      t1logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
+      t2logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
       hasLogoT2 = true;
     }
   }
@@ -488,7 +492,8 @@ void GameplayComponent::writeToFile (bool gameSetup) const
     {
       FileOutputStream imageData (t1);
       
-      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
+      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
+                                               thisTournament->teams[team1.getSelectedId() - 1]->logo, imageData))
         imageData.flush();
     }
     
@@ -496,7 +501,8 @@ void GameplayComponent::writeToFile (bool gameSetup) const
     {
       FileOutputStream imageData (t2);
       
-      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().thisTournament->logo, imageData))
+      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
+                                               thisTournament->teams[team2.getSelectedId() - 1]->logo, imageData))
         imageData.flush();
     }
   }

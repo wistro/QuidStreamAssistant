@@ -15,7 +15,7 @@
 //==============================================================================
 /*
 */
-class Player
+class Player : public ReferenceCountedObject
 {
 public:
   Player();

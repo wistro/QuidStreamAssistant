@@ -47,7 +47,7 @@ public:
   void fillThisSucker(String name, String abv, File pic);
   
   Image logo;
-  OwnedArray<Player> team;
+  ReferenceCountedArray<Player> team;
 
   static void refreshTeamList();
   

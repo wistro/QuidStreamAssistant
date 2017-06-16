@@ -60,12 +60,12 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc(var(--width-small) * 80%);
+  width: calc(var(--width-small) * 0.6);
   z-index: 50;
   opacity: 0.5;
 }
-.corner .team1 .thumb { left: 10px; }
-.corner .team2 .thumb { right: 10px; }
+.corner .team1 .thumb { left: 0px; }
+.corner .team2 .thumb { right: 0px; }
 
 .corner .score
 {
