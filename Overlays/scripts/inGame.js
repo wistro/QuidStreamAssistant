@@ -73,6 +73,8 @@ function runUpdate() {
   $('#s2').text(s2);
   $('#gt').text(gt);
   $('#cdn').text(cdn);
+  $('#trn').text(trn);
+  
 
   if ( showcountdown == "true" ) {
     $('#cdn').parent().addClass('display');
