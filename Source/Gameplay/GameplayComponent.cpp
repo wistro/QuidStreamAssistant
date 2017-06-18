@@ -276,6 +276,24 @@ void GameplayComponent::buttonClicked (Button* button)
   }
   else if ( button == &gameSetup )
   {
+    bool tempCorner = showCorner;
+    bool tempLower = showLowerThird;
+    bool tempEnd = showEndScreen;
+    
+    //make all the things disappear before we update stuff
+    //also push the stop button to reset scores, sliders and timer
+    //not ideal since we're rewriting twice, but this should be done between games so w/e
+    corner.setToggleState(false, sendNotificationSync);
+    lowerthird.setToggleState(false, sendNotificationSync);
+    endScreen.setToggleState(false, sendNotificationSync);
+    gameTime.stop.triggerClick();
+    writeToFile();
+    
+    //set these back how they were
+    corner.setToggleState(tempCorner, sendNotificationSync);
+    lowerthird.setToggleState(tempLower, sendNotificationSync);
+    endScreen.setToggleState(tempEnd, sendNotificationSync);
+    
     //true means that it will output the image files as well as the xml
     //...in theory
     writeToFile( true );
@@ -328,6 +346,11 @@ void GameplayComponent::buttonClicked (Button* button)
     snitchesGetStitches.reset();
     score1.setScore(0);
     score2.setScore(0);
+    
+    //reset countdown flag to 0 (which means SOP)
+    //reset sopTimer to 17min (+1 second)
+    countdownFlag = 0;
+    sopTimer.seconds(sopInSec);
   }
 }
 

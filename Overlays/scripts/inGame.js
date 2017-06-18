@@ -1,11 +1,11 @@
-var showcorner, showlowerthird, showendgame, showcountdown, showI1, showI2;
+var showcorner, showlowerthird, showendgame, showcountdown, showI1, showI2, hasTlogo;
 var updating = false;
 var parser = new DOMParser();
 var responseXml;
 var fileUrl = "output/output.xml";
 var refreshrate = 500;
 
-var trn, rd, s1, s2, t1, t2, gt, cdn, t1s, t2s;
+var trn, rd, s1, s2, t1, t2, gt, cdn, t1s, t2s, hr, snitch, streamer;
 
 $(function() {
 	checkUpdate();
@@ -22,7 +22,7 @@ function getRequest() {
     url: fileUrl,
     dataType: "xml",
     ifModified: true,
-    success: function(xml){
+    success: function(xml) {
       showcorner = $(xml).find('corner').text();
       showlowerthird = $(xml).find('lowerthird').text();
       showendgame = $(xml).find('endscreen').text();
@@ -39,6 +39,10 @@ function getRequest() {
       cdn = $(xml).find('countdown').text();
       showI1 = $(xml).find('t1logo').text();
       showI2 = $(xml).find('t2logo').text();
+      hasTlogo = $(xml).find('tournlogo').text();
+      hr = $(xml).find('hr').text();
+      snitch = $(xml).find('snitch').text();
+      streamer = $(xml).find('streamer').text();
 
       runUpdate();
     }
@@ -74,7 +78,11 @@ function runUpdate() {
   $('#gt').text(gt);
   $('#cdn').text(cdn);
   $('#trn').text(trn);
-  
+  $('#rd').text(rd);
+  $('#hr').text(hr);
+  $('#snitch').text(snitch);
+  $('#streamer').text(streamer);
+
 
   if ( showcountdown == "true" ) {
     $('#cdn').parent().addClass('display');
@@ -95,6 +103,29 @@ function runUpdate() {
   }
   else {
     $('#i2').removeClass('logo T2 display');
+  }
+
+  if ( hasTlogo == "true" )
+  {
+    $('#tourn').addClass('TN').removeClass('WW');
+  }
+  else
+  {
+    $('#tourn').removeClass('TN').addClass('WW');
+  }
+
+  if ( showlowerthird == "true" )
+  {
+    streamer = streamer.replace(/@/g, "<span class=\"icon iTW\"></span> @")
+    $('#tourn').addClass('display').promise().done(
+      function() { $('.sidebar').addClass('display'); } ).promise().done(
+        function() { $('.streamer').addClass('display'); });
+  }
+  else
+  {
+    $('.streamer').removeClass('display');
+    $('.sidebar').removeClass('display');
+    $('#tourn').removeClass('display');
   }
 
 }

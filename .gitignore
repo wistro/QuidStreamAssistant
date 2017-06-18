@@ -55,4 +55,7 @@ xcuserdata/
 *.exe
 *.out
 *.app
-/Overlays/nbproject/private/
+
+#skip the output stuff from testing
+/Overlays/output
+/Overlays/output/*

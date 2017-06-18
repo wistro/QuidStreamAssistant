@@ -62,7 +62,7 @@
   bottom: 0;
   width: calc(var(--width-small) * 0.6);
   z-index: 50;
-  opacity: 0.5;
+  opacity: 1;
 }
 .corner .team1 .thumb { left: 0px; }
 .corner .team2 .thumb { right: 0px; }

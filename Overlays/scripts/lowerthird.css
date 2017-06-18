@@ -41,7 +41,7 @@
   left: calc(50% - var(--logo-radius));
   right: calc(50% - var(--logo-radius));
   z-index: 200;
-  -webkit-clip-path: circle(0));
+  -webkit-clip-path: circle(0);
 }
 
 .lowerthird .tourn.display

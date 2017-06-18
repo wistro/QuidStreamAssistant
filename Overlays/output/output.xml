@@ -5,16 +5,16 @@
   <round>Group Stage</round>
   <s1>0</s1>
   <s2>0</s2>
-  <t1>Team France</t1>
-  <t2>Team Austria</t2>
-  <t1short>FRA</t1short>
-  <t2short>AUT</t2short>
-  <gt>00:08</gt>
+  <t1>Team Poland</t1>
+  <t2>Team Turkey</t2>
+  <t1short>POL</t1short>
+  <t2short>TUR</t2short>
+  <gt>00:00</gt>
   <corner>true</corner>
   <lowerthird>false</lowerthird>
   <endscreen>false</endscreen>
   <sop>false</sop>
-  <tournlogo>false</tournlogo>
+  <tournlogo>true</tournlogo>
   <t1logo>true</t1logo>
   <t2logo>true</t2logo>
 </output>
