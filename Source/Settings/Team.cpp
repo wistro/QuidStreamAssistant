@@ -324,3 +324,6 @@ void Team::writeToFile (const File& file) const
   
   xml->writeToFile (file, String());
 }
+
+//==============================================================================
+

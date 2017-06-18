@@ -12,6 +12,7 @@
 #include "../Settings/Team.h"
 #include "../TopLevel/Application.h"
 
+//==============================================================================
 
 SelectTeamsWindow::SelectTeamsWindow()
 {
@@ -100,6 +101,8 @@ void SelectTeamsWindow::resized()
   teamList->setBounds(area);
 }
 
+//==============================================================================
+
 void SelectTeamsWindow::buttonClicked(Button* button)
 {
   if ( button == &selectAll )
@@ -145,3 +148,30 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
   }
 }
+
+//==============================================================================
+
+void Team::writeLogoFiles()
+{
+  const File overlaysDir (getGlobalProperties().getValue(StoredSettings::overlaysSettingName));
+  const File logosCSS (overlaysDir.getChildFile("/scripts"));
+
+  for ( int i = 0; i < QuidStreamAssistantApplication::getApp().thisTournament->teams.size(); i++)
+  {
+    Team* currTeam = QuidStreamAssistantApplication::getApp().thisTournament->teams[i];
+    File output (overlaysDir.getChildFile("/logos/" + currTeam->getTeamAbv() + ".png"));
+    FileOutputStream imageData (output);
+    
+    if (currTeam->logo.isValid())
+    {
+      if (PNGImageFormat().writeImageToStream (currTeam->logo, imageData))
+      {
+        imageData.flush();
+      }
+      
+      //figure out how best to output the css data... maybe rely on base c++ file writing, though that's obnoxious
+    }
+  }
+}
+
+//==============================================================================

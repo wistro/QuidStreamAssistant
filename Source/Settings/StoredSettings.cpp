@@ -12,6 +12,8 @@
 #include "OSDependencyThings.h"
 #include "../TopLevel/Application.h"
 
+const String StoredSettings::overlaysSettingName = "overlaysFolder";
+
 //==============================================================================
 StoredSettings& getAppSettings()
 {

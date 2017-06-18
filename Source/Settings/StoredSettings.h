@@ -48,6 +48,7 @@ public:
 
 //  TeamSettings team;
   StringArray monospacedFontNames;
+  static const String overlaysSettingName;
   
   //==============================================================================
   

@@ -41,5 +41,10 @@ private:
   TextButton select;
   ComboBox tournamentList;
   
+  Label currOverlaysFile;
+  TextButton changeOverlaysLoc;
+  
+  String overlayFolderIntro;
+  
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IntroAlertWindow)
 };

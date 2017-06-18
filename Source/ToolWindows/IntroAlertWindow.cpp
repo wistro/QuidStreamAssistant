@@ -25,44 +25,47 @@ IntroAlertWindow::IntroAlertWindow()
   select.setButtonText("Select");
   select.addListener(this);
   addAndMakeVisible(select);
+  
+  overlayFolderIntro = "Current Overlays Folder: ";
+  
+  if ( getGlobalProperties().containsKey( StoredSettings::overlaysSettingName ) )
+  {
+    currOverlaysFile.setText(overlayFolderIntro + getGlobalProperties().getValue(StoredSettings::overlaysSettingName), dontSendNotification);
+  }
+  else //default value
+  {
+    currOverlaysFile.setText(overlayFolderIntro + File::getSpecialLocation(File::userHomeDirectory).\
+                                    getChildFile("QuidStreamAssistant/Overlays").getFullPathName(), dontSendNotification);
+    getGlobalProperties().setValue(StoredSettings::overlaysSettingName, currOverlaysFile.getText());
+  }
+  
+  addAndMakeVisible(currOverlaysFile);
+  
+  changeOverlaysLoc.setButtonText("Change Overlay Folder");
+  changeOverlaysLoc.setTooltip("Click here to change the directory where your JS, CSS and HTML are kept. \
+                               Current value is above");
+  changeOverlaysLoc.addListener(this);
+  addAndMakeVisible(changeOverlaysLoc);
 
   QuidStreamAssistantApplication::getApp().thisTournament->refreshTournamentList();
-  
-//  tournament = new Tournament;
-//  
-//  tournament->refreshTournamentList();
   
   tournamentList.addItemList(QuidStreamAssistantApplication::getApp().thisTournament->tournamentList, 1);
   tournamentList.setText("Add New Tournament", dontSendNotification);
   tournamentList.setEditableText(false);
   addAndMakeVisible(tournamentList);
+  
+  if ( getGlobalProperties().containsKey("lastUsedTournament") )
+  {
+    tournamentList.setSelectedId(getGlobalProperties().getIntValue("lastUsedTournament"));
+  }
 
 }
-
-//IntroAlertWindow::IntroAlertWindow(Tournament* t)
-//{
-//  
-//  quit.setButtonText("Quit");
-//  quit.addListener(this);
-//  addAndMakeVisible(quit);
-//  
-//  select.setButtonText("Select");
-//  select.addListener(this);
-//  addAndMakeVisible(select);
-//  
-//  t->refreshTournamentList();
-//  
-//  tournamentList.addItemList(t->tournamentList, 1);
-//  tournamentList.setText("Add New Tournament", dontSendNotification);
-//  tournamentList.setEditableText(false);
-//  addAndMakeVisible(tournamentList);
-//  
-//}
 
 IntroAlertWindow::~IntroAlertWindow()
 {
   quit.removeListener(this);
   select.removeListener(this);
+  changeOverlaysLoc.removeListener(this);
 }
 
 void IntroAlertWindow::paint (Graphics& g)
@@ -80,6 +83,10 @@ void IntroAlertWindow::paint (Graphics& g)
   
   area.removeFromRight(margin);
   area.removeFromLeft(margin);
+  
+  Rectangle<int> overlayChange (area.removeFromBottom(buttonHeight * 2));
+  currOverlaysFile.setBounds(overlayChange.removeFromTop(buttonHeight).reduced(margin));
+  changeOverlaysLoc.setBounds(overlayChange.removeFromRight(overlayChange.getWidth() / 2).reduced(margin));
   
   Rectangle<int> buttons (area.removeFromBottom(buttonHeight).reduced(margin));
   select.setBounds(buttons.removeFromRight((buttons.getWidth() / 2) - (margin / 2)).reduced(margin));
@@ -113,9 +120,26 @@ void IntroAlertWindow::buttonClicked (Button* button)
     if ( tournamentList.getSelectedId() > 0 )
     {
       QuidStreamAssistantApplication::getApp().thisTournament->readFromFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentFileSuffix()));
+      
+      getGlobalProperties().setValue("lastUsedTournament", tournamentList.getSelectedId());
     }
     MainAppWindow::getMainAppWindow()->closeButtonPressed();
     QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
+  }
+  else if ( button == &changeOverlaysLoc )
+  {
+    FileChooser fc ("Choose a directory...",
+                    File::getSpecialLocation(File::userHomeDirectory),
+                    "*",
+                    true);
+    
+    if (fc.browseForDirectory())
+    {
+      File chosenDirectory = fc.getResult();
+      
+      getGlobalProperties().setValue(StoredSettings::overlaysSettingName, chosenDirectory.getFullPathName());
+      currOverlaysFile.setText(overlayFolderIntro + chosenDirectory.getFullPathName(), dontSendNotification);
+    }
   }
 }
 

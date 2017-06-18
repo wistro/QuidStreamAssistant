@@ -50,6 +50,7 @@ public:
   ReferenceCountedArray<Player> team;
 
   static void refreshTeamList();
+  static void writeLogoFiles();
   
   static StringArray teamList;
   

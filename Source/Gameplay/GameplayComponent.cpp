@@ -24,12 +24,12 @@ const StringArray GameplayComponent::FLAGS =
 };
 
 //==============================================================================
-GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec)
+GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
+          writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output")
 {
-  //default locations
-  writeHereDir = File::getSpecialLocation(File::userHomeDirectory).getChildFile("Dropbox/Livestreaming/QuidStreamAssistant/Overlays/output");
+  //locations set on opening screen
   writeHere = writeHereDir.getChildFile("output.xml");
-  writeHere.create(); //for now, just make them, we'll let people choose later
+  writeHere.create();
   isFirstGame = true; //on init, we will delete old tournament picture file and write new one (if it exists)
   
   tournamentName = QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName();
