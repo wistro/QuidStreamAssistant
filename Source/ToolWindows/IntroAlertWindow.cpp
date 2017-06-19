@@ -78,7 +78,7 @@ void IntroAlertWindow::paint (Graphics& g)
   
   g.setColour (getLookAndFeel().findColour(Label::textColourId));
   g.setFont (20.0f);
-  g.drawText ("What Tournament are you streaming?", area.removeFromTop(area.getHeight() / 2),
+  g.drawText ("What Tournament are you streaming?", area.removeFromTop(area.getHeight() / 3),
         Justification::centred, false);
   
   area.removeFromRight(margin);

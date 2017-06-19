@@ -46,11 +46,20 @@ public:
   void fillThisSucker(String name, String abv);
   void fillThisSucker(String name, String abv, File pic);
   
+  void writeLogoFile();
+  
   Image logo;
   ReferenceCountedArray<Player> team;
 
   static void refreshTeamList();
-  static void writeLogoFiles();
+  
+  //declared in ../ToolWindows/SelectTeamsWindow.cpp
+  //because I'm an asshole
+  //actually because that's exclusively where it's used
+  //even though it makes most sense as a static Team function
+  //hence this rather drawn out explanation
+  //anyway, go there to see what this does
+  static void writeLogoCSSFile();
   
   static StringArray teamList;
   

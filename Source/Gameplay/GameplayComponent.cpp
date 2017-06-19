@@ -103,6 +103,7 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
   snitchesGetStitches.snitch2OT.addListener(this);
   gameTime.gameTime.currentTime.addListener(this);
   gameTime.stop.addListener(this);
+  gameTime.playPause.addListener(this);
   team1.addListener(this);
   team2.addListener(this);
   
@@ -130,6 +131,7 @@ GameplayComponent::~GameplayComponent()
   snitchesGetStitches.snitch2OT.removeListener(this);
   gameTime.gameTime.currentTime.removeListener(this);
   gameTime.stop.removeListener(this);
+  gameTime.playPause.removeListener(this);
   corner.removeListener(this);
   lowerthird.removeListener(this);
   endScreen.removeListener(this);
@@ -304,6 +306,29 @@ void GameplayComponent::buttonClicked (Button* button)
     int tempScore = score1.getScore();
     String tempSnitchMarkers = score1.getSnitchMarkers();
     
+    //save current values
+    bool tempCorner = showCorner;
+    bool tempLower = showLowerThird;
+    bool tempEnd = showEndScreen;
+    bool tempL1 = hasLogoT1;
+    bool tempL2 = hasLogoT2;
+    
+    //remove all displays and logos
+    showCorner = false;
+    showLowerThird = false;
+    showEndScreen = false;
+    hasLogoT1 = false;
+    hasLogoT2 = false;
+    
+    writeToFile();
+    
+    //restore prev values
+    showCorner = tempCorner;
+    showLowerThird = tempLower;
+    showEndScreen = tempEnd;
+    hasLogoT1 = tempL1;
+    hasLogoT2 = tempL2;
+    
     team1.setSelectedId(team2.getSelectedId());
     team2.setSelectedId(tempTeam);
     
@@ -351,6 +376,10 @@ void GameplayComponent::buttonClicked (Button* button)
     //reset sopTimer to 17min (+1 second)
     countdownFlag = 0;
     sopTimer.seconds(sopInSec);
+  }
+  else if ( button == &gameTime.playPause )
+  {
+    writeToFile();
   }
 }
 
@@ -516,28 +545,6 @@ void GameplayComponent::writeToFile (bool gameSetup)
         {
           imageData.flush();
         }
-      }
-    }
-    
-    if ( hasLogoT1 )
-    {
-      FileOutputStream imageData (t1);
-      
-      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
-                                               thisTournament->teams[team1.getSelectedId() - 1]->logo, imageData))
-      {
-        imageData.flush();
-      }
-    }
-    
-    if ( hasLogoT2 )
-    {
-      FileOutputStream imageData (t2);
-      
-      if (PNGImageFormat().writeImageToStream (QuidStreamAssistantApplication::getApp().\
-                                               thisTournament->teams[team2.getSelectedId() - 1]->logo, imageData))
-      {
-        imageData.flush();
       }
     }
   }

@@ -92,17 +92,17 @@ function runUpdate() {
   }
 
   if ( showI1 == "true" ) {
-    $('#i1').addClass('logo T1 display');
+    $('#i1').addClass('logo display ' + t1s);
   }
   else {
-    $('#i1').removeClass('logo T1 display');
+    $('#i1').removeClass('logo display ' + t1s);
   }
 
   if ( showI2 == "true" ) {
-    $('#i2').addClass('logo T2 display');
+    $('#i2').addClass('logo display ' + t2s);
   }
   else {
-    $('#i2').removeClass('logo T2 display');
+    $('#i2').removeClass('logo display ' + t2s);
   }
 
   if ( hasTlogo == "true" )

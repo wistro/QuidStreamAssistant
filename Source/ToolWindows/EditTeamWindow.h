@@ -17,7 +17,8 @@
 /*
 */
 class EditTeamWindow  : public Component,
-                public Button::Listener
+                public Button::Listener,
+                public TextEditor::Listener
 {
 public:
   EditTeamWindow();

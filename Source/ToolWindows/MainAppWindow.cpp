@@ -29,7 +29,7 @@ MainAppWindow::MainAppWindow()
 //         jmax (40, (int) (0.7f * getParentHeight())));
   
   
-  centreWithSize(400, 350);
+  centreWithSize(430, 350);
   
   intro = new IntroAlertWindow();
   setContentNonOwned(intro, false);

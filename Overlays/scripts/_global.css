@@ -78,6 +78,4 @@ body
 .logo { display: block; height: 100%; }
 
 .logo.TN { background: url('../output/tournament.png'); background-position: center; background-size: 100% 100%; }
-.logo.T1 { background: url('../output/t1.png'); background-position: center; background-size: 100% 100%; }
-.logo.T2 { background: url('../output/t2.png'); background-position: center; background-size: 100% 100%; }
 .logo.WW { background: url('../icons/willogo.png'); background-position: center; background-size: 100% 100%; }

@@ -129,6 +129,9 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     }
     const File file ( Tournament::getTournamentsFolder().getChildFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName()).withFileExtension(Tournament::getTournamentFileSuffix()));
     QuidStreamAssistantApplication::getApp().thisTournament->writeToFile(file);
+    
+    Team::writeLogoCSSFile();
+    
     QuidStreamAssistantApplication::getApp().showStreamingWindow();
     QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
   }
@@ -151,27 +154,38 @@ void SelectTeamsWindow::buttonClicked(Button* button)
 
 //==============================================================================
 
-void Team::writeLogoFiles()
+//static public Team member function (found in ../Settings/Team.h)
+//iterates through the list of teams selected for the current Tournament
+//and outputs their logo files to individual PNG image files in
+// <OVERLAYS FOLDER>/logos
+//each team's logo is named <team abbreviation>.png
+//also creates a CSS file with class descriptions for each logo file
+//to display a given team's logo on the overlay:
+// -create an HTML object (eg. a <div>) with class="logo <team abbreviation>"
+//replacing <team abbreviation> with the abbreviation given for the team in question
+//to help with this, the abbreviations for teams 1 and 2 in a game are output in the
+//streaming XML file as "t1short" and "t2short" respectively
+//see ../Gameplay/GameplayComponent.cpp::writeToFile() for details on that XML output
+void Team::writeLogoCSSFile()
 {
   const File overlaysDir (getGlobalProperties().getValue(StoredSettings::overlaysSettingName));
-  const File logosCSS (overlaysDir.getChildFile("/scripts"));
+  const File logosCSS (overlaysDir.getFullPathName() + "/scripts/logos.css");
+  Team* currTeam;
+  
+  String css = "";
+  logosCSS.deleteFile();
 
   for ( int i = 0; i < QuidStreamAssistantApplication::getApp().thisTournament->teams.size(); i++)
   {
-    Team* currTeam = QuidStreamAssistantApplication::getApp().thisTournament->teams[i];
-    File output (overlaysDir.getChildFile("/logos/" + currTeam->getTeamAbv() + ".png"));
-    FileOutputStream imageData (output);
+    currTeam = QuidStreamAssistantApplication::getApp().thisTournament->teams[i];
     
-    if (currTeam->logo.isValid())
-    {
-      if (PNGImageFormat().writeImageToStream (currTeam->logo, imageData))
-      {
-        imageData.flush();
-      }
-      
-      //figure out how best to output the css data... maybe rely on base c++ file writing, though that's obnoxious
-    }
+    //this is a CSS entry that is compatible with the included JavaScript for creating and managing the overlays
+    css += ".logo." + currTeam->getTeamAbv() + "{ background: url('../icons/" + currTeam->getTeamAbv() + ".png'); background-position: center; background-size: 100% 100%; }\n";
   }
+  
+  FileOutputStream outCSS (logosCSS);
+  outCSS.write(css.toUTF8(), CharPointer_UTF8::getBytesRequiredFor( css.getCharPointer() ));
+  outCSS.flush();
 }
 
 //==============================================================================

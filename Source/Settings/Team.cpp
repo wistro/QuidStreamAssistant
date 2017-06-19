@@ -68,7 +68,15 @@ Team::~Team()
 void Team::fillThisSucker(String name, String abv)
 {
   teamName = name;
-  teamAbv = abv;
+  
+  if ( abv.isNotEmpty() )
+  {
+    teamAbv = abv;
+  }
+  else
+  {
+    teamAbv = name.retainCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  }
   
   //once I add the "add teams" window I might move this to after that has been handled
   //so that we're not constantly writing out to files
@@ -87,6 +95,24 @@ void Team::fillThisSucker(String name, String abv, File pic)
   fillThisSucker(name, abv);
 }
 
+void Team::writeLogoFile()
+{
+  const File img (getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/icons/" + teamAbv + ".png");
+  
+  if ( img.exists() )
+  {
+    img.deleteFile();
+  }
+  
+  img.create();
+  
+  FileOutputStream imageData (img);
+  
+  if (PNGImageFormat().writeImageToStream (logo, imageData))
+  {
+    imageData.flush();
+  }
+}
 
 //==============================================================================
 

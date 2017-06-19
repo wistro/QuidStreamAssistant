@@ -29,10 +29,9 @@ public:
   
   StopWatch gameTime;
   DrawableButton stop;
+  DrawableButton playPause;
 
 private:
-  
-  DrawableButton playPause;
 
   DrawableImage play;
   DrawableImage pause;

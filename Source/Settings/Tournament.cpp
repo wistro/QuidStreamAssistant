@@ -153,15 +153,20 @@ void Tournament::addTeam(String teamName)
     Team* newTeam = new Team();
     newTeam->setTeamName(teamName);
     
+    //sets abv to all the uppercase letters in team name
+    newTeam->setTeamAbv(teamName.retainCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+    
     teams.add(newTeam);
-    teamsAbvList.add(newTeam->getTeamAbv());
+    teamsAbvList.addIfNotAlreadyThere(newTeam->getTeamAbv());
   }
   else //team settings file for this team exists, so we populate its data in the new team object
   {
     Team* newTeam = new Team(file);
     
     teams.add(newTeam);
-    teamsAbvList.add(newTeam->getTeamAbv());
+    teamsAbvList.addIfNotAlreadyThere(newTeam->getTeamAbv());
+    
+    newTeam->writeLogoFile();
   }
   
   teamsList.addIfNotAlreadyThere(teamName); //teamsList is a StringArray containing the names of all teams at this tournament
