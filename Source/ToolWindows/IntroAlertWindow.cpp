@@ -119,7 +119,7 @@ void IntroAlertWindow::buttonClicked (Button* button)
     //changing this to open the edit file no matter what, but load the selected tournament first if one is selected
     if ( tournamentList.getSelectedId() > 0 )
     {
-      QuidStreamAssistantApplication::getApp().thisTournament->readFromFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentFileSuffix()));
+      QuidStreamAssistantApplication::getApp().thisTournament->readFromFile(Tournament::getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(Tournament::getTournamentFileSuffix()));
       
       getGlobalProperties().setValue("lastUsedTournament", tournamentList.getSelectedId());
     }

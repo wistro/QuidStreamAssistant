@@ -63,14 +63,19 @@ private:
   ComboBox team1;
   ComboBox team2;
   
-//  Label outputFile;
-//  TextEditor outputFileBox;
-//  TextButton browse;
   TextButton gameSetup;
   TextButton switchEnds;
   
   File writeHere;
   File writeHereDir;
+  
+  Label hr;
+  ComboBox hrList;
+  
+  Label snitch;
+  ComboBox snitchList;
+  
+  Label streamer;
   
   //snitch catch sliders are all in one pretty box here
   SnitchSliders snitchesGetStitches;

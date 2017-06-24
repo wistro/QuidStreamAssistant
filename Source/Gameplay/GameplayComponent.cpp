@@ -67,18 +67,8 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
   addAndMakeVisible(score2);
   addAndMakeVisible(gameTime);
   
-//  outputFileBox.setTextToShowWhenEmpty("This will be the file or folder that your Javascript is looking at",
-//                                       Colours::black.withAlpha(0.5f));
-//  outputFile.setText("Select an Output File", dontSendNotification);
-//  outputFile.attachToComponent(&outputFileBox, true);
-//  
-//  browse.setButtonText("...");
-//  browse.setTooltip("Browse for Output File Location");
-//  browse.addListener(this);
-//  addAndMakeVisible(browse);
-  
-  gameSetup.setButtonText("Setup\nNext\nGame");
-  gameSetup.setTooltip("Creates/Updates logo image files \"tournament.png\", \"t1.png\", and \"t2.png\" for currently selected teams");
+  gameSetup.setButtonText("Setup\nFirst\nGame");
+  gameSetup.setTooltip("Creates tournament image file \"tournament.png\"");
   gameSetup.addListener(this);
   addAndMakeVisible(gameSetup);
   
@@ -97,6 +87,23 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
   endScreen.setButtonText("Show End of Game Graphic");
   endScreen.addListener(this);
   addAndMakeVisible(endScreen);
+  
+  hrList.setEditableText(true);
+  addAndMakeVisible(hrList);
+  
+  hr.setText("HR", dontSendNotification);
+  addAndMakeVisible(hr);
+  
+  snitchList.setEditableText(true);
+  addAndMakeVisible(snitchList);
+  
+  snitch.setText("Snitch", dontSendNotification);
+  addAndMakeVisible(snitch);
+  
+  streamer.setEditable(true);
+  streamer.setText("Streamer Name (click to change)", dontSendNotification);
+  streamer.setJustificationType(Justification::centred);
+  addAndMakeVisible(streamer);
   
   snitchesGetStitches.snitchReg.addListener(this);
   snitchesGetStitches.snitchOT.addListener(this);
@@ -180,14 +187,19 @@ void GameplayComponent::resized()
   teamTwo.setBounds(topBar.removeFromLeft(buttonWidth).reduced(margin));
   team2.setBounds(topBar.reduced(margin));
   
-  Rectangle<int> bottomBar ( area.removeFromBottom(textHeight) );
-  corner.setBounds(bottomBar.removeFromLeft(fullWidth / 3).reduced(margin));
-  lowerthird.setBounds(bottomBar.removeFromLeft(fullWidth / 3).reduced(margin));
-  endScreen.setBounds(bottomBar.reduced(margin));
+  Rectangle<int> bottomBar ( area.removeFromBottom(textHeight * 2 ));
+  gameSetup.setBounds(bottomBar.removeFromRight(buttonWidth).reduced(margin));
   
-//  outputFile.setBounds(bottomBar.removeFromLeft(timeWidth).reduced(margin));
-//  browse.setBounds(bottomBar.removeFromRight(buttonWidth).reduced(margin));
-//  outputFileBox.setBounds(bottomBar.reduced(margin));
+  Rectangle<int> checkBoxs ( bottomBar.removeFromBottom(textHeight) );
+  corner.setBounds(checkBoxs.removeFromLeft(fullWidth / 3).reduced(margin));
+  lowerthird.setBounds(checkBoxs.removeFromLeft(fullWidth / 3).reduced(margin));
+  endScreen.setBounds(checkBoxs.reduced(margin));
+  
+  hr.setBounds(bottomBar.removeFromLeft(textHeight).reduced(margin));
+  hrList.setBounds(bottomBar.removeFromLeft((fullWidth / 3) - textHeight).reduced(margin));
+  snitch.setBounds(bottomBar.removeFromLeft(textHeight*2).reduced(margin));
+  snitchList.setBounds(bottomBar.removeFromLeft((fullWidth / 3) - (textHeight * 2)).reduced(margin));
+  streamer.setBounds(bottomBar.reduced(margin));
   
   //if the math checks out, these two lines leave a box of width scoresWidth
   //at the centre of the window
@@ -196,8 +208,7 @@ void GameplayComponent::resized()
   t1logo.setBounds(logoAreaLeft.reduced(margin));
   
   Rectangle<int> logoAreaRight (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
-  Rectangle<int> cornerButton (logoAreaRight.removeFromBottom(textHeight * 2));
-  gameSetup.setBounds(cornerButton.removeFromRight(buttonWidth));
+  logoAreaRight.removeFromBottom(textHeight*2);
   t2logo.setBounds(logoAreaRight.reduced(margin));
   
   snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
@@ -264,41 +275,48 @@ void GameplayComponent::sliderValueChanged (Slider* slider)
 
 void GameplayComponent::buttonClicked (Button* button)
 {
+  bool tempCorner, tempLower, tempEnd, tempL1, tempL2;
+  
   if ( button == &corner )
   {
     showCorner = corner.getToggleState();
+    writeToFile();
   }
   else if ( button == &lowerthird )
   {
     showLowerThird = lowerthird.getToggleState();
+    writeToFile();
   }
   else if ( button == &endScreen )
   {
     showEndScreen = endScreen.getToggleState();
+    writeToFile();
   }
   else if ( button == &gameSetup )
   {
-    bool tempCorner = showCorner;
-    bool tempLower = showLowerThird;
-    bool tempEnd = showEndScreen;
+    tempCorner = showCorner;
+    tempLower = showLowerThird;
+    tempEnd = showEndScreen;
+    tempL1 = hasLogoT1;
+    tempL2 = hasLogoT2;
     
     //make all the things disappear before we update stuff
     //also push the stop button to reset scores, sliders and timer
-    //not ideal since we're rewriting twice, but this should be done between games so w/e
-    corner.setToggleState(false, sendNotificationSync);
-    lowerthird.setToggleState(false, sendNotificationSync);
-    endScreen.setToggleState(false, sendNotificationSync);
+    showCorner = false;
+    showLowerThird = false;
+    showEndScreen = false;
+    hasLogoT1 = false;
+    hasLogoT2 = false;
     gameTime.stop.triggerClick();
-    writeToFile();
-    
-    //set these back how they were
-    corner.setToggleState(tempCorner, sendNotificationSync);
-    lowerthird.setToggleState(tempLower, sendNotificationSync);
-    endScreen.setToggleState(tempEnd, sendNotificationSync);
     
     //true means that it will output the image files as well as the xml
     //...in theory
     writeToFile( true );
+    
+    //set these back how they were
+    showCorner = tempCorner;
+    showLowerThird = tempLower;
+    showEndScreen = tempEnd;
   }
   else if ( button == &switchEnds )
   {
@@ -307,11 +325,11 @@ void GameplayComponent::buttonClicked (Button* button)
     String tempSnitchMarkers = score1.getSnitchMarkers();
     
     //save current values
-    bool tempCorner = showCorner;
-    bool tempLower = showLowerThird;
-    bool tempEnd = showEndScreen;
-    bool tempL1 = hasLogoT1;
-    bool tempL2 = hasLogoT2;
+    tempCorner = showCorner;
+    tempLower = showLowerThird;
+    tempEnd = showEndScreen;
+    tempL1 = hasLogoT1;
+    tempL2 = hasLogoT2;
     
     //remove all displays and logos
     showCorner = false;
@@ -482,6 +500,9 @@ void GameplayComponent::writeToFile (bool gameSetup)
   xml->createNewChildElement("t1short")->addTextElement(teamAbvs[team1.getSelectedId() - 1]);
   xml->createNewChildElement("t2short")->addTextElement(teamAbvs[team2.getSelectedId() - 1]);
   xml->createNewChildElement("gt")->addTextElement(gameTime.gameTime.currentTime.getText());
+  xml->createNewChildElement("hr")->addTextElement(hrList.getText());
+  xml->createNewChildElement("snitch")->addTextElement(snitchList.getText());
+  xml->createNewChildElement("streamer")->addTextElement(streamer.getText());
   xml->createNewChildElement("corner")->addTextElement(showCorner ? "true" : "false");
   xml->createNewChildElement("lowerthird")->addTextElement(showLowerThird ? "true" : "false");
   xml->createNewChildElement("endscreen")->addTextElement(showEndScreen ? "true" : "false");
@@ -522,13 +543,6 @@ void GameplayComponent::writeToFile (bool gameSetup)
   if ( gameSetup ) //create the logo files in the output directory; files will be called tournament.png, and  t[1|2].png
   {
     const File tourn (writeHereDir.getChildFile("tournament.png"));
-    const File t1 (writeHereDir.getChildFile("t1.png"));
-    const File t2 (writeHereDir.getChildFile("t2.png"));
-    
-    //delete files before rewriting them because otherwise weird things happen
-    t1.deleteFile();
-    t2.deleteFile();
-    
 
     //only output the tournament image file once so it doesn't keep getting rewritten all the time
     if ( isFirstGame )

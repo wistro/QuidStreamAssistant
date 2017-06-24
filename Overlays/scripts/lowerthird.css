@@ -4,8 +4,8 @@
     if streaming in 720p, change lowerthird-height to 240px*/
   --lt-height: 200px;
   --bar-height: 140px;
-  --logo-radius: calc( var(--lt-height) / 2);
   --drop-height: 30px;
+  --logo-radius: calc( (var(--lt-height) - var(--drop-height)) / 2);
   --gutter-width: -4px;
 
   /*80% of the width of a 1080p display */
@@ -104,6 +104,7 @@
   top: calc(50% + (var(--bar-height) /2));
   left: calc(50% - (var(--logo-radius) * 2));
   right: calc(50% - (var(--logo-radius) * 2));
+  height: var(--drop-height);
   border-radius: var(--border-curve);
   -webkit-clip-path: polygon(
     0%  0%,
