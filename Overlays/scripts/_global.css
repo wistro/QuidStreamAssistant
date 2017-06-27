@@ -1,8 +1,6 @@
 :root
 {
-  --arrow-tangent: 0.4;
-  --border-curve: 3px;
-  --border-width: 3px;
+  --arrow-tangent: 0.5;
 
   --border-color: rgba(255, 255, 255, 0);
   --main-color1: rgba(22, 47, 113, 1);

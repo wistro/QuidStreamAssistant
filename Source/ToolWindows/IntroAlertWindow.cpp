@@ -23,6 +23,7 @@ IntroAlertWindow::IntroAlertWindow()
   addAndMakeVisible(quit);
   
   select.setButtonText("Select");
+  select.setTooltip("This may take a while if your tournament has a logo saved. Don't panic.");
   select.addListener(this);
   addAndMakeVisible(select);
   

@@ -13,6 +13,7 @@
 #include "../TopLevel/Application.h"
 
 const String StoredSettings::overlaysSettingName = "overlaysFolder";
+const String StoredSettings::streamerSettingName = "streamerInfo";
 
 //==============================================================================
 StoredSettings& getAppSettings()

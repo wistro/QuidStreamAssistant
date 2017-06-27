@@ -34,6 +34,7 @@ private:
   TextButton selectNone;
   
   TextButton saveTournament;
+  TextButton saveAndOutput;
   TextButton cancel;
   
   TextButton editSelectedTeam;

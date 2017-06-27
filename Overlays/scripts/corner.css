@@ -2,6 +2,8 @@
 {
   --corner-height: 60px;
   --bar-height: 38px;
+  --border-curve: 3px;
+  --border-width: 3px;
   --drpdwn-height: calc( 18px + var(--border-width) );
   --gutter-width: -4px;
 

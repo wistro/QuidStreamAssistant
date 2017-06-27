@@ -38,6 +38,7 @@ SelectTeamsWindow::~SelectTeamsWindow()
   cancel.removeListener(this);
   editSelectedTeam.removeListener(this);
   addTeam.removeListener(this);
+  saveAndOutput.removeListener(this);
 }
 
 void SelectTeamsWindow::initBasics()
@@ -58,6 +59,11 @@ void SelectTeamsWindow::initBasics()
   saveTournament.setTooltip("Selected teams will be available to show when creating game overlays");
   saveTournament.addListener(this);
   addAndMakeVisible(saveTournament);
+  
+  saveAndOutput.setButtonText("Save & Output");
+  saveAndOutput.setTooltip("Output selected teams' logo files to Overlays/icons/<TEAM ABV>.png. THIS WILL TAKE A WHILE. Don't Panic. If you have already done this previously, use the \"save\" button below.");
+  saveAndOutput.addListener(this);
+  addAndMakeVisible(saveAndOutput);
   
   cancel.setButtonText("Cancel");
   cancel.setTooltip("Return to Tournament Edit Screen. Does not save changes.");
@@ -91,6 +97,7 @@ void SelectTeamsWindow::resized()
   Rectangle<int> teamEditButtons (area.removeFromBottom(buttonHeight).reduced(margin));
   addTeam.setBounds(teamEditButtons.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
   editSelectedTeam.setBounds(teamEditButtons.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
+  saveAndOutput.setBounds(teamEditButtons.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
   
   tournamentHeader.setBounds(area.removeFromTop(textBoxHeight).reduced(margin));
   
@@ -113,7 +120,7 @@ void SelectTeamsWindow::buttonClicked(Button* button)
   {
     teamList->toggleAll(false);
   }
-  else if ( button == &saveTournament )
+  else if ( button == &saveAndOutput )
   {
     QuidStreamAssistantApplication::getApp().thisTournament->clearTeamsList();
     for ( int i = 0; i < teamList->getNumRows(); i++ )
@@ -132,6 +139,26 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     
     Team::writeLogoCSSFile();
     
+    QuidStreamAssistantApplication::getApp().showStreamingWindow();
+    QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
+  }
+  else if ( button == &saveTournament )
+  {
+    QuidStreamAssistantApplication::getApp().thisTournament->clearTeamsList();
+    for ( int i = 0; i < teamList->getNumRows(); i++ )
+    {
+      if ( teamList->getToggled(i) )
+      {
+        QuidStreamAssistantApplication::getApp().thisTournament->addTeam(teamList->getTeamName(i));
+      }
+      else
+      {
+        QuidStreamAssistantApplication::getApp().thisTournament->removeTeam(teamList->getTeamName(i));
+      }
+    }
+    const File file ( Tournament::getTournamentsFolder().getChildFile(QuidStreamAssistantApplication::getApp().thisTournament->getTournamentName()).withFileExtension(Tournament::getTournamentFileSuffix()));
+    QuidStreamAssistantApplication::getApp().thisTournament->writeToFile(file);
+        
     QuidStreamAssistantApplication::getApp().showStreamingWindow();
     QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
   }

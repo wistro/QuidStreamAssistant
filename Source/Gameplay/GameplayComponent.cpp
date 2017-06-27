@@ -24,8 +24,9 @@ const StringArray GameplayComponent::FLAGS =
 };
 
 //==============================================================================
-GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
-          writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output")
+GameplayComponent::GameplayComponent() :
+          writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output"),
+          score2(false), sopTimer(sopInSec)
 {
   //locations set on opening screen
   writeHere = writeHereDir.getChildFile("output.xml");
@@ -101,7 +102,7 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
   addAndMakeVisible(snitch);
   
   streamer.setEditable(true);
-  streamer.setText("Streamer Name (click to change)", dontSendNotification);
+  streamer.setText( getGlobalProperties().containsKey( StoredSettings::streamerSettingName ) ? getGlobalProperties().getValue(StoredSettings::streamerSettingName) : "Streamer Name (click to change)", dontSendNotification);
   streamer.setJustificationType(Justification::centred);
   addAndMakeVisible(streamer);
   
@@ -113,6 +114,7 @@ GameplayComponent::GameplayComponent() : score2(false), sopTimer(sopInSec),
   gameTime.playPause.addListener(this);
   team1.addListener(this);
   team2.addListener(this);
+  streamer.addListener(this);
   
   sopShow.setButtonText("Show Snitch On Pitch/Seekers/Handicap Countdown");
   sopShow.addListener(this);
@@ -147,6 +149,7 @@ GameplayComponent::~GameplayComponent()
   sopShow.removeListener(this);
   team1.removeListener(this);
   team2.removeListener(this);
+  streamer.removeListener(this);
 }
 
 //==============================================================================
@@ -317,6 +320,8 @@ void GameplayComponent::buttonClicked (Button* button)
     showCorner = tempCorner;
     showLowerThird = tempLower;
     showEndScreen = tempEnd;
+    hasLogoT1 = tempL1;
+    hasLogoT2 = tempL2;
   }
   else if ( button == &switchEnds )
   {
@@ -420,6 +425,10 @@ void GameplayComponent::labelTextChanged (Label* label)
     }
     
     writeToFile ();
+  }
+  if ( label == &streamer )
+  {
+    getGlobalProperties().setValue( StoredSettings::streamerSettingName, streamer.getText() );
   }
 }
 

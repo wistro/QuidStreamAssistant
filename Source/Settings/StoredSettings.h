@@ -49,6 +49,7 @@ public:
 //  TeamSettings team;
   StringArray monospacedFontNames;
   static const String overlaysSettingName;
+  static const String streamerSettingName;
   
   //==============================================================================
   

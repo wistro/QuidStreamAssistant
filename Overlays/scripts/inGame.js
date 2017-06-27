@@ -79,9 +79,19 @@ function runUpdate() {
   $('#cdn').text(cdn);
   $('#trn').text(trn);
   $('#rd').text(rd);
-  $('#hr').text(hr);
-  $('#snitch').text(snitch);
+
+  if ( hr )
+  {
+    $('#hr').text("HR: " + hr);
+  }
+
+  if ( snitch )
+  {
+    $('#snitch').text("Snitch: " + snitch);
+  }
+  
   $('#streamer').text(streamer);
+  streamer = streamer.replace('iTW', '<span class="icon iTW"></span>');
 
 
   if ( showcountdown == "true" ) {
@@ -92,17 +102,17 @@ function runUpdate() {
   }
 
   if ( showI1 == "true" ) {
-    $('#i1').addClass('logo display ' + t1s);
+    $('#i1').addClass('thumb logo display ' + t1s);
   }
   else {
-    $('#i1').removeClass('logo display ' + t1s);
+    $('#i1').removeClass();
   }
 
   if ( showI2 == "true" ) {
-    $('#i2').addClass('logo display ' + t2s);
+    $('#i2').addClass('thumb logo display ' + t2s);
   }
   else {
-    $('#i2').removeClass('logo display ' + t2s);
+    $('#i2').removeClass();
   }
 
   if ( hasTlogo == "true" )
@@ -114,18 +124,19 @@ function runUpdate() {
     $('#tourn').removeClass('TN').addClass('WW');
   }
 
-  if ( showlowerthird == "true" )
+  if ( showlowerthird == "true" && updating == false)
   {
-    streamer = streamer.replace(/@/g, "<span class=\"icon iTW\"></span> @")
-    $('#tourn').addClass('display').promise().done(
-      function() { $('.sidebar').addClass('display'); } ).promise().done(
-        function() { $('.streamer').addClass('display'); });
+    updating = true;
+    $('#tourn').addClass('display')
+    setTimeout( function() { $('.sidebar').addClass('display'); /*$('#tourn').addClass('display');*/ }, 2000);
+    setTimeout( function() { $('.streamer').addClass('display'); updating = false; }, 4000);
   }
-  else
+  else if ( updating == false )
   {
+    updating = true;
     $('.streamer').removeClass('display');
-    $('.sidebar').removeClass('display');
-    $('#tourn').removeClass('display');
+    setTimeout( function() { $('.sidebar').removeClass('display'); /*$('#tourn').removeClass('display');*/ }, 2000);
+    setTimeout( function() { $('#tourn').removeClass('display'); updating = false; }, 4000);
   }
 
 }
