@@ -170,6 +170,8 @@ StringArray Team::getRoster()
 
 void Team::refreshRoster()
 {
+  roster.clear();
+  
   for ( int i = 0; i < team.size(); i++ )
   {
     roster.add(team[i]->getRosterEntry());
@@ -277,7 +279,7 @@ void Team::readFromXML (const XmlElement& xml)
     }
   }
   
-//  refreshRoster();
+  refreshRoster();
 }
 
 void Team::readFromFile (const File& file)

@@ -50,6 +50,7 @@ public:
   
   Image logo;
   ReferenceCountedArray<Player> team;
+  StringArray roster;
 
   static void refreshTeamList();
   
@@ -76,9 +77,6 @@ private:
   
   String teamName;
   String teamAbv;
-  
-  StringArray roster;
-  
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Team)
 };

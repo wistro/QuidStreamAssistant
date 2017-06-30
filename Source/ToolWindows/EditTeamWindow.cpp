@@ -176,6 +176,7 @@ void EditTeamWindow::buttonClicked (Button* button)
       {
         thisTeam->addPlayer(roster->getPlayer(i));
       }
+      thisTeam->refreshRoster();
       
       //some image input file was given, hopefully it was a real one
       if ( ! logoImage.isEmpty() )

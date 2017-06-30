@@ -23,6 +23,11 @@ const StringArray GameplayComponent::FLAGS =
   "3rd Handicap in: "
 };
 
+const String GameplayComponent::goalFlag = "{{GG}}";
+const String GameplayComponent::blueFlag = "{{BC}}";
+const String GameplayComponent::yellowFlag = "{{YC}}";
+const String GameplayComponent::redFlag = "{{RC}}";
+
 //==============================================================================
 GameplayComponent::GameplayComponent() :
           writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output"),
@@ -132,6 +137,38 @@ GameplayComponent::GameplayComponent() :
   t2logo.setAlpha(0.5f);
   addAndMakeVisible(t1logo);
   addAndMakeVisible(t2logo);
+  
+  team1Stats = {};
+  score1.increase.addListener(this);
+  score1.decrease.addListener(this);
+  
+  team2Stats = {};
+  score2.increase.addListener(this);
+  score2.decrease.addListener(this);
+  
+  blue1.setButtonText("Blue Card");
+  blue1.addListener(this);
+  addAndMakeVisible(blue1);
+  
+  yellow1.setButtonText("Yellow Card");
+  yellow1.addListener(this);
+  addAndMakeVisible(yellow1);
+  
+  red1.setButtonText("Red Card");
+  red1.addListener(this);
+  addAndMakeVisible(red1);
+  
+  blue2.setButtonText("Blue Card");
+  blue2.addListener(this);
+  addAndMakeVisible(blue2);
+  
+  yellow2.setButtonText("Yellow Card");
+  yellow2.addListener(this);
+  addAndMakeVisible(yellow2);
+  
+  red2.setButtonText("Red Card");
+  red2.addListener(this);
+  addAndMakeVisible(red2);
 
 }
 
@@ -152,6 +189,16 @@ GameplayComponent::~GameplayComponent()
   team1.removeListener(this);
   team2.removeListener(this);
   streamer.removeListener(this);
+  blue1.removeListener(this);
+  yellow1.removeListener(this);
+  red1.removeListener(this);
+  blue2.removeListener(this);
+  yellow2.removeListener(this);
+  red2.removeListener(this);
+  score1.increase.removeListener(this);
+  score1.decrease.removeListener(this);
+  score2.increase.removeListener(this);
+  score2.decrease.removeListener(this);
 }
 
 //==============================================================================
@@ -206,14 +253,24 @@ void GameplayComponent::resized()
   snitchList.setBounds(bottomBar.removeFromLeft((fullWidth / 3) - (textHeight * 2)).reduced(margin));
   streamer.setBounds(bottomBar.reduced(margin));
   
-  //if the math checks out, these two lines leave a box of width scoresWidth
-  //at the centre of the window
   Rectangle<int> logoAreaLeft (area.removeFromLeft( ( fullWidth - scoresWidth ) / 2));
-  logoAreaLeft.removeFromBottom(textHeight*2);
+  logoAreaLeft.removeFromBottom(textHeight);
+  
+  Rectangle<int> cardbuttons1 (logoAreaLeft.removeFromTop(textHeight));
+  blue1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  yellow1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  red1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  
   t1logo.setBounds(logoAreaLeft.reduced(margin));
   
   Rectangle<int> logoAreaRight (area.removeFromRight( ( fullWidth - scoresWidth ) / 2));
-  logoAreaRight.removeFromBottom(textHeight*2);
+  logoAreaRight.removeFromBottom(textHeight);
+  
+  Rectangle<int> cardbuttons2 (logoAreaRight.removeFromTop(textHeight));
+  blue2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  yellow2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  red2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  
   t2logo.setBounds(logoAreaRight.reduced(margin));
   
   snitchesGetStitches.setBounds(area.removeFromBottom(snitchHeight).reduced(margin));
@@ -406,6 +463,98 @@ void GameplayComponent::buttonClicked (Button* button)
   {
     writeToFile();
   }
+  else if ( button == &score1.increase )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Scored?", "", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->getRoster(),
+                   team1.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team1Stats.add(goalFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    else
+    {
+      team1Stats.add(goalFlag + " (" + String(timestamp) + "')" );
+    }
+    
+    indexOfGoal1 = team1Stats.size();
+    #endif
+  }
+  else if ( button == &score1.decrease )
+  {
+    bool keepLooking = true;
+    int i = team1Stats.size();
+    
+    while (keepLooking && i > 0)
+    {
+      if ( team1Stats[i].contains(goalFlag) )
+      {
+        team1Stats.remove(i);
+        keepLooking = false;
+      }
+      else
+      {
+        i--;
+      }
+      indexOfGoal1 = -1;
+    }
+  }
+  else if ( button == &score2.increase )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Scored?", "", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->getRoster(),
+                   team2.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team2Stats.add( player + " (" + String(timestamp) + "') " + goalFlag );
+    }
+    else
+    {
+      team2Stats.add( "(" + String(timestamp) + "') " + goalFlag );
+    }
+    
+    indexOfGoal2 = team2Stats.size();
+    #endif
+  }
+  else if ( button == &score2.decrease )
+  {
+    bool keepLooking = true;
+    int i = team2Stats.size();
+    
+    while (keepLooking && i > 0)
+    {
+      if ( team2Stats[i].contains(goalFlag) )
+      {
+        team2Stats.remove(i);
+        keepLooking = false;
+      }
+      else
+      {
+        i--;
+      }
+    }
+    indexOfGoal2 = -1;
+  }
 }
 
 void GameplayComponent::labelTextChanged (Label* label)
@@ -549,6 +698,16 @@ void GameplayComponent::writeToFile (bool gameSetup)
     }
     
     xml->createNewChildElement("countdown")->addTextElement(GameplayComponent::FLAGS[countdownFlag] + min + ":" + sec);
+  }
+  
+  if ( indexOfGoal1 != -1 )
+  {
+    xml->createNewChildElement("g1")->addTextElement(team1Stats[indexOfGoal1]);
+  }
+  
+  if ( indexOfGoal2 != -1 )
+  {
+    xml->createNewChildElement("g2")->addTextElement(team2Stats[indexOfGoal2]);
   }
   
   if ( gameSetup ) //create the logo files in the output directory; files will be called tournament.png, and  t[1|2].png

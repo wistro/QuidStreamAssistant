@@ -47,6 +47,10 @@ public:
   static const int seekersInSec = 60; //1 minute after snitch released
   static const int handicapsInSec = 300; //after seekers released, each handicap is 5 minutes
   static const StringArray FLAGS;
+  static const String goalFlag;
+  static const String blueFlag;
+  static const String yellowFlag;
+  static const String redFlag;
 
 private:
     
@@ -65,6 +69,18 @@ private:
   
   TextButton gameSetup;
   TextButton switchEnds;
+  
+  TextButton blue1;
+  TextButton yellow1;
+  TextButton red1;
+  int indexOfGoal1;
+  bool showG1;
+  
+  TextButton blue2;
+  TextButton yellow2;
+  TextButton red2;
+  int indexOfGoal2;
+  bool showG2;
   
   File writeHere;
   File writeHereDir;
@@ -88,6 +104,9 @@ private:
   String tournamentName;
   StringArray teamList;
   StringArray teamAbvs;
+  
+  StringArray team1Stats;
+  StringArray team2Stats;
   
   RelativeTime sopTimer;
   ToggleButton sopShow;

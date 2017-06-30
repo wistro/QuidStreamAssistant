@@ -1,11 +1,16 @@
 var showcorner, showlowerthird, showendgame, showcountdown, showI1, showI2, hasTlogo;
 var updating = false;
+var showingG1 = false;
+var showingG2 = false;
 var parser = new DOMParser();
 var responseXml;
 var fileUrl = "output/output.xml";
 var refreshrate = 500;
+var regex = /\{\{(\w{1,4})\}\}/g;
+var match;
 
 var trn, rd, s1, s2, t1, t2, gt, cdn, t1s, t2s, hr, snitch, streamer;
+var g1, g2;
 
 $(function() {
 	checkUpdate();
@@ -43,6 +48,9 @@ function getRequest() {
       hr = $(xml).find('hr').text();
       snitch = $(xml).find('snitch').text();
       streamer = $(xml).find('streamer').text();
+      g1 = $(xml).find('g1').text();
+      g2 = $(xml).find('g2').text();
+
 
       runUpdate();
     }
@@ -52,6 +60,40 @@ function getRequest() {
 function runUpdate() {
   if ( showcorner == "true" ) {
     $('#corner').removeClass('fast').addClass('display');
+
+    // if a goal was scored by team 1, show the goal dropdown for 4s then remove
+    if ( g1 && showingG1 == false )
+    {
+      showingG1 = true;
+      match = regex.exec(g1);
+
+      while (match != null)
+      {
+        g1 = g1.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
+        match = regex.exec(g1);
+      }
+
+      $('#g1').text(g1);
+      $('#g1').parent.addClass('display');
+      setTimeout( function() { $('#g1').parent.removeClass('display'); showingG1 = false; }, 4000);
+    }
+
+    // if a goal was scored by team 2, show the goal dropdown for 4s then remove
+    if ( g2 && showingG2 == false )
+    {
+      showingG2 = true;
+      match = regex.exec(g2);
+
+      while (match != null)
+      {
+        g2 = g2.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
+        match = regex.exec(g2);
+      }
+
+      $('#g2').text(g2);
+      $('#g2').parent.addClass('display');
+      setTimeout( function() { $('#g2').parent.removeClass('display'); showingG2 = false; }, 4000);
+    }
   }
   else {
     $('#corner').removeClass('display').addClass('fast');
@@ -90,9 +132,15 @@ function runUpdate() {
     $('#snitch').text("Snitch: " + snitch);
   }
 
-  $('#streamer').text(streamer);
-  streamer = streamer.replace('iTW', '<span class="icon iTW"></span>');
+  match = regex.exec(streamer);
 
+  while (match != null)
+  {
+    streamer = streamer.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
+    match = regex.exec(streamer);
+  }
+
+  $('#streamer').text(streamer);
 
   if ( showcountdown == "true" ) {
     $('#cdn').parent().addClass('display');

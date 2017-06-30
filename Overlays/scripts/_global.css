@@ -68,10 +68,15 @@ body
 .large .icon { margin: 4px 0 -4px; height: 26px; width: 26px; }
 .xlarge .icon { margin: 6px 0 -6px; height: 46px; width: 46px; }
 
-.icon.iTW { background: url('../icons/TW.png'); background-position: center; background-size: 100%; }
-.icon.iFB { background: url('../icons/FB.png'); background-position: center; background-size: 100%; }
-.icon.iTY { background: url('../icons/YT.png'); background-position: center; background-size: 100%; }
-.icon.TWC { background: url('../icons/TWC.png'); background-position: center; background-size: 100%; }
+.icon.iTW { background: url('../icons/TW.png'); background-position: center; background-size: 100% 100%; }
+.icon.iFB { background: url('../icons/FB.png'); background-position: center; background-size: 100% 100%; }
+.icon.iTY { background: url('../icons/YT.png'); background-position: center; background-size: 100% 100%; }
+.icon.TWC { background: url('../icons/TWC.png'); background-position: center; background-size: 100% 100%; }
+
+.icon.GG { background: url('../icons/quaffle.png'); background-position: center; background-size: 100% 100%; }
+.icon.BC { background: url('../icons/bluecard.png'); background-position: center; background-size: 100% 100%; }
+.icon.YC { background: url('../icons/yellowcard.png'); background-position: center; background-size: 100% 100%; }
+.icon.RC { background: url('../icons/redcard.png'); background-position: center; background-size: 100% 100%; }
 
 .logo { display: block; height: 100%; }
 

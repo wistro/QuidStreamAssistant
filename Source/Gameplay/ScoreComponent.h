@@ -27,6 +27,8 @@ class ScoreComponent  : public Component,
 public:
   
   Label showScore;
+  ArrowButton increase;
+  ArrowButton decrease;
   
   static const char reg = 'r';
   static const char ot = 'o';
@@ -63,9 +65,6 @@ private:
   bool caughtR;
   bool caughtO;
   bool caught2O;
-  
-  ArrowButton increase;
-  ArrowButton decrease;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScoreComponent)
 };
