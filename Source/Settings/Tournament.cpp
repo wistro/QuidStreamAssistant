@@ -227,6 +227,20 @@ StringArray Tournament::getTeamAbvList()
 
 //==============================================================================
 
+void Tournament::fillHR ( String newHRs )
+{
+  hrList.clear();
+  hrList.addLines(newHRs);
+}
+
+void Tournament::fillSnitches ( String newSnitches )
+{
+  snitchList.clear();
+  snitchList.addLines(newSnitches);
+}
+
+//==============================================================================
+
 void Tournament::fillThisSucker(String name, String location, String rounds)
 {
   tournamentName = name;
@@ -283,6 +297,16 @@ void Tournament::readFromXML (const XmlElement& xml)
           addTeam(teamsList[i]);
         }
       }
+      else if ( e->hasTagName("HRs") )
+      {
+        hrList.clear();
+        hrList.addTokens(e->getAllSubText(), "|", "");
+      }
+      else if ( e->hasTagName("snitches") )
+      {
+        snitchList.clear();
+        snitchList.addTokens(e->getAllSubText(), "|", "");
+      }
       
       else if ( e->hasTagName("logo") )
       {
@@ -318,6 +342,10 @@ void Tournament::writeToFile (const File& file) const
   xml->createNewChildElement("rounds")->addTextElement(roundsList.joinIntoString("|"));
   
   xml->createNewChildElement("teams")->addTextElement(teamsList.joinIntoString("|"));
+  
+  xml->createNewChildElement("HRs")->addTextElement(hrList.joinIntoString("|"));
+  
+  xml->createNewChildElement("snitches")->addTextElement(snitchList.joinIntoString("|"));
 
   //teams will always already be files when this is called
   //recreating them each time is a lot of processing for no purpose

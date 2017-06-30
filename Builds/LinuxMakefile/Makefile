@@ -78,6 +78,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
   $(JUCE_OBJDIR)/EditTeamWindow_340f7744.o \
   $(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o \
+  $(JUCE_OBJDIR)/HRSnitchWindow_fff0ab72.o \
   $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o \
   $(JUCE_OBJDIR)/MainAppWindow_a32f5db5.o \
   $(JUCE_OBJDIR)/RosterListBoxComponent_e20d9ec8.o \
@@ -167,6 +168,11 @@ $(JUCE_OBJDIR)/EditTeamWindow_340f7744.o: ../../Source/ToolWindows/EditTeamWindo
 $(JUCE_OBJDIR)/EditTournamentWindow_8543be50.o: ../../Source/ToolWindows/EditTournamentWindow.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EditTournamentWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/HRSnitchWindow_fff0ab72.o: ../../Source/ToolWindows/HRSnitchWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HRSnitchWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/IntroAlertWindow_916208cd.o: ../../Source/ToolWindows/IntroAlertWindow.cpp

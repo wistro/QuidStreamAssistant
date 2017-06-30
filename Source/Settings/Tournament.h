@@ -39,6 +39,14 @@ public:
   String getTournamentLocation();
   StringArray getRoundsList();
   StringArray getTeamAbvList();
+  StringArray getHRList();
+  StringArray getSnitchList();
+  
+  //both of these should be given a newline-delineated list
+  //by which I mean, each HR or snitch is separated from the others by \n characters
+  void fillHR ( String newHRs );
+  void fillSnitches ( String newSnitches );
+  
   
   StringArray getTeamList();
   
@@ -71,6 +79,8 @@ private:
   StringArray teamsList;
   StringArray teamsAbvList;
   StringArray roundsList;
+  StringArray hrList;
+  StringArray snitchList;
   
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tournament)

@@ -33,6 +33,7 @@ private:
   TextButton browse;
   TextButton setDefault;
   TextButton restoreFactory;
+  TextButton hrsnitch;
   
   TextEditor tournName;
   TextEditor location;

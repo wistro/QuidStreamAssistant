@@ -5,5 +5,7 @@
     <location>LOCATION</location>
     <rounds>Group Stage|Round of 16|Quarter Finals|Semi Finals|3rd Place Playoff|Finals|Consolation Round of 16|Consolation Quarter Finals|Consolation Semi Finals|Consolation 3rd Place Playoff|Consolation Finals</rounds>
     <teams></teams>
+    <HRs></HRs>
+    <snitches></snitches>
     <logo>NOLOGO</logo>
 </TOURNAMENT>

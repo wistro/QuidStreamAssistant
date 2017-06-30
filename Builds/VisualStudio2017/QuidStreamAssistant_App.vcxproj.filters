@@ -409,6 +409,9 @@
     <ClCompile Include="..\..\Source\ToolWindows\EditTournamentWindow.cpp">
       <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ToolWindows\HRSnitchWindow.cpp">
+      <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ToolWindows\IntroAlertWindow.cpp">
       <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
     </ClCompile>
@@ -2170,6 +2173,9 @@
       <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToolWindows\EditTournamentWindow.h">
+      <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ToolWindows\HRSnitchWindow.h">
       <Filter>QuidStreamAssistant\Source\ToolWindows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ToolWindows\IntroAlertWindow.h">

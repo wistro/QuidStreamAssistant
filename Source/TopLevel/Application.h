@@ -51,6 +51,8 @@ public:
   
   void showStreamingWindow();
   
+  void showHRSnitchWindow();
+  
   //==============================================================================
 
   ScopedPointer<StoredSettings> settings;
@@ -61,6 +63,7 @@ public:
   ScopedPointer<Component> teamSelect;
   ScopedPointer<Component> editTeam;
   ScopedPointer<Component> streamingWindow;
+  ScopedPointer<Component> hrSnitch;
   
   CustomLookAndFeel defaultLook;
   ScopedPointer<MainAppWindow> mainWindow;

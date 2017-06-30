@@ -36,7 +36,7 @@ namespace BinaryData
     const int            default_team_xmlSize = 3293;
 
     extern const char*   default_tournament_xml;
-    const int            default_tournament_xmlSize = 391;
+    const int            default_tournament_xmlSize = 433;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

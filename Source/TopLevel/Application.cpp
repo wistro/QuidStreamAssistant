@@ -13,6 +13,7 @@
 #include "../Settings/FloatingToolWindow.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
 #include "../ToolWindows/EditTeamWindow.h"
+#include "../ToolWindows/HRSnitchWindow.h"
 #include "../Gameplay/GameplayComponent.h"
 
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
@@ -109,6 +110,15 @@ void QuidStreamAssistantApplication::showStreamingWindow()
                             1000, 450, 1000, 450, 1000, 450);
 }
 
+void QuidStreamAssistantApplication::showHRSnitchWindow()
+{
+  if (hrSnitch != nullptr)
+    hrSnitch->toFront (true);
+  else
+    new FloatingToolWindow ("Head Refs & Snitches", "hrsnitchWindowPos", new HRSnitchWindow(),
+                            hrSnitch, false,
+                            600, 500, 600, 500, 600, 500);
+}
 //==============================================================================
 void QuidStreamAssistantApplication::systemRequestedQuit()
 {

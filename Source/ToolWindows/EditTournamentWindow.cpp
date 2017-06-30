@@ -37,6 +37,11 @@ EditTournamentWindow::EditTournamentWindow()
   restoreFactory.addListener(this);
   addAndMakeVisible(restoreFactory);
   
+  hrsnitch.setButtonText("add HRs & Snitches");
+  hrsnitch.setTooltip("click here to add the list of Head Refs and Snitches for this tournament");
+  hrsnitch.addListener(this);
+  addAndMakeVisible(hrsnitch);
+  
   browse.setButtonText("...");
   browse.setTooltip("Browse for Image file");
   browse.addListener(this);
@@ -109,6 +114,7 @@ EditTournamentWindow::~EditTournamentWindow()
   browse.removeListener(this);
   setDefault.removeListener(this);
   restoreFactory.removeListener(this);
+  hrsnitch.removeListener(this);
 }
 
 void EditTournamentWindow::paint (Graphics& g)
@@ -244,6 +250,11 @@ void EditTournamentWindow::buttonClicked (Button* button)
     QuidStreamAssistantApplication::getApp().thisTournament->restoreDefaultTournamentFile();
     AlertWindow::showMessageBoxAsync (AlertWindow::InfoIcon, "Defaults Restored.", "", "OK");
   }
+  
+  else if ( button == &hrsnitch )
+  {
+    QuidStreamAssistantApplication::getApp().showHRSnitchWindow();
+  }
 }
 
 void EditTournamentWindow::resized()
@@ -270,12 +281,16 @@ void EditTournamentWindow::resized()
 //  rounds.setBounds(area.removeFromTop(textBoxHeight).reduced(margin));
   consolationBracket.setBounds(area.removeFromTop(textBoxHeight).reduced(margin).removeFromRight(proportionOfWidth(0.76f)).reduced(margin * 2));
   
-  Rectangle<int> saveCancel (area.removeFromBottom(buttonHeight).reduced(margin));
+  Rectangle<int> saveCancel (area.removeFromBottom(buttonHeight * 2));
   //saveCancel.removeFromLeft(saveCancel.getWidth() / 2);
+  
+  Rectangle<int> defaults (saveCancel.removeFromTop(buttonHeight));
+  restoreFactory.setBounds(defaults.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
+  setDefault.setBounds(defaults.removeFromLeft(proportionOfWidth(0.25f)).reduced(margin));
+  hrsnitch.setBounds(defaults.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
+
   save.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
   cancel.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
-  setDefault.setBounds(saveCancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
-  restoreFactory.setBounds(saveCancel.reduced(margin));
   
   editRounds.setBounds(area.reduced(margin));
 

@@ -150,6 +150,7 @@
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\EditTeamWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\EditTournamentWindow.cpp"/>
+    <ClCompile Include="..\..\Source\ToolWindows\HRSnitchWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\IntroAlertWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\MainAppWindow.cpp"/>
     <ClCompile Include="..\..\Source\ToolWindows\RosterListBoxComponent.cpp"/>
@@ -1733,6 +1734,7 @@
     <ClInclude Include="..\..\Source\Gameplay\StopWatch.h"/>
     <ClInclude Include="..\..\Source\ToolWindows\EditTeamWindow.h"/>
     <ClInclude Include="..\..\Source\ToolWindows\EditTournamentWindow.h"/>
+    <ClInclude Include="..\..\Source\ToolWindows\HRSnitchWindow.h"/>
     <ClInclude Include="..\..\Source\ToolWindows\IntroAlertWindow.h"/>
     <ClInclude Include="..\..\Source\ToolWindows\MainAppWindow.h"/>
     <ClInclude Include="..\..\Source\ToolWindows\RosterListBoxComponent.h"/>

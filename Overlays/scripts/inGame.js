@@ -89,7 +89,7 @@ function runUpdate() {
   {
     $('#snitch').text("Snitch: " + snitch);
   }
-  
+
   $('#streamer').text(streamer);
   streamer = streamer.replace('iTW', '<span class="icon iTW"></span>');
 
@@ -102,17 +102,21 @@ function runUpdate() {
   }
 
   if ( showI1 == "true" ) {
-    $('#i1').addClass('thumb logo display ' + t1s);
+    $('#i1c').addClass('thumb logo display ' + t1s);
+    $('#i1l').addClass('thumb logo display ' + t1s);
   }
   else {
-    $('#i1').removeClass();
+    $('#i1c').removeClass();
+    $('#i1l').removeClass();
   }
 
   if ( showI2 == "true" ) {
-    $('#i2').addClass('thumb logo display ' + t2s);
+    $('#i2c').addClass('thumb logo display ' + t2s);
+    $('#i2l').addClass('thumb logo display ' + t2s);
   }
   else {
-    $('#i2').removeClass();
+    $('#i2c').removeClass();
+    $('#i2l').removeClass();
   }
 
   if ( hasTlogo == "true" )

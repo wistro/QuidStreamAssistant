@@ -90,12 +90,14 @@ GameplayComponent::GameplayComponent() :
   addAndMakeVisible(endScreen);
   
   hrList.setEditableText(true);
+  hrList.addItemList(QuidStreamAssistantApplication::getApp().thisTournament->getHRList(), 1);
   addAndMakeVisible(hrList);
   
   hr.setText("HR", dontSendNotification);
   addAndMakeVisible(hr);
   
   snitchList.setEditableText(true);
+  snitchList.addItemList(QuidStreamAssistantApplication::getApp().thisTournament->getSnitchList(), 1);
   addAndMakeVisible(snitchList);
   
   snitch.setText("Snitch", dontSendNotification);

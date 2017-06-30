@@ -54,6 +54,10 @@
               file="Source/ToolWindows/EditTournamentWindow.cpp"/>
         <FILE id="TrzExt" name="EditTournamentWindow.h" compile="0" resource="0"
               file="Source/ToolWindows/EditTournamentWindow.h"/>
+        <FILE id="a9yASr" name="HRSnitchWindow.cpp" compile="1" resource="0"
+              file="Source/ToolWindows/HRSnitchWindow.cpp"/>
+        <FILE id="tw0LkM" name="HRSnitchWindow.h" compile="0" resource="0"
+              file="Source/ToolWindows/HRSnitchWindow.h"/>
         <FILE id="mVhgUO" name="IntroAlertWindow.cpp" compile="1" resource="0"
               file="Source/ToolWindows/IntroAlertWindow.cpp"/>
         <FILE id="DJEaIy" name="IntroAlertWindow.h" compile="0" resource="0"

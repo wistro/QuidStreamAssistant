@@ -2,7 +2,7 @@
 {
   --lt-height: 260px;
   --bar-height: 100px;
-  --drop-height: 60px;
+  --drop-height: 50px;
   --border-curve: 15px;
   --border-width: 3px;
   --logo-radius: calc( (var(--lt-height)) / 2);
@@ -21,7 +21,7 @@
 }
 
 .lowerthird .title { line-height: calc((var(--bar-height) - var(--border-width) *2) / 2); }
-.lowerthird .smol.title { line-height: calc( (var(--drpdwn-height) - var(--border-width) *2) / 2); }
+.lowerthird .smol.title { line-height: calc( (var(--drpdwn-height) - var(--border-width) *2) / 1.5); }
 .lowerthird .small .title { text-transform: uppercase; }
 
 .lowerthird
@@ -78,6 +78,18 @@
 {
   -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 100% 0%);
 }
+
+.lowerthird .sidebar .thumb
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--width-small) * 0.6);
+  z-index: 50;
+  opacity: 1;
+}
+.lowerthird .sleft .thumb { left: 0px; border-radius: var(--border-curve) 0 0 var(--border-curve); }
+.lowerthird .sright .thumb { right: 0px; border-radius: 0 var(--border-curve) var(--border-curve) 0; }
 
 .lowerthird .tournament
 {
