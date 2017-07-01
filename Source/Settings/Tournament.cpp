@@ -143,7 +143,7 @@ void Tournament::clearTeamsList()
 
 //==============================================================================
 
-void Tournament::addTeam(String teamName)
+void Tournament::addTeam(String teamName, bool writeLogo)
 {
   const File file (Team::getTeamsFolder().getChildFile(teamName).withFileExtension(Team::getTeamFileSuffix()));
   
@@ -166,7 +166,10 @@ void Tournament::addTeam(String teamName)
     teams.add(newTeam);
     teamsAbvList.addIfNotAlreadyThere(newTeam->getTeamAbv());
     
-    newTeam->writeLogoFile();
+    if ( writeLogo )
+    {
+      newTeam->writeLogoFile();
+    }
   }
   
   teamsList.addIfNotAlreadyThere(teamName); //teamsList is a StringArray containing the names of all teams at this tournament

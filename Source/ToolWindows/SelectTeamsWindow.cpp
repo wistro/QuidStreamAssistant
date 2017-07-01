@@ -127,7 +127,7 @@ void SelectTeamsWindow::buttonClicked(Button* button)
     {
       if ( teamList->getToggled(i) )
       {
-        QuidStreamAssistantApplication::getApp().thisTournament->addTeam(teamList->getTeamName(i));
+        QuidStreamAssistantApplication::getApp().thisTournament->addTeam(teamList->getTeamName(i), true);
       }
       else
       {

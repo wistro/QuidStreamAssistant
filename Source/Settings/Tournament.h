@@ -30,7 +30,7 @@ public:
   void clear();
   void clearTeamsList();
   
-  void addTeam(String teamName);
+  void addTeam(String teamName, bool writeLogo = false);
   void addRound(String newRound);
   void removeTeam(String teamName);
   void removeRound(String badRound);
