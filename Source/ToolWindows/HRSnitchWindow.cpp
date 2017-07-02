@@ -76,13 +76,16 @@ void HRSnitchWindow::resized()
 {
   Rectangle<int> area(getLocalBounds());
   const int margin = 2;
+  const int textSpace = 22;
   const int buttonHeight = 40;
   
   Rectangle<int> savecancel (area.removeFromBottom(buttonHeight));
   save.setBounds(savecancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
   cancel.setBounds(savecancel.removeFromRight(proportionOfWidth(0.25f)).reduced(margin));
   
-  editHRs.setBounds(area.removeFromTop(proportionOfHeight(0.5f)).reduced(margin));
+  area.removeFromTop(textSpace);
+  editHRs.setBounds(area.removeFromTop(proportionOfHeight(0.5f) - textSpace).reduced(margin));
+  area.removeFromTop(textSpace);
   editSnitches.setBounds(area.reduced(margin));
 }
 

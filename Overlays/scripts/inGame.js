@@ -57,6 +57,19 @@ function getRequest() {
   });
 }
 
+function addIcons(text)
+{
+  match = regex.exec(text);
+
+  while (match != null)
+  {
+    text = g1.replace(match[0], "<span class=\"icon "+match[1]+"\"></span>");
+    match = regex.exec(text);
+  }
+
+  return text;
+}
+
 function runUpdate() {
   if ( showcorner == "true" ) {
     $('#corner').removeClass('fast').addClass('display');
@@ -65,34 +78,20 @@ function runUpdate() {
     if ( g1 && showingG1 == false )
     {
       showingG1 = true;
-      match = regex.exec(g1);
 
-      while (match != null)
-      {
-        g1 = g1.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
-        match = regex.exec(g1);
-      }
-
-      $('#g1').text(g1);
-      $('#g1').parent.addClass('display');
-      setTimeout( function() { $('#g1').parent.removeClass('display'); showingG1 = false; }, 4000);
+      $('#g1').html(addIcons(g1));
+      $('#g1').parent().addClass('display');
+      setTimeout( function() { $('#g1').parent().removeClass('display'); showingG1 = false; }, 4000);
     }
 
     // if a goal was scored by team 2, show the goal dropdown for 4s then remove
     if ( g2 && showingG2 == false )
     {
       showingG2 = true;
-      match = regex.exec(g2);
 
-      while (match != null)
-      {
-        g2 = g2.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
-        match = regex.exec(g2);
-      }
-
-      $('#g2').text(g2);
-      $('#g2').parent.addClass('display');
-      setTimeout( function() { $('#g2').parent.removeClass('display'); showingG2 = false; }, 4000);
+      $('#g2').html(addIcons(g2));
+      $('#g2').parent().addClass('display');
+      setTimeout( function() { $('#g2').parent().removeClass('display'); showingG2 = false; }, 4000);
     }
   }
   else {
@@ -132,15 +131,7 @@ function runUpdate() {
     $('#snitch').text("Snitch: " + snitch);
   }
 
-  match = regex.exec(streamer);
-
-  while (match != null)
-  {
-    streamer = streamer.replace(match[0], "<span class=\"icon-"+match[1]+"\"></span>");
-    match = regex.exec(streamer);
-  }
-
-  $('#streamer').text(streamer);
+  $('#streamer').html(addIcons(streamer));
 
   if ( showcountdown == "true" ) {
     $('#cdn').parent().addClass('display');

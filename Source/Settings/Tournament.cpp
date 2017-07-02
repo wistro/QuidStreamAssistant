@@ -228,6 +228,16 @@ StringArray Tournament::getTeamAbvList()
   return teamsAbvList;
 }
 
+StringArray Tournament::getHRList()
+{
+  return hrList;
+}
+
+StringArray Tournament::getSnitchList()
+{
+  return snitchList;
+}
+
 //==============================================================================
 
 void Tournament::fillHR ( String newHRs )

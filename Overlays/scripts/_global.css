@@ -64,6 +64,7 @@ body
 
 .icon { display: inline-block; }
 
+.xsmall .icon { margin: 1px 0 -1px; height: 12px; width: 12px; }
 .small .icon { margin: 2px 0 -2px; height: 18px; width: 18px; }
 .large .icon { margin: 4px 0 -4px; height: 26px; width: 26px; }
 .xlarge .icon { margin: 6px 0 -6px; height: 46px; width: 46px; }

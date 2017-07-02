@@ -82,6 +82,8 @@ private:
   int indexOfGoal2;
   bool showG2;
   
+  int hideGoalDisplays;
+  
   File writeHere;
   File writeHereDir;
   

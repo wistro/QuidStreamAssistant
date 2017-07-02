@@ -215,6 +215,7 @@ void GameplayComponent::resized()
   const int margin = 4;
   const int scoresWidth = 240;
   const int snitchHeight = 170;
+  int cardWidth;
   
   Rectangle<int> area(getLocalBounds());
   
@@ -257,9 +258,10 @@ void GameplayComponent::resized()
   logoAreaLeft.removeFromBottom(textHeight);
   
   Rectangle<int> cardbuttons1 (logoAreaLeft.removeFromTop(textHeight));
-  blue1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
-  yellow1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
-  red1.setBounds(cardbuttons1.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  cardWidth = cardbuttons1.getWidth() / 3;
+  blue1.setBounds(cardbuttons1.removeFromLeft(cardWidth).reduced(margin));
+  yellow1.setBounds(cardbuttons1.removeFromLeft(cardWidth).reduced(margin));
+  red1.setBounds(cardbuttons1.removeFromLeft(cardWidth).reduced(margin));
   
   t1logo.setBounds(logoAreaLeft.reduced(margin));
   
@@ -267,9 +269,10 @@ void GameplayComponent::resized()
   logoAreaRight.removeFromBottom(textHeight);
   
   Rectangle<int> cardbuttons2 (logoAreaRight.removeFromTop(textHeight));
-  blue2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
-  yellow2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
-  red2.setBounds(cardbuttons2.removeFromLeft(proportionOfWidth(0.333f)).reduced(margin));
+  cardWidth = cardbuttons2.getWidth() / 3;
+  blue2.setBounds(cardbuttons2.removeFromLeft(cardWidth).reduced(margin));
+  yellow2.setBounds(cardbuttons2.removeFromLeft(cardWidth).reduced(margin));
+  red2.setBounds(cardbuttons2.removeFromLeft(cardWidth).reduced(margin));
   
   t2logo.setBounds(logoAreaRight.reduced(margin));
   
@@ -487,7 +490,7 @@ void GameplayComponent::buttonClicked (Button* button)
       team1Stats.add(goalFlag + " (" + String(timestamp) + "')" );
     }
     
-    indexOfGoal1 = team1Stats.size();
+    indexOfGoal1 = team1Stats.size() - 1;
     #endif
   }
   else if ( button == &score1.decrease )
@@ -533,7 +536,7 @@ void GameplayComponent::buttonClicked (Button* button)
       team2Stats.add( "(" + String(timestamp) + "') " + goalFlag );
     }
     
-    indexOfGoal2 = team2Stats.size();
+    indexOfGoal2 = team2Stats.size() - 1;
     #endif
   }
   else if ( button == &score2.decrease )
@@ -562,6 +565,15 @@ void GameplayComponent::labelTextChanged (Label* label)
   if ( label == &gameTime.gameTime.currentTime );
   {
     sopTimer.operator-=(1);
+    hideGoalDisplays++;
+    
+    if ( hideGoalDisplays > 2 ) //reset every 3 seconds
+    {
+      indexOfGoal1 = -1;
+      indexOfGoal2 = -1;
+      hideGoalDisplays = 0; //reset to start count over
+    }
+    
     if ( sopTimer.inSeconds() == 0 )
     {
       countdownFlag++; //1 = seekers; 2 = 1st HC; 3 = 2nd HC; 4 = 3rd HC
