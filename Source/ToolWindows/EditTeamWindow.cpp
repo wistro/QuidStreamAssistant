@@ -124,7 +124,6 @@ void EditTeamWindow::initBasics()
   infinity.setTooltip("set selected Player's number to infinity");
   infinity.addListener(this);
   addAndMakeVisible(infinity);
-  
 }
 
 //==============================================================================
@@ -169,6 +168,14 @@ void EditTeamWindow::buttonClicked (Button* button)
           old.deleteFile();
         }
         //no else necessary, create new just means ignore the old file and it'll stick around
+        
+        //we know the team name has been changed, whether we keep the old one or not, we're going to assume that
+        //we should deselect the old one and select the new one, if the old one was selected
+        if ( QuidStreamAssistantApplication::getApp().thisTournament->getTeamList().contains(thisTeam->getTeamName()) )
+        {
+          QuidStreamAssistantApplication::getApp().thisTournament->getTeamList().removeString(thisTeam->getTeamName());
+          QuidStreamAssistantApplication::getApp().thisTournament->getTeamList().add(teamName.getText());
+        }
       }
       
       thisTeam->team.clear();
@@ -199,7 +206,8 @@ void EditTeamWindow::buttonClicked (Button* button)
       else
       {
         thisTeam->fillThisSucker(teamName.getText(), abvBox.getText());
-        QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+        QuidStreamAssistantApplication::getApp().showTeamSelectWindow
+                            ( QuidStreamAssistantApplication::getApp().thisTournament->getTeamList() );
         QuidStreamAssistantApplication::getApp().editTeam = nullptr;
       }
     }

@@ -54,6 +54,5 @@ private:
   Label logo;
   Label rosterLabel;
   
-  
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditTeamWindow)
 };

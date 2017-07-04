@@ -51,6 +51,7 @@ public:
   static const String blueFlag;
   static const String yellowFlag;
   static const String redFlag;
+  static const String dblYellowFlag;
 
 private:
     
@@ -75,14 +76,19 @@ private:
   TextButton red1;
   int indexOfGoal1;
   bool showG1;
+  RelativeTime sinceDisplayGoal1;
+//  Array<RelativeTime> cardTimers1;
   
   TextButton blue2;
   TextButton yellow2;
   TextButton red2;
   int indexOfGoal2;
   bool showG2;
-  
-  int hideGoalDisplays;
+  RelativeTime sinceDisplayGoal2;
+//  Array<RelativeTime> cardTimers2;
+  //timers for cards have too many moving parts for right now,
+  //just going to take the stats and call it a day
+  //i'll figure out displaying it later
   
   File writeHere;
   File writeHereDir;

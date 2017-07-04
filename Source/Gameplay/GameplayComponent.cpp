@@ -27,11 +27,12 @@ const String GameplayComponent::goalFlag = "{{GG}}";
 const String GameplayComponent::blueFlag = "{{BC}}";
 const String GameplayComponent::yellowFlag = "{{YC}}";
 const String GameplayComponent::redFlag = "{{RC}}";
+const String GameplayComponent::dblYellowFlag = "{{DYC}}";
 
 //==============================================================================
 GameplayComponent::GameplayComponent() :
           writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output"),
-          score2(false), sopTimer(sopInSec)
+          score2(false), sopTimer(sopInSec), sinceDisplayGoal1(0), sinceDisplayGoal2(0)
 {
   //locations set on opening screen
   writeHere = writeHereDir.getChildFile("output.xml");
@@ -345,16 +346,45 @@ void GameplayComponent::buttonClicked (Button* button)
   if ( button == &corner )
   {
     showCorner = corner.getToggleState();
+    
+    //make sure endscreen is off when displaying
+    if ( showCorner && showEndScreen )
+    {
+      endScreen.triggerClick();
+    }
+    
     writeToFile();
   }
   else if ( button == &lowerthird )
   {
     showLowerThird = lowerthird.getToggleState();
+    
+    //make sure endscreen is off when displaying
+    if ( showLowerThird && showEndScreen )
+    {
+      endScreen.triggerClick();
+    }
+    
     writeToFile();
   }
   else if ( button == &endScreen )
   {
     showEndScreen = endScreen.getToggleState();
+    
+    //end screen shows on it's own,
+    //so if it's showing, turn others off
+    if ( showEndScreen )
+    {
+      if ( showCorner )
+      {
+        corner.triggerClick();
+      }
+      if ( showLowerThird )
+      {
+        lowerthird.triggerClick();
+      }
+    }
+    
     writeToFile();
   }
   else if ( button == &gameSetup )
@@ -461,6 +491,14 @@ void GameplayComponent::buttonClicked (Button* button)
     //reset sopTimer to 17min (+1 second)
     countdownFlag = 0;
     sopTimer.seconds(sopInSec);
+    
+    //empty team stats arrays and reset counters to 0
+    //eventually we'll save this data to a file before doing this
+    //for now, just delete it
+    team1Stats.clear();
+    team2Stats.clear();
+    indexOfGoal1 = -1;
+    indexOfGoal2 = -1;
   }
   else if ( button == &gameTime.playPause )
   {
@@ -469,7 +507,7 @@ void GameplayComponent::buttonClicked (Button* button)
   else if ( button == &score1.increase )
   {
     #if JUCE_MODAL_LOOPS_PERMITTED
-    AlertWindow w ("Which Player Scored?", "", AlertWindow::QuestionIcon);
+    AlertWindow w ("Which Player Scored?", "Cancel if you don't know who scored.", AlertWindow::QuestionIcon);
     int timestamp = gameTime.gameTime.timer.inMinutes();
     
     w.addComboBox ("player",
@@ -491,6 +529,7 @@ void GameplayComponent::buttonClicked (Button* button)
     }
     
     indexOfGoal1 = team1Stats.size() - 1;
+    sinceDisplayGoal1.operator+=(3);
     #endif
   }
   else if ( button == &score1.decrease )
@@ -515,7 +554,7 @@ void GameplayComponent::buttonClicked (Button* button)
   else if ( button == &score2.increase )
   {
     #if JUCE_MODAL_LOOPS_PERMITTED
-    AlertWindow w ("Which Player Scored?", "", AlertWindow::QuestionIcon);
+    AlertWindow w ("Which Player Scored?", "Cancel if you don't know who scored.", AlertWindow::QuestionIcon);
     int timestamp = gameTime.gameTime.timer.inMinutes();
     
     w.addComboBox ("player",
@@ -537,6 +576,7 @@ void GameplayComponent::buttonClicked (Button* button)
     }
     
     indexOfGoal2 = team2Stats.size() - 1;
+    sinceDisplayGoal2.operator+=(3);
     #endif
   }
   else if ( button == &score2.decrease )
@@ -558,6 +598,146 @@ void GameplayComponent::buttonClicked (Button* button)
     }
     indexOfGoal2 = -1;
   }
+  else if ( button == &blue1 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->getRoster(),
+                   team1.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team1Stats.add( blueFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
+  else if ( button == &yellow1 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->getRoster(),
+                   team1.getText() + " Roster");
+    
+    w.addButton ("1st Yellow", 1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton("2nd Yellow", 2);
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    int catchButton = w.runModalLoop();
+    
+    if (catchButton == 1) // is they picked '1st Yellow'
+    {
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team1Stats.add( yellowFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    else if (catchButton == 2)
+    {
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team1Stats.add( dblYellowFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
+  else if ( button == &red1 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->getRoster(),
+                   team1.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team1Stats.add( redFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
+  else if ( button == &blue2 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->getRoster(),
+                   team2.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team2Stats.add( blueFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
+  else if ( button == &yellow2 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->getRoster(),
+                   team2.getText() + " Roster");
+    
+    w.addButton ("1st Yellow", 1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton("2nd Yellow", 2);
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    int catchButton = w.runModalLoop();
+    
+    if (catchButton == 1) // is they picked '1st Yellow'
+    {
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team2Stats.add( yellowFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    else if (catchButton == 2)
+    {
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team2Stats.add( dblYellowFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
+  else if ( button == &red2 )
+  {
+    #if JUCE_MODAL_LOOPS_PERMITTED
+    AlertWindow w ("Which Player Was Naughty?", "Cancel if card was not given.", AlertWindow::QuestionIcon);
+    int timestamp = gameTime.gameTime.timer.inMinutes();
+    
+    w.addComboBox ("player",
+                   QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->getRoster(),
+                   team2.getText() + " Roster");
+    
+    w.addButton ("OK",     1, KeyPress (KeyPress::returnKey, 0, 0));
+    w.addButton ("Cancel", 0, KeyPress (KeyPress::escapeKey, 0, 0));
+    
+    if (w.runModalLoop() != 0) // is they picked 'ok'
+    {
+      // this is the item they chose in the drop-down list..
+      const String player = w.getComboBoxComponent ("player")->getText();
+      team2Stats.add( redFlag + " " + player + " (" + String(timestamp) + "')" );
+    }
+    #endif
+  }
 }
 
 void GameplayComponent::labelTextChanged (Label* label)
@@ -565,13 +745,23 @@ void GameplayComponent::labelTextChanged (Label* label)
   if ( label == &gameTime.gameTime.currentTime );
   {
     sopTimer.operator-=(1);
-    hideGoalDisplays++;
     
-    if ( hideGoalDisplays > 2 ) //reset every 3 seconds
+    if ( sinceDisplayGoal1.inSeconds() > 0 )
+    {
+      sinceDisplayGoal1.operator-=(1);
+    }
+    else
     {
       indexOfGoal1 = -1;
+    }
+    
+    if ( sinceDisplayGoal2.inSeconds() > 0 )
+    {
+      sinceDisplayGoal2.operator-=(1);
+    }
+    else
+    {
       indexOfGoal2 = -1;
-      hideGoalDisplays = 0; //reset to start count over
     }
     
     if ( sopTimer.inSeconds() == 0 )
@@ -720,6 +910,15 @@ void GameplayComponent::writeToFile (bool gameSetup)
   if ( indexOfGoal2 != -1 )
   {
     xml->createNewChildElement("g2")->addTextElement(team2Stats[indexOfGoal2]);
+  }
+  
+  if ( showEndScreen )
+  {
+    xml->createNewChildElement("team1stats")->addTextElement(team1Stats.joinIntoString("\n"));
+    xml->createNewChildElement("team2stats")->addTextElement(team2Stats.joinIntoString("\n"));
+    
+    xml->createNewChildElement("endheight")->addTextElement( team1Stats.size() > team2Stats.size() ?
+                                                            String(team1Stats.size()) : String(team2Stats.size()) );
   }
   
   if ( gameSetup ) //create the logo files in the output directory; files will be called tournament.png, and  t[1|2].png

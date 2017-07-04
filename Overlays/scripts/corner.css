@@ -15,7 +15,7 @@
   --width-small: calc((var(--corner-width) / 4));
   --width-xsmall: calc((var(--width-small)) * 0.75);
   --width-med: calc(var(--width-small) * 1.25);
-  /*--width-large: calc(var(--width-small) * 1.5);*/
+  --width-large: calc(var(--width-small) + (var(--width-med) * 0.4));
 }
 
 .corner.colorB { height: var(--corner-height); }
@@ -134,7 +134,7 @@
   position: absolute;
   top: calc(var(--bar-height) - var(--border-width));
   height: var(--drpdwn-height);
-  width: var(--width-small);
+  width: var(--width-large);
   border-radius: 0 0 var(--border-curve) var(--border-curve);
   z-index: -1;
   -webkit-clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 0%, 50% 0%, 0% 0%);

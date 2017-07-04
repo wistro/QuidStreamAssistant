@@ -116,7 +116,7 @@ void GameTimer::buttonClicked (Button* button)
       
       if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
                          "Are You Sure?",
-                         "At some point in the future this might let you save the current game time to a file. For now, this is your last chance to write it down before it's gone forever. (Cancel to abort)",
+                         "At some point in the future this might let you save the current game time & stats to a file. For now, this is your last chance to write them down before they're gone forever. (Cancel to abort)",
                          String(),
                          String(),
                          &stop, nullptr) )
