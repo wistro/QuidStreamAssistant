@@ -63,6 +63,7 @@ function getRequest() {
 
 function addIcons(text)
 {
+  text = text.replace(/\n/g, "<br>");
   match = regex.exec(text);
 
   while (match != null)
@@ -118,12 +119,13 @@ function runUpdate() {
 
 	$('#t1s').text(t1s);
   $('#t2s').text(t2s);
-  $('#s1').text(s1);
-  $('#s2').text(s2);
+  $('.score1').text(s1);
+  $('.score2').text(s2);
   $('#gt').text(gt);
   $('#cdn').text(cdn);
   $('#trn').text(trn);
   $('#rd').text(rd);
+  $('#round').text(rd);
   $('#t1').text(t1);
   $('#t2').text(t2);
 
@@ -195,9 +197,9 @@ function runUpdate() {
   if ( showendgame == "true" && updatingES == false)
   {
     updatingES = true;
-    $('#t1stats').text(endt1);
-    $('#t2stats').text(endt2);
-    $('#endscreen').style.setProperty("--stat-height-multiplier", endheight);
+    $('#t1stats').html(addIcons(endt1));
+    $('#t2stats').html(addIcons(endt2));
+    $('#endscreen').get(0).style.setProperty("--stat-height", endheight);
     $('#tourne').addClass('display')
     setTimeout( function() { $('.endsidebar').addClass('display'); }, 1000);
     setTimeout( function() { $('.endround').addClass('display'); }, 2000);
@@ -209,7 +211,7 @@ function runUpdate() {
     $('.endround').removeClass('display');
     setTimeout( function() { $('.endsidebar').removeClass('display'); }, 1000);
     setTimeout( function() { $('#tourne').removeClass('display'); }, 2000);
-    setTimeout( function() { $('#stats').addClass('display'); updatingES = false; }, 3000);
+    setTimeout( function() { $('#stats').removeClass('display'); updatingES = false; }, 3000);
   }
 
 }

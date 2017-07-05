@@ -14,17 +14,17 @@
   --lt-inset: 40px;
 
   --width-small: calc((var(--lt-width) / 4));
-  --width-xsmall: calc((var(--width-small)) * 0.75);
+  --width-xsmall: calc((var(--width-small)) * 0.3);
   --width-med: calc(var(--width-small) * 1.25);
   /*--width-large: calc(var(--width-small) * 1.5);*/
 
-  --stat-height-multiplier: 1;
+  --stat-height: 1;
 
 }
 
 .endscreen .title { line-height: calc((var(--bar-height) - var(--border-width) *2)); }
-.endscreen .smol.title { line-height: calc( (var(--drop-height) - var(--border-width) *2) / 1.5); }
-.endscreen .small .title { text-transform: uppercase; }
+.endscreen .smol.title { line-height: calc( (var(--drop-height) - var(--border-width) *2) ); }
+/*.endscreen .small .title { text-transform: uppercase; }*/
 
 .endscreen
 {
@@ -116,11 +116,11 @@
 }
 .endscreen .team1
 {
-  left: var(--width-small);
+  right: calc(var(--width-xsmall) + var(--lt-inset) + var(--logo-radius));
 }
 .endscreen .team2
 {
-  right: var(--width-small);
+  left: calc(var(--width-xsmall) + var(--lt-inset) + var(--logo-radius));
 }
 
 .endscreen .team1.title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle; }
@@ -168,9 +168,10 @@
 .endscreen .stats
 {
   position: absolute;
-  bottom: calc(100% - var(--lt-inset) - var(--bar-height) - (var(--lt-height) / 2));
+  bottom: calc(var(--lt-inset) + ((var(--lt-height) + var(--bar-height)) / 2));
   width: calc(var(--lt-width) - (var(--width-small) * 1.2));
-  height: calc(var(--drop-height) * var(--stat-height-multiplier));
+  left: calc(var(--width-small) * 0.6);
+  height: calc(var(--drop-height) * var(--stat-height));
   -webkit-clip-path: polygon(
     0%  100%,
     50% 100%,
@@ -179,26 +180,27 @@
     calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 100%,
     50% 100%,
     calc(var(--bar-height) / 2 * var(--arrow-tangent)) 100%,
-    0% 100%,
+    0% 100%
   );
 }
 .endscreen .stats .title
 {
   position: absolute;
-  bottom: var(--border-width);
   width: 50%;
   height: 100%;
   vertical-align: bottom;
 }
-.endscreen .stats .title.team1
+.endscreen .stats .title.stats1
 {
   left: var(--border-width);
   text-align: left;
+  padding-left: 10px;
 }
-.endscreen .stats .title.team2
+.endscreen .stats .title.stats2
 {
   right: var(--border-width);
   text-align: right;
+  padding-right: 10px;
 }
 .endscreen .stats.display
 {
@@ -206,10 +208,10 @@
     0%  100%,
     50% 100%,
     100% 100%,
-    100% calc(1 / var(--stat-height-multiplier)),
+    100% calc(100% / var(--stat-height)),
     calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 0%,
     50% 0%,
     calc(var(--bar-height) / 2 * var(--arrow-tangent)) 0%,
-    0% calc(1 / var(--stat-height-multiplier)),
+    0% calc(100% / var(--stat-height))
   );
 }

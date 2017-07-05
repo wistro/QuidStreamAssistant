@@ -685,7 +685,7 @@ void GameplayComponent::buttonClicked (Button* button)
     {
       // this is the item they chose in the drop-down list..
       const String player = w.getComboBoxComponent ("player")->getText();
-      team2Stats.add( blueFlag + " " + player + " (" + String(timestamp) + "')" );
+      team2Stats.add( player + " (" + String(timestamp) + "') " + blueFlag );
     }
     #endif
   }
@@ -708,12 +708,12 @@ void GameplayComponent::buttonClicked (Button* button)
     if (catchButton == 1) // is they picked '1st Yellow'
     {
       const String player = w.getComboBoxComponent ("player")->getText();
-      team2Stats.add( yellowFlag + " " + player + " (" + String(timestamp) + "')" );
+      team2Stats.add( player + " (" + String(timestamp) + "') " + yellowFlag );
     }
     else if (catchButton == 2)
     {
       const String player = w.getComboBoxComponent ("player")->getText();
-      team2Stats.add( dblYellowFlag + " " + player + " (" + String(timestamp) + "')" );
+      team2Stats.add( player + " (" + String(timestamp) + "') " + dblYellowFlag );
     }
     #endif
   }
@@ -734,7 +734,7 @@ void GameplayComponent::buttonClicked (Button* button)
     {
       // this is the item they chose in the drop-down list..
       const String player = w.getComboBoxComponent ("player")->getText();
-      team2Stats.add( redFlag + " " + player + " (" + String(timestamp) + "')" );
+      team2Stats.add( player + " (" + String(timestamp) + "') " + redFlag );
     }
     #endif
   }
