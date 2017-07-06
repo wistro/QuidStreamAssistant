@@ -215,7 +215,7 @@ String Tournament::getTournamentLocation()
 
 StringArray Tournament::getTeamList()
 {
-  return teamsList; //returns a pipe delineated string of all teams at this tournament
+  return teamsList;
 }
 
 StringArray Tournament::getRoundsList()

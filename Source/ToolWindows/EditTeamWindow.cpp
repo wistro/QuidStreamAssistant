@@ -137,7 +137,8 @@ void EditTeamWindow::buttonClicked (Button* button)
   //cancel and go back to tournament select screen
   if ( button == &cancel )
   {
-    QuidStreamAssistantApplication::getApp().showTeamSelectWindow();
+    QuidStreamAssistantApplication::getApp().showTeamSelectWindow( QuidStreamAssistantApplication::getApp().
+                                                                  thisTournament->getTeamList() );
     QuidStreamAssistantApplication::getApp().editTeam = nullptr;
   }
   
