@@ -22,11 +22,12 @@
 
 //==============================================================================
 
-#include "../Gameplay/GameplayComponent.h"
 #include "../Gameplay/GameTimer.h"
 #include "../Gameplay/ScoreComponent.h"
 #include "../Gameplay/SnitchSliders.h"
 #include "../Gameplay/StopWatch.h"
+#include "../Gameplay/PronounsAndLogo.h"
+#include "../Gameplay/GameplayComponent.h"
 
 //==============================================================================
 
@@ -37,6 +38,7 @@
 #include "../ToolWindows/SelectTeamsWindow.h"
 #include "../ToolWindows/RosterListBoxComponent.h"
 #include "../ToolWindows/EditTeamWindow.h"
+#include "../ToolWindows/HRSnitchWindow.h"
 
 //==============================================================================
 

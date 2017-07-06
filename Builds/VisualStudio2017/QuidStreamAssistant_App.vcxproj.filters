@@ -394,6 +394,9 @@
     <ClCompile Include="..\..\Source\Gameplay\GameTimer.cpp">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Gameplay\PronounsAndLogo.cpp">
+      <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClCompile>
@@ -2158,6 +2161,9 @@
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Gameplay\GameTimer.h">
+      <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gameplay\PronounsAndLogo.h">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Gameplay\ScoreComponent.h">

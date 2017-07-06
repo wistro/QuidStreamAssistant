@@ -28,6 +28,7 @@
 		6239AB53328C0A3F4E9FEF69 = {isa = PBXBuildFile; fileRef = 1DAEB7D90718492ADCEB33C9; };
 		12E778757A34414011133D31 = {isa = PBXBuildFile; fileRef = 4DD73DC12E8D0D22FE38DC90; };
 		2E2DB8B3531BAC493C784D78 = {isa = PBXBuildFile; fileRef = 10C92D5A28FF4843E33B3712; };
+		E7E1D7E7C2FCC65351E2DF1C = {isa = PBXBuildFile; fileRef = E0185B45AD40C785FE9FD87A; };
 		181CE1A542518C0B974B0F07 = {isa = PBXBuildFile; fileRef = 9DB408F00BBD276929868D65; };
 		67DA4A17C68BD760C821B5EC = {isa = PBXBuildFile; fileRef = 94B59D105D278DA2F2A07922; };
 		05BB34A2D8FA3332CF46D392 = {isa = PBXBuildFile; fileRef = FF16C97F003FE233C8D02386; };
@@ -60,6 +61,7 @@
 		05A526D35C562FE0F57E8597 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = "SOURCE_ROOT"; };
 		0779AEBAB8717D67FF679619 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = "SOURCE_ROOT"; };
 		0B53FCB3AD1FB94899653CD0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_devices.mm"; path = "../../JuceLibraryCode/include_juce_audio_devices.mm"; sourceTree = "SOURCE_ROOT"; };
+		107D53E030AE4AC74A5405FE = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PronounsAndLogo.h; path = ../../Source/Gameplay/PronounsAndLogo.h; sourceTree = "SOURCE_ROOT"; };
 		10C92D5A28FF4843E33B3712 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameTimer.cpp; path = ../../Source/Gameplay/GameTimer.cpp; sourceTree = "SOURCE_ROOT"; };
 		12487D8276A96DF5BCC86346 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_core"; path = "../../../../../bin/JUCE/modules/juce_core"; sourceTree = "SOURCE_ROOT"; };
 		13E27A14DE88A26B7AA3588A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_opengl"; path = "../../../../../bin/JUCE/modules/juce_opengl"; sourceTree = "SOURCE_ROOT"; };
@@ -143,6 +145,7 @@
 		DA72F69631361BFFCC0C28CE = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = "SOURCE_ROOT"; };
 		DC84D9B2510DECCA53EEFB76 = {isa = PBXFileReference; lastKnownFileType = file.xml; name = "default_team.xml"; path = "../../Source/BinaryData/default_team.xml"; sourceTree = "SOURCE_ROOT"; };
 		DCB9FD082DCBF45947B61208 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SelectTeamsWindow.cpp; path = ../../Source/ToolWindows/SelectTeamsWindow.cpp; sourceTree = "SOURCE_ROOT"; };
+		E0185B45AD40C785FE9FD87A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PronounsAndLogo.cpp; path = ../../Source/Gameplay/PronounsAndLogo.cpp; sourceTree = "SOURCE_ROOT"; };
 		E077E7250A76F43287D256CA = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroAlertWindow.h; path = ../../Source/ToolWindows/IntroAlertWindow.h; sourceTree = "SOURCE_ROOT"; };
 		E1D8EC60791FEBC2289A4390 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../../Source/Settings/Player.h; sourceTree = "SOURCE_ROOT"; };
 		E9017510091828135427AC85 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_cryptography"; path = "../../../../../bin/JUCE/modules/juce_cryptography"; sourceTree = "SOURCE_ROOT"; };
@@ -172,6 +175,8 @@
 					6044D693960E92EF2957FB37,
 					10C92D5A28FF4843E33B3712,
 					172C45C5F67F24F5BA09303A,
+					E0185B45AD40C785FE9FD87A,
+					107D53E030AE4AC74A5405FE,
 					9DB408F00BBD276929868D65,
 					BBE7790796C42CDB62DF3C61,
 					94B59D105D278DA2F2A07922,
@@ -389,6 +394,7 @@
 					6239AB53328C0A3F4E9FEF69,
 					12E778757A34414011133D31,
 					2E2DB8B3531BAC493C784D78,
+					E7E1D7E7C2FCC65351E2DF1C,
 					181CE1A542518C0B974B0F07,
 					67DA4A17C68BD760C821B5EC,
 					05BB34A2D8FA3332CF46D392,

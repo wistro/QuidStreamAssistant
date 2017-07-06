@@ -14,6 +14,7 @@
 #include "SnitchSliders.h"
 #include "ScoreComponent.h"
 #include "GameTimer.h"
+#include "PronounsAndLogo.h"
 
 //==============================================================================
 /*
@@ -61,8 +62,8 @@ private:
   Label teamOne;
   Label teamTwo;
   
-  ImageComponent t1logo;
-  ImageComponent t2logo;
+  PronounsAndLogo t1logo;
+  PronounsAndLogo t2logo;
   
   ComboBox roundList;
   ComboBox team1;

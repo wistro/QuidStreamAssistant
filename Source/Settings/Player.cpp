@@ -139,6 +139,11 @@ String Player::getRosterEntry()
   return (number + " " + jerseyName);
 }
 
+String Player::getPronounEntry()
+{
+  return (number + " " + pronouns);
+}
+
 String Player::getFirst()
 {
   return firstName;

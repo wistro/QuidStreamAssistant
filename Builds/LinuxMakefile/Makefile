@@ -73,6 +73,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Tournament_9d26d356.o \
   $(JUCE_OBJDIR)/GameplayComponent_416b7437.o \
   $(JUCE_OBJDIR)/GameTimer_85228a33.o \
+  $(JUCE_OBJDIR)/PronounsAndLogo_98964776.o \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
   $(JUCE_OBJDIR)/SnitchSliders_71de21c7.o \
   $(JUCE_OBJDIR)/StopWatch_da8048ad.o \
@@ -143,6 +144,11 @@ $(JUCE_OBJDIR)/GameplayComponent_416b7437.o: ../../Source/Gameplay/GameplayCompo
 $(JUCE_OBJDIR)/GameTimer_85228a33.o: ../../Source/Gameplay/GameTimer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling GameTimer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PronounsAndLogo_98964776.o: ../../Source/Gameplay/PronounsAndLogo.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PronounsAndLogo.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o: ../../Source/Gameplay/ScoreComponent.cpp

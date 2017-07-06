@@ -171,10 +171,12 @@ StringArray Team::getRoster()
 void Team::refreshRoster()
 {
   roster.clear();
+  pronounChart.clear();
   
   for ( int i = 0; i < team.size(); i++ )
   {
     roster.add(team[i]->getRosterEntry());
+    pronounChart.add(team[i]->getPronounEntry());
   }
 }
 

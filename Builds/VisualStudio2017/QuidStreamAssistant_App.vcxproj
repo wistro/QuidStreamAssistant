@@ -145,6 +145,7 @@
     <ClCompile Include="..\..\Source\Settings\Tournament.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\GameplayComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\GameTimer.cpp"/>
+    <ClCompile Include="..\..\Source\Gameplay\PronounsAndLogo.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\ScoreComponent.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\SnitchSliders.cpp"/>
     <ClCompile Include="..\..\Source\Gameplay\StopWatch.cpp"/>
@@ -1729,6 +1730,7 @@
     <ClInclude Include="..\..\Source\Settings\Tournament.h"/>
     <ClInclude Include="..\..\Source\Gameplay\GameplayComponent.h"/>
     <ClInclude Include="..\..\Source\Gameplay\GameTimer.h"/>
+    <ClInclude Include="..\..\Source\Gameplay\PronounsAndLogo.h"/>
     <ClInclude Include="..\..\Source\Gameplay\ScoreComponent.h"/>
     <ClInclude Include="..\..\Source\Gameplay\SnitchSliders.h"/>
     <ClInclude Include="..\..\Source\Gameplay\StopWatch.h"/>

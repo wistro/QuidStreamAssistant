@@ -35,6 +35,10 @@
               file="Source/Gameplay/GameplayComponent.h"/>
         <FILE id="umyHcJ" name="GameTimer.cpp" compile="1" resource="0" file="Source/Gameplay/GameTimer.cpp"/>
         <FILE id="XgxBZT" name="GameTimer.h" compile="0" resource="0" file="Source/Gameplay/GameTimer.h"/>
+        <FILE id="NxH2Co" name="PronounsAndLogo.cpp" compile="1" resource="0"
+              file="Source/Gameplay/PronounsAndLogo.cpp"/>
+        <FILE id="yUtjMc" name="PronounsAndLogo.h" compile="0" resource="0"
+              file="Source/Gameplay/PronounsAndLogo.h"/>
         <FILE id="IOqgNC" name="ScoreComponent.cpp" compile="1" resource="0"
               file="Source/Gameplay/ScoreComponent.cpp"/>
         <FILE id="dNh5RX" name="ScoreComponent.h" compile="0" resource="0"

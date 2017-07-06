@@ -37,6 +37,8 @@ public:
   String getJersey();
   String getPronouns();
   
+  String getPronounEntry();
+  
   void setAttribute(String attribute, String data);
   String getAttribute(String attribute);
   void setPosition(String position, bool data);

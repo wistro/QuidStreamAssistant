@@ -13,6 +13,7 @@
 #include "GameplayComponent.h"
 #include "ScoreComponent.h"
 #include "../Settings/Tournament.h"
+#include "PronounsAndLogo.h"
 
 const StringArray GameplayComponent::FLAGS =
 {
@@ -134,8 +135,8 @@ GameplayComponent::GameplayComponent() :
   showEndScreen = false;
   showSOP = false;
   
-  t1logo.setAlpha(0.5f);
-  t2logo.setAlpha(0.5f);
+  t1logo.logo.setAlpha(0.5f);
+  t2logo.logo.setAlpha(0.5f);
   addAndMakeVisible(t1logo);
   addAndMakeVisible(t2logo);
   
@@ -791,17 +792,23 @@ void GameplayComponent::comboBoxChanged (ComboBox* box)
   {
     if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo.isValid() )
     {
-      t1logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo);
+      t1logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo);
       hasLogoT1 = true;
     }
+    
+    t1logo.pronounChart.clear();
+    t1logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->pronounChart);
   }
   else if ( box == &team2 )
   {
     if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo.isValid() )
     {
-      t2logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
+      t2logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
       hasLogoT2 = true;
     }
+    
+    t2logo.pronounChart.clear();
+    t2logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->pronounChart);
   }
 }
 

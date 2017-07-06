@@ -51,6 +51,7 @@ public:
   Image logo;
   ReferenceCountedArray<Player> team;
   StringArray roster;
+  StringArray pronounChart;
 
   static void refreshTeamList();
   
