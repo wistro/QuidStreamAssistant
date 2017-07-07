@@ -208,10 +208,10 @@ function runUpdate() {
   else if ( updatingES == false )
   {
     updatingES = true;
-    $('.endround').removeClass('display');
-    setTimeout( function() { $('.endsidebar').removeClass('display'); }, 1000);
-    setTimeout( function() { $('#tourne').removeClass('display'); }, 2000);
-    setTimeout( function() { $('#stats').removeClass('display'); updatingES = false; }, 3000);
+    $('#stats').removeClass('display');
+    setTimeout( function() { $('.endround').removeClass('display'); }, 1000);
+    setTimeout( function() { $('.endsidebar').removeClass('display'); }, 2000);
+    setTimeout( function() { $('#tourne').removeClass('display'); updatingES = false; }, 3000);
   }
 
 }
