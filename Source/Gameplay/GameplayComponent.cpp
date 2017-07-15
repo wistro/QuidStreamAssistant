@@ -32,8 +32,9 @@ const String GameplayComponent::dblYellowFlag = "{{DYC}}";
 
 //==============================================================================
 GameplayComponent::GameplayComponent() :
+          sinceDisplayGoal1(0), sinceDisplayGoal2(0),
           writeHereDir(getGlobalProperties().getValue(StoredSettings::overlaysSettingName) + "/output"),
-          score2(false), sopTimer(sopInSec), sinceDisplayGoal1(0), sinceDisplayGoal2(0)
+          score2(false), sopTimer(sopInSec)
 {
   //locations set on opening screen
   writeHere = writeHereDir.getChildFile("output.xml");
@@ -306,6 +307,21 @@ void GameplayComponent::sliderValueChanged (Slider* slider)
     {
       checkSnitchMistakes(ScoreComponent::reg);
     }
+    
+    //if a snitch catch has been called good, check if OT has been triggered
+    if (sliderValue == 0 || sliderValue == 2)
+    {
+      if (score1.getScore() == score2.getScore())
+      {
+        //we're going to do a couple things here because this means we're going into OT
+        //1. reset the timer to 0
+        //2. add an OT marker to the time somehow
+        //3. should probably keep OG game time somewhere (let's make an output of the game stats, so we can keep this)
+        //4. maybe countdown 5 minutes instead of counting up? that sounds unnecessarily complicated nvm
+      }
+    }
+    
+    writeToFile();
   }
   else if (slider == &snitchesGetStitches.snitchOT)
   {
@@ -321,6 +337,20 @@ void GameplayComponent::sliderValueChanged (Slider* slider)
     {
       checkSnitchMistakes(ScoreComponent::ot);
     }
+    
+    //if a snitch catch has been called good, check if 2OT has been triggered
+    if (sliderValue == 0 || sliderValue == 2)
+    {
+      if (score1.getScore() == score2.getScore())
+      {
+        //we're going to do a couple things here because this means we're going into 2OT
+        //1. reset the timer to 0
+        //2. add an 2OT marker to the time somehow
+        //3. should probably keep OT game time somewhere (let's make an output of the game stats, so we can keep this)
+      }
+    }
+    
+    writeToFile();
   }
   else if (slider == &snitchesGetStitches.snitch2OT)
   {
@@ -336,6 +366,8 @@ void GameplayComponent::sliderValueChanged (Slider* slider)
     {
       checkSnitchMistakes(ScoreComponent::dot);
     }
+    
+    writeToFile();
   }
   
 }
@@ -484,22 +516,35 @@ void GameplayComponent::buttonClicked (Button* button)
   }
   else if ( button == &gameTime.stop )
   {
-    snitchesGetStitches.reset();
-    score1.setScore(0);
-    score2.setScore(0);
+    gameTime.gameTime.stopTimer();
+    gameTime.playPause.setToggleState(false, dontSendNotification);
+    getLookAndFeel().setUsingNativeAlertWindows(true);
     
-    //reset countdown flag to 0 (which means SOP)
-    //reset sopTimer to 17min (+1 second)
-    countdownFlag = 0;
-    sopTimer.seconds(sopInSec);
-    
-    //empty team stats arrays and reset counters to 0
-    //eventually we'll save this data to a file before doing this
-    //for now, just delete it
-    team1Stats.clear();
-    team2Stats.clear();
-    indexOfGoal1 = -1;
-    indexOfGoal2 = -1;
+    if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
+                                       "Are You Sure?",
+                                       "At some point in the future this might let you save the current game time & stats to a file. For now, this is your last chance to write them down before they're gone forever. (Cancel to abort)",
+                                       String(),
+                                       String(),
+                                       &gameTime.stop, nullptr) )
+    {
+      gameTime.gameTime.resetTimer();
+      snitchesGetStitches.reset();
+      score1.setScore(0);
+      score2.setScore(0);
+      
+      //reset countdown flag to 0 (which means SOP)
+      //reset sopTimer to 17min (+1 second)
+      countdownFlag = 0;
+      sopTimer.seconds(sopInSec);
+      
+      //empty team stats arrays and reset counters to -1
+      //eventually we'll save this data to a file before doing this
+      //for now, just delete it
+      team1Stats.clear();
+      team2Stats.clear();
+      indexOfGoal1 = -1;
+      indexOfGoal2 = -1;
+    }
   }
   else if ( button == &gameTime.playPause )
   {

@@ -12,6 +12,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "../ToolWindows/MainAppWindow.h"
 #include "../ToolWindows/EditTournamentWindow.h"
+#include "../Gameplay/GameplayWindow.h"
 #include "../Settings/StoredSettings.h"
 #include "../Settings/Tournament.h"
 #include "../Settings/CustomLookAndFeel.h"
@@ -31,6 +32,21 @@ public:
   const String getApplicationVersion() override  { return ProjectInfo::versionString; }
   bool moreThanOneInstanceAllowed() override     { return false; }
   
+  //==============================================================================
+  MenuBarModel* getMenuModel();
+  StringArray getMenuNames();
+  void createMenu (PopupMenu&, const String& menuName);
+  void createFileMenu (PopupMenu&);
+  void createToolsMenu (PopupMenu&);
+  void createExtraAppleMenuItems (PopupMenu&);
+  void handleMainMenuCommand (int menuItemID);
+  
+  //==============================================================================
+  void getAllCommands (Array<CommandID>&) override;
+  void getCommandInfo (CommandID commandID, ApplicationCommandInfo&) override;
+  bool perform (const InvocationInfo&) override;
+  
+  //==============================================================================
   //==============================================================================
   void initialise (const String& commandLine) override;
   void shutdown() override;
@@ -62,11 +78,14 @@ public:
   ScopedPointer<Component> editTournament;
   ScopedPointer<Component> teamSelect;
   ScopedPointer<Component> editTeam;
-  ScopedPointer<Component> streamingWindow;
   ScopedPointer<Component> hrSnitch;
   
   CustomLookAndFeel defaultLook;
   ScopedPointer<MainAppWindow> mainWindow;
+  ScopedPointer<GameplayWindow> streamingWindow;
+  
+  struct MainMenuModel;
+  ScopedPointer<MainMenuModel> menuModel;
   
   //==============================================================================
   

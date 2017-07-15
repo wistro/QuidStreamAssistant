@@ -117,15 +117,24 @@ void IntroAlertWindow::buttonClicked (Button* button)
     QuidStreamAssistantApplication::getApp().systemRequestedQuit();
   else if ( button == &select )
   {
-    //changing this to open the edit file no matter what, but load the selected tournament first if one is selected
+    //if a tournament has been selected, we're going to go straight to the streaming window
+    //other windows can be accessed through the menus
     if ( tournamentList.getSelectedId() > 0 )
     {
       QuidStreamAssistantApplication::getApp().thisTournament->readFromFile(Tournament::getTournamentsFolder().getChildFile(tournamentList.getText()).withFileExtension(Tournament::getTournamentFileSuffix()));
       
       getGlobalProperties().setValue("lastUsedTournament", tournamentList.getSelectedId());
+      
+      MainAppWindow::getMainAppWindow()->closeButtonPressed();
+      QuidStreamAssistantApplication::getApp().showStreamingWindow();
     }
-    MainAppWindow::getMainAppWindow()->closeButtonPressed();
-    QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
+    //if no tournament has been selected, then we have to create a new one so we go to the edit tournament window
+    else
+    {
+      MainAppWindow::getMainAppWindow()->closeButtonPressed();
+      QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
+    }
+    
   }
   else if ( button == &changeOverlaysLoc )
   {

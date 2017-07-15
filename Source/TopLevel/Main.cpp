@@ -14,6 +14,7 @@
 #include "../Settings/OSDependencyThings.h"
 #include "../Settings/PresetIDs.h"
 #include "../Settings/StoredSettings.h"
+#include "../Settings/CommandIDs.h"
 
 #include "../Settings/Player.h"
 #include "../Settings/FloatingToolWindow.h"
@@ -28,6 +29,7 @@
 #include "../Gameplay/StopWatch.h"
 #include "../Gameplay/PronounsAndLogo.h"
 #include "../Gameplay/GameplayComponent.h"
+#include "../Gameplay/GameplayWindow.h"
 
 //==============================================================================
 

@@ -13,8 +13,8 @@
 
 //==============================================================================
 GameTimer::GameTimer()
-      : playPause("playPause", DrawableButton::ImageFitted),
-        stop("stop", DrawableButton::ImageFitted)
+      : stop("stop", DrawableButton::ImageFitted),
+        playPause("playPause", DrawableButton::ImageFitted)
 {
   //make button a toggle button because that's what we need
   playPause.setClickingTogglesState(true);
@@ -53,7 +53,6 @@ GameTimer::GameTimer()
   addAndMakeVisible(gameTime);
   
   playPause.addListener(this);
-  stop.addListener(this);
   
   nameTheThing.setText("Game Time", dontSendNotification);
   nameTheThing.setJustificationType(Justification::centred);
@@ -64,7 +63,6 @@ GameTimer::GameTimer()
 GameTimer::~GameTimer()
 {
   playPause.removeListener(this);
-  stop.removeListener(this);
 }
 
 void GameTimer::paint (Graphics& g)
@@ -104,25 +102,6 @@ void GameTimer::buttonClicked (Button* button)
     else
     {
       gameTime.stopTimer();
-    }
-  }
-  else if ( button == &stop )
-  {
-    if ( gameTime.currentTimeSec() != 0)
-    {
-      gameTime.stopTimer();
-      playPause.setToggleState(false, dontSendNotification);
-      getLookAndFeel().setUsingNativeAlertWindows(true);
-      
-      if ( AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
-                         "Are You Sure?",
-                         "At some point in the future this might let you save the current game time & stats to a file. For now, this is your last chance to write them down before they're gone forever. (Cancel to abort)",
-                         String(),
-                         String(),
-                         &stop, nullptr) )
-      {
-        gameTime.resetTimer();
-      }
     }
   }
 }

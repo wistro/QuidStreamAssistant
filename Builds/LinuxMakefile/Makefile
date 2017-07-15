@@ -72,6 +72,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Team_43982bca.o \
   $(JUCE_OBJDIR)/Tournament_9d26d356.o \
   $(JUCE_OBJDIR)/GameplayComponent_416b7437.o \
+  $(JUCE_OBJDIR)/GameplayWindow_621781c0.o \
   $(JUCE_OBJDIR)/GameTimer_85228a33.o \
   $(JUCE_OBJDIR)/PronounsAndLogo_98964776.o \
   $(JUCE_OBJDIR)/ScoreComponent_9ed2b015.o \
@@ -139,6 +140,11 @@ $(JUCE_OBJDIR)/Tournament_9d26d356.o: ../../Source/Settings/Tournament.cpp
 $(JUCE_OBJDIR)/GameplayComponent_416b7437.o: ../../Source/Gameplay/GameplayComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling GameplayComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/GameplayWindow_621781c0.o: ../../Source/Gameplay/GameplayWindow.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling GameplayWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/GameTimer_85228a33.o: ../../Source/Gameplay/GameTimer.cpp

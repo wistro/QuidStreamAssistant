@@ -27,6 +27,11 @@ struct FloatingToolWindow  : public DialogWindow
   windowPosProperty (windowPosPropertyName),
   owner (ownerPointer)
   {
+    #if JUCE_WINDOWS
+    defaultH += 20;
+    maxH += 20;
+    #endif
+    
     setUsingNativeTitleBar (true);
     setResizable (shouldBeResizable, shouldBeResizable);
     setResizeLimits (minW, minH, maxW, maxH);

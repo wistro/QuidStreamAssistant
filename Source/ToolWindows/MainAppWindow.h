@@ -15,7 +15,7 @@ Author:  Willow Rosenberg
 //==============================================================================
 /*
 This class implements the desktop window that contains an instance of
-our MainContentComponent class.
+our IntroAlertWindow class.
 */
 
 class MainAppWindow   : public DocumentWindow

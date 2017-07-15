@@ -9,6 +9,7 @@
 */
 
 #include "../Settings/OSDependencyThings.h"
+#include "../Settings/CommandIDs.h"
 #include "Application.h"
 #include "../Settings/FloatingToolWindow.h"
 #include "../ToolWindows/SelectTeamsWindow.h"
@@ -16,6 +17,33 @@
 #include "../ToolWindows/HRSnitchWindow.h"
 #include "../Gameplay/GameplayComponent.h"
 
+//==============================================================================
+struct QuidStreamAssistantApplication::MainMenuModel  : public MenuBarModel
+{
+  MainMenuModel()
+  {
+    setApplicationCommandManagerToWatch (&getCommandManager());
+  }
+  
+  StringArray getMenuBarNames() override
+  {
+    return getApp().getMenuNames();
+  }
+  
+  PopupMenu getMenuForIndex (int /*topLevelMenuIndex*/, const String& menuName) override
+  {
+    PopupMenu menu;
+    getApp().createMenu (menu, menuName);
+    return menu;
+  }
+  
+  void menuItemSelected (int menuItemID, int /*topLevelMenuIndex*/) override
+  {
+    getApp().handleMainMenuCommand (menuItemID);
+  }
+};
+
+//==============================================================================
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
 {
   
@@ -31,6 +59,14 @@ void QuidStreamAssistantApplication::initialise (const String& commandLine)
   
   mainWindow = new MainAppWindow ();
   commandManager = new ApplicationCommandManager ();
+  commandManager->registerAllCommandsForTarget (this);
+  
+  menuModel = new MainMenuModel();
+  
+  #if JUCE_MAC
+  PopupMenu extraAppleMenuItems;
+  createExtraAppleMenuItems (extraAppleMenuItems);
+  #endif
 }
 
 void QuidStreamAssistantApplication::shutdown()
@@ -105,9 +141,7 @@ void QuidStreamAssistantApplication::showStreamingWindow()
   if (streamingWindow != nullptr)
     streamingWindow->toFront (true);
   else
-    new FloatingToolWindow ("Streaming Nervecentre", "streamingWindowPos", new GameplayComponent(),
-                            streamingWindow, false,
-                            1000, 450, 1000, 450, 1000, 450);
+    streamingWindow = new GameplayWindow();
 }
 
 void QuidStreamAssistantApplication::showHRSnitchWindow()
@@ -162,3 +196,151 @@ ApplicationCommandManager& QuidStreamAssistantApplication::getCommandManager()
   jassert (cm != nullptr);
   return *cm;
 }
+
+//==============================================================================
+MenuBarModel* QuidStreamAssistantApplication::getMenuModel()
+{
+  return menuModel.get();
+}
+
+StringArray QuidStreamAssistantApplication::getMenuNames()
+{
+  const char* const names[] = { "File", "Tools", nullptr };
+  return StringArray (names);
+}
+
+void QuidStreamAssistantApplication::createMenu (PopupMenu& menu, const String& menuName)
+{
+  if (menuName == "Tools")            createToolsMenu   (menu);
+  else                                jassertfalse; // names have changed?
+}
+
+void QuidStreamAssistantApplication::createFileMenu (PopupMenu& menu)
+{
+  menu.addCommandItem (commandManager, StandardApplicationCommandIDs::quit);
+}
+
+void QuidStreamAssistantApplication::createToolsMenu (PopupMenu& menu)
+{
+  menu.addCommandItem (commandManager, CommandIDs::showEditTournamentWindow);
+  menu.addCommandItem (commandManager, CommandIDs::showSelectTeamsWindow);
+  menu.addCommandItem (commandManager, CommandIDs::showIntroWindow);
+  menu.addCommandItem (commandManager, CommandIDs::showHRSnitchWindow);
+}
+
+void QuidStreamAssistantApplication::createExtraAppleMenuItems (PopupMenu& menu)
+{
+  menu.addCommandItem (commandManager, CommandIDs::showAboutWindow);
+  menu.addSeparator();
+}
+
+//==============================================================================
+void QuidStreamAssistantApplication::getAllCommands (Array <CommandID>& commands)
+{
+  JUCEApplication::getAllCommands (commands);
+  
+  const CommandID ids[] = { CommandIDs::newProject,
+    CommandIDs::open,
+    CommandIDs::closeAllDocuments,
+    CommandIDs::saveAll,
+    CommandIDs::showGlobalPreferences,
+    CommandIDs::showUTF8Tool,
+    CommandIDs::showSVGPathTool,
+    CommandIDs::showAboutWindow,
+    CommandIDs::showAppUsageWindow,
+    CommandIDs::loginLogout };
+  
+  commands.addArray (ids, numElementsInArray (ids));
+}
+
+void QuidStreamAssistantApplication::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
+{
+  switch (commandID)
+  {
+    case CommandIDs::newProject:
+      result.setInfo ("New Project...", "Creates a new Jucer project", CommandCategories::general, 0);
+      result.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
+      break;
+      
+    case CommandIDs::open:
+      result.setInfo ("Open...", "Opens a Jucer project", CommandCategories::general, 0);
+      result.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
+      break;
+      
+    case CommandIDs::showGlobalPreferences:
+      result.setInfo ("Preferences...", "Shows the preferences window.", CommandCategories::general, 0);
+      result.defaultKeypresses.add (KeyPress (',', ModifierKeys::commandModifier, 0));
+      break;
+      
+    case CommandIDs::closeAllDocuments:
+      result.setInfo ("Close All Documents", "Closes all open documents", CommandCategories::general, 0);
+      result.setActive (openDocumentManager.getNumOpenDocuments() > 0);
+      break;
+      
+    case CommandIDs::saveAll:
+      result.setInfo ("Save All", "Saves all open documents", CommandCategories::general, 0);
+      result.defaultKeypresses.add (KeyPress ('s', ModifierKeys::commandModifier | ModifierKeys::altModifier, 0));
+      break;
+      
+    case CommandIDs::showUTF8Tool:
+      result.setInfo ("UTF-8 String-Literal Helper", "Shows the UTF-8 string literal utility", CommandCategories::general, 0);
+      break;
+      
+    case CommandIDs::showSVGPathTool:
+      result.setInfo ("SVG Path Converter", "Shows the SVG->Path data conversion utility", CommandCategories::general, 0);
+      break;
+      
+    case CommandIDs::showAboutWindow:
+      result.setInfo ("About Projucer", "Shows the Projucer's 'About' page.", CommandCategories::general, 0);
+      break;
+      
+    case CommandIDs::showAppUsageWindow:
+      result.setInfo ("Application Usage Data", "Shows the application usage data agreement window", CommandCategories::general, 0);
+      break;
+      
+    case CommandIDs::loginLogout:
+    {
+      bool isLoggedIn = false;
+      String username;
+      
+      if (licenseController != nullptr)
+      {
+        const LicenseState state = licenseController->getState();
+        isLoggedIn = (state.type != LicenseState::Type::notLoggedIn && state.type != LicenseState::Type::GPL);
+        username = state.username;
+      }
+      
+      result.setInfo (isLoggedIn
+                      ? String ("Sign out ") + username + "..."
+                      : String ("Sign in..."),
+                      "Log out of your JUCE account", CommandCategories::general, 0);
+    }
+      break;
+      
+    default:
+      JUCEApplication::getCommandInfo (commandID, result);
+      break;
+  }
+}
+
+bool QuidStreamAssistantApplication::perform (const InvocationInfo& info)
+{
+  switch (info.commandID)
+  {
+    case CommandIDs::newProject:                createNewProject(); break;
+    case CommandIDs::open:                      askUserToOpenFile(); break;
+    case CommandIDs::saveAll:                   openDocumentManager.saveAll(); break;
+    case CommandIDs::closeAllDocuments:         closeAllDocuments (true); break;
+    case CommandIDs::showUTF8Tool:              showUTF8ToolWindow(); break;
+    case CommandIDs::showSVGPathTool:           showSVGPathDataToolWindow(); break;
+    case CommandIDs::showGlobalPreferences:     AppearanceSettings::showGlobalPreferences (globalPreferencesWindow); break;
+    case CommandIDs::showAboutWindow:           showAboutWindow(); break;
+    case CommandIDs::showAppUsageWindow:        showApplicationUsageDataAgreementPopup(); break;
+    case CommandIDs::loginLogout:               doLogout(); break;
+    default:                                    return JUCEApplication::perform (info);
+  }
+  
+  return true;
+}
+
+//==============================================================================

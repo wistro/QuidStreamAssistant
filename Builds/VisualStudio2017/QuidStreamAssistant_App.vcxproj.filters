@@ -391,6 +391,9 @@
     <ClCompile Include="..\..\Source\Gameplay\GameplayComponent.cpp">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Gameplay\GameplayWindow.cpp">
+      <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Gameplay\GameTimer.cpp">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClCompile>
@@ -2133,6 +2136,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Settings\CommandIDs.h">
+      <Filter>QuidStreamAssistant\Source\Settings</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Settings\CustomLookAndFeel.h">
       <Filter>QuidStreamAssistant\Source\Settings</Filter>
     </ClInclude>
@@ -2158,6 +2164,9 @@
       <Filter>QuidStreamAssistant\Source\Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Gameplay\GameplayComponent.h">
+      <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gameplay\GameplayWindow.h">
       <Filter>QuidStreamAssistant\Source\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Gameplay\GameTimer.h">
