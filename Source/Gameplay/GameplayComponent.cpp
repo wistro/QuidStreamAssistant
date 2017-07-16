@@ -76,8 +76,8 @@ GameplayComponent::GameplayComponent() :
   addAndMakeVisible(score2);
   addAndMakeVisible(gameTime);
   
-  gameSetup.setButtonText("Setup\nFirst\nGame");
-  gameSetup.setTooltip("Creates tournament image file \"tournament.png\"");
+  gameSetup.setButtonText("Setup\nNext\nGame");
+  gameSetup.setTooltip("Creates tournament image file \"tournament.png\" and resets everything else.");
   gameSetup.addListener(this);
   addAndMakeVisible(gameSetup);
   
@@ -437,9 +437,13 @@ void GameplayComponent::buttonClicked (Button* button)
     hasLogoT2 = false;
     gameTime.stop.triggerClick();
     
-    //true means that it will output the image files as well as the xml
-    //...in theory
-    writeToFile( true );
+    if ( isFirstGame )
+    {
+      //true means that it will output the image files as well as the xml
+      //...in theory
+      writeToFile( true );
+      isFirstGame = false;
+    }
     
     //set these back how they were
     showCorner = tempCorner;

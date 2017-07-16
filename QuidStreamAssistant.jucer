@@ -106,6 +106,27 @@
           <FILE id="PXd7oK" name="stop.png" compile="0" resource="1" file="Source/BinaryData/images/stop.png"/>
           <FILE id="O4UzfJ" name="willogo.png" compile="0" resource="1" file="Source/BinaryData/images/willogo.png"/>
         </GROUP>
+        <GROUP id="{9A852F18-9A85-B5CB-331D-A56E73224575}" name="overlays">
+          <GROUP id="{F4AEAC8F-063A-1BB9-E65F-A2FFAFF19F3C}" name="icons">
+            <FILE id="JeE9UW" name="bluecard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/bluecard.png"/>
+            <FILE id="AumC0l" name="doubleyellow.png" compile="0" resource="1"
+                  file="Source/BinaryData/overlays/icons/doubleyellow.png"/>
+            <FILE id="ShBbvj" name="quaffle.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/quaffle.png"/>
+            <FILE id="dlOTRe" name="redcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/redcard.png"/>
+            <FILE id="KXHH8k" name="TW.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TW.png"/>
+            <FILE id="HveLwD" name="TWC.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TWC.png"/>
+            <FILE id="wVCzru" name="yellowcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/yellowcard.png"/>
+            <FILE id="lXyKBs" name="YT.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/YT.png"/>
+          </GROUP>
+          <FILE id="c7YTwt" name="_global.css" compile="0" resource="1" file="Source/BinaryData/overlays/_global.css"/>
+          <FILE id="acA2S3" name="corner.css" compile="0" resource="1" file="Source/BinaryData/overlays/corner.css"/>
+          <FILE id="KDOvNj" name="endscreen.css" compile="0" resource="1" file="Source/BinaryData/overlays/endscreen.css"/>
+          <FILE id="OgAc6E" name="inGame.html" compile="0" resource="1" file="Source/BinaryData/overlays/inGame.html"/>
+          <FILE id="FTzMgm" name="inGame.js" compile="0" resource="1" file="Source/BinaryData/overlays/inGame.js"/>
+          <FILE id="Ymsa3A" name="jquery.min.js" compile="0" resource="1" file="Source/BinaryData/overlays/jquery.min.js"/>
+          <FILE id="KY2LDl" name="logos.css" compile="0" resource="1" file="Source/BinaryData/overlays/logos.css"/>
+          <FILE id="tXTvtn" name="lowerthird.css" compile="0" resource="1" file="Source/BinaryData/overlays/lowerthird.css"/>
+        </GROUP>
         <FILE id="TXlueO" name="default_team.xml" compile="0" resource="1"
               file="Source/BinaryData/default_team.xml"/>
         <FILE id="kxmSNi" name="default_tournament.xml" compile="0" resource="1"

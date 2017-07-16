@@ -17,6 +17,12 @@
     <Filter Include="QuidStreamAssistant\Source\BinaryData\images">
       <UniqueIdentifier>{CF0E4F3F-6785-ED6F-DBB5-FCBFD7C3C024}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QuidStreamAssistant\Source\BinaryData\overlays\icons">
+      <UniqueIdentifier>{F5ABE2DB-77D6-08EA-1CC4-6AF52B7D4B08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuidStreamAssistant\Source\BinaryData\overlays">
+      <UniqueIdentifier>{37D95CC4-7B35-EFC9-6878-E7719B0A0F59}</UniqueIdentifier>
+    </Filter>
     <Filter Include="QuidStreamAssistant\Source\BinaryData">
       <UniqueIdentifier>{03936224-3F46-3465-AF6F-88BD4B1FFA47}</UniqueIdentifier>
     </Filter>
@@ -4012,6 +4018,54 @@
     </None>
     <None Include="..\..\Source\BinaryData\images\willogo.png">
       <Filter>QuidStreamAssistant\Source\BinaryData\images</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\bluecard.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\doubleyellow.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\quaffle.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\redcard.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\TW.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\TWC.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\yellowcard.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\icons\YT.png">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays\icons</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\_global.css">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\corner.css">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\endscreen.css">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\inGame.html">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\inGame.js">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\jquery.min.js">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\logos.css">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
+    </None>
+    <None Include="..\..\Source\BinaryData\overlays\lowerthird.css">
+      <Filter>QuidStreamAssistant\Source\BinaryData\overlays</Filter>
     </None>
     <None Include="..\..\Source\BinaryData\default_team.xml">
       <Filter>QuidStreamAssistant\Source\BinaryData</Filter>

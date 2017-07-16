@@ -18,11 +18,22 @@
 #include "../Gameplay/GameplayComponent.h"
 
 //==============================================================================
+
+void createGUIEditorMenu (PopupMenu&);
+void handleGUIEditorMenuCommand (int);
+void registerGUIEditorCommands();
+
+//==============================================================================
+
 struct QuidStreamAssistantApplication::MainMenuModel  : public MenuBarModel
 {
   MainMenuModel()
   {
     setApplicationCommandManagerToWatch (&getCommandManager());
+  }
+  
+  ~MainMenuModel ()
+  {
   }
   
   StringArray getMenuBarNames() override
@@ -211,7 +222,8 @@ StringArray QuidStreamAssistantApplication::getMenuNames()
 
 void QuidStreamAssistantApplication::createMenu (PopupMenu& menu, const String& menuName)
 {
-  if (menuName == "Tools")            createToolsMenu   (menu);
+  if (menuName == "File")             createFileMenu   (menu);
+  else if (menuName == "Tools")       createToolsMenu(menu);
   else                                jassertfalse; // names have changed?
 }
 
@@ -239,16 +251,12 @@ void QuidStreamAssistantApplication::getAllCommands (Array <CommandID>& commands
 {
   JUCEApplication::getAllCommands (commands);
   
-  const CommandID ids[] = { CommandIDs::newProject,
-    CommandIDs::open,
-    CommandIDs::closeAllDocuments,
-    CommandIDs::saveAll,
-    CommandIDs::showGlobalPreferences,
-    CommandIDs::showUTF8Tool,
-    CommandIDs::showSVGPathTool,
-    CommandIDs::showAboutWindow,
-    CommandIDs::showAppUsageWindow,
-    CommandIDs::loginLogout };
+  const CommandID ids[] = { CommandIDs::showEditTournamentWindow,
+    CommandIDs::showIntroWindow,
+    CommandIDs::showSelectTeamsWindow,
+    CommandIDs::showIntroWindow,
+    CommandIDs::showHRSnitchWindow,
+    CommandIDs::showAboutWindow };
   
   commands.addArray (ids, numElementsInArray (ids));
 }
