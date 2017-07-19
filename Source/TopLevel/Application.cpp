@@ -92,6 +92,7 @@ void QuidStreamAssistantApplication::shutdown()
   thisTournament = nullptr;
 
   settings = nullptr;
+  menuModel = nullptr;
   commandManager = nullptr;
 }
 
@@ -254,9 +255,9 @@ void QuidStreamAssistantApplication::getAllCommands (Array <CommandID>& commands
   const CommandID ids[] = { CommandIDs::showEditTournamentWindow,
     CommandIDs::showIntroWindow,
     CommandIDs::showSelectTeamsWindow,
-    CommandIDs::showIntroWindow,
     CommandIDs::showHRSnitchWindow,
-    CommandIDs::showAboutWindow };
+    //CommandIDs::showAboutWindow 
+  };
   
   commands.addArray (ids, numElementsInArray (ids));
 }
@@ -265,66 +266,27 @@ void QuidStreamAssistantApplication::getCommandInfo (CommandID commandID, Applic
 {
   switch (commandID)
   {
-    case CommandIDs::newProject:
-      result.setInfo ("New Project...", "Creates a new Jucer project", CommandCategories::general, 0);
-      result.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
-      break;
-      
-    case CommandIDs::open:
-      result.setInfo ("Open...", "Opens a Jucer project", CommandCategories::general, 0);
-      result.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
-      break;
-      
-    case CommandIDs::showGlobalPreferences:
-      result.setInfo ("Preferences...", "Shows the preferences window.", CommandCategories::general, 0);
+    case CommandIDs::showEditTournamentWindow:
+      result.setInfo ("Edit Tournament Info", "Shows the edit tournament window.", CommandCategories::general, 0);
       result.defaultKeypresses.add (KeyPress (',', ModifierKeys::commandModifier, 0));
       break;
       
-    case CommandIDs::closeAllDocuments:
-      result.setInfo ("Close All Documents", "Closes all open documents", CommandCategories::general, 0);
-      result.setActive (openDocumentManager.getNumOpenDocuments() > 0);
+    case CommandIDs::showIntroWindow:
+      result.setInfo ("Go Back to the Beginning", "Shows the intro window.", CommandCategories::general, 0);
       break;
       
-    case CommandIDs::saveAll:
-      result.setInfo ("Save All", "Saves all open documents", CommandCategories::general, 0);
-      result.defaultKeypresses.add (KeyPress ('s', ModifierKeys::commandModifier | ModifierKeys::altModifier, 0));
+    case CommandIDs::showSelectTeamsWindow:
+      result.setInfo ("Team Selector", "Choose which Teams will be at the Tournament (go here to edit Teams too)", CommandCategories::general, 0);
       break;
       
-    case CommandIDs::showUTF8Tool:
-      result.setInfo ("UTF-8 String-Literal Helper", "Shows the UTF-8 string literal utility", CommandCategories::general, 0);
+ /*   case CommandIDs::showAboutWindow:
+      result.setInfo ("About QuidStream Assistant", "Shows the 'About' page.", CommandCategories::general, 0);
+      break;*/
+      
+    case CommandIDs::showHRSnitchWindow:
+      result.setInfo ("Head Refs & Snitches", "Add/Remove names from the HR & Snitch lists", CommandCategories::general, 0);
       break;
-      
-    case CommandIDs::showSVGPathTool:
-      result.setInfo ("SVG Path Converter", "Shows the SVG->Path data conversion utility", CommandCategories::general, 0);
-      break;
-      
-    case CommandIDs::showAboutWindow:
-      result.setInfo ("About Projucer", "Shows the Projucer's 'About' page.", CommandCategories::general, 0);
-      break;
-      
-    case CommandIDs::showAppUsageWindow:
-      result.setInfo ("Application Usage Data", "Shows the application usage data agreement window", CommandCategories::general, 0);
-      break;
-      
-    case CommandIDs::loginLogout:
-    {
-      bool isLoggedIn = false;
-      String username;
-      
-      if (licenseController != nullptr)
-      {
-        const LicenseState state = licenseController->getState();
-        isLoggedIn = (state.type != LicenseState::Type::notLoggedIn && state.type != LicenseState::Type::GPL);
-        username = state.username;
-      }
-      
-      result.setInfo (isLoggedIn
-                      ? String ("Sign out ") + username + "..."
-                      : String ("Sign in..."),
-                      "Log out of your JUCE account", CommandCategories::general, 0);
-    }
-      break;
-      
+
     default:
       JUCEApplication::getCommandInfo (commandID, result);
       break;
@@ -335,16 +297,11 @@ bool QuidStreamAssistantApplication::perform (const InvocationInfo& info)
 {
   switch (info.commandID)
   {
-    case CommandIDs::newProject:                createNewProject(); break;
-    case CommandIDs::open:                      askUserToOpenFile(); break;
-    case CommandIDs::saveAll:                   openDocumentManager.saveAll(); break;
-    case CommandIDs::closeAllDocuments:         closeAllDocuments (true); break;
-    case CommandIDs::showUTF8Tool:              showUTF8ToolWindow(); break;
-    case CommandIDs::showSVGPathTool:           showSVGPathDataToolWindow(); break;
-    case CommandIDs::showGlobalPreferences:     AppearanceSettings::showGlobalPreferences (globalPreferencesWindow); break;
-    case CommandIDs::showAboutWindow:           showAboutWindow(); break;
-    case CommandIDs::showAppUsageWindow:        showApplicationUsageDataAgreementPopup(); break;
-    case CommandIDs::loginLogout:               doLogout(); break;
+    case CommandIDs::showEditTournamentWindow:  showEditTournamentWindow(); break;
+    case CommandIDs::showIntroWindow:           mainWindow->showIntro(); streamingWindow = nullptr; break;
+    case CommandIDs::showSelectTeamsWindow:     showTeamSelectWindow(); break;
+    case CommandIDs::showHRSnitchWindow:        showHRSnitchWindow (); break;
+    //case CommandIDs::showAboutWindow:           showAboutWindow(); break;
     default:                                    return JUCEApplication::perform (info);
   }
   

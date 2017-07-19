@@ -74,11 +74,29 @@ namespace BinaryData
     extern const char*   jquery_min_js;
     const int            jquery_min_jsSize = 86764;
 
-    extern const char*   logos_css;
-    const int            logos_cssSize = 1605;
-
     extern const char*   lowerthird_css;
     const int            lowerthird_cssSize = 3779;
+
+    extern const char*   win_global_css;
+    const int            win_global_cssSize = 3574;
+
+    extern const char*   wincorner_css;
+    const int            wincorner_cssSize = 3701;
+
+    extern const char*   winendscreen_css;
+    const int            winendscreen_cssSize = 5926;
+
+    extern const char*   wininGame_html;
+    const int            wininGame_htmlSize = 3590;
+
+    extern const char*   wininGame_js;
+    const int            wininGame_jsSize = 6275;
+
+    extern const char*   winjquery_min_js;
+    const int            winjquery_min_jsSize = 86663;
+
+    extern const char*   winlowerthird_css;
+    const int            winlowerthird_cssSize = 3932;
 
     extern const char*   default_team_xml;
     const int            default_team_xmlSize = 3293;
@@ -90,7 +108,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 26;
+    const int namedResourceListSize = 32;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).

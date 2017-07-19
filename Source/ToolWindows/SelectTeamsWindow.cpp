@@ -164,7 +164,7 @@ void SelectTeamsWindow::buttonClicked(Button* button)
   }
   else if ( button == &cancel )
   {
-    QuidStreamAssistantApplication::getApp().showEditTournamentWindow();
+    QuidStreamAssistantApplication::getApp().showStreamingWindow();
     QuidStreamAssistantApplication::getApp().teamSelect = nullptr;
   }
   else if ( button == &editSelectedTeam )

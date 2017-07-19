@@ -107,25 +107,38 @@
           <FILE id="O4UzfJ" name="willogo.png" compile="0" resource="1" file="Source/BinaryData/images/willogo.png"/>
         </GROUP>
         <GROUP id="{9A852F18-9A85-B5CB-331D-A56E73224575}" name="overlays">
-          <GROUP id="{F4AEAC8F-063A-1BB9-E65F-A2FFAFF19F3C}" name="icons">
-            <FILE id="JeE9UW" name="bluecard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/bluecard.png"/>
-            <FILE id="AumC0l" name="doubleyellow.png" compile="0" resource="1"
+          <GROUP id="{2CA46A9A-F355-AEA9-BB7D-2D284393EE3E}" name="icons">
+            <FILE id="HKSTiR" name="bluecard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/bluecard.png"/>
+            <FILE id="Q94EP8" name="doubleyellow.png" compile="0" resource="1"
                   file="Source/BinaryData/overlays/icons/doubleyellow.png"/>
-            <FILE id="ShBbvj" name="quaffle.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/quaffle.png"/>
-            <FILE id="dlOTRe" name="redcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/redcard.png"/>
-            <FILE id="KXHH8k" name="TW.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TW.png"/>
-            <FILE id="HveLwD" name="TWC.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TWC.png"/>
-            <FILE id="wVCzru" name="yellowcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/yellowcard.png"/>
-            <FILE id="lXyKBs" name="YT.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/YT.png"/>
+            <FILE id="fFBv4T" name="quaffle.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/quaffle.png"/>
+            <FILE id="Nm3a9d" name="redcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/redcard.png"/>
+            <FILE id="JAqkQv" name="TW.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TW.png"/>
+            <FILE id="YOIfjH" name="TWC.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/TWC.png"/>
+            <FILE id="mUxoVH" name="yellowcard.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/yellowcard.png"/>
+            <FILE id="Gw0QJP" name="YT.png" compile="0" resource="1" file="Source/BinaryData/overlays/icons/YT.png"/>
           </GROUP>
-          <FILE id="c7YTwt" name="_global.css" compile="0" resource="1" file="Source/BinaryData/overlays/_global.css"/>
-          <FILE id="acA2S3" name="corner.css" compile="0" resource="1" file="Source/BinaryData/overlays/corner.css"/>
-          <FILE id="KDOvNj" name="endscreen.css" compile="0" resource="1" file="Source/BinaryData/overlays/endscreen.css"/>
-          <FILE id="OgAc6E" name="inGame.html" compile="0" resource="1" file="Source/BinaryData/overlays/inGame.html"/>
-          <FILE id="FTzMgm" name="inGame.js" compile="0" resource="1" file="Source/BinaryData/overlays/inGame.js"/>
-          <FILE id="Ymsa3A" name="jquery.min.js" compile="0" resource="1" file="Source/BinaryData/overlays/jquery.min.js"/>
-          <FILE id="KY2LDl" name="logos.css" compile="0" resource="1" file="Source/BinaryData/overlays/logos.css"/>
-          <FILE id="tXTvtn" name="lowerthird.css" compile="0" resource="1" file="Source/BinaryData/overlays/lowerthird.css"/>
+          <GROUP id="{82AE8204-A8B5-7D36-C906-8639EA5ED4CA}" name="nix">
+            <FILE id="C7kAXS" name="_global.css" compile="0" resource="1" file="Source/BinaryData/overlays/nix/_global.css"/>
+            <FILE id="bwGNn1" name="corner.css" compile="0" resource="1" file="Source/BinaryData/overlays/nix/corner.css"/>
+            <FILE id="zK37rX" name="endscreen.css" compile="0" resource="1" file="Source/BinaryData/overlays/nix/endscreen.css"/>
+            <FILE id="kYJH0R" name="inGame.html" compile="0" resource="1" file="Source/BinaryData/overlays/nix/inGame.html"/>
+            <FILE id="oCxQsU" name="inGame.js" compile="0" resource="1" file="Source/BinaryData/overlays/nix/inGame.js"/>
+            <FILE id="ZUngJf" name="jquery.min.js" compile="0" resource="1" file="Source/BinaryData/overlays/nix/jquery.min.js"/>
+            <FILE id="NrwfcE" name="lowerthird.css" compile="0" resource="1" file="Source/BinaryData/overlays/nix/lowerthird.css"/>
+          </GROUP>
+          <GROUP id="{CC305CA9-A5A3-E7BA-48AF-86E0025CD27F}" name="windows">
+            <FILE id="RfbwQq" name="win_global.css" compile="0" resource="1" file="Source/BinaryData/overlays/windows/win_global.css"/>
+            <FILE id="uSZKhy" name="wincorner.css" compile="0" resource="1" file="Source/BinaryData/overlays/windows/wincorner.css"/>
+            <FILE id="jV0JfS" name="winendscreen.css" compile="0" resource="1"
+                  file="Source/BinaryData/overlays/windows/winendscreen.css"/>
+            <FILE id="o5feFT" name="wininGame.html" compile="0" resource="1" file="Source/BinaryData/overlays/windows/wininGame.html"/>
+            <FILE id="MwCaJA" name="wininGame.js" compile="0" resource="1" file="Source/BinaryData/overlays/windows/wininGame.js"/>
+            <FILE id="D46yd7" name="winjquery.min.js" compile="0" resource="1"
+                  file="Source/BinaryData/overlays/windows/winjquery.min.js"/>
+            <FILE id="rbqyvD" name="winlowerthird.css" compile="0" resource="1"
+                  file="Source/BinaryData/overlays/windows/winlowerthird.css"/>
+          </GROUP>
         </GROUP>
         <FILE id="TXlueO" name="default_team.xml" compile="0" resource="1"
               file="Source/BinaryData/default_team.xml"/>
@@ -164,19 +177,19 @@
                        isDebug="0" optimisation="3" targetName="QuidStreamAssistant"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../bin/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../bin/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_video" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:\JUCE\modules"/>
       </MODULEPATHS>
     </VS2017>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" bigIcon="O4UzfJ">

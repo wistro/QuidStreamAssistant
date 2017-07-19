@@ -128,10 +128,14 @@ void EditTournamentWindow::buttonClicked (Button* button)
   {
     if ( curTournName != Tournament::defaultTournamentName )
     {
-      QuidStreamAssistantApplication::getApp().thisTournament->clear();
+      QuidStreamAssistantApplication::getApp().showStreamingWindow();
+      QuidStreamAssistantApplication::getApp().editTournament = nullptr;
     }
-    QuidStreamAssistantApplication::getApp().mainWindow->showIntro();
-    QuidStreamAssistantApplication::getApp().editTournament = nullptr;
+    else
+    {
+      QuidStreamAssistantApplication::getApp().mainWindow->showIntro();
+      QuidStreamAssistantApplication::getApp().editTournament = nullptr;
+    }
   }
   
   //save entered tournament settings as a .tourn setting file
@@ -173,7 +177,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
         if ( image.existsAsFile() && image.hasFileExtension("jpeg;jpg;png;gif"))
         {
           currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText(), image);
-          QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
+          QuidStreamAssistantApplication::getApp().showStreamingWindow();
           QuidStreamAssistantApplication::getApp().editTournament = nullptr;
         }
         else
@@ -185,7 +189,7 @@ void EditTournamentWindow::buttonClicked (Button* button)
       else
       {
         currentTournament->fillThisSucker(tournName.getText(), location.getText(), editRounds.getText());
-        QuidStreamAssistantApplication::getApp().showTeamSelectWindow( prevTeams );
+        QuidStreamAssistantApplication::getApp().showStreamingWindow();
         QuidStreamAssistantApplication::getApp().editTournament = nullptr;
       }
     }

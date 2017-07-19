@@ -1,0 +1,218 @@
+.endscreen
+{
+  --lt-height: 260px;
+  --bar-height: 100px;
+  --drop-height: 50px;
+  --border-curve: 15px;
+  --border-width: 3px;
+  --logo-radius: calc( (var(--lt-height)) / 2);
+  --gutter-width: -4px;
+
+  /*80% of the width of a 1080p display */
+  /*if streaming in 720p, change corner-width to 1024px*/
+  --lt-width: 1536px;
+  --lt-inset: 40px;
+
+  --width-small: calc((var(--lt-width) / 4));
+  --width-xsmall: calc((var(--width-small)) * 0.3);
+  --width-med: calc(var(--width-small) * 1.25);
+  /*--width-large: calc(var(--width-small) * 1.5);*/
+
+  --stat-height: 1;
+
+}
+
+.endscreen .title { line-height: calc((var(--bar-height) - var(--border-width) *2)); }
+.endscreen .smol.title { line-height: calc( (var(--drop-height) - var(--border-width) *2) ); }
+/*.endscreen .small .title { text-transform: uppercase; }*/
+
+.endscreen
+{
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - (var(--lt-width) / 2));
+  width: var(--lt-width);
+  height: 100%;
+}
+
+.endscreen .tourn
+{
+  position: absolute;
+  top: calc(100% - var(--lt-inset) - var(--lt-height));
+  left: calc(50% - var(--logo-radius));
+  right: calc(50% - var(--logo-radius));
+  height: calc(var(--logo-radius) * 2);
+  z-index: 200;
+  -webkit-clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.endscreen .tourn.display
+{
+  -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0%, 50% 0%);
+}
+
+.endscreen .endsidebar
+{
+  position: absolute;
+  top: calc(100% - var(--lt-inset) - ((var(--lt-height) + var(--bar-height)) / 2));
+  width: calc(var(--lt-width) / 2);
+  height: var(--bar-height);
+}
+.endscreen .sleft
+{
+  right: 50%;
+  border-radius: var(--border-curve) 0 0 var(--border-curve);
+  -webkit-clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 100% 100%, 100% 50%, 100% 0%);
+}
+.endscreen .sright
+{
+  left: 50%;
+  border-radius: 0 var(--border-curve) var(--border-curve) 0;
+  -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 0% 100%, 0% 50%, 0% 0%);
+}
+.endscreen .endsidebar.display
+{
+  -webkit-clip-path: polygon(0% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%, 100% 0%);
+}
+
+.endscreen .endsidebar .thumb
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--width-small) * 0.6);
+  z-index: 50;
+  opacity: 1;
+}
+.endscreen .sleft .thumb { left: 0px; border-radius: var(--border-curve) 0 0 var(--border-curve); }
+.endscreen .sright .thumb { right: 0px; border-radius: 0 var(--border-curve) var(--border-curve) 0; }
+
+.endscreen .score
+{
+  position: absolute;
+  top: var(--border-width);
+  width: var(--width-xsmall);
+  height: calc(var(--bar-height) - (var(--border-width) * 2));
+}
+.endscreen .score1.title
+{
+  right: calc(var(--lt-inset) + var(--logo-radius));
+  text-align: right;
+  /*padding-right: 5px;*/
+}
+.endscreen .score2.title
+{
+  left: calc(var(--lt-inset) + var(--logo-radius));
+  text-align: left;
+  /*padding-left: 5px;*/
+}
+
+.endscreen .team
+{
+  position: absolute;
+  top: var(--border-width);
+  width: var(--width-small);
+  height: calc(var(--bar-height) - (var(--border-width) * 2));
+}
+.endscreen .team1
+{
+  right: calc(var(--width-xsmall) + var(--lt-inset) + var(--logo-radius));
+}
+.endscreen .team2
+{
+  left: calc(var(--width-xsmall) + var(--lt-inset) + var(--logo-radius));
+}
+
+.endscreen .team1.title { padding-right: calc(var(--border-width)*2); text-align: right; vertical-align: middle; }
+.endscreen .team2.title { padding-left: calc(var(--border-width)*2); text-align: left; vertical-align: middle; }
+
+.endscreen .endround
+{
+  position: absolute;
+  top: calc(100% - var(--lt-inset) - ((var(--lt-height) - var(--bar-height)) / 2));
+  left: calc(50% - (var(--logo-radius) * 1.5));
+  right: calc(50% - (var(--logo-radius) * 1.5));
+  height: var(--drop-height);
+  border-radius: 0 0 var(--border-width) var(--border-width); /*use smaller curve here because smaller*/
+  -webkit-clip-path: polygon(
+    0%  0%,
+    50% 0%,
+    100% 0%,
+    calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 0%,
+    50% 0%,
+    calc(var(--bar-height) / 2 * var(--arrow-tangent)) 0%
+  );
+}
+.endscreen .endround.display
+{
+  -webkit-clip-path: polygon(
+    0%  0%,
+    50% 0%,
+    100% 0%,
+    calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 100%,
+    50% 100%,
+    calc(var(--bar-height) / 2 * var(--arrow-tangent)) 100%
+  );
+}
+
+.endscreen .endround .title
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  text-align: center;
+}
+
+.endscreen .stats
+{
+  position: absolute;
+  bottom: calc(var(--lt-inset) + ((var(--lt-height) + var(--bar-height)) / 2));
+  width: calc(var(--lt-width) - (var(--width-small) * 1.2));
+  left: calc(var(--width-small) * 0.6);
+  height: calc(var(--drop-height) * var(--stat-height));
+  -webkit-clip-path: polygon(
+    0%  100%,
+    50% 100%,
+    100% 100%,
+    100% 100%,
+    calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 100%,
+    50% 100%,
+    calc(var(--bar-height) / 2 * var(--arrow-tangent)) 100%,
+    0% 100%
+  );
+}
+.endscreen .stats .title
+{
+  position: absolute;
+  top: calc(var(--border-width));
+  width: calc(50% - (var(--border-width) * 4));
+  height: calc(100% - var(--border-width));
+  vertical-align: bottom;
+}
+.endscreen .stats .title.stats1
+{
+  left: calc(var(--border-width) * 2);
+  text-align: left;
+  padding-left: 15px;
+}
+.endscreen .stats .title.stats2
+{
+  right: calc(var(--border-width) * 2);
+  text-align: right;
+  padding-right: 15px;
+}
+.endscreen .stats.display
+{
+  -webkit-clip-path: polygon(
+    0%  100%,
+    50% 100%,
+    100% 100%,
+    100% calc(100% / var(--stat-height)),
+    calc(100% - var(--bar-height) / 2 * var(--arrow-tangent)) 0%,
+    50% 0%,
+    calc(var(--bar-height) / 2 * var(--arrow-tangent)) 0%,
+    0% calc(100% / var(--stat-height))
+  );
+}

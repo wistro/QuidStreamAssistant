@@ -32,6 +32,8 @@ public:
 
 
 private:
+
+  void outputOverlays();
   
 //  StringArray tournaments;
   
