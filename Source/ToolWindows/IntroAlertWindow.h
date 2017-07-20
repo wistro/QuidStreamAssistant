@@ -46,7 +46,7 @@ private:
   Label currOverlaysFile;
   TextButton changeOverlaysLoc;
   
-  String overlayFolderIntro;
+  Label overlayFolderIntro;
   
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IntroAlertWindow)
 };

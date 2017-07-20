@@ -22,7 +22,7 @@ GameplayWindow::GameplayWindow()
   setIcon(ImageCache::getFromMemory(BinaryData::willogo_png, BinaryData::willogo_pngSize));
   
   #if ! JUCE_MAC
-    setMenuBar (ProjucerApplication::getApp().getMenuModel());
+    setMenuBar (QuidStreamAssistantApplication::getApp().getMenuModel());
   #endif
   
   int defaultW = 1000;

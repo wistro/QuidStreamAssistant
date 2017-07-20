@@ -19,40 +19,9 @@
 
 //==============================================================================
 
-void createGUIEditorMenu (PopupMenu&);
-void handleGUIEditorMenuCommand (int);
-void registerGUIEditorCommands();
-
-//==============================================================================
-
-struct QuidStreamAssistantApplication::MainMenuModel  : public MenuBarModel
-{
-  MainMenuModel()
-  {
-    setApplicationCommandManagerToWatch (&getCommandManager());
-  }
-  
-  ~MainMenuModel ()
-  {
-  }
-  
-  StringArray getMenuBarNames() override
-  {
-    return getApp().getMenuNames();
-  }
-  
-  PopupMenu getMenuForIndex (int /*topLevelMenuIndex*/, const String& menuName) override
-  {
-    PopupMenu menu;
-    getApp().createMenu (menu, menuName);
-    return menu;
-  }
-  
-  void menuItemSelected (int menuItemID, int /*topLevelMenuIndex*/) override
-  {
-    getApp().handleMainMenuCommand (menuItemID);
-  }
-};
+//void createGUIEditorMenu (PopupMenu&);
+//void handleGUIEditorMenuCommand (int);
+//void registerGUIEditorCommands();
 
 //==============================================================================
 void QuidStreamAssistantApplication::initialise (const String& commandLine)
@@ -210,6 +179,16 @@ ApplicationCommandManager& QuidStreamAssistantApplication::getCommandManager()
 }
 
 //==============================================================================
+
+void QuidStreamAssistantApplication::initCommandManager()
+{
+  commandManager = new ApplicationCommandManager();
+  commandManager->registerAllCommandsForTarget (this);
+
+  //registerGUIEditorCommands();
+}
+//==============================================================================
+
 MenuBarModel* QuidStreamAssistantApplication::getMenuModel()
 {
   return menuModel.get();
@@ -245,6 +224,11 @@ void QuidStreamAssistantApplication::createExtraAppleMenuItems (PopupMenu& menu)
 {
   menu.addCommandItem (commandManager, CommandIDs::showAboutWindow);
   menu.addSeparator();
+}
+
+void QuidStreamAssistantApplication::handleMainMenuCommand(int menuItemID)
+{
+  //handleGUIEditorMenuCommand (menuItemID);
 }
 
 //==============================================================================

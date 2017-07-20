@@ -1,0 +1,73 @@
+﻿  CustomLookAndFeel.cpp
+  Player.cpp
+  StoredSettings.cpp
+  Team.cpp
+  Tournament.cpp
+  GameplayComponent.cpp
+  GameplayWindow.cpp
+  GameTimer.cpp
+..\..\Source\Gameplay\GameTimer.cpp(68): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\Gameplay\GameplayComponent.cpp(209): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\Gameplay\GameplayComponent.cpp(293): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(293): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(561): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(608): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(655): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(676): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(704): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(725): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(746): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(774): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(795): warning C4390: ';': empty controlled statement found; is this the intent?
+..\..\Source\Gameplay\GameplayComponent.cpp(914): warning C4458: declaration of 'gameSetup' hides class member
+  d:\teevee\livestreaming\quidstreamassistant\source\gameplay\GameplayComponent.h(72): note: see declaration of 'GameplayComponent::gameSetup' (compiling source file ..\..\Source\Gameplay\GameplayComponent.cpp)
+..\..\Source\Gameplay\GameplayComponent.cpp(940): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\GameplayComponent.cpp(941): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  PronounsAndLogo.cpp
+  ScoreComponent.cpp
+  SnitchSliders.cpp
+  StopWatch.cpp
+..\..\Source\Gameplay\SnitchSliders.cpp(62): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\Gameplay\PronounsAndLogo.cpp(40): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+..\..\Source\Gameplay\PronounsAndLogo.cpp(40): warning C4244: 'initializing': conversion from 'float' to 'const int', possible loss of data
+..\..\Source\Gameplay\ScoreComponent.cpp(56): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\Gameplay\ScoreComponent.cpp(125): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+..\..\Source\Gameplay\ScoreComponent.cpp(157): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+..\..\Source\Gameplay\ScoreComponent.cpp(184): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+..\..\Source\Gameplay\StopWatch.cpp(49): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\StopWatch.cpp(50): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+..\..\Source\Gameplay\StopWatch.cpp(47): warning C4100: 'g': unreferenced formal parameter
+  EditTeamWindow.cpp
+  EditTournamentWindow.cpp
+  HRSnitchWindow.cpp
+  IntroAlertWindow.cpp
+..\..\Source\ToolWindows\HRSnitchWindow.cpp(71): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\ToolWindows\EditTournamentWindow.cpp(120): warning C4100: 'g': unreferenced formal parameter
+..\..\Source\ToolWindows\EditTeamWindow.cpp(131): warning C4100: 'g': unreferenced formal parameter
+  MainAppWindow.cpp
+  RosterListBoxComponent.cpp
+  SelectTeamsWindow.cpp
+  TeamListBoxComponent.cpp
+..\..\Source\ToolWindows\TeamListBoxComponent.cpp(100): warning C4100: 'columnId': unreferenced formal parameter
+  Application.cpp
+  Main.cpp
+  BinaryData.cpp
+  include_juce_audio_basics.cpp
+  include_juce_audio_devices.cpp
+  include_juce_audio_formats.cpp
+..\..\Source\TopLevel\Application.cpp(27): warning C4100: 'commandLine': unreferenced formal parameter
+..\..\Source\TopLevel\Application.cpp(145): warning C4100: 'commandLine': unreferenced formal parameter
+..\..\Source\TopLevel\Application.cpp(229): warning C4100: 'menuItemID': unreferenced formal parameter
+  include_juce_audio_processors.cpp
+  include_juce_core.cpp
+  include_juce_cryptography.cpp
+  include_juce_data_structures.cpp
+  include_juce_events.cpp
+  include_juce_graphics.cpp
+  include_juce_gui_basics.cpp
+  include_juce_gui_extra.cpp
+  include_juce_opengl.cpp
+  include_juce_video.cpp
+  Generating code
+  Finished generating code
+  QuidStreamAssistant_App.vcxproj -> D:\teevee\Livestreaming\QuidStreamAssistant\Builds\VisualStudio2017\x64\Release\App\QuidStreamAssistant.exe

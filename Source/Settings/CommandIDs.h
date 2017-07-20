@@ -28,3 +28,11 @@ namespace CommandIDs
     lastCommandIDEntry
   };
 }
+
+namespace CommandCategories
+{
+  static const char* const general = "General";
+  static const char* const editing = "Editing";
+  static const char* const view = "View";
+  static const char* const windows = "Windows";
+}

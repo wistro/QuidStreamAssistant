@@ -40,6 +40,7 @@ public:
   void createToolsMenu (PopupMenu&);
   void createExtraAppleMenuItems (PopupMenu&);
   void handleMainMenuCommand (int menuItemID);
+  void initCommandManager ();
   
   //==============================================================================
   void getAllCommands (Array<CommandID>&) override;
@@ -84,7 +85,34 @@ public:
   ScopedPointer<MainAppWindow> mainWindow;
   ScopedPointer<GameplayWindow> streamingWindow;
   
-  struct MainMenuModel;
+  struct MainMenuModel : public MenuBarModel
+  {
+    MainMenuModel()
+    {
+      setApplicationCommandManagerToWatch (&getCommandManager());
+    }
+
+    ~MainMenuModel ()
+    {
+    }
+
+    StringArray getMenuBarNames() override
+    {
+      return getApp().getMenuNames();
+    }
+
+    PopupMenu getMenuForIndex (int /*topLevelMenuIndex*/, const String& menuName) override
+    {
+      PopupMenu menu;
+      getApp().createMenu (menu, menuName);
+      return menu;
+    }
+
+    void menuItemSelected (int menuItemID, int /*topLevelMenuIndex*/) override
+    {
+      getApp().handleMainMenuCommand (menuItemID);
+    }
+  };
   ScopedPointer<MainMenuModel> menuModel;
   
   //==============================================================================

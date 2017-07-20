@@ -27,15 +27,16 @@ IntroAlertWindow::IntroAlertWindow()
   select.addListener(this);
   addAndMakeVisible(select);
   
-  overlayFolderIntro = "Current Overlays Folder: ";
+  overlayFolderIntro.setText("Current Overlays Folder: ", dontSendNotification);
+  addAndMakeVisible(overlayFolderIntro);
   
   if ( getGlobalProperties().containsKey( StoredSettings::overlaysSettingName ) )
   {
-    currOverlaysFile.setText(overlayFolderIntro + getGlobalProperties().getValue(StoredSettings::overlaysSettingName), dontSendNotification);
+    currOverlaysFile.setText(getGlobalProperties().getValue(StoredSettings::overlaysSettingName), dontSendNotification);
   }
   else //default value
   {
-    currOverlaysFile.setText(overlayFolderIntro + File::getSpecialLocation(File::userHomeDirectory).\
+    currOverlaysFile.setText(File::getSpecialLocation(File::userHomeDirectory).\
                                     getChildFile("QuidStreamAssistant/Overlays").getFullPathName(), dontSendNotification);
     getGlobalProperties().setValue(StoredSettings::overlaysSettingName, currOverlaysFile.getText());
   }
@@ -86,7 +87,8 @@ void IntroAlertWindow::paint (Graphics& g)
   area.removeFromLeft(margin);
   
   Rectangle<int> overlayChange (area.removeFromBottom(buttonHeight * 2));
-  currOverlaysFile.setBounds(overlayChange.removeFromTop(buttonHeight).reduced(margin));
+  overlayFolderIntro.setBounds(overlayChange.removeFromTop(buttonHeight / 2).reduced(margin));
+  currOverlaysFile.setBounds(overlayChange.removeFromTop(buttonHeight / 2).reduced(margin));
   changeOverlaysLoc.setBounds(overlayChange.removeFromRight(overlayChange.getWidth() / 2).reduced(margin));
   
   Rectangle<int> buttons (area.removeFromBottom(buttonHeight).reduced(margin));
@@ -173,6 +175,8 @@ void IntroAlertWindow::buttonClicked (Button* button)
     {
       File chosenDirectory = fc.getResult();
       
+      chosenDirectory.createDirectory();
+
       //if we've already output the overlay files, and the directory is changed
       //we're going to move everything from the old directory to the new one
       if (chosenDirectory != currOverlaysFile.getText() && getGlobalProperties().getValue("overlays") == "true")
@@ -206,7 +210,7 @@ void IntroAlertWindow::buttonClicked (Button* button)
       }
 
       getGlobalProperties().setValue(StoredSettings::overlaysSettingName, chosenDirectory.getFullPathName());
-      currOverlaysFile.setText(overlayFolderIntro + chosenDirectory.getFullPathName(), dontSendNotification);
+      currOverlaysFile.setText(chosenDirectory.getFullPathName(), dontSendNotification);
     }
   }
 }
@@ -215,13 +219,13 @@ void IntroAlertWindow::buttonClicked (Button* button)
 
 void IntroAlertWindow::outputOverlays()
 {
-  String folder;
   File overlaysFolder (currOverlaysFile.getText());
+  overlaysFolder.createDirectory();
 
-  File icons (overlaysFolder.getFullPathName() + "/icons");
+  File icons (overlaysFolder.getChildFile("icons"));
   icons.createDirectory();
 
-  File scripts (overlaysFolder.getFullPathName() + "/scripts");
+  File scripts (overlaysFolder.getChildFile("scripts"));
   scripts.createDirectory();
 
   FileOutputStream red (icons.getChildFile("redcard.png"));
@@ -238,7 +242,7 @@ void IntroAlertWindow::outputOverlays()
 
   FileOutputStream blue (icons.getChildFile("bluecard.png"));
   blue.write(BinaryData::bluecard_png, BinaryData::bluecard_pngSize);
-  blue.flush;
+  blue.flush();
 
   FileOutputStream quaffle (icons.getChildFile("quaffle.png"));
   quaffle.write(BinaryData::quaffle_png, BinaryData::quaffle_pngSize);

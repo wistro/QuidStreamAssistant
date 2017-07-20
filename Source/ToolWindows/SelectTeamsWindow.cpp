@@ -196,7 +196,7 @@ void SelectTeamsWindow::buttonClicked(Button* button)
 void Team::writeLogoCSSFile()
 {
   const File overlaysDir (getGlobalProperties().getValue(StoredSettings::overlaysSettingName));
-  const File logosCSS (overlaysDir.getFullPathName() + "/scripts/logos.css");
+  const File logosCSS (overlaysDir.getChildFile("scripts").getChildFile("logos.css"));
   Team* currTeam;
   
   String css = "";

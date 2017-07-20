@@ -839,25 +839,31 @@ void GameplayComponent::comboBoxChanged (ComboBox* box)
 {
   if ( box == &team1 )
   {
-    if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo.isValid() )
+    if (!QuidStreamAssistantApplication::getApp().thisTournament->teams.isEmpty())
     {
-      t1logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo);
-      hasLogoT1 = true;
+      if (QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo.isValid())
+      {
+        t1logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->logo);
+        hasLogoT1 = true;
+      }
+
+      t1logo.pronounChart.clear();
+      t1logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->pronounChart);
     }
-    
-    t1logo.pronounChart.clear();
-    t1logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team1.getSelectedId() - 1]->pronounChart);
   }
   else if ( box == &team2 )
   {
-    if ( QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo.isValid() )
+    if (!QuidStreamAssistantApplication::getApp().thisTournament->teams.isEmpty())
     {
-      t2logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
-      hasLogoT2 = true;
+      if (QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo.isValid())
+      {
+        t2logo.logo.setImage(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->logo);
+        hasLogoT2 = true;
+      }
+
+      t2logo.pronounChart.clear();
+      t2logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->pronounChart);
     }
-    
-    t2logo.pronounChart.clear();
-    t2logo.pronounChart.addArray(QuidStreamAssistantApplication::getApp().thisTournament->teams[team2.getSelectedId() - 1]->pronounChart);
   }
 }
 
